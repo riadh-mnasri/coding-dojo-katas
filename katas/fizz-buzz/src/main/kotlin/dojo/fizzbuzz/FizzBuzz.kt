@@ -1,10 +1,16 @@
 // Copyright (c) 2026 Riadh MNASRI. Licensed under the MIT License.
 package dojo.fizzbuzz
 
+/** Une règle donne un mot pour un nombre, ou rien si elle ne s'applique pas. */
+fun interface Rule {
+    fun wordFor(number: Int): String?
+}
+
+fun divisibleBy(divisor: Int, word: String) = Rule { number -> word.takeIf { number % divisor == 0 } }
+
 object FizzBuzz {
-    fun say(number: Int): String {
-        val fizz = if (number % 3 == 0) "Fizz" else ""
-        val buzz = if (number % 5 == 0) "Buzz" else ""
-        return (fizz + buzz).ifEmpty { number.toString() }
-    }
+    private val rules = listOf(divisibleBy(3, "Fizz"), divisibleBy(5, "Buzz"))
+
+    fun say(number: Int): String =
+        rules.mapNotNull { it.wordFor(number) }.joinToString("").ifEmpty { number.toString() }
 }
