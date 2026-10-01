@@ -15,4 +15,9 @@ class FizzBuzzTest {
     fun `says 2 for 2`() {
         assertThat(FizzBuzz.say(2)).isEqualTo("2")
     }
+
+    @Test
+    fun `says Fizz for 3`() {
+        assertThat(FizzBuzz.say(3)).isEqualTo("Fizz")
+    }
 }
