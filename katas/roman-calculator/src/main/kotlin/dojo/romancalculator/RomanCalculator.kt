@@ -1,6 +1,10 @@
 // Copyright (c) 2026 Riadh MNASRI. Licensed under the MIT License.
 package dojo.romancalculator
 
+/**
+ * Addition de chiffres romains sans jamais passer par des entiers :
+ * uniquement du développement, du tri, du regroupement et de la réécriture de chaînes.
+ */
 object RomanCalculator {
     private const val ORDER = "MDCLXVI"
 
@@ -18,13 +22,19 @@ object RomanCalculator {
         "IX" to "VIIII", "IV" to "IIII",
     )
 
-    fun add(left: String, right: String): String {
-        // Chaque opérande est développé séparément : "VIII" + "VII" ne doit pas faire apparaître un faux "IV".
-        val expanded = listOf(left, right).joinToString("") { roman ->
-            subtractives.fold(roman) { acc, (short, long) -> acc.replace(short, long) }
-        }
-        val sorted = expanded.toList().sortedBy { ORDER.indexOf(it) }.joinToString("")
-        val grouped = groupings.fold(sorted) { roman, (many, one) -> roman.replace(many, one) }
-        return subtractives.fold(grouped) { roman, (short, long) -> roman.replace(long, short) }
-    }
+    // Chaque opérande est développé séparément : "VIII" + "VII" ne doit pas faire apparaître un faux "IV".
+    fun add(left: String, right: String): String =
+        compress(group(sort(expand(left) + expand(right))))
+
+    private fun expand(roman: String) =
+        subtractives.fold(roman) { acc, (short, long) -> acc.replace(short, long) }
+
+    private fun sort(roman: String) =
+        roman.toList().sortedBy { ORDER.indexOf(it) }.joinToString("")
+
+    private fun group(roman: String) =
+        groupings.fold(roman) { acc, (many, one) -> acc.replace(many, one) }
+
+    private fun compress(roman: String) =
+        subtractives.fold(roman) { acc, (short, long) -> acc.replace(long, short) }
 }
