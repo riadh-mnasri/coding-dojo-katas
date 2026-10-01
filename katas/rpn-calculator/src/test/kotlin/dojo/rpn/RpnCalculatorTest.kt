@@ -14,4 +14,9 @@ class RpnCalculatorTest {
     fun `a number evaluates to itself`() {
         assertThat(calculator.evaluate("42")).isEqualTo(42.0)
     }
+
+    @Test
+    fun `adds the two previous values`() {
+        assertThat(calculator.evaluate("1 2 +")).isEqualTo(3.0)
+    }
 }
