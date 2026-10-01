@@ -49,4 +49,9 @@ class FooBarQixTest {
     fun `matches every example of step 1`(input: String, expected: String) {
         assertThat(FooBarQix.step1.compute(input)).isEqualTo(expected)
     }
+
+    @Test
+    fun `step 2 - keeps a trace of zeros when no rule applies`() {
+        assertThat(FooBarQix.step2.compute("101")).isEqualTo("1*1")
+    }
 }
