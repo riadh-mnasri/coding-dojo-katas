@@ -64,4 +64,11 @@ class BowlingGameTest {
         assertThatThrownBy { game.roll(11) }.isInstanceOf(IllegalArgumentException::class.java)
         assertThatThrownBy { game.roll(-1) }.isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @Test
+    fun `two rolls of a frame cannot knock down more than 10 pins`() {
+        game.roll(6)
+
+        assertThatThrownBy { game.roll(5) }.isInstanceOf(IllegalArgumentException::class.java)
+    }
 }
