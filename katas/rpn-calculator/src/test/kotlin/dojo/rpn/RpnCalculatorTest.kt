@@ -2,9 +2,11 @@
 package dojo.rpn
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import org.junit.jupiter.params.provider.ValueSource
 
 class RpnCalculatorTest {
 
@@ -41,5 +43,11 @@ class RpnCalculatorTest {
     @CsvSource("'5 3 4 2 9 1 MAX', 9", "'4 5 MAX 1 2 MAX *', 10")
     fun `MAX takes every value on the stack`(expression: String, expected: Double) {
         assertThat(calculator.evaluate(expression)).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["+", "1 +", "1 2", "1 0 /", "1 2 ?", "SQRT", "MAX", "1 2 + MAX"])
+    fun `rejects invalid expressions`(expression: String) {
+        assertThatThrownBy { calculator.evaluate(expression) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
