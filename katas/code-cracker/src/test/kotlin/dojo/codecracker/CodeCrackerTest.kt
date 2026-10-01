@@ -12,4 +12,9 @@ class CodeCrackerTest {
     fun `decrypts a single symbol`() {
         assertThat(cracker.decrypt("!")).isEqualTo("a")
     }
+
+    @Test
+    fun `decrypts a word`() {
+        assertThat(cracker.decrypt("&£aad")).isEqualTo("hello")
+    }
 }
