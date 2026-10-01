@@ -31,4 +31,9 @@ class RpnCalculatorTest {
     fun `chains expressions`(expression: String, expected: Double) {
         assertThat(calculator.evaluate(expression)).isEqualTo(expected)
     }
+
+    @Test
+    fun `SQRT takes a single operand`() {
+        assertThat(calculator.evaluate("9 SQRT")).isEqualTo(3.0)
+    }
 }
