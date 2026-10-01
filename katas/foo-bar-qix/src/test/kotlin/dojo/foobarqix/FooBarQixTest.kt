@@ -3,6 +3,8 @@ package dojo.foobarqix
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class FooBarQixTest {
 
@@ -37,5 +39,14 @@ class FooBarQixTest {
     fun `handles 7 as Qix`() {
         assertThat(FooBarQix.compute("7")).isEqualTo("QixQix")
         assertThat(FooBarQix.compute("21")).isEqualTo("FooQix")
+    }
+
+    @ParameterizedTest(name = "{0} => {1}")
+    @CsvSource(
+        "1, 1", "2, 2", "3, FooFoo", "4, 4", "5, BarBar", "6, Foo", "7, QixQix", "8, 8", "9, Foo",
+        "10, Bar", "13, Foo", "15, FooBarBar", "21, FooQix", "33, FooFooFoo", "51, FooBar", "53, BarFoo",
+    )
+    fun `matches every example of step 1`(input: String, expected: String) {
+        assertThat(FooBarQix.compute(input)).isEqualTo(expected)
     }
 }
