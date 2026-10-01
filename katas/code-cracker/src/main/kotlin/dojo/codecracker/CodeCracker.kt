@@ -1,10 +1,15 @@
 // Copyright (c) 2026 Riadh MNASRI. Licensed under the MIT License.
 package dojo.codecracker
 
-class CodeCracker {
-    fun decrypt(message: String): String = "a"
+class CodeCracker(alphabet: String, key: String) {
+    private val decryption = key.zip(alphabet).toMap()
+
+    fun decrypt(message: String): String = message.map { decryption.getValue(it) }.joinToString("")
 
     companion object {
-        val kata = CodeCracker()
+        const val ALPHABET = "abcdefghijklmnopqrstuvwxyz"
+        const val KATA_KEY = "!)\"(£*%&><@abcdefghijklmno"
+
+        val kata = CodeCracker(ALPHABET, KATA_KEY)
     }
 }
