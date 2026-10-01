@@ -65,4 +65,10 @@ class RomanNumeralsTest {
     fun `part 2 - adds the letter values`(roman: String, number: Int) {
         assertThat(RomanNumerals.toArabic(roman)).isEqualTo(number)
     }
+
+    @ParameterizedTest(name = "{0} is {1}")
+    @CsvSource("IV, 4", "XLII, 42", "MCMXC, 1990", "MMMCMXCIX, 3999")
+    fun `part 2 - subtracts a letter smaller than the next one`(roman: String, number: Int) {
+        assertThat(RomanNumerals.toArabic(roman)).isEqualTo(number)
+    }
 }
