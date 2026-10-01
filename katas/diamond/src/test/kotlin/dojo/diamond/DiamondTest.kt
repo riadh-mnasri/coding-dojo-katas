@@ -2,7 +2,10 @@
 package dojo.diamond
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class DiamondTest {
 
@@ -62,5 +65,11 @@ class DiamondTest {
             |  A
             """.trimMargin(),
         )
+    }
+
+    @ParameterizedTest
+    @ValueSource(chars = ['a', '1', '@'])
+    fun `only accepts capital letters`(input: Char) {
+        assertThatThrownBy { Diamond.of(input) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
