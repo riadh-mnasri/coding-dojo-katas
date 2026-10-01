@@ -18,4 +18,9 @@ class RomanCalculatorTest {
     fun `letters are sorted from the biggest`(left: String, right: String, sum: String) {
         assertThat(RomanCalculator.add(left, right)).isEqualTo(sum)
     }
+
+    @Test
+    fun `five I make a V`() {
+        assertThat(RomanCalculator.add("III", "II")).isEqualTo("V")
+    }
 }
