@@ -51,4 +51,10 @@ class FizzBuzzTest {
     fun `stage 2 - says Buzz for a number containing a 5`() {
         assertThat(FizzBuzz.stageTwo.say(52)).isEqualTo("Buzz")
     }
+
+    @Test
+    fun `stage 2 - combines both rules`() {
+        assertThat(FizzBuzz.stageTwo.say(53)).isEqualTo("FizzBuzz")
+        assertThat(FizzBuzz.stageTwo.say(35)).isEqualTo("FizzBuzz")
+    }
 }
