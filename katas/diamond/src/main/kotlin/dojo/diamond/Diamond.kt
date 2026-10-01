@@ -3,6 +3,7 @@ package dojo.diamond
 
 object Diamond {
     fun of(widest: Char): String {
+        require(widest in 'A'..'Z') { "Expected a capital letter, got '$widest'" }
         val size = widest - 'A'
         val topHalf = ('A'..widest).map { row(it, size) }
         return (topHalf + topHalf.dropLast(1).reversed()).joinToString("\n")
