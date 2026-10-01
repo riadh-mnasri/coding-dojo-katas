@@ -11,6 +11,7 @@ object RomanNumerals {
     )
 
     fun toRoman(number: Int): String {
+        require(number in 1..3999) { "Roman numerals go from 1 to 3999, got $number" }
         var remaining = number
         return buildString {
             for ((value, symbol) in symbols) {
