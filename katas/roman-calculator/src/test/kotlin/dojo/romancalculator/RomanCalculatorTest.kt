@@ -12,4 +12,10 @@ class RomanCalculatorTest {
     fun `I plus I is II`() {
         assertThat(RomanCalculator.add("I", "I")).isEqualTo("II")
     }
+
+    @ParameterizedTest(name = "{0} + {1} = {2}")
+    @CsvSource("X, V, XV", "I, X, XI", "V, X, XV")
+    fun `letters are sorted from the biggest`(left: String, right: String, sum: String) {
+        assertThat(RomanCalculator.add(left, right)).isEqualTo(sum)
+    }
 }
