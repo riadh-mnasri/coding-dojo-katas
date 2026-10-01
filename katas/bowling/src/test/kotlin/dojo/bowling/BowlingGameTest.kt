@@ -33,4 +33,14 @@ class BowlingGameTest {
 
         assertThat(game.score()).isEqualTo(16)
     }
+
+    @Test
+    fun `a strike earns the next two rolls as bonus`() {
+        game.roll(10)
+        game.roll(3)
+        game.roll(4)
+        rollMany(16, 0)
+
+        assertThat(game.score()).isEqualTo(24)
+    }
 }
