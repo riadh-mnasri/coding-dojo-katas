@@ -30,4 +30,15 @@ class FizzBuzzTest {
     fun `says FizzBuzz for 15`() {
         assertThat(FizzBuzz.say(15)).isEqualTo("FizzBuzz")
     }
+
+    @Test
+    fun `prints the answers from 1 to 100`() {
+        val answers = FizzBuzz.sequence()
+
+        assertThat(answers).hasSize(100)
+        assertThat(answers.take(15)).containsExactly(
+            "1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz",
+        )
+        assertThat(answers.last()).isEqualTo("Buzz")
+    }
 }
