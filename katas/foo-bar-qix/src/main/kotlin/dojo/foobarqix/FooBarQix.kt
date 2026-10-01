@@ -6,6 +6,7 @@ object FooBarQix {
         val number = input.toInt()
         val foo = if (number % 3 == 0) "Foo" else ""
         val bar = if (number % 5 == 0) "Bar" else ""
-        return (foo + bar).ifEmpty { input }
+        val digits = input.filter { it == '3' }.map { "Foo" }.joinToString("")
+        return (foo + bar + digits).ifEmpty { input }
     }
 }
