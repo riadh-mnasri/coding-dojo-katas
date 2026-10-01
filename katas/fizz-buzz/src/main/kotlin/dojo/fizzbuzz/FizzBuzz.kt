@@ -13,4 +13,6 @@ object FizzBuzz {
 
     fun say(number: Int): String =
         rules.mapNotNull { it.wordFor(number) }.joinToString("").ifEmpty { number.toString() }
+
+    fun sequence(): List<String> = (1..100).map(::say)
 }
