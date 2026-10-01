@@ -29,4 +29,9 @@ class RomanCalculatorTest {
     fun `groups letters at every level`(left: String, right: String, sum: String) {
         assertThat(RomanCalculator.add(left, right)).isEqualTo(sum)
     }
+
+    @Test
+    fun `four I are written IV`() {
+        assertThat(RomanCalculator.add("II", "II")).isEqualTo("IV")
+    }
 }
