@@ -24,4 +24,11 @@ class DictionaryReplacerTest {
 
         assertThat(result).isEqualTo("temporary here comes the name John Doe")
     }
+
+    @Test
+    fun `does not replace again inside a replaced value`() {
+        val dictionary = mapOf("a" to "\$b\$", "b" to "boom")
+
+        assertThat(DictionaryReplacer.replace("\$a\$", dictionary)).isEqualTo("\$b\$")
+    }
 }
