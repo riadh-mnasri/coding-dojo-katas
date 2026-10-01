@@ -59,4 +59,15 @@ class FooBarQixTest {
     fun `step 2 - interleaves zero traces with digit words`() {
         assertThat(FooBarQix.step2.compute("303")).isEqualTo("FooFoo*Foo")
     }
+
+    @Test
+    fun `step 2 - traces the zero of 10 after Bar`() {
+        assertThat(FooBarQix.step2.compute("10")).isEqualTo("Bar*")
+    }
+
+    @ParameterizedTest(name = "{0} => {1}")
+    @CsvSource("101, 1*1", "303, FooFoo*Foo", "105, FooBarQix*Bar", "10101, FooQix**")
+    fun `step 2 - matches every example`(input: String, expected: String) {
+        assertThat(FooBarQix.step2.compute(input)).isEqualTo(expected)
+    }
 }
