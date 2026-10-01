@@ -26,4 +26,10 @@ class FooBarQixTest {
         assertThat(FooBarQix.compute("13")).isEqualTo("Foo")
         assertThat(FooBarQix.compute("3")).isEqualTo("FooFoo")
     }
+
+    @Test
+    fun `translates digits 3 and 5 in their order`() {
+        assertThat(FooBarQix.compute("53")).isEqualTo("BarFoo")
+        assertThat(FooBarQix.compute("15")).isEqualTo("FooBarBar")
+    }
 }
