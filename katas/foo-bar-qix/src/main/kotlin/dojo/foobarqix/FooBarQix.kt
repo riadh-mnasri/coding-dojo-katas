@@ -2,7 +2,7 @@
 package dojo.foobarqix
 
 object FooBarQix {
-    private val words = linkedMapOf('3' to "Foo", '5' to "Bar")
+    private val words = linkedMapOf('3' to "Foo", '5' to "Bar", '7' to "Qix")
 
     fun compute(input: String): String {
         val number = input.toInt()
