@@ -25,4 +25,10 @@ class RpnCalculatorTest {
     fun `applies the operator to the two previous values in order`(expression: String, expected: Double) {
         assertThat(calculator.evaluate(expression)).isEqualTo(expected)
     }
+
+    @ParameterizedTest(name = "{0} = {1}")
+    @CsvSource("'4 2 + 3 -', 3", "'3 5 8 * 7 + *', 141")
+    fun `chains expressions`(expression: String, expected: Double) {
+        assertThat(calculator.evaluate(expression)).isEqualTo(expected)
+    }
 }
