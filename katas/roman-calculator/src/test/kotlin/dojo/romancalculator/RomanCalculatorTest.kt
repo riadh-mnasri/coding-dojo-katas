@@ -34,4 +34,9 @@ class RomanCalculatorTest {
     fun `four I are written IV`() {
         assertThat(RomanCalculator.add("II", "II")).isEqualTo("IV")
     }
+
+    @Test
+    fun `V and four I are written IX`() {
+        assertThat(RomanCalculator.add("VII", "II")).isEqualTo("IX")
+    }
 }
