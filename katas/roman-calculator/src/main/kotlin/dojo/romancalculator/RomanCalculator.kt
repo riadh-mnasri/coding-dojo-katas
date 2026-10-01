@@ -11,10 +11,16 @@ object RomanCalculator {
         "CCCCC" to "D", "DD" to "M",
     )
 
+    /** Formes soustractives et leur forme additive, la plus longue d'abord à chaque niveau. */
+    private val subtractives = listOf(
+        "CM" to "DCCCC", "CD" to "CCCC",
+        "XC" to "LXXXX", "XL" to "XXXX",
+        "IX" to "VIIII", "IV" to "IIII",
+    )
+
     fun add(left: String, right: String): String {
         val sorted = (left + right).toList().sortedBy { ORDER.indexOf(it) }.joinToString("")
-        return groupings.fold(sorted) { roman, (many, one) -> roman.replace(many, one) }
-            .replace("VIIII", "IX")
-            .replace("IIII", "IV")
+        val grouped = groupings.fold(sorted) { roman, (many, one) -> roman.replace(many, one) }
+        return subtractives.fold(grouped) { roman, (short, long) -> roman.replace(long, short) }
     }
 }
