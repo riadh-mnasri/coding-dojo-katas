@@ -76,4 +76,10 @@ class RomanNumeralsTest {
     fun `part 2 - round-trips every supported number`() {
         (1..3999).forEach { assertThat(RomanNumerals.toArabic(RomanNumerals.toRoman(it))).isEqualTo(it) }
     }
+
+    @ParameterizedTest
+    @CsvSource("IIII", "VV", "IC", "ABC")
+    fun `part 2 - rejects malformed numerals`(roman: String) {
+        assertThatThrownBy { RomanNumerals.toArabic(roman) }.isInstanceOf(IllegalArgumentException::class.java)
+    }
 }
