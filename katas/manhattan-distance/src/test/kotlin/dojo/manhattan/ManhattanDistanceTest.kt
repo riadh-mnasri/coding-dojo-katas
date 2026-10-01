@@ -15,4 +15,9 @@ class ManhattanDistanceTest {
     fun `distance along the horizontal axis`() {
         assertThat(manhattanDistance(Point(1, 1), Point(4, 1))).isEqualTo(3)
     }
+
+    @Test
+    fun `distance along the vertical axis`() {
+        assertThat(manhattanDistance(Point(1, 1), Point(1, 3))).isEqualTo(2)
+    }
 }
