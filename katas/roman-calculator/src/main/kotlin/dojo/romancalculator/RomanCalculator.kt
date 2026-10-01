@@ -2,5 +2,8 @@
 package dojo.romancalculator
 
 object RomanCalculator {
-    fun add(left: String, right: String): String = left + right
+    private const val ORDER = "MDCLXVI"
+
+    fun add(left: String, right: String): String =
+        (left + right).toList().sortedBy { ORDER.indexOf(it) }.joinToString("")
 }
