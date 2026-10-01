@@ -5,5 +5,5 @@ object DictionaryReplacer {
     private val placeholder = Regex("""\$(\w+)\$""")
 
     fun replace(text: String, dictionary: Map<String, String>): String =
-        placeholder.replace(text) { match -> dictionary.getValue(match.groupValues[1]) }
+        placeholder.replace(text) { match -> dictionary[match.groupValues[1]] ?: match.value }
 }
