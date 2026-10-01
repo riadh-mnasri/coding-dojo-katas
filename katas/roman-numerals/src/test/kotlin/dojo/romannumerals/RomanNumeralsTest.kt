@@ -54,4 +54,9 @@ class RomanNumeralsTest {
     fun `there is no zero in Rome`() {
         assertThatThrownBy { RomanNumerals.toRoman(0) }.isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @Test
+    fun `part 2 - I is 1`() {
+        assertThat(RomanNumerals.toArabic("I")).isEqualTo(1)
+    }
 }
