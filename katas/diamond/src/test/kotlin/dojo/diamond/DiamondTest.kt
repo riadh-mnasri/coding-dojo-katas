@@ -49,4 +49,18 @@ class DiamondTest {
     fun `has no trailing spaces`() {
         letters.forEach { letter -> Diamond.of(letter).lines().forEach { assertThat(it).doesNotEndWith(" ") } }
     }
+
+    @Test
+    fun `diamond B and C examples`() {
+        assertThat(Diamond.of('B')).isEqualTo(" A\nB B\n A")
+        assertThat(Diamond.of('C')).isEqualTo(
+            """
+            |  A
+            | B B
+            |C   C
+            | B B
+            |  A
+            """.trimMargin(),
+        )
+    }
 }
