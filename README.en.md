@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 3 / 61 katas.**
+**Progress: 4 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -75,7 +75,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | Elephant Carpaccio | thin vertical slicing | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/elephant-carpaccio/) |
 | Employee Report | focused assertions, test maintainability | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Employee-Report/) |
 | [FizzBuzz](katas/fizz-buzz/README.en.md) | baby steps, composable rules | ✅ done | [codingdojo.org](https://codingdojo.org/kata/FizzBuzz/) |
-| FooBarQix | changing requirements | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/FooBarQix/) |
+| [FooBarQix](katas/foo-bar-qix/README.en.md) | changing requirements | ✅ done | [codingdojo.org](https://codingdojo.org/kata/FooBarQix/) |
 | Game of Life | cellular automaton, immutability | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/GameOfLife/) |
 | Gilded Rose | legacy code, characterization tests | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/gilded-rose/) |
 | Greed | scoring rules | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Greed/) |
