@@ -42,4 +42,10 @@ class RomanNumeralsTest {
     fun `bigger letters and their subtractions`(number: Int, roman: String) {
         assertThat(RomanNumerals.toRoman(number)).isEqualTo(roman)
     }
+
+    @ParameterizedTest(name = "{0} is {1}")
+    @CsvSource("1990, MCMXC", "2008, MMVIII", "1666, MDCLXVI", "3999, MMMCMXCIX")
+    fun `full numbers`(number: Int, roman: String) {
+        assertThat(RomanNumerals.toRoman(number)).isEqualTo(roman)
+    }
 }
