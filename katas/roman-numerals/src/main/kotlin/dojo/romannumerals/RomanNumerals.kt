@@ -2,21 +2,18 @@
 package dojo.romannumerals
 
 object RomanNumerals {
+
+    private val symbols = listOf(10 to "X", 5 to "V", 1 to "I")
+
     fun toRoman(number: Int): String {
         var remaining = number
-        var roman = ""
-        while (remaining >= 10) {
-            roman += "X"
-            remaining -= 10
+        return buildString {
+            for ((value, symbol) in symbols) {
+                while (remaining >= value) {
+                    append(symbol)
+                    remaining -= value
+                }
+            }
         }
-        while (remaining >= 5) {
-            roman += "V"
-            remaining -= 5
-        }
-        while (remaining >= 1) {
-            roman += "I"
-            remaining -= 1
-        }
-        return roman
     }
 }
