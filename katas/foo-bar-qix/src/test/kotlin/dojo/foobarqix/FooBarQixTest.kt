@@ -54,4 +54,9 @@ class FooBarQixTest {
     fun `step 2 - keeps a trace of zeros when no rule applies`() {
         assertThat(FooBarQix.step2.compute("101")).isEqualTo("1*1")
     }
+
+    @Test
+    fun `step 2 - interleaves zero traces with digit words`() {
+        assertThat(FooBarQix.step2.compute("303")).isEqualTo("FooFoo*Foo")
+    }
 }
