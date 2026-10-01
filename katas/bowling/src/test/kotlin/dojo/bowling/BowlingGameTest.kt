@@ -16,4 +16,11 @@ class BowlingGameTest {
 
         assertThat(game.score()).isEqualTo(0)
     }
+
+    @Test
+    fun `all ones scores twenty`() {
+        rollMany(20, 1)
+
+        assertThat(game.score()).isEqualTo(20)
+    }
 }
