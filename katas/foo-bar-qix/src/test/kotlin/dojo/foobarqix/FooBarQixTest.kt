@@ -20,4 +20,10 @@ class FooBarQixTest {
     fun `says Bar for a number divisible by 5`() {
         assertThat(FooBarQix.compute("10")).isEqualTo("Bar")
     }
+
+    @Test
+    fun `adds Foo for each digit 3`() {
+        assertThat(FooBarQix.compute("13")).isEqualTo("Foo")
+        assertThat(FooBarQix.compute("3")).isEqualTo("FooFoo")
+    }
 }
