@@ -16,4 +16,10 @@ class RomanNumeralsTest {
         assertThat(RomanNumerals.toRoman(2)).isEqualTo("II")
         assertThat(RomanNumerals.toRoman(3)).isEqualTo("III")
     }
+
+    @Test
+    fun `5 is V and 6 is VI`() {
+        assertThat(RomanNumerals.toRoman(5)).isEqualTo("V")
+        assertThat(RomanNumerals.toRoman(6)).isEqualTo("VI")
+    }
 }
