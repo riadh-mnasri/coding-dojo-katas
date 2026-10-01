@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 4 / 61 katas.**
+**Progress: 5 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -105,7 +105,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | Range | value object, bounds | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Range/) |
 | Reversi | legal moves, directions | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Reversi/) |
 | Roman Calculator | finding the next test | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/RomanCalculator/) |
-| Roman Numerals | greedy algorithm | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/RomanNumerals/) |
+| [Roman Numerals](katas/roman-numerals/README.en.md) | greedy algorithm | ✅ done | [codingdojo.org](https://codingdojo.org/kata/RomanNumerals/) |
 | RPN Calculator | stack, extensible operations | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/RPN/) |
 | RSA | modular arithmetic | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/rsa/) |
 | Social Network | example mapping, domain | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/social-network/) |

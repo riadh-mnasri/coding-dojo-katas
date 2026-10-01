@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 4 / 61 katas.**
+**Avancement : 5 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -105,7 +105,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | Range | objet valeur, bornes | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Range/) |
 | Reversi | coups légaux, directions | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Reversi/) |
 | Roman Calculator | trouver le prochain test | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/RomanCalculator/) |
-| Roman Numerals | algorithme glouton | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/RomanNumerals/) |
+| [Roman Numerals](katas/roman-numerals/README.md) | algorithme glouton | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/RomanNumerals/) |
 | RPN Calculator | pile, opérations extensibles | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/RPN/) |
 | RSA | arithmétique modulaire | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/rsa/) |
 | Social Network | example mapping, domaine | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/social-network/) |
