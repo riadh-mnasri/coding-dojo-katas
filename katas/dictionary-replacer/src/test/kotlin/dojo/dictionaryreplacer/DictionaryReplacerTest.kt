@@ -15,4 +15,13 @@ class DictionaryReplacerTest {
     fun `replaces a single placeholder`() {
         assertThat(DictionaryReplacer.replace("\$temp\$", mapOf("temp" to "temporary"))).isEqualTo("temporary")
     }
+
+    @Test
+    fun `replaces several placeholders in a sentence`() {
+        val dictionary = mapOf("temp" to "temporary", "name" to "John Doe")
+
+        val result = DictionaryReplacer.replace("\$temp\$ here comes the name \$name\$", dictionary)
+
+        assertThat(result).isEqualTo("temporary here comes the name John Doe")
+    }
 }
