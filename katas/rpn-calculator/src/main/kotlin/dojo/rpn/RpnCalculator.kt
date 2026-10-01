@@ -5,10 +5,18 @@ class RpnCalculator {
     fun evaluate(expression: String): Double {
         val stack = ArrayDeque<Double>()
         expression.split(" ").forEach { token ->
-            if (token == "+") {
-                stack.addLast(stack.removeLast() + stack.removeLast())
-            } else {
-                stack.addLast(token.toDouble())
+            when (token) {
+                "+" -> stack.addLast(stack.removeLast() + stack.removeLast())
+                "-" -> {
+                    val right = stack.removeLast()
+                    stack.addLast(stack.removeLast() - right)
+                }
+                "*" -> stack.addLast(stack.removeLast() * stack.removeLast())
+                "/" -> {
+                    val right = stack.removeLast()
+                    stack.addLast(stack.removeLast() / right)
+                }
+                else -> stack.addLast(token.toDouble())
             }
         }
         return stack.single()
