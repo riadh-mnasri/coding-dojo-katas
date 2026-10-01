@@ -8,6 +8,10 @@ fun interface Rule {
 
 fun divisibleBy(divisor: Int, word: String) = Rule { number -> word.takeIf { number % divisor == 0 } }
 
+fun divisibleByOrContains(digit: Int, word: String) = Rule { number ->
+    word.takeIf { number % digit == 0 || digit.toString() in number.toString() }
+}
+
 class FizzBuzz(private val rules: List<Rule>) {
 
     fun say(number: Int): String =
@@ -17,6 +21,7 @@ class FizzBuzz(private val rules: List<Rule>) {
 
     companion object {
         val classic = FizzBuzz(listOf(divisibleBy(3, "Fizz"), divisibleBy(5, "Buzz")))
+        val stageTwo = FizzBuzz(listOf(divisibleByOrContains(3, "Fizz"), divisibleBy(5, "Buzz")))
     }
 }
 
