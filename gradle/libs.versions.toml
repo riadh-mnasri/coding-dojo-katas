@@ -1,0 +1,26 @@
+[versions]
+kotlin = "2.0.21"
+junit = "5.11.3"
+assertj = "3.26.3"
+mockk = "1.13.13"
+coroutines = "1.9.0"
+exposed = "0.56.0"
+sqlite = "3.47.1.0"
+servlet = "6.1.0"
+
+[libraries]
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
+junit-params = { module = "org.junit.jupiter:junit-jupiter-params" }
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
+exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposed" }
+exposed-javatime = { module = "org.jetbrains.exposed:exposed-java-time", version.ref = "exposed" }
+sqlite-jdbc = { module = "org.xerial:sqlite-jdbc", version.ref = "sqlite" }
+jakarta-servlet = { module = "jakarta.servlet:jakarta.servlet-api", version.ref = "servlet" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
