@@ -5,6 +5,7 @@ class BowlingGame {
     private val rolls = mutableListOf<Int>()
 
     fun roll(pins: Int) {
+        require(pins in 0..ALL_PINS) { "A roll knocks down 0 to $ALL_PINS pins, got $pins" }
         rolls += pins
     }
 
