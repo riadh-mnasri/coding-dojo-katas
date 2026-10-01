@@ -2,6 +2,11 @@
 package dojo.codecracker
 
 class CodeCracker(alphabet: String, key: String) {
+    init {
+        require(alphabet.length == key.length) { "Alphabet and key must have the same length" }
+        require(key.toSet().size == key.length) { "Key symbols must be unique to be decrypted" }
+    }
+
     private val encryption = alphabet.zip(key).toMap()
     private val decryption = key.zip(alphabet).toMap()
 
