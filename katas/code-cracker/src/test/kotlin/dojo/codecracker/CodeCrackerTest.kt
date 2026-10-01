@@ -22,4 +22,9 @@ class CodeCrackerTest {
     fun `keeps characters outside the key`() {
         assertThat(cracker.decrypt("&£aad, ldga(?")).isEqualTo("hello, world?")
     }
+
+    @Test
+    fun `encrypts a message`() {
+        assertThat(cracker.encrypt("hello world")).isEqualTo("&£aad ldga(")
+    }
 }
