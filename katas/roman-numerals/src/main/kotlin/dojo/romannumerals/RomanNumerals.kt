@@ -2,5 +2,13 @@
 package dojo.romannumerals
 
 object RomanNumerals {
-    fun toRoman(number: Int): String = "I".repeat(number)
+    fun toRoman(number: Int): String {
+        var remaining = number
+        var roman = ""
+        if (remaining >= 5) {
+            roman += "V"
+            remaining -= 5
+        }
+        return roman + "I".repeat(remaining)
+    }
 }
