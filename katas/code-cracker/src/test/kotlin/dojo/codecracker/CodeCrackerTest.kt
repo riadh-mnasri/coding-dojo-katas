@@ -27,4 +27,11 @@ class CodeCrackerTest {
     fun `encrypts a message`() {
         assertThat(cracker.encrypt("hello world")).isEqualTo("&£aad ldga(")
     }
+
+    @Test
+    fun `decrypting an encrypted message gives it back`() {
+        val message = "the quick brown fox jumps over the lazy dog"
+
+        assertThat(cracker.decrypt(cracker.encrypt(message))).isEqualTo(message)
+    }
 }
