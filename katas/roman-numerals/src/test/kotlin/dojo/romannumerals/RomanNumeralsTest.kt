@@ -10,4 +10,10 @@ class RomanNumeralsTest {
     fun `1 is I`() {
         assertThat(RomanNumerals.toRoman(1)).isEqualTo("I")
     }
+
+    @Test
+    fun `2 and 3 repeat I`() {
+        assertThat(RomanNumerals.toRoman(2)).isEqualTo("II")
+        assertThat(RomanNumerals.toRoman(3)).isEqualTo("III")
+    }
 }
