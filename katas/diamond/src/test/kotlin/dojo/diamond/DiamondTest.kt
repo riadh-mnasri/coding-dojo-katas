@@ -19,4 +19,13 @@ class DiamondTest {
             assertThat(Diamond.of(letter).lines()).hasSize(2 * (letter - 'A') + 1)
         }
     }
+
+    @Test
+    fun `goes from A to the letter and back`() {
+        letters.forEach { letter ->
+            val expected = ('A'..letter).toList()
+            val firstLetters = Diamond.of(letter).lines().map { it.trim().first() }
+            assertThat(firstLetters).isEqualTo(expected + expected.dropLast(1).reversed())
+        }
+    }
 }
