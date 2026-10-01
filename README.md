@@ -23,7 +23,7 @@ Chaque étape fait l'objet de **son propre commit**, au format Angular :
 Les commits rouges contiennent dans leur description la raison de l'échec (erreur de compilation ou assertion). L'historique git est donc la preuve de la démarche, et non une reconstitution :
 
 ```bash
-git log --reverse --format='%s%n%b' -- katas/bowling
+git log --reverse --format='%s%n%b' strict-tdd-start.. -- katas/bowling
 ```
 
 ### Le garde-fou
@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 0 / 61 katas.**
+**Avancement : 2 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -74,12 +74,12 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | Eight Queens | backtracking, parcours d'arbre | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/eight-queens/) |
 | Elephant Carpaccio | découpage en tranches fines | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/elephant-carpaccio/) |
 | Employee Report | assertions ciblées, maintenabilité des tests | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Employee-Report/) |
-| FizzBuzz | baby steps, règles composables | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/FizzBuzz/) |
+| [FizzBuzz](katas/fizz-buzz/README.md) | baby steps, règles composables | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/FizzBuzz/) |
 | FooBarQix | évolution des exigences | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/FooBarQix/) |
 | Game of Life | automate cellulaire, immutabilité | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/GameOfLife/) |
 | Gilded Rose | code legacy, tests de caractérisation | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/gilded-rose/) |
 | Greed | règles de score | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Greed/) |
-| Hello | doublures de test | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Hello/) |
+| [Hello](katas/hello/README.md) | doublures de test | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Hello/) |
 | JEE Web Authentication | mocks vs stubs, filtres servlet | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/JEEWebAuthentication/) |
 | Lags | programmation dynamique | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Lags/) |
 | Langton Ant | automate cellulaire, règles extensibles | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/LangtonAnt/) |

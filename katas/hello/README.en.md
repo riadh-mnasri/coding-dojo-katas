@@ -36,5 +36,5 @@ Even for a one-line program, writing the test first forces a split between the l
 
 ```bash
 ./gradlew :katas:hello:test
-git log --reverse --format='%s%n%b' -- katas/hello   # the TDD history
+git log --reverse --format='%s%n%b' strict-tdd-start.. -- katas/hello   # the TDD history
 ```

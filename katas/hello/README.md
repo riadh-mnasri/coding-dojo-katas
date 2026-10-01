@@ -36,5 +36,5 @@ Même sur un programme d'une ligne, écrire le test en premier oblige à sépare
 
 ```bash
 ./gradlew :katas:hello:test
-git log --reverse --format='%s%n%b' -- katas/hello   # l'historique TDD
+git log --reverse --format='%s%n%b' strict-tdd-start.. -- katas/hello   # l'historique TDD
 ```
