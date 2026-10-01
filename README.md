@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 6 / 61 katas.**
+**Avancement : 7 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -69,7 +69,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | CQRS Booking | CQRS, séparation lecture/écriture | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/CQRS_Booking/) |
 | Cupcake | patterns Décorateur et Composite | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/cupcake/) |
 | Depth First Search | récursion, conversation simulée | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/DepthFirstSearch/) |
-| Diamond | tests de propriétés | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Diamond/) |
+| [Diamond](katas/diamond/README.md) | tests de propriétés | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Diamond/) |
 | Dictionary Replacer | remplacement de chaînes | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/DictionaryReplacer/) |
 | Eight Queens | backtracking, parcours d'arbre | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/eight-queens/) |
 | Elephant Carpaccio | découpage en tranches fines | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/elephant-carpaccio/) |

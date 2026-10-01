@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 6 / 61 katas.**
+**Progress: 7 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -69,7 +69,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | CQRS Booking | CQRS, read/write split | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/CQRS_Booking/) |
 | Cupcake | Decorator and Composite patterns | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/cupcake/) |
 | Depth First Search | recursion, mocked conversation | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/DepthFirstSearch/) |
-| Diamond | property-style tests | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Diamond/) |
+| [Diamond](katas/diamond/README.en.md) | property-style tests | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Diamond/) |
 | Dictionary Replacer | string replacement | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/DictionaryReplacer/) |
 | Eight Queens | backtracking, tree traversal | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/eight-queens/) |
 | Elephant Carpaccio | thin vertical slicing | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/elephant-carpaccio/) |
