@@ -8,11 +8,16 @@ fun interface Rule {
 
 fun divisibleBy(divisor: Int, word: String) = Rule { number -> word.takeIf { number % divisor == 0 } }
 
-object FizzBuzz {
-    private val rules = listOf(divisibleBy(3, "Fizz"), divisibleBy(5, "Buzz"))
+class FizzBuzz(private val rules: List<Rule>) {
 
     fun say(number: Int): String =
         rules.mapNotNull { it.wordFor(number) }.joinToString("").ifEmpty { number.toString() }
 
     fun sequence(): List<String> = (1..100).map(::say)
+
+    companion object {
+        val classic = FizzBuzz(listOf(divisibleBy(3, "Fizz"), divisibleBy(5, "Buzz")))
+    }
 }
+
+fun main() = FizzBuzz.classic.sequence().forEach(::println)
