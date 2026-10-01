@@ -1,6 +1,14 @@
 // Copyright (c) 2026 Riadh MNASRI. Licensed under the MIT License.
 package dojo.manhattan
 
-class Point(private val x: Int, private val y: Int)
+import kotlin.math.abs
 
-fun manhattanDistance(from: Point, to: Point): Int = 0
+/**
+ * Point immuable, sans accesseur ni propriété publique : son état ne se lit pas de l'extérieur.
+ * C'est donc lui qui calcule sa distance à un autre point (Tell, don't ask).
+ */
+class Point(private val x: Int, private val y: Int) {
+    fun distanceTo(other: Point): Int = abs(x - other.x)
+}
+
+fun manhattanDistance(from: Point, to: Point): Int = from.distanceTo(to)
