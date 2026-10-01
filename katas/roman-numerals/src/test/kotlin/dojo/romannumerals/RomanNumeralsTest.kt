@@ -22,4 +22,10 @@ class RomanNumeralsTest {
         assertThat(RomanNumerals.toRoman(5)).isEqualTo("V")
         assertThat(RomanNumerals.toRoman(6)).isEqualTo("VI")
     }
+
+    @Test
+    fun `10 is X and 20 is XX`() {
+        assertThat(RomanNumerals.toRoman(10)).isEqualTo("X")
+        assertThat(RomanNumerals.toRoman(20)).isEqualTo("XX")
+    }
 }
