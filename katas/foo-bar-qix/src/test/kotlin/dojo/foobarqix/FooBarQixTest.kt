@@ -15,4 +15,9 @@ class FooBarQixTest {
     fun `says Foo for a number divisible by 3`() {
         assertThat(FooBarQix.compute("6")).isEqualTo("Foo")
     }
+
+    @Test
+    fun `says Bar for a number divisible by 5`() {
+        assertThat(FooBarQix.compute("10")).isEqualTo("Bar")
+    }
 }
