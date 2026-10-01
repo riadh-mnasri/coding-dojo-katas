@@ -2,5 +2,5 @@
 package dojo.leapyears
 
 class LeapYear {
-    fun isLeap(year: Int): Boolean = false
+    fun isLeap(year: Int): Boolean = year % 4 == 0
 }
