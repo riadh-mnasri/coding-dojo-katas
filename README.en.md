@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 5 / 61 katas.**
+**Progress: 6 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -104,7 +104,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | Quote of the Day | minimal web service | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/QotdCgi/) |
 | Range | value object, bounds | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Range/) |
 | Reversi | legal moves, directions | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Reversi/) |
-| Roman Calculator | finding the next test | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/RomanCalculator/) |
+| [Roman Calculator](katas/roman-calculator/README.en.md) | finding the next test | ✅ done | [codingdojo.org](https://codingdojo.org/kata/RomanCalculator/) |
 | [Roman Numerals](katas/roman-numerals/README.en.md) | greedy algorithm | ✅ done | [codingdojo.org](https://codingdojo.org/kata/RomanNumerals/) |
 | RPN Calculator | stack, extensible operations | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/RPN/) |
 | RSA | modular arithmetic | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/rsa/) |
