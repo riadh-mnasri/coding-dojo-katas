@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 8 / 61 katas.**
+**Avancement : 9 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -70,7 +70,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | Cupcake | patterns Décorateur et Composite | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/cupcake/) |
 | Depth First Search | récursion, conversation simulée | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/DepthFirstSearch/) |
 | [Diamond](katas/diamond/README.md) | tests de propriétés | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Diamond/) |
-| Dictionary Replacer | remplacement de chaînes | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/DictionaryReplacer/) |
+| [Dictionary Replacer](katas/dictionary-replacer/README.md) | remplacement de chaînes | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/DictionaryReplacer/) |
 | Eight Queens | backtracking, parcours d'arbre | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/eight-queens/) |
 | Elephant Carpaccio | découpage en tranches fines | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/elephant-carpaccio/) |
 | Employee Report | assertions ciblées, maintenabilité des tests | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Employee-Report/) |
