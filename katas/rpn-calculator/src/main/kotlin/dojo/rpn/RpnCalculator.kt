@@ -3,9 +3,32 @@ package dojo.rpn
 
 import kotlin.math.sqrt
 
-/** Une opération consomme le haut de la pile et y dépose son résultat. */
+/**
+ * La pile de l'évaluation. Elle retient où s'arrête le résultat de la dernière opération,
+ * pour les opérations comme MAX qui portent sur « tous les opérandes qui suivent ».
+ */
+class OperandStack {
+    private val values = ArrayDeque<Double>()
+    private var lastResultIndex = 0
+
+    fun push(value: Double) = values.addLast(value)
+
+    fun pop(): Double = values.removeLast()
+
+    fun popOperandsSinceLastOperation(): List<Double> =
+        List(values.size - lastResultIndex) { values.removeLast() }.reversed()
+
+    fun pushResult(value: Double) {
+        push(value)
+        lastResultIndex = values.size
+    }
+
+    fun single(): Double = values.single()
+}
+
+/** Une opération consomme des valeurs de la pile et y dépose son résultat. */
 fun interface Operation {
-    fun applyTo(stack: ArrayDeque<Double>)
+    fun applyTo(stack: OperandStack)
 }
 
 class RpnCalculator {
@@ -16,23 +39,24 @@ class RpnCalculator {
         "*" to binary(Double::times),
         "/" to binary(Double::div),
         "SQRT" to unary(::sqrt),
+        "MAX" to Operation { stack -> stack.pushResult(stack.popOperandsSinceLastOperation().max()) },
     )
 
     fun evaluate(expression: String): Double {
-        val stack = ArrayDeque<Double>()
+        val stack = OperandStack()
         expression.split(" ").forEach { token ->
-            operations[token]?.applyTo(stack) ?: stack.addLast(token.toDouble())
+            operations[token]?.applyTo(stack) ?: stack.push(token.toDouble())
         }
         return stack.single()
     }
 
     private fun binary(compute: (Double, Double) -> Double) = Operation { stack ->
-        val right = stack.removeLast()
-        val left = stack.removeLast()
-        stack.addLast(compute(left, right))
+        val right = stack.pop()
+        val left = stack.pop()
+        stack.pushResult(compute(left, right))
     }
 
     private fun unary(compute: (Double) -> Double) = Operation { stack ->
-        stack.addLast(compute(stack.removeLast()))
+        stack.pushResult(compute(stack.pop()))
     }
 }
