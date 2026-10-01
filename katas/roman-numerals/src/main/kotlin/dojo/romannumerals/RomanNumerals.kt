@@ -2,5 +2,5 @@
 package dojo.romannumerals
 
 object RomanNumerals {
-    fun toRoman(number: Int): String = "I"
+    fun toRoman(number: Int): String = "I".repeat(number)
 }
