@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 7 / 61 katas.**
+**Progress: 8 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -84,7 +84,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | Lags | dynamic programming | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Lags/) |
 | Langton Ant | cellular automaton, extensible rules | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/LangtonAnt/) |
 | [Leap Years](katas/leap-years/README.en.md) | rules and exceptions | ✅ done | [codingdojo.org](https://codingdojo.org/kata/LeapYears/) |
-| Manhattan Distance | getter-free objects (Tell, don't ask) | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/manhattan-distance/) |
+| [Manhattan Distance](katas/manhattan-distance/README.en.md) | getter-free objects (Tell, don't ask) | ✅ done | [codingdojo.org](https://codingdojo.org/kata/manhattan-distance/) |
 | Markov Chain | statistics, injected randomness | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/MarkovChain/) |
 | Mars Rover | commands, obstacles, map parsing | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/mars-rover/) |
 | Mastermind | counting, choosing the next test | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Mastermind/) |
