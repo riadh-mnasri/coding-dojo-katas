@@ -23,4 +23,10 @@ class RomanCalculatorTest {
     fun `five I make a V`() {
         assertThat(RomanCalculator.add("III", "II")).isEqualTo("V")
     }
+
+    @ParameterizedTest(name = "{0} + {1} = {2}")
+    @CsvSource("V, V, X", "XXX, XX, L", "L, L, C", "CCC, CC, D", "D, D, M", "VIII, VII, XV")
+    fun `groups letters at every level`(left: String, right: String, sum: String) {
+        assertThat(RomanCalculator.add(left, right)).isEqualTo(sum)
+    }
 }
