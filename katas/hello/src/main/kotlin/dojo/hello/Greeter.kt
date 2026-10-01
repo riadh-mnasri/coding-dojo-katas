@@ -8,3 +8,5 @@ fun interface Display {
 class Greeter(private val display: Display) {
     fun greet() = display.show("Hello, World!")
 }
+
+fun main() = Greeter(::println).greet()
