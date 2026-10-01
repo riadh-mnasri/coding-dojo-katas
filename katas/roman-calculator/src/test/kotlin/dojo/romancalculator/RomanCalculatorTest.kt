@@ -39,4 +39,10 @@ class RomanCalculatorTest {
     fun `V and four I are written IX`() {
         assertThat(RomanCalculator.add("VII", "II")).isEqualTo("IX")
     }
+
+    @ParameterizedTest(name = "{0} + {1} = {2}")
+    @CsvSource("XX, XX, XL", "LXX, XX, XC", "CC, CC, CD", "DCC, CC, CM")
+    fun `uses subtraction at every level`(left: String, right: String, sum: String) {
+        assertThat(RomanCalculator.add(left, right)).isEqualTo(sum)
+    }
 }
