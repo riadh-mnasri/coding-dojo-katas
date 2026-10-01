@@ -31,4 +31,9 @@ class DictionaryReplacerTest {
 
         assertThat(DictionaryReplacer.replace("\$a\$", dictionary)).isEqualTo("\$b\$")
     }
+
+    @Test
+    fun `keeps unknown placeholders`() {
+        assertThat(DictionaryReplacer.replace("\$unknown\$ stays", emptyMap())).isEqualTo("\$unknown\$ stays")
+    }
 }
