@@ -22,4 +22,6 @@ object RomanNumerals {
             }
         }
     }
+
+    fun toArabic(roman: String): Int = 1
 }
