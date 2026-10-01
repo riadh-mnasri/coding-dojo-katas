@@ -32,4 +32,10 @@ class FooBarQixTest {
         assertThat(FooBarQix.compute("53")).isEqualTo("BarFoo")
         assertThat(FooBarQix.compute("15")).isEqualTo("FooBarBar")
     }
+
+    @Test
+    fun `handles 7 as Qix`() {
+        assertThat(FooBarQix.compute("7")).isEqualTo("QixQix")
+        assertThat(FooBarQix.compute("21")).isEqualTo("FooQix")
+    }
 }
