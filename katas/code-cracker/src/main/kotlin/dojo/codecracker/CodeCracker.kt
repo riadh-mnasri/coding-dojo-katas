@@ -4,7 +4,7 @@ package dojo.codecracker
 class CodeCracker(alphabet: String, key: String) {
     private val decryption = key.zip(alphabet).toMap()
 
-    fun decrypt(message: String): String = message.map { decryption.getValue(it) }.joinToString("")
+    fun decrypt(message: String): String = message.map { decryption[it] ?: it }.joinToString("")
 
     companion object {
         const val ALPHABET = "abcdefghijklmnopqrstuvwxyz"
