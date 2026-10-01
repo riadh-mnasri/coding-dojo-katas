@@ -6,4 +6,5 @@ object RomanCalculator {
 
     fun add(left: String, right: String): String =
         (left + right).toList().sortedBy { ORDER.indexOf(it) }.joinToString("")
+            .replace("IIIII", "V")
 }
