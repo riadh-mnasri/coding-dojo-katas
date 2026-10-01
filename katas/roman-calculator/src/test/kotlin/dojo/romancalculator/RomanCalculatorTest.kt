@@ -51,4 +51,10 @@ class RomanCalculatorTest {
     fun `expands subtractive inputs before adding`(left: String, right: String, sum: String) {
         assertThat(RomanCalculator.add(left, right)).isEqualTo(sum)
     }
+
+    @ParameterizedTest(name = "{0} + {1} = {2}")
+    @CsvSource("CMXCIX, I, M", "MCMXCIX, I, MM", "DCCCXC, CX, M", "MMCDXLIV, MCDXLIV, MMMDCCCLXXXVIII")
+    fun `carries through several levels`(left: String, right: String, sum: String) {
+        assertThat(RomanCalculator.add(left, right)).isEqualTo(sum)
+    }
 }
