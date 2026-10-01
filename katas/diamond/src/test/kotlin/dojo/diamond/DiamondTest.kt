@@ -28,4 +28,12 @@ class DiamondTest {
             assertThat(firstLetters).isEqualTo(expected + expected.dropLast(1).reversed())
         }
     }
+
+    @Test
+    fun `is as wide as it is high`() {
+        letters.forEach { letter ->
+            val rows = Diamond.of(letter).lines()
+            assertThat(rows.maxOf { it.length }).isEqualTo(rows.size)
+        }
+    }
 }
