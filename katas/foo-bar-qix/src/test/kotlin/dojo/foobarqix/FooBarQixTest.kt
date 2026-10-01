@@ -10,4 +10,9 @@ class FooBarQixTest {
     fun `keeps a number no rule applies to`() {
         assertThat(FooBarQix.compute("1")).isEqualTo("1")
     }
+
+    @Test
+    fun `says Foo for a number divisible by 3`() {
+        assertThat(FooBarQix.compute("6")).isEqualTo("Foo")
+    }
 }
