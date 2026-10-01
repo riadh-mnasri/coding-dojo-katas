@@ -17,4 +17,9 @@ class CodeCrackerTest {
     fun `decrypts a word`() {
         assertThat(cracker.decrypt("&£aad")).isEqualTo("hello")
     }
+
+    @Test
+    fun `keeps characters outside the key`() {
+        assertThat(cracker.decrypt("&£aad, ldga(?")).isEqualTo("hello, world?")
+    }
 }
