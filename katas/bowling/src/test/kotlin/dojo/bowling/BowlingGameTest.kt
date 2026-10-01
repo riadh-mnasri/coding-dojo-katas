@@ -43,4 +43,18 @@ class BowlingGameTest {
 
         assertThat(game.score()).isEqualTo(24)
     }
+
+    @Test
+    fun `perfect game scores 300`() {
+        rollMany(12, 10)
+
+        assertThat(game.score()).isEqualTo(300)
+    }
+
+    @Test
+    fun `a game of spares with a final 5 scores 150`() {
+        rollMany(21, 5)
+
+        assertThat(game.score()).isEqualTo(150)
+    }
 }
