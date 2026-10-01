@@ -19,4 +19,10 @@ class RpnCalculatorTest {
     fun `adds the two previous values`() {
         assertThat(calculator.evaluate("1 2 +")).isEqualTo(3.0)
     }
+
+    @ParameterizedTest(name = "{0} = {1}")
+    @CsvSource("'5 3 -', 2", "'4 3 *', 12", "'20 5 /', 4")
+    fun `applies the operator to the two previous values in order`(expression: String, expected: Double) {
+        assertThat(calculator.evaluate(expression)).isEqualTo(expected)
+    }
 }
