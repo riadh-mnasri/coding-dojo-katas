@@ -2,6 +2,7 @@
 package dojo.bowling
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class BowlingGameTest {
@@ -56,5 +57,11 @@ class BowlingGameTest {
         rollMany(21, 5)
 
         assertThat(game.score()).isEqualTo(150)
+    }
+
+    @Test
+    fun `a roll knocks down between 0 and 10 pins`() {
+        assertThatThrownBy { game.roll(11) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { game.roll(-1) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
