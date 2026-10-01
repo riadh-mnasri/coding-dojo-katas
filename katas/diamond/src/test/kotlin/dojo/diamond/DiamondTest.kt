@@ -44,4 +44,9 @@ class DiamondTest {
             rows.map { it.padEnd(rows.size) }.forEach { row -> assertThat(row).isEqualTo(row.reversed()) }
         }
     }
+
+    @Test
+    fun `has no trailing spaces`() {
+        letters.forEach { letter -> Diamond.of(letter).lines().forEach { assertThat(it).doesNotEndWith(" ") } }
+    }
 }
