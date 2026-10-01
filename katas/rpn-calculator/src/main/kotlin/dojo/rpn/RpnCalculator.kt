@@ -39,19 +39,7 @@ fun interface Operation {
     fun applyTo(stack: OperandStack)
 }
 
-class RpnCalculator {
-
-    private val operations: Map<String, Operation> = mapOf(
-        "+" to binary(Double::plus),
-        "-" to binary(Double::minus),
-        "*" to binary(Double::times),
-        "/" to binary { left, right ->
-            require(right != 0.0) { "Division by zero" }
-            left / right
-        },
-        "SQRT" to unary(::sqrt),
-        "MAX" to Operation { stack -> stack.pushResult(stack.popOperandsSinceLastOperation().max()) },
-    )
+class RpnCalculator(private val operations: Map<String, Operation> = defaultOperations) {
 
     fun evaluate(expression: String): Double {
         val stack = OperandStack()
@@ -62,13 +50,27 @@ class RpnCalculator {
         return stack.single()
     }
 
-    private fun binary(compute: (Double, Double) -> Double) = Operation { stack ->
-        val right = stack.pop()
-        val left = stack.pop()
-        stack.pushResult(compute(left, right))
-    }
+    companion object {
+        private fun binary(compute: (Double, Double) -> Double) = Operation { stack ->
+            val right = stack.pop()
+            val left = stack.pop()
+            stack.pushResult(compute(left, right))
+        }
 
-    private fun unary(compute: (Double) -> Double) = Operation { stack ->
-        stack.pushResult(compute(stack.pop()))
+        private fun unary(compute: (Double) -> Double) = Operation { stack ->
+            stack.pushResult(compute(stack.pop()))
+        }
+
+        val defaultOperations: Map<String, Operation> = mapOf(
+            "+" to binary(Double::plus),
+            "-" to binary(Double::minus),
+            "*" to binary(Double::times),
+            "/" to binary { left, right ->
+                require(right != 0.0) { "Division by zero" }
+                left / right
+            },
+            "SQRT" to unary(::sqrt),
+            "MAX" to Operation { stack -> stack.pushResult(stack.popOperandsSinceLastOperation().max()) },
+        )
     }
 }
