@@ -2,6 +2,7 @@
 package dojo.codecracker
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class CodeCrackerTest {
@@ -33,5 +34,10 @@ class CodeCrackerTest {
         val message = "the quick brown fox jumps over the lazy dog"
 
         assertThat(cracker.decrypt(cracker.encrypt(message))).isEqualTo(message)
+    }
+
+    @Test
+    fun `refuses a key that could not be decrypted`() {
+        assertThatThrownBy { CodeCracker("ab", "xx") }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
