@@ -30,4 +30,10 @@ class LeapYearTest {
     fun `years divisible by 400 are leap years`(year: Int) {
         assertThat(LeapYear().isLeap(year)).isTrue()
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = [4000, 8000, 12000])
+    fun `with the 4000-year rule, years divisible by 4000 are not leap years`(year: Int) {
+        assertThat(LeapYear(withFourThousandYearRule = true).isLeap(year)).isFalse()
+    }
 }
