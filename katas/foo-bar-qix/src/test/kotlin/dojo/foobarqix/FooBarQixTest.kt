@@ -10,35 +10,35 @@ class FooBarQixTest {
 
     @Test
     fun `keeps a number no rule applies to`() {
-        assertThat(FooBarQix.compute("1")).isEqualTo("1")
+        assertThat(FooBarQix.step1.compute("1")).isEqualTo("1")
     }
 
     @Test
     fun `says Foo for a number divisible by 3`() {
-        assertThat(FooBarQix.compute("6")).isEqualTo("Foo")
+        assertThat(FooBarQix.step1.compute("6")).isEqualTo("Foo")
     }
 
     @Test
     fun `says Bar for a number divisible by 5`() {
-        assertThat(FooBarQix.compute("10")).isEqualTo("Bar")
+        assertThat(FooBarQix.step1.compute("10")).isEqualTo("Bar")
     }
 
     @Test
     fun `adds Foo for each digit 3`() {
-        assertThat(FooBarQix.compute("13")).isEqualTo("Foo")
-        assertThat(FooBarQix.compute("3")).isEqualTo("FooFoo")
+        assertThat(FooBarQix.step1.compute("13")).isEqualTo("Foo")
+        assertThat(FooBarQix.step1.compute("3")).isEqualTo("FooFoo")
     }
 
     @Test
     fun `translates digits 3 and 5 in their order`() {
-        assertThat(FooBarQix.compute("53")).isEqualTo("BarFoo")
-        assertThat(FooBarQix.compute("15")).isEqualTo("FooBarBar")
+        assertThat(FooBarQix.step1.compute("53")).isEqualTo("BarFoo")
+        assertThat(FooBarQix.step1.compute("15")).isEqualTo("FooBarBar")
     }
 
     @Test
     fun `handles 7 as Qix`() {
-        assertThat(FooBarQix.compute("7")).isEqualTo("QixQix")
-        assertThat(FooBarQix.compute("21")).isEqualTo("FooQix")
+        assertThat(FooBarQix.step1.compute("7")).isEqualTo("QixQix")
+        assertThat(FooBarQix.step1.compute("21")).isEqualTo("FooQix")
     }
 
     @ParameterizedTest(name = "{0} => {1}")
@@ -47,6 +47,6 @@ class FooBarQixTest {
         "10, Bar", "13, Foo", "15, FooBarBar", "21, FooQix", "33, FooFooFoo", "51, FooBar", "53, BarFoo",
     )
     fun `matches every example of step 1`(input: String, expected: String) {
-        assertThat(FooBarQix.compute(input)).isEqualTo(expected)
+        assertThat(FooBarQix.step1.compute(input)).isEqualTo(expected)
     }
 }
