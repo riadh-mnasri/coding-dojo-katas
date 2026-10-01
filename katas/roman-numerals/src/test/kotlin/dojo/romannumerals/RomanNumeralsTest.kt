@@ -3,6 +3,8 @@ package dojo.romannumerals
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class RomanNumeralsTest {
 
@@ -33,5 +35,11 @@ class RomanNumeralsTest {
     fun `4 is IV and 9 is IX`() {
         assertThat(RomanNumerals.toRoman(4)).isEqualTo("IV")
         assertThat(RomanNumerals.toRoman(9)).isEqualTo("IX")
+    }
+
+    @ParameterizedTest(name = "{0} is {1}")
+    @CsvSource("50, L", "40, XL", "90, XC", "100, C", "400, CD", "500, D", "900, CM", "1000, M")
+    fun `bigger letters and their subtractions`(number: Int, roman: String) {
+        assertThat(RomanNumerals.toRoman(number)).isEqualTo(roman)
     }
 }
