@@ -3,10 +3,27 @@ package dojo.bowling
 
 class BowlingGame {
     private val rolls = mutableListOf<Int>()
+    private var currentFrame = 1
+    private var firstRollOfFrame: Int? = null
 
     fun roll(pins: Int) {
         require(pins in 0..ALL_PINS) { "A roll knocks down 0 to $ALL_PINS pins, got $pins" }
+        if (currentFrame < FRAMES) trackFrame(pins)
         rolls += pins
+    }
+
+    // Les bonus de la dixième frame ne sont pas des frames : on ne suit que les neuf premières.
+    private fun trackFrame(pins: Int) {
+        val firstRoll = firstRollOfFrame
+        when {
+            firstRoll == null && pins == ALL_PINS -> currentFrame++
+            firstRoll == null -> firstRollOfFrame = pins
+            else -> {
+                require(firstRoll + pins <= ALL_PINS) { "A frame cannot knock down more than $ALL_PINS pins" }
+                firstRollOfFrame = null
+                currentFrame++
+            }
+        }
     }
 
     fun score(): Int {
