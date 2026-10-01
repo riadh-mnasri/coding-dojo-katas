@@ -10,4 +10,9 @@ class DictionaryReplacerTest {
     fun `empty text with an empty dictionary stays empty`() {
         assertThat(DictionaryReplacer.replace("", emptyMap())).isEmpty()
     }
+
+    @Test
+    fun `replaces a single placeholder`() {
+        assertThat(DictionaryReplacer.replace("\$temp\$", mapOf("temp" to "temporary"))).isEqualTo("temporary")
+    }
 }
