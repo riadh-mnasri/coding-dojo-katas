@@ -2,6 +2,8 @@
 package dojo.dictionaryreplacer
 
 object DictionaryReplacer {
+    private val placeholder = Regex("""\$(\w+)\$""")
+
     fun replace(text: String, dictionary: Map<String, String>): String =
-        dictionary.entries.fold(text) { acc, (key, value) -> acc.replace("\$$key\$", value) }
+        placeholder.replace(text) { match -> dictionary.getValue(match.groupValues[1]) }
 }
