@@ -1,0 +1,139 @@
+# Coding Dojo Katas
+
+🇫🇷 [Version française](README.md)
+
+The [codingdojo.org katas](https://codingdojo.org/kata/) solved in **Kotlin** with **strict TDD**, each kata documented (in French and English) with the walkthrough, the solution and the takeaways.
+
+## The rule: verifiable TDD
+
+Every kata is built in small cycles:
+
+1. **Red**: write *one* test, run it and check it fails for the right reason.
+2. **Green**: write the minimal code that makes it pass.
+3. **Refactor**: clean the code (and the tests) without ever leaving green.
+
+Each step gets **its own commit**, in Angular format:
+
+| Step | Commit type | Example |
+|---|---|---|
+| Red | `test(<kata>)` | `test(bowling): score a gutter game` |
+| Green | `feat(<kata>)` | `feat(bowling): sum knocked down pins` |
+| Refactor | `refactor(<kata>)` | `refactor(bowling): extract frame scoring` |
+
+Red commits record the failure reason (compilation error or assertion) in their body. The git history is therefore the evidence of the process, not a reconstruction:
+
+```bash
+git log --reverse --format='%s%n%b' -- katas/bowling
+```
+
+### The safety net
+
+The [`scripts/tdd.sh`](scripts/tdd.sh) script runs the kata's tests before every commit and **refuses**:
+
+- a red step when the whole suite passes (a test that cannot fail proves nothing);
+- a green or refactor step when a test fails;
+- a commit message whose type does not match the step.
+
+```bash
+scripts/tdd.sh bowling red      "test(bowling): score a gutter game"
+scripts/tdd.sh bowling green    "feat(bowling): sum knocked down pins"
+scripts/tdd.sh bowling refactor "refactor(bowling): extract frame scoring"
+```
+
+### Per-kata documentation
+
+Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (English):
+
+- **The kata**: a summary of the problem, linking to codingdojo.org;
+- **TDD walkthrough**: the actual sequence of cycles, written from the kata's git history;
+- **Solution**: the resulting design and the choices that matter;
+- **Takeaways**: what the kata teaches.
+
+## The katas
+
+<!-- katas:start -->
+**Progress: 0 / 61 katas.**
+
+| Kata | What it practises | Status | Kata page |
+|---|---|---|---|
+| Anagram | performance vs readability | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Anagram/) |
+| Args | parsing, extensible design | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Args/) |
+| Bank OCR | parsing, checksum, error correction | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/BankOCR/) |
+| Birthday Greetings | hexagonal architecture, ports and adapters | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/birthday-greetings/) |
+| Bowling | stateful business rules | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Bowling/) |
+| Brainfuck | interpreter, extensible instructions | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Brainfuck/) |
+| Christmas Delivery | concurrency, queues | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/christmas-delivery/) |
+| Code Cracker | substitution cipher, round trip | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/CodeCracker/) |
+| CQRS Booking | CQRS, read/write split | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/CQRS_Booking/) |
+| Cupcake | Decorator and Composite patterns | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/cupcake/) |
+| Depth First Search | recursion, mocked conversation | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/DepthFirstSearch/) |
+| Diamond | property-style tests | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Diamond/) |
+| Dictionary Replacer | string replacement | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/DictionaryReplacer/) |
+| Eight Queens | backtracking, tree traversal | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/eight-queens/) |
+| Elephant Carpaccio | thin vertical slicing | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/elephant-carpaccio/) |
+| Employee Report | focused assertions, test maintainability | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Employee-Report/) |
+| FizzBuzz | baby steps, composable rules | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/FizzBuzz/) |
+| FooBarQix | changing requirements | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/FooBarQix/) |
+| Game of Life | cellular automaton, immutability | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/GameOfLife/) |
+| Gilded Rose | legacy code, characterization tests | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/gilded-rose/) |
+| Greed | scoring rules | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Greed/) |
+| Hello | test doubles | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Hello/) |
+| JEE Web Authentication | mocks vs stubs, servlet filters | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/JEEWebAuthentication/) |
+| Lags | dynamic programming | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Lags/) |
+| Langton Ant | cellular automaton, extensible rules | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/LangtonAnt/) |
+| Leap Years | rules and exceptions | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/LeapYears/) |
+| Manhattan Distance | getter-free objects (Tell, don't ask) | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/manhattan-distance/) |
+| Markov Chain | statistics, injected randomness | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/MarkovChain/) |
+| Mars Rover | commands, obstacles, map parsing | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/mars-rover/) |
+| Mastermind | counting, choosing the next test | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Mastermind/) |
+| Mathematical AST | syntax tree, Visitor | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/mathematical-ast/) |
+| Minesweeper | grids, neighbourhood | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Minesweeper/) |
+| Movie Rental | refactoring (Fowler) | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/movie-rental/) |
+| Nearest Color | distance, ties | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/NearestColor/) |
+| Nim Game | game rules, turns | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Nim/) |
+| Number to LCD | text rendering, changing requirements | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/NumberToLCD/) |
+| Numbers in Words | two-way conversion | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/NumbersInWords/) |
+| ORM | ORM, schema migrations | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/orm/) |
+| PacMan | tick-based game, board state | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/PacMan/) |
+| Pagination Seven | display edge cases | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/PaginationSeven/) |
+| Pizza Maker | async, virtual time | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/pizza-maker/) |
+| Poker Hands | ranking and comparison | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/PokerHands/) |
+| Potter | discount optimisation | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Potter/) |
+| Quote of the Day | minimal web service | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/QotdCgi/) |
+| Range | value object, bounds | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Range/) |
+| Reversi | legal moves, directions | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Reversi/) |
+| Roman Calculator | finding the next test | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/RomanCalculator/) |
+| Roman Numerals | greedy algorithm | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/RomanNumerals/) |
+| RPN Calculator | stack, extensible operations | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/RPN/) |
+| RSA | modular arithmetic | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/rsa/) |
+| Social Network | example mapping, domain | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/social-network/) |
+| String Calculator | incremental error handling | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/StringCalculator/) |
+| Sudoku Concurrent Resolver | message-driven constraint propagation | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/sudoku/) |
+| Tennis | state machine | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Tennis/) |
+| Texas Hold'em | best hand out of 7 cards | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/TexasHoldEm/) |
+| Tic Tac Toe | double-loop TDD | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/tic-tac-toe/) |
+| Trading Card Game | game loop, test doubles | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/TradingCardGame/) |
+| Trip Service | breaking legacy dependencies | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/TripService/) |
+| Wallet | external port (exchange rates) | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Wallet/) |
+| Word Wrap | recursion, edge cases | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/WordWrap/) |
+| Yahtzee | scoring categories | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Yahtzee/) |
+<!-- katas:end -->
+
+## Stack
+
+- Kotlin 2.0 (JVM 17), multi-module Gradle 8 build: **one Gradle module per kata**, no dependency between katas.
+- JUnit 5 + AssertJ everywhere. A few katas add what their topic needs (coroutines for concurrency, MockK for test doubles, Exposed + SQLite for the ORM kata).
+- Tests are named after the expected behaviour and laid out as *Given / When / Then* when they need some setup.
+
+## Running the tests
+
+```bash
+./gradlew test                          # every kata
+./gradlew :katas:bowling:test           # a single kata
+```
+
+Requirement: JDK 17 or newer. The Gradle wrapper fetches the rest.
+
+## License
+
+[MIT](LICENSE). © 2026 Riadh MNASRI. The kata statements belong to their respective authors, credited on [codingdojo.org](https://codingdojo.org/kata/).
