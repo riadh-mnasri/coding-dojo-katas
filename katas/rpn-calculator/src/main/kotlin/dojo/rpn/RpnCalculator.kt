@@ -13,17 +13,25 @@ class OperandStack {
 
     fun push(value: Double) = values.addLast(value)
 
-    fun pop(): Double = values.removeLast()
+    fun pop(): Double {
+        require(values.isNotEmpty()) { "Missing operand" }
+        return values.removeLast()
+    }
 
-    fun popOperandsSinceLastOperation(): List<Double> =
-        List(values.size - lastResultIndex) { values.removeLast() }.reversed()
+    fun popOperandsSinceLastOperation(): List<Double> {
+        require(values.size > lastResultIndex) { "Missing operand" }
+        return List(values.size - lastResultIndex) { values.removeLast() }.reversed()
+    }
 
     fun pushResult(value: Double) {
         push(value)
         lastResultIndex = values.size
     }
 
-    fun single(): Double = values.single()
+    fun single(): Double {
+        require(values.size == 1) { "Malformed expression: ${values.size} values left on the stack" }
+        return values.single()
+    }
 }
 
 /** Une opération consomme des valeurs de la pile et y dépose son résultat. */
@@ -37,7 +45,10 @@ class RpnCalculator {
         "+" to binary(Double::plus),
         "-" to binary(Double::minus),
         "*" to binary(Double::times),
-        "/" to binary(Double::div),
+        "/" to binary { left, right ->
+            require(right != 0.0) { "Division by zero" }
+            left / right
+        },
         "SQRT" to unary(::sqrt),
         "MAX" to Operation { stack -> stack.pushResult(stack.popOperandsSinceLastOperation().max()) },
     )
@@ -45,7 +56,8 @@ class RpnCalculator {
     fun evaluate(expression: String): Double {
         val stack = OperandStack()
         expression.split(" ").forEach { token ->
-            operations[token]?.applyTo(stack) ?: stack.push(token.toDouble())
+            operations[token]?.applyTo(stack)
+                ?: stack.push(token.toDoubleOrNull() ?: throw IllegalArgumentException("Unknown token '$token'"))
         }
         return stack.single()
     }
