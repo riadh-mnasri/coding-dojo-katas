@@ -59,4 +59,10 @@ class RomanNumeralsTest {
     fun `part 2 - I is 1`() {
         assertThat(RomanNumerals.toArabic("I")).isEqualTo(1)
     }
+
+    @ParameterizedTest(name = "{0} is {1}")
+    @CsvSource("III, 3", "VIII, 8", "MDCLXVI, 1666")
+    fun `part 2 - adds the letter values`(roman: String, number: Int) {
+        assertThat(RomanNumerals.toArabic(roman)).isEqualTo(number)
+    }
 }
