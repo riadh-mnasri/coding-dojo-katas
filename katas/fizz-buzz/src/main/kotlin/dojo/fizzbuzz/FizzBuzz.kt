@@ -21,7 +21,7 @@ class FizzBuzz(private val rules: List<Rule>) {
 
     companion object {
         val classic = FizzBuzz(listOf(divisibleBy(3, "Fizz"), divisibleBy(5, "Buzz")))
-        val stageTwo = FizzBuzz(listOf(divisibleByOrContains(3, "Fizz"), divisibleBy(5, "Buzz")))
+        val stageTwo = FizzBuzz(listOf(divisibleByOrContains(3, "Fizz"), divisibleByOrContains(5, "Buzz")))
     }
 }
 
