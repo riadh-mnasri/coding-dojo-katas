@@ -50,4 +50,20 @@ class RpnCalculatorTest {
     fun `rejects invalid expressions`(expression: String) {
         assertThatThrownBy { calculator.evaluate(expression) }.isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @Test
+    fun `new operations can be plugged in`() {
+        // Given
+        val modulo = Operation { stack ->
+            val right = stack.pop()
+            stack.pushResult(stack.pop() % right)
+        }
+        val withModulo = RpnCalculator(RpnCalculator.defaultOperations + ("%" to modulo))
+
+        // When
+        val result = withModulo.evaluate("10 4 %")
+
+        // Then
+        assertThat(result).isEqualTo(2.0)
+    }
 }
