@@ -8,5 +8,17 @@ class BowlingGame {
         rolls += pins
     }
 
-    fun score(): Int = rolls.sum()
+    fun score(): Int {
+        var score = 0
+        var frameStart = 0
+        repeat(10) {
+            if (rolls[frameStart] + rolls[frameStart + 1] == 10) {
+                score += 10 + rolls[frameStart + 2]
+            } else {
+                score += rolls[frameStart] + rolls[frameStart + 1]
+            }
+            frameStart += 2
+        }
+        return score
+    }
 }
