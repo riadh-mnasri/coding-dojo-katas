@@ -2,6 +2,9 @@
 package dojo.fizzbuzz
 
 object FizzBuzz {
-    fun say(number: Int): String =
-        if (number % 3 == 0) "Fizz" else number.toString()
+    fun say(number: Int): String = when {
+        number % 3 == 0 -> "Fizz"
+        number % 5 == 0 -> "Buzz"
+        else -> number.toString()
+    }
 }
