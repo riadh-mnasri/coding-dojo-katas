@@ -2,7 +2,11 @@
 package dojo.bowling
 
 class BowlingGame {
-    fun roll(pins: Int) {}
+    private val rolls = mutableListOf<Int>()
 
-    fun score(): Int = 0
+    fun roll(pins: Int) {
+        rolls += pins
+    }
+
+    fun score(): Int = rolls.sum()
 }
