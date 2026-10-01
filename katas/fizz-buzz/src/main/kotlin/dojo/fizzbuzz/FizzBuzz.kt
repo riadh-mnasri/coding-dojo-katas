@@ -2,5 +2,5 @@
 package dojo.fizzbuzz
 
 object FizzBuzz {
-    fun say(number: Int): String = "1"
+    fun say(number: Int): String = number.toString()
 }
