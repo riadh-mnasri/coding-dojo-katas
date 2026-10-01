@@ -14,7 +14,9 @@ class RpnCalculator {
         val stack = ArrayDeque<Double>()
         expression.split(" ").forEach { token ->
             val operator = operators[token]
-            if (operator != null) {
+            if (token == "SQRT") {
+                stack.addLast(kotlin.math.sqrt(stack.removeLast()))
+            } else if (operator != null) {
                 val right = stack.removeLast()
                 val left = stack.removeLast()
                 stack.addLast(operator(left, right))
