@@ -71,4 +71,9 @@ class RomanNumeralsTest {
     fun `part 2 - subtracts a letter smaller than the next one`(roman: String, number: Int) {
         assertThat(RomanNumerals.toArabic(roman)).isEqualTo(number)
     }
+
+    @Test
+    fun `part 2 - round-trips every supported number`() {
+        (1..3999).forEach { assertThat(RomanNumerals.toArabic(RomanNumerals.toRoman(it))).isEqualTo(it) }
+    }
 }
