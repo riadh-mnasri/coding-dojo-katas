@@ -34,4 +34,9 @@ class ManhattanDistanceTest {
 
         assertThat(manhattanDistance(a, b)).isEqualTo(manhattanDistance(b, a)).isEqualTo(13)
     }
+
+    @Test
+    fun `points with the same coordinates are equal`() {
+        assertThat(Point(2, 3)).isEqualTo(Point(2, 3)).isNotEqualTo(Point(3, 2))
+    }
 }
