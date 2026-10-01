@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 9 / 61 katas.**
+**Progress: 10 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -65,7 +65,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | Bowling | stateful business rules | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Bowling/) |
 | Brainfuck | interpreter, extensible instructions | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Brainfuck/) |
 | Christmas Delivery | concurrency, queues | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/christmas-delivery/) |
-| Code Cracker | substitution cipher, round trip | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/CodeCracker/) |
+| [Code Cracker](katas/code-cracker/README.en.md) | substitution cipher, round trip | ✅ done | [codingdojo.org](https://codingdojo.org/kata/CodeCracker/) |
 | CQRS Booking | CQRS, read/write split | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/CQRS_Booking/) |
 | Cupcake | Decorator and Composite patterns | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/cupcake/) |
 | Depth First Search | recursion, mocked conversation | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/DepthFirstSearch/) |
