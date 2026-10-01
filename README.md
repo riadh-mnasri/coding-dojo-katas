@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 2 / 61 katas.**
+**Avancement : 3 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -83,7 +83,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | JEE Web Authentication | mocks vs stubs, filtres servlet | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/JEEWebAuthentication/) |
 | Lags | programmation dynamique | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Lags/) |
 | Langton Ant | automate cellulaire, règles extensibles | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/LangtonAnt/) |
-| Leap Years | règles et exceptions | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/LeapYears/) |
+| [Leap Years](katas/leap-years/README.md) | règles et exceptions | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/LeapYears/) |
 | Manhattan Distance | objets sans getters (Tell, don't ask) | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/manhattan-distance/) |
 | Markov Chain | statistiques, aléatoire injecté | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/MarkovChain/) |
 | Mars Rover | commandes, obstacles, parsing de carte | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/mars-rover/) |
