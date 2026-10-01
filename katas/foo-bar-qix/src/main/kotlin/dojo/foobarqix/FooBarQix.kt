@@ -2,5 +2,6 @@
 package dojo.foobarqix
 
 object FooBarQix {
-    fun compute(input: String): String = input
+    fun compute(input: String): String =
+        if (input.toInt() % 3 == 0) "Foo" else input
 }
