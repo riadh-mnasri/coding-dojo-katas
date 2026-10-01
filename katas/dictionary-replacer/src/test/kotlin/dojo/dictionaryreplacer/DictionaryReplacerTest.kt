@@ -36,4 +36,14 @@ class DictionaryReplacerTest {
     fun `keeps unknown placeholders`() {
         assertThat(DictionaryReplacer.replace("\$unknown\$ stays", emptyMap())).isEqualTo("\$unknown\$ stays")
     }
+
+    @Test
+    fun `a lonely dollar is not a placeholder`() {
+        assertThat(DictionaryReplacer.replace("costs 5\$", mapOf("x" to "y"))).isEqualTo("costs 5\$")
+    }
+
+    @Test
+    fun `replaces the same placeholder each time it appears`() {
+        assertThat(DictionaryReplacer.replace("\$a\$-\$a\$", mapOf("a" to "x"))).isEqualTo("x-x")
+    }
 }
