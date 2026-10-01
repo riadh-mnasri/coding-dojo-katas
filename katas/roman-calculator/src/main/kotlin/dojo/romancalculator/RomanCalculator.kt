@@ -14,6 +14,7 @@ object RomanCalculator {
     fun add(left: String, right: String): String {
         val sorted = (left + right).toList().sortedBy { ORDER.indexOf(it) }.joinToString("")
         return groupings.fold(sorted) { roman, (many, one) -> roman.replace(many, one) }
+            .replace("VIIII", "IX")
             .replace("IIII", "IV")
     }
 }
