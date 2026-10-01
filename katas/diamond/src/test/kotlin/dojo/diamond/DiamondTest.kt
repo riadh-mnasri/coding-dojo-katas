@@ -36,4 +36,12 @@ class DiamondTest {
             assertThat(rows.maxOf { it.length }).isEqualTo(rows.size)
         }
     }
+
+    @Test
+    fun `is horizontally symmetric`() {
+        letters.forEach { letter ->
+            val rows = Diamond.of(letter).lines()
+            rows.map { it.padEnd(rows.size) }.forEach { row -> assertThat(row).isEqualTo(row.reversed()) }
+        }
+    }
 }
