@@ -2,6 +2,7 @@
 package dojo.romannumerals
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -47,5 +48,10 @@ class RomanNumeralsTest {
     @CsvSource("1990, MCMXC", "2008, MMVIII", "1666, MDCLXVI", "3999, MMMCMXCIX")
     fun `full numbers`(number: Int, roman: String) {
         assertThat(RomanNumerals.toRoman(number)).isEqualTo(roman)
+    }
+
+    @Test
+    fun `there is no zero in Rome`() {
+        assertThatThrownBy { RomanNumerals.toRoman(0) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
