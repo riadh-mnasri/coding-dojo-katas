@@ -46,4 +46,9 @@ class FizzBuzzTest {
     fun `stage 2 - says Fizz for a number containing a 3`() {
         assertThat(FizzBuzz.stageTwo.say(13)).isEqualTo("Fizz")
     }
+
+    @Test
+    fun `stage 2 - says Buzz for a number containing a 5`() {
+        assertThat(FizzBuzz.stageTwo.say(52)).isEqualTo("Buzz")
+    }
 }
