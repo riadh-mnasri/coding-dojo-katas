@@ -6,6 +6,9 @@
 #   scripts/tdd.sh <kata> red      "test(<kata>): ..."      -> exige au moins un test en échec
 #   scripts/tdd.sh <kata> green    "feat(<kata>): ..."      -> exige une suite entièrement verte
 #   scripts/tdd.sh <kata> refactor "refactor(<kata>): ..."  -> exige une suite entièrement verte
+#   scripts/tdd.sh <kata> pin      "test(<kata>): ..."      -> test ajouté qui passe du premier coup
+#                                                            (il ne force aucun code, on le garde comme
+#                                                            documentation ou filet de sécurité)
 #
 # En phase rouge, la raison de l'échec (compilation ou assertion) est recopiée dans le corps du commit.
 set -uo pipefail
@@ -20,6 +23,7 @@ case $phase in
   red) expected_type="test" ;;
   green) expected_type="feat|fix" ;;
   refactor) expected_type="refactor" ;;
+  pin) expected_type="test" ;;
   *) echo "Phase inconnue : $phase" >&2; exit 2 ;;
 esac
 if ! [[ $message =~ ^($expected_type)\($kata\):\ .+ ]]; then
@@ -69,7 +73,8 @@ git add "katas/$kata"
 if [ -n "$body" ]; then
   git commit -q -m "$message" -m "$body"
 else
-  git commit -q -m "$message"
+  [ "$phase" = pin ] && body="Passed on first run: no production code was needed."
+  if [ -n "$body" ]; then git commit -q -m "$message" -m "$body"; else git commit -q -m "$message"; fi
 fi
 echo "[$phase] ${total:-0} test(s) exécuté(s) : $(git log -1 --format='%h %s')"
 [ -n "$body" ] && echo "$body"

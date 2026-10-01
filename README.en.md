@@ -34,6 +34,8 @@ The [`scripts/tdd.sh`](scripts/tdd.sh) script runs the kata's tests before every
 - a green or refactor step when a test fails;
 - a commit message whose type does not match the step.
 
+A test that passes on its first run is not dressed up as a red step: it is committed with the `pin` phase (`test(<kata>): ...`, with "Passed on first run" in the body). It forces no code and acts as documentation or a safety net.
+
 ```bash
 scripts/tdd.sh bowling red      "test(bowling): score a gutter game"
 scripts/tdd.sh bowling green    "feat(bowling): sum knocked down pins"
