@@ -19,6 +19,10 @@ enum class Category(val score: (List<Int>) -> Int) {
     }),
     SMALL_STRAIGHT(straight(1..5)),
     LARGE_STRAIGHT(straight(2..6)),
+    FULL_HOUSE({ dice ->
+        val counts = dice.groupingBy { it }.eachCount().values.sorted()
+        if (counts == listOf(2, 3)) dice.sum() else 0
+    }),
 }
 
 private fun sumOf(face: Int): (List<Int>) -> Int = { dice -> dice.filter { it == face }.sum() }
