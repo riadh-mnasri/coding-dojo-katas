@@ -17,6 +17,8 @@ enum class Category(val score: (List<Int>) -> Int) {
         val pairs = dice.groupingBy { it }.eachCount().filterValues { it >= 2 }.keys
         if (pairs.size == 2) pairs.sum() * 2 else 0
     }),
+    SMALL_STRAIGHT(straight(1..5)),
+    LARGE_STRAIGHT(straight(2..6)),
 }
 
 private fun sumOf(face: Int): (List<Int>) -> Int = { dice -> dice.filter { it == face }.sum() }
@@ -25,6 +27,8 @@ private fun sumOf(face: Int): (List<Int>) -> Int = { dice -> dice.filter { it ==
 private fun ofAKind(count: Int): (List<Int>) -> Int = { dice ->
     dice.groupingBy { it }.eachCount().filterValues { it >= count }.keys.maxOrNull()?.times(count) ?: 0
 }
+
+private fun straight(faces: IntRange): (List<Int>) -> Int = { dice -> if (dice.sorted() == faces.toList()) faces.sum() else 0 }
 
 object Yahtzee {
     fun score(dice: List<Int>, category: Category): Int = category.score(dice)
