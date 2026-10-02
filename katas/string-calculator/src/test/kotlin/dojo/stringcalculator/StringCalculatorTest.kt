@@ -55,4 +55,9 @@ class StringCalculatorTest {
     fun `negative numbers are refused and listed`(numbers: String, message: String) {
         assertThat(StringCalculator.add(numbers)).isEqualTo(message)
     }
+
+    @Test
+    fun `reports every error, one per line`() {
+        assertThat(StringCalculator.add("-1,,2")).isEqualTo("Negative not allowed : -1\nNumber expected but ',' found at position 3.")
+    }
 }
