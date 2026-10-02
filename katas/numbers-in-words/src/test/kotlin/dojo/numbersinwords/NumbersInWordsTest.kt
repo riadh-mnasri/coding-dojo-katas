@@ -24,4 +24,10 @@ class NumbersInWordsTest {
     fun `tens are followed by their unit`(number: Int, words: String) {
         assertThat(NumbersInWords.toWords(number)).isEqualTo(words)
     }
+
+    @ParameterizedTest(name = "{0} is {1}")
+    @CsvSource("100, one hundred", "745, seven hundred and forty five", "910, nine hundred and ten", "999, nine hundred and ninety nine")
+    fun `hundreds link the rest with and`(number: Int, words: String) {
+        assertThat(NumbersInWords.toWords(number)).isEqualTo(words)
+    }
 }
