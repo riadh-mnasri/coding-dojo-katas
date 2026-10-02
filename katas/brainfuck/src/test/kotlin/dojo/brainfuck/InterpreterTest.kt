@@ -65,4 +65,21 @@ class InterpreterTest {
         assertThatThrownBy { interpreter.run("[") }.isInstanceOf(IllegalArgumentException::class.java)
         assertThatThrownBy { interpreter.run("+]") }.isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @Test
+    fun `instructions can be renamed, OooWee style`() {
+        // Given
+        val oooWee = Syntax.BRAINFUCK.renamed(
+            "+" to "Ooo", "-" to "Wee", ">" to "OooWee", "<" to "WeeOoo",
+            "." to "Ooo!", "," to "Wee?", "[" to "Ooo(", "]" to "Wee)",
+        )
+        val program = "OooOooOoo Ooo( Wee OooWee OooOoo WeeOoo Wee) OooWee Ooo!"
+
+        // When
+        val machine = Interpreter(oooWee).run(program)
+
+        // Then
+        assertThat(machine.memory.take(2)).containsExactly(0, 6)
+        assertThat(machine.output).isEqualTo(6.toChar().toString())
+    }
 }
