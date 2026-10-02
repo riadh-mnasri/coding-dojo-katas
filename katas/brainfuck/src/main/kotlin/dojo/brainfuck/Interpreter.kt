@@ -55,6 +55,9 @@ class Syntax(private val tokens: Map<String, Instruction>) {
         return Syntax(tokens.mapKeys { (token, _) -> newNames[token] ?: token })
     }
 
+    /** Une nouvelle syntaxe enrichie d'instructions supplémentaires. */
+    fun with(vararg additions: Pair<String, Instruction>): Syntax = Syntax(tokens + additions)
+
     /** Découpe le programme en instructions ; tout ce qui n'est pas un jeton est un commentaire. */
     fun parse(program: String): List<Instruction> {
         val instructions = mutableListOf<Instruction>()
