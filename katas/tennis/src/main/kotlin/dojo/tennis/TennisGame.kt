@@ -9,8 +9,11 @@ class TennisGame(private val player1: String, private val player2: String) {
         if (player == player1) points1++ else points2++
     }
 
-    fun score(): String =
-        if (points1 == points2) "${NAMES[points1]}-All" else "${NAMES[points1]}-${NAMES[points2]}"
+    fun score(): String = when {
+        points1 == points2 && points1 >= 3 -> "Deuce"
+        points1 == points2 -> "${NAMES[points1]}-All"
+        else -> "${NAMES[points1]}-${NAMES[points2]}"
+    }
 
     private companion object {
         val NAMES = listOf("Love", "Fifteen", "Thirty", "Forty")
