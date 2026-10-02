@@ -82,4 +82,17 @@ class InterpreterTest {
         assertThat(machine.memory.take(2)).containsExactly(0, 6)
         assertThat(machine.output).isEqualTo(6.toChar().toString())
     }
+
+    @Test
+    fun `new instructions can be added, like a jump to the end of memory`() {
+        // Given
+        val withJump = Syntax.BRAINFUCK.with("!" to Instruction.Action { it.pointer = it.memory.size - 1 })
+
+        // When
+        val machine = Interpreter(withJump).run("!+>+")
+
+        // Then
+        assertThat(machine.memory.last()).isEqualTo(1)
+        assertThat(machine.memory.first()).isEqualTo(1)
+    }
 }
