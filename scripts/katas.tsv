@@ -1,0 +1,61 @@
+anagram	Anagram	Anagram	performance vs lisibilité	performance vs readability
+args	Args	Args	parsing, conception extensible	parsing, extensible design
+bank-ocr	Bank OCR	BankOCR	parsing, checksum, recherche de corrections	parsing, checksum, error correction
+birthday-greetings	Birthday Greetings	birthday-greetings	architecture hexagonale, ports et adapters	hexagonal architecture, ports and adapters
+bowling	Bowling	Bowling	règles métier à états	stateful business rules
+brainfuck	Brainfuck	Brainfuck	interpréteur, instructions extensibles	interpreter, extensible instructions
+christmas-delivery	Christmas Delivery	christmas-delivery	concurrence, files d'attente	concurrency, queues
+code-cracker	Code Cracker	CodeCracker	substitution, aller-retour	substitution cipher, round trip
+cqrs-booking	CQRS Booking	CQRS_Booking	CQRS, séparation lecture/écriture	CQRS, read/write split
+cupcake	Cupcake	cupcake	patterns Décorateur et Composite	Decorator and Composite patterns
+depth-first-search	Depth First Search	DepthFirstSearch	récursion, conversation simulée	recursion, mocked conversation
+diamond	Diamond	Diamond	tests de propriétés	property-style tests
+dictionary-replacer	Dictionary Replacer	DictionaryReplacer	remplacement de chaînes	string replacement
+eight-queens	Eight Queens	eight-queens	backtracking, parcours d'arbre	backtracking, tree traversal
+elephant-carpaccio	Elephant Carpaccio	elephant-carpaccio	découpage en tranches fines	thin vertical slicing
+employee-report	Employee Report	Employee-Report	assertions ciblées, maintenabilité des tests	focused assertions, test maintainability
+fizz-buzz	FizzBuzz	FizzBuzz	baby steps, règles composables	baby steps, composable rules
+foo-bar-qix	FooBarQix	FooBarQix	évolution des exigences	changing requirements
+game-of-life	Game of Life	GameOfLife	automate cellulaire, immutabilité	cellular automaton, immutability
+gilded-rose	Gilded Rose	gilded-rose	code legacy, tests de caractérisation	legacy code, characterization tests
+greed	Greed	Greed	règles de score	scoring rules
+hello	Hello	Hello	doublures de test	test doubles
+jee-web-authentication	JEE Web Authentication	JEEWebAuthentication	mocks vs stubs, filtres servlet	mocks vs stubs, servlet filters
+lags	Lags	Lags	programmation dynamique	dynamic programming
+langton-ant	Langton Ant	LangtonAnt	automate cellulaire, règles extensibles	cellular automaton, extensible rules
+leap-years	Leap Years	LeapYears	règles et exceptions	rules and exceptions
+manhattan-distance	Manhattan Distance	manhattan-distance	objets sans getters (Tell, don't ask)	getter-free objects (Tell, don't ask)
+markov-chain	Markov Chain	MarkovChain	statistiques, aléatoire injecté	statistics, injected randomness
+mars-rover	Mars Rover	mars-rover	commandes, obstacles, parsing de carte	commands, obstacles, map parsing
+mastermind	Mastermind	Mastermind	comptage, choix des tests	counting, choosing the next test
+mathematical-ast	Mathematical AST	mathematical-ast	arbre syntaxique, Visiteur	syntax tree, Visitor
+minesweeper	Minesweeper	Minesweeper	grilles, voisinage	grids, neighbourhood
+movie-rental	Movie Rental	movie-rental	refactoring (Fowler)	refactoring (Fowler)
+nearest-color	Nearest Color	NearestColor	distance, égalités	distance, ties
+nim-game	Nim Game	Nim	règles de jeu, tours	game rules, turns
+number-to-lcd	Number to LCD	NumberToLCD	rendu texte, exigences changeantes	text rendering, changing requirements
+numbers-in-words	Numbers in Words	NumbersInWords	conversion bidirectionnelle	two-way conversion
+orm	ORM	orm	ORM, migrations de schéma	ORM, schema migrations
+pac-man	PacMan	PacMan	jeu à ticks, état du plateau	tick-based game, board state
+pagination-seven	Pagination Seven	PaginationSeven	cas limites d'affichage	display edge cases
+pizza-maker	Pizza Maker	pizza-maker	asynchrone, temps virtuel	async, virtual time
+poker-hands	Poker Hands	PokerHands	classement et comparaison	ranking and comparison
+potter	Potter	Potter	optimisation de remises	discount optimisation
+quote-of-the-day	Quote of the Day	QotdCgi	service web minimal	minimal web service
+range	Range	Range	objet valeur, bornes	value object, bounds
+reversi	Reversi	Reversi	coups légaux, directions	legal moves, directions
+roman-calculator	Roman Calculator	RomanCalculator	trouver le prochain test	finding the next test
+roman-numerals	Roman Numerals	RomanNumerals	algorithme glouton	greedy algorithm
+rpn-calculator	RPN Calculator	RPN	pile, opérations extensibles	stack, extensible operations
+rsa	RSA	rsa	arithmétique modulaire	modular arithmetic
+social-network	Social Network	social-network	example mapping, domaine	example mapping, domain
+string-calculator	String Calculator	StringCalculator	gestion d'erreurs incrémentale	incremental error handling
+sudoku	Sudoku Concurrent Resolver	sudoku	propagation de contraintes par messages	message-driven constraint propagation
+tennis	Tennis	Tennis	machine à états	state machine
+texas-hold-em	Texas Hold'em	TexasHoldEm	meilleure main parmi 7 cartes	best hand out of 7 cards
+tic-tac-toe	Tic Tac Toe	tic-tac-toe	double boucle TDD	double-loop TDD
+trading-card-game	Trading Card Game	TradingCardGame	boucle de jeu, doublures	game loop, test doubles
+trip-service	Trip Service	TripService	casser les dépendances du legacy	breaking legacy dependencies
+wallet	Wallet	Wallet	port externe (taux de change)	external port (exchange rates)
+word-wrap	Word Wrap	WordWrap	récursion, cas limites	recursion, edge cases
+yahtzee	Yahtzee	Yahtzee	catégories de score	scoring categories
