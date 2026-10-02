@@ -20,4 +20,9 @@ class WrapperTest {
     fun `breaks at the space between two words`() {
         assertThat(Wrapper.wrap("word word", 6)).isEqualTo("word\nword")
     }
+
+    @Test
+    fun `a space just after the column is a valid break`() {
+        assertThat(Wrapper.wrap("word word", 4)).isEqualTo("word\nword")
+    }
 }
