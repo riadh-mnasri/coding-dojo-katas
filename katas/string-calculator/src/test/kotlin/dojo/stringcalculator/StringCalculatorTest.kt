@@ -38,4 +38,10 @@ class StringCalculatorTest {
     fun `a trailing separator is refused`() {
         assertThat(StringCalculator.add("1,3,")).isEqualTo("Number expected but EOF found.")
     }
+
+    @ParameterizedTest(name = "\"{0}\" = {1}")
+    @CsvSource("'//;\n1;2', 3", "'//|\n1|2|3', 6", "'//sep\n2sep3', 5")
+    fun `a first line can define a custom separator`(numbers: String, sum: String) {
+        assertThat(StringCalculator.add(numbers)).isEqualTo(sum)
+    }
 }
