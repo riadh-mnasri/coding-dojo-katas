@@ -28,4 +28,9 @@ class StringCalculatorTest {
     fun `newlines are separators too`() {
         assertThat(StringCalculator.add("1\n2,3")).isEqualTo("6")
     }
+
+    @Test
+    fun `reports a separator found where a number is expected`() {
+        assertThat(StringCalculator.add("175.2,\n35")).isEqualTo("Number expected but '\\n' found at position 6.")
+    }
 }
