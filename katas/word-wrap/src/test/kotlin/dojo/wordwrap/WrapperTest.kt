@@ -15,4 +15,9 @@ class WrapperTest {
     fun `a word longer than the column is cut`() {
         assertThat(Wrapper.wrap("longword", 4)).isEqualTo("long\nword")
     }
+
+    @Test
+    fun `breaks at the space between two words`() {
+        assertThat(Wrapper.wrap("word word", 6)).isEqualTo("word\nword")
+    }
 }
