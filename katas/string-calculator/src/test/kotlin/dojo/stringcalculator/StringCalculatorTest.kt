@@ -66,4 +66,13 @@ class StringCalculatorTest {
     fun `multiplies with the same rules`(numbers: String, result: String) {
         assertThat(StringCalculator.multiply(numbers)).isEqualTo(result)
     }
+
+    @Test
+    fun `internally, errors are a typed outcome rather than a string`() {
+        val outcome = StringCalculator.compute("-1,,2", java.math.BigDecimal.ZERO, java.math.BigDecimal::add)
+
+        assertThat(outcome).isEqualTo(
+            Outcome.Failure(listOf("Negative not allowed : -1", "Number expected but ',' found at position 3.")),
+        )
+    }
 }
