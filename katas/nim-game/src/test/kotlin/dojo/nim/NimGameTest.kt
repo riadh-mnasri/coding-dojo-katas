@@ -38,4 +38,18 @@ class NimGameTest {
 
         assertThatThrownBy { game.take(2) }.isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @Test
+    fun `the player taking the last stick loses`() {
+        // Given: 10 sticks, Alice and Bob alternate until one stick is left for Bob
+        listOf(3, 3, 3).forEach(game::take)
+        assertThat(game.winner).isNull()
+
+        // When
+        game.take(1)
+
+        // Then
+        assertThat(game.sticks).isZero()
+        assertThat(game.winner).isEqualTo("Alice")
+    }
 }
