@@ -19,6 +19,8 @@ class Range(
 
     fun containsRange(other: Range): Boolean = contains(other.first, other.last)
 
+    fun overlapsRange(other: Range): Boolean = first <= other.last && other.first <= last
+
     companion object {
         private val NOTATION = Regex("""([\[(])\s*(-?\d+)\s*,\s*(-?\d+)\s*([])])""")
 
