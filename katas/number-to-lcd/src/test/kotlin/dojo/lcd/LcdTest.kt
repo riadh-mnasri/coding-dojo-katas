@@ -2,6 +2,7 @@
 package dojo.lcd
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class LcdTest {
@@ -42,5 +43,12 @@ class LcdTest {
         assertThat(Lcd.render(10, width = 2, height = 1)).isEqualTo(
             lines("     __ ", "   ||  |", "        ", "   ||  |", "     __ "),
         )
+    }
+
+    @Test
+    fun `rejects negative numbers and empty sizes`() {
+        assertThatThrownBy { Lcd.render(-1) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { Lcd.render(1, width = 0, height = 1) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { Lcd.render(1, width = 1, height = 0) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
