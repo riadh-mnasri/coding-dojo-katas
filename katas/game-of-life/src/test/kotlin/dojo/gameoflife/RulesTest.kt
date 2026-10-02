@@ -12,4 +12,10 @@ class RulesTest {
     fun `a live cell with fewer than two neighbours dies`(neighbours: Int) {
         assertThat(Rules.isAliveNext(alive = true, liveNeighbours = neighbours)).isFalse()
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = [2, 3])
+    fun `a live cell with two or three neighbours lives on`(neighbours: Int) {
+        assertThat(Rules.isAliveNext(alive = true, liveNeighbours = neighbours)).isTrue()
+    }
 }
