@@ -44,4 +44,9 @@ class StringCalculatorTest {
     fun `a first line can define a custom separator`(numbers: String, sum: String) {
         assertThat(StringCalculator.add(numbers)).isEqualTo(sum)
     }
+
+    @Test
+    fun `reports a separator other than the custom one`() {
+        assertThat(StringCalculator.add("//|\n1|2,3")).isEqualTo("'|' expected but ',' found at position 3.")
+    }
 }
