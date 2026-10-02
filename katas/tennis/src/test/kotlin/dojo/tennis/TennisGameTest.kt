@@ -61,4 +61,11 @@ class TennisGameTest {
         points(serena = 3, venus = 5)
         assertThat(game.score()).isEqualTo("Win for Venus")
     }
+
+    @Test
+    fun `losing the advantage goes back to deuce`() {
+        points(serena = 4, venus = 4)
+
+        assertThat(game.score()).isEqualTo("Deuce")
+    }
 }
