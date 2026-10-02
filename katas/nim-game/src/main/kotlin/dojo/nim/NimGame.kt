@@ -2,6 +2,13 @@
 package dojo.nim
 
 class NimGame(private val first: String, private val second: String) {
-    val sticks = 10
-    val currentPlayer = first
+    var sticks = 10
+        private set
+    var currentPlayer = first
+        private set
+
+    fun take(count: Int) {
+        sticks -= count
+        currentPlayer = if (currentPlayer == first) second else first
+    }
 }
