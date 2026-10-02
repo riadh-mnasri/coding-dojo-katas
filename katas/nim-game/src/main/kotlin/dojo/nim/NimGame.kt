@@ -11,6 +11,7 @@ class NimGame(private val first: String, private val second: String) {
     val winner: String? get() = if (sticks == 0) currentPlayer else null
 
     fun take(count: Int) {
+        check(winner == null) { "The game is over, $winner won" }
         require(count in 1..3) { "A player takes 1 to 3 sticks, not $count" }
         require(count <= sticks) { "Only $sticks sticks left" }
         sticks -= count
