@@ -53,4 +53,10 @@ class YahtzeeTest {
     fun `straights score their sum`(dice: String, category: Category, expected: Int) {
         assertThat(Yahtzee.score(roll(dice), category)).isEqualTo(expected)
     }
+
+    @ParameterizedTest(name = "{0} on full house scores {1}")
+    @CsvSource("'1,1,2,2,2', 8", "'2,2,3,3,4', 0", "'4,4,4,4,4', 0")
+    fun `full house sums a pair and a three of a kind`(dice: String, expected: Int) {
+        assertThat(Yahtzee.score(roll(dice), Category.FULL_HOUSE)).isEqualTo(expected)
+    }
 }
