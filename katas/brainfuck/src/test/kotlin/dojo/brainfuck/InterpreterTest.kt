@@ -2,6 +2,7 @@
 package dojo.brainfuck
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class InterpreterTest {
@@ -57,5 +58,11 @@ class InterpreterTest {
         val program = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++."
 
         assertThat(interpreter.run(program).output).isEqualTo("Hello World!\n")
+    }
+
+    @Test
+    fun `unbalanced brackets are rejected`() {
+        assertThatThrownBy { interpreter.run("[") }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { interpreter.run("+]") }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
