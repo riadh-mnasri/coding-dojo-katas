@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 19 / 61 katas.**
+**Avancement : 20 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -89,7 +89,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | Mars Rover | commandes, obstacles, parsing de carte | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/mars-rover/) |
 | [Mastermind](katas/mastermind/README.md) | comptage, choix des tests | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Mastermind/) |
 | Mathematical AST | arbre syntaxique, Visiteur | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/mathematical-ast/) |
-| Minesweeper | grilles, voisinage | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Minesweeper/) |
+| [Minesweeper](katas/minesweeper/README.md) | grilles, voisinage | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Minesweeper/) |
 | Movie Rental | refactoring (Fowler) | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/movie-rental/) |
 | Nearest Color | distance, égalités | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/NearestColor/) |
 | Nim Game | règles de jeu, tours | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Nim/) |
