@@ -7,5 +7,11 @@ object NumbersInWords {
         "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen",
     )
 
-    fun toWords(number: Int): String = belowTwenty[number]
+    private val tens = listOf("", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety")
+
+    fun toWords(number: Int): String = when {
+        number < 20 -> belowTwenty[number]
+        number % 10 == 0 -> tens[number / 10]
+        else -> "${tens[number / 10]} ${belowTwenty[number % 10]}"
+    }
 }
