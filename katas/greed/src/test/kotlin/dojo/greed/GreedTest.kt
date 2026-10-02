@@ -21,4 +21,10 @@ class GreedTest {
         assertThat(score(5)).isEqualTo(50)
         assertThat(score(1, 5, 2)).isEqualTo(150)
     }
+
+    @ParameterizedTest(name = "{0} {0} {0} scores {1}")
+    @CsvSource("1, 1000", "2, 200", "3, 300", "4, 400", "5, 500", "6, 600")
+    fun `triples score by face`(face: Int, expected: Int) {
+        assertThat(score(face, face, face)).isEqualTo(expected)
+    }
 }
