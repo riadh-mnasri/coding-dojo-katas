@@ -22,4 +22,14 @@ class FieldTest {
     fun `counts a mine on the same row`() {
         assertThat(hints(".*.")).containsExactly("1*1")
     }
+
+    @Test
+    fun `hints the kata example`() {
+        assertThat(hints("*...", "....", ".*..", "....")).containsExactly("*100", "2210", "1*10", "1110")
+    }
+
+    @Test
+    fun `a square surrounded by mines shows 8`() {
+        assertThat(hints("***", "*.*", "***")).containsExactly("***", "*8*", "***")
+    }
 }
