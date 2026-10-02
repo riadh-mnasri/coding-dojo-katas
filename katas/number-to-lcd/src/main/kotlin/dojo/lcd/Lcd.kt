@@ -1,41 +1,57 @@
 // Copyright (c) 2026 Riadh MNASRI. Licensed under the MIT License.
 package dojo.lcd
 
+/** Une ligne de dessin, calculée à partir des segments allumés d'un chiffre. */
+private typealias Row = (Set<Char>) -> String
+
+/**
+ * Affichage façon LCD.
+ *
+ * Chaque chiffre est un ensemble de segments allumés :
+ * ```
+ *  _a_
+ * b   c
+ *  _d_
+ * e   f
+ *  _g_
+ * ```
+ */
 object Lcd {
-    private val glyphs = mapOf(
-        '0' to listOf(" _ ", "| |", "|_|"),
-        '1' to listOf("   ", "  |", "  |"),
-        '2' to listOf(" _ ", " _|", "|_ "),
-        '3' to listOf(" _ ", " _|", " _|"),
-        '4' to listOf("   ", "|_|", "  |"),
-        '5' to listOf(" _ ", "|_ ", " _|"),
-        '6' to listOf(" _ ", "|_ ", "|_|"),
-        '7' to listOf(" _ ", "  |", "  |"),
-        '8' to listOf(" _ ", "|_|", "|_|"),
-        '9' to listOf(" _ ", "|_|", " _|"),
+    private val segments = mapOf(
+        '0' to "abcefg", '1' to "cf", '2' to "acdeg", '3' to "acdfg", '4' to "bcdf",
+        '5' to "abdfg", '6' to "abdefg", '7' to "acf", '8' to "abcdefg", '9' to "abcdfg",
+    ).mapValues { (_, lit) -> lit.toSet() }
+
+    /** Partie 1 : la forme compacte sur 3 lignes, où les barres partagent la ligne des verticales. */
+    fun render(number: Int): String = draw(
+        number,
+        listOf(
+            { lit -> " " + bar('a' in lit, 1) + " " },
+            { lit -> side('b' in lit) + bar('d' in lit, 1) + side('c' in lit) },
+            { lit -> side('e' in lit) + bar('g' in lit, 1) + side('f' in lit) },
+        ),
     )
 
-    fun render(number: Int): String {
-        val digits = number.toString().map(glyphs::getValue)
-        return (0 until 3).joinToString("\n") { row -> digits.joinToString("") { it[row] } }
+    /** Partie 2 : chaque barre a sa propre ligne, soit 2 × hauteur + 3 lignes. */
+    fun render(number: Int, width: Int, height: Int): String {
+        val horizontal = { segment: Char -> { lit: Set<Char> -> " " + bar(segment in lit, width) + " " } }
+        val vertical = { left: Char, right: Char ->
+            { lit: Set<Char> -> side(left in lit) + " ".repeat(width) + side(right in lit) }
+        }
+        return draw(
+            number,
+            listOf(horizontal('a')) + List(height) { vertical('b', 'c') } +
+                listOf(horizontal('d')) + List(height) { vertical('e', 'f') } +
+                listOf(horizontal('g')),
+        )
     }
 
-    /** Segments allumés : haut, haut-gauche, haut-droite, milieu, bas-gauche, bas-droite, bas. */
-    private val segments = mapOf(
-        '0' to "abcefg".toSet(), '1' to "cf".toSet(), '2' to "acdeg".toSet(), '3' to "acdfg".toSet(),
-        '4' to "bcdf".toSet(), '5' to "abdfg".toSet(), '6' to "abdefg".toSet(), '7' to "acf".toSet(),
-        '8' to "abcdefg".toSet(), '9' to "abcdfg".toSet(),
-    )
-
-    fun render(number: Int, width: Int, height: Int): String {
+    private fun draw(number: Int, rows: List<Row>): String {
         val digits = number.toString().map(segments::getValue)
-        fun horizontal(on: Boolean) = " " + (if (on) "_" else " ").repeat(width) + " "
-        fun vertical(left: Boolean, right: Boolean) = (if (left) "|" else " ") + " ".repeat(width) + (if (right) "|" else " ")
-        val rows = listOf<(Set<Char>) -> String>({ horizontal('a' in it) }) +
-            List(height) { { s: Set<Char> -> vertical('b' in s, 'c' in s) } } +
-            listOf({ s: Set<Char> -> horizontal('d' in s) }) +
-            List(height) { { s: Set<Char> -> vertical('e' in s, 'f' in s) } } +
-            listOf({ s: Set<Char> -> horizontal('g' in s) })
         return rows.joinToString("\n") { row -> digits.joinToString("") { row(it) } }
     }
+
+    private fun bar(on: Boolean, width: Int) = (if (on) "_" else " ").repeat(width)
+
+    private fun side(on: Boolean) = if (on) "|" else " "
 }
