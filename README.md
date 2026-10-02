@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 14 / 61 katas.**
+**Avancement : 15 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -117,7 +117,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | Trading Card Game | boucle de jeu, doublures | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/TradingCardGame/) |
 | Trip Service | casser les dépendances du legacy | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/TripService/) |
 | Wallet | port externe (taux de change) | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Wallet/) |
-| Word Wrap | récursion, cas limites | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/WordWrap/) |
+| [Word Wrap](katas/word-wrap/README.md) | récursion, cas limites | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/WordWrap/) |
 | Yahtzee | catégories de score | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Yahtzee/) |
 <!-- katas:end -->
 
