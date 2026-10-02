@@ -34,6 +34,7 @@ object Lcd {
 
     /** Partie 2 : chaque barre a sa propre ligne, soit 2 × hauteur + 3 lignes. */
     fun render(number: Int, width: Int, height: Int): String {
+        require(width >= 1 && height >= 1) { "Width and height must be at least 1" }
         val horizontal = { segment: Char -> { lit: Set<Char> -> " " + bar(segment in lit, width) + " " } }
         val vertical = { left: Char, right: Char ->
             { lit: Set<Char> -> side(left in lit) + " ".repeat(width) + side(right in lit) }
@@ -47,6 +48,7 @@ object Lcd {
     }
 
     private fun draw(number: Int, rows: List<Row>): String {
+        require(number >= 0) { "Only non-negative numbers can be displayed, got $number" }
         val digits = number.toString().map(segments::getValue)
         return rows.joinToString("\n") { row -> digits.joinToString("") { row(it) } }
     }
