@@ -40,4 +40,13 @@ class TennisGameTest {
 
         assertThat(game.score()).isEqualTo("Deuce")
     }
+
+    @Test
+    fun `one point ahead after deuce is advantage`() {
+        points(serena = 4, venus = 3)
+        assertThat(game.score()).isEqualTo("Advantage Serena")
+
+        points(serena = 0, venus = 2)
+        assertThat(game.score()).isEqualTo("Advantage Venus")
+    }
 }
