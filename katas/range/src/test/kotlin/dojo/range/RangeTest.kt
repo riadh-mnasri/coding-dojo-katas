@@ -3,6 +3,8 @@ package dojo.range
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class RangeTest {
 
@@ -23,5 +25,11 @@ class RangeTest {
     @Test
     fun `lists all its points`() {
         assertThat(range("[2,6)").allPoints()).containsExactly(2, 3, 4, 5)
+    }
+
+    @ParameterizedTest(name = "{0} end points are {1} and {2}")
+    @CsvSource("'[2,6)', 2, 5", "'[2,6]', 2, 6", "'(2,6)', 3, 5", "'(2,6]', 3, 6")
+    fun `gives its end points`(notation: String, first: Int, last: Int) {
+        assertThat(range(notation).endPoints()).isEqualTo(first to last)
     }
 }
