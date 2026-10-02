@@ -2,6 +2,7 @@
 package dojo.minesweeper
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class MinesweeperTest {
@@ -35,5 +36,10 @@ class MinesweeperTest {
             1*100
             """.trimIndent(),
         )
+    }
+
+    @Test
+    fun `rejects a row that does not match the declared width`() {
+        assertThatThrownBy { Minesweeper.solve("1 2\n...\n0 0") }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
