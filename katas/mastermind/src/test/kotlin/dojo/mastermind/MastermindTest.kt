@@ -21,4 +21,9 @@ class MastermindTest {
     fun `the right color at the right place is well placed`() {
         assertThat(Mastermind.evaluate(secret = listOf(BLUE), guess = listOf(BLUE))).isEqualTo(Answer(1, 0))
     }
+
+    @Test
+    fun `a right color at the wrong place is misplaced`() {
+        assertThat(Mastermind.evaluate(secret = listOf(RED, YELLOW), guess = listOf(BLUE, RED))).isEqualTo(Answer(0, 1))
+    }
 }
