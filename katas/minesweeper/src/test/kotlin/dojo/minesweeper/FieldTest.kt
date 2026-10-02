@@ -17,4 +17,9 @@ class FieldTest {
     fun `a mine stays a mine`() {
         assertThat(hints("*")).containsExactly("*")
     }
+
+    @Test
+    fun `counts a mine on the same row`() {
+        assertThat(hints(".*.")).containsExactly("1*1")
+    }
 }
