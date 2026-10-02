@@ -17,6 +17,8 @@ class Range(
 
     fun endPoints(): Pair<Int, Int> = first to last
 
+    fun containsRange(other: Range): Boolean = contains(other.first, other.last)
+
     companion object {
         private val NOTATION = Regex("""([\[(])\s*(-?\d+)\s*,\s*(-?\d+)\s*([])])""")
 
