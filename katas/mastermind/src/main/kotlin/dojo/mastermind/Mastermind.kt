@@ -7,6 +7,7 @@ data class Answer(val wellPlaced: Int, val misplaced: Int)
 
 object Mastermind {
     fun evaluate(secret: List<Color>, guess: List<Color>): Answer {
+        require(secret.size == guess.size) { "Secret and guess must have the same size" }
         val pairs = secret.zip(guess)
         val (matching, others) = pairs.partition { (s, g) -> s == g }
         val secretLeft = others.groupingBy { it.first }.eachCount()
