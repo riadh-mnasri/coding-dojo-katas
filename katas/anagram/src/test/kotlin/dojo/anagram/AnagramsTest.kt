@@ -2,7 +2,12 @@
 package dojo.anagram
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertTimeoutPreemptively
+import org.junit.jupiter.api.Assumptions.assumeTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.function.ThrowingSupplier
+import java.io.File
+import java.time.Duration
 
 class AnagramsTest {
 
@@ -38,5 +43,23 @@ class AnagramsTest {
         assertThat(kataWordList).hasSizeGreaterThan(1500)
 
         assertThat(Anagrams(kataWordList).twoWordAnagramsOf("documenting")).isEmpty()
+    }
+
+    /**
+     * Le dictionnaire web2 (Webster 1934, domaine public) livré avec macOS et beaucoup de Linux.
+     * Les 52 paires attendues ont été calculées à part, avec un script Python indépendant.
+     */
+    @Test
+    fun `finds the 52 two-word anagrams of documenting in web2 within ten seconds`() {
+        val web2 = File("/usr/share/dict/web2").takeIf { it.exists() } ?: File("/usr/share/dict/words")
+        assumeTrue(web2.exists(), "no system dictionary on this machine")
+        val words = web2.readLines().filter { it.isNotBlank() && it.all(Char::isLetter) }
+
+        val anagrams = assertTimeoutPreemptively(
+            Duration.ofSeconds(10),
+            ThrowingSupplier { Anagrams(words).twoWordAnagramsOf("documenting") },
+        )
+
+        assertThat(anagrams).hasSize(52).contains("document" to "gin", "coming" to "tuned", "medoc" to "tuning")
     }
 }
