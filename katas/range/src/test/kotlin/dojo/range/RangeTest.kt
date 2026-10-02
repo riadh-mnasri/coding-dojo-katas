@@ -53,4 +53,9 @@ class RangeTest {
     fun `equals a range with the same bounds`(left: String, right: String, expected: Boolean) {
         assertThat(range(left) == range(right)).isEqualTo(expected)
     }
+
+    @Test
+    fun `two notations covering the same integers are equal`() {
+        assertThat(range("[3,5)")).isEqualTo(range("[3,4]")).isEqualTo(range("(2,5)"))
+    }
 }
