@@ -17,4 +17,13 @@ class TennisGameTest {
     fun `a new game is love all`() {
         assertThat(game.score()).isEqualTo("Love-All")
     }
+
+    @Test
+    fun `calls the running score of each player`() {
+        points(serena = 1, venus = 0)
+        assertThat(game.score()).isEqualTo("Fifteen-Love")
+
+        points(serena = 2, venus = 1)
+        assertThat(game.score()).isEqualTo("Forty-Fifteen")
+    }
 }
