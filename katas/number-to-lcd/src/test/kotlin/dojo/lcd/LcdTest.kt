@@ -36,4 +36,11 @@ class LcdTest {
             lines(" ___ ", "    |", "    |", " ___ ", "|    ", "|    ", " ___ "),
         )
     }
+
+    @Test
+    fun `stretches several digits`() {
+        assertThat(Lcd.render(10, width = 2, height = 1)).isEqualTo(
+            lines("     __ ", "   ||  |", "        ", "   ||  |", "     __ "),
+        )
+    }
 }
