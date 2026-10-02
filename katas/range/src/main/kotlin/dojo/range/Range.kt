@@ -15,6 +15,8 @@ class Range(
 
     fun allPoints(): List<Int> = (first..last).toList()
 
+    fun endPoints(): Pair<Int, Int> = first to last
+
     companion object {
         private val NOTATION = Regex("""([\[(])\s*(-?\d+)\s*,\s*(-?\d+)\s*([])])""")
 
