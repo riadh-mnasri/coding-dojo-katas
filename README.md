@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 23 / 61 katas.**
+**Avancement : 24 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -92,7 +92,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | [Minesweeper](katas/minesweeper/README.md) | grilles, voisinage | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Minesweeper/) |
 | Movie Rental | refactoring (Fowler) | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/movie-rental/) |
 | Nearest Color | distance, égalités | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/NearestColor/) |
-| Nim Game | règles de jeu, tours | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Nim/) |
+| [Nim Game](katas/nim-game/README.md) | règles de jeu, tours | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Nim/) |
 | Number to LCD | rendu texte, exigences changeantes | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/NumberToLCD/) |
 | Numbers in Words | conversion bidirectionnelle | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/NumbersInWords/) |
 | ORM | ORM, migrations de schéma | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/orm/) |
