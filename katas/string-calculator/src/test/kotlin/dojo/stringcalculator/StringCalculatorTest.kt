@@ -49,4 +49,10 @@ class StringCalculatorTest {
     fun `reports a separator other than the custom one`() {
         assertThat(StringCalculator.add("//|\n1|2,3")).isEqualTo("'|' expected but ',' found at position 3.")
     }
+
+    @ParameterizedTest(name = "\"{0}\" -> {1}")
+    @CsvSource("'-1,2', 'Negative not allowed : -1'", "'2,-4,-5', 'Negative not allowed : -4, -5'")
+    fun `negative numbers are refused and listed`(numbers: String, message: String) {
+        assertThat(StringCalculator.add(numbers)).isEqualTo(message)
+    }
 }
