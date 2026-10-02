@@ -17,4 +17,9 @@ class AnagramsTest {
 
         assertThat(anagrams).containsExactly("document" to "gin")
     }
+
+    @Test
+    fun `the same word can be used twice`() {
+        assertThat(Anagrams(listOf("ab")).twoWordAnagramsOf("abab")).containsExactly("ab" to "ab")
+    }
 }
