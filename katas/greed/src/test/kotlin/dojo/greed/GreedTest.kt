@@ -33,4 +33,14 @@ class GreedTest {
     fun `four, five and six of a kind multiply the triple score by 2, 4 and 8`(count: Int, face: Int, expected: Int) {
         assertThat(Greed.score(List(count) { face })).isEqualTo(expected)
     }
+
+    @Test
+    fun `three pairs score 800`() {
+        assertThat(score(2, 2, 3, 3, 4, 4)).isEqualTo(800)
+    }
+
+    @Test
+    fun `a straight scores 1200`() {
+        assertThat(score(1, 2, 3, 4, 5, 6)).isEqualTo(1200)
+    }
 }
