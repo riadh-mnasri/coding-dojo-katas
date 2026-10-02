@@ -2,5 +2,7 @@
 package dojo.wordwrap
 
 object Wrapper {
-    fun wrap(text: String, column: Int): String = text
+    fun wrap(text: String, column: Int): String =
+        if (text.length <= column) text
+        else text.substring(0, column) + "\n" + wrap(text.substring(column), column)
 }
