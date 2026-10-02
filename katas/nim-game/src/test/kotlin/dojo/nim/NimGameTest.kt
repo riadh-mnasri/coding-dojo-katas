@@ -13,4 +13,12 @@ class NimGameTest {
         assertThat(game.sticks).isEqualTo(10)
         assertThat(game.currentPlayer).isEqualTo("Alice")
     }
+
+    @Test
+    fun `taking sticks removes them and hands over the turn`() {
+        game.take(2)
+
+        assertThat(game.sticks).isEqualTo(8)
+        assertThat(game.currentPlayer).isEqualTo("Bob")
+    }
 }
