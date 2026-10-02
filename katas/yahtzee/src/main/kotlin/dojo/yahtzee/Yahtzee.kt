@@ -1,6 +1,7 @@
 // Copyright (c) 2026 Riadh MNASRI. Licensed under the MIT License.
 package dojo.yahtzee
 
+/** Chaque catégorie porte sa règle de score ; un lancer incompatible rapporte 0. */
 enum class Category(val score: (List<Int>) -> Int) {
     CHANCE({ dice -> dice.sum() }),
     YAHTZEE({ dice -> if (dice.toSet().size == 1) 50 else 0 }),
@@ -14,25 +15,26 @@ enum class Category(val score: (List<Int>) -> Int) {
     THREE_OF_A_KIND(ofAKind(3)),
     FOUR_OF_A_KIND(ofAKind(4)),
     TWO_PAIRS({ dice ->
-        val pairs = dice.groupingBy { it }.eachCount().filterValues { it >= 2 }.keys
+        val pairs = faceCounts(dice).filterValues { it >= 2 }.keys
         if (pairs.size == 2) pairs.sum() * 2 else 0
     }),
     SMALL_STRAIGHT(straight(1..5)),
     LARGE_STRAIGHT(straight(2..6)),
-    FULL_HOUSE({ dice ->
-        val counts = dice.groupingBy { it }.eachCount().values.sorted()
-        if (counts == listOf(2, 3)) dice.sum() else 0
-    }),
+    FULL_HOUSE({ dice -> if (faceCounts(dice).values.sorted() == listOf(2, 3)) dice.sum() else 0 }),
 }
+
+private fun faceCounts(dice: List<Int>): Map<Int, Int> = dice.groupingBy { it }.eachCount()
 
 private fun sumOf(face: Int): (List<Int>) -> Int = { dice -> dice.filter { it == face }.sum() }
 
 /** La plus haute face présente au moins [count] fois, multipliée par [count]. */
 private fun ofAKind(count: Int): (List<Int>) -> Int = { dice ->
-    dice.groupingBy { it }.eachCount().filterValues { it >= count }.keys.maxOrNull()?.times(count) ?: 0
+    faceCounts(dice).filterValues { it >= count }.keys.maxOrNull()?.times(count) ?: 0
 }
 
-private fun straight(faces: IntRange): (List<Int>) -> Int = { dice -> if (dice.sorted() == faces.toList()) faces.sum() else 0 }
+private fun straight(faces: IntRange): (List<Int>) -> Int = { dice ->
+    if (dice.sorted() == faces.toList()) faces.sum() else 0
+}
 
 object Yahtzee {
     fun score(dice: List<Int>, category: Category): Int = category.score(dice)
