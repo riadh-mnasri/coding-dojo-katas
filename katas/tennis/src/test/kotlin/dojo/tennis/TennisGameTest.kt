@@ -2,6 +2,7 @@
 package dojo.tennis
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class TennisGameTest {
@@ -67,5 +68,17 @@ class TennisGameTest {
         points(serena = 4, venus = 4)
 
         assertThat(game.score()).isEqualTo("Deuce")
+    }
+
+    @Test
+    fun `no point can be played once the game is won`() {
+        points(serena = 4, venus = 0)
+
+        assertThatThrownBy { game.pointWonBy("Venus") }.isInstanceOf(IllegalStateException::class.java)
+    }
+
+    @Test
+    fun `only the two players can win a point`() {
+        assertThatThrownBy { game.pointWonBy("Roger") }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
