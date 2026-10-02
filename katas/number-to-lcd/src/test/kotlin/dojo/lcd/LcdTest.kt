@@ -17,4 +17,15 @@ class LcdTest {
     fun `draws a 2`() {
         assertThat(Lcd.render(2)).isEqualTo(lines(" _ ", " _|", "|_ "))
     }
+
+    @Test
+    fun `draws every digit side by side, as in the kata`() {
+        assertThat(Lcd.render(1234567890)).isEqualTo(
+            lines(
+                "    _  _     _  _  _  _  _  _ ",
+                "  | _| _||_||_ |_   ||_||_|| |",
+                "  ||_  _|  | _||_|  ||_| _||_|",
+            ),
+        )
+    }
 }
