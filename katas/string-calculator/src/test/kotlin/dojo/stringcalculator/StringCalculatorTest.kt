@@ -18,4 +18,9 @@ class StringCalculatorTest {
     fun `sums one or two numbers`(numbers: String, sum: String) {
         assertThat(StringCalculator.add(numbers)).isEqualTo(sum)
     }
+
+    @Test
+    fun `sums any amount of numbers`() {
+        assertThat(StringCalculator.add("1,2,3,4,5.5")).isEqualTo("15.5")
+    }
 }
