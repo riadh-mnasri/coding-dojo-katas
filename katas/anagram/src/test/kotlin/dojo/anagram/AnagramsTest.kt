@@ -10,4 +10,11 @@ class AnagramsTest {
     fun `an empty dictionary gives no anagram`() {
         assertThat(Anagrams(emptyList()).twoWordAnagramsOf("documenting")).isEmpty()
     }
+
+    @Test
+    fun `finds two words that use exactly the letters of the word`() {
+        val anagrams = Anagrams(listOf("document", "gin", "cat")).twoWordAnagramsOf("documenting")
+
+        assertThat(anagrams).containsExactly("document" to "gin")
+    }
 }
