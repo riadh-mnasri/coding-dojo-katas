@@ -8,11 +8,11 @@ data class Answer(val wellPlaced: Int, val misplaced: Int)
 object Mastermind {
     fun evaluate(secret: List<Color>, guess: List<Color>): Answer {
         require(secret.size == guess.size) { "Secret and guess must have the same size" }
-        val pairs = secret.zip(guess)
-        val (matching, others) = pairs.partition { (s, g) -> s == g }
-        val secretLeft = others.groupingBy { it.first }.eachCount()
-        val guessLeft = others.groupingBy { it.second }.eachCount()
+        val (wellPlaced, unmatched) = secret.zip(guess).partition { (s, g) -> s == g }
+        // Une couleur mal placée compte autant de fois qu'elle apparaît des deux côtés, pas plus.
+        val secretLeft = unmatched.groupingBy { (s, _) -> s }.eachCount()
+        val guessLeft = unmatched.groupingBy { (_, g) -> g }.eachCount()
         val misplaced = guessLeft.entries.sumOf { (color, count) -> minOf(count, secretLeft[color] ?: 0) }
-        return Answer(matching.size, misplaced)
+        return Answer(wellPlaced.size, misplaced)
     }
 }
