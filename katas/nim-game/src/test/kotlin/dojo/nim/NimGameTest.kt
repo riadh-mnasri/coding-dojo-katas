@@ -31,4 +31,11 @@ class NimGameTest {
         assertThatThrownBy { game.take(count) }.isInstanceOf(IllegalArgumentException::class.java)
         assertThat(game.sticks).isEqualTo(10)
     }
+
+    @Test
+    fun `cannot take more sticks than remain`() {
+        repeat(3) { game.take(3) }
+
+        assertThatThrownBy { game.take(2) }.isInstanceOf(IllegalArgumentException::class.java)
+    }
 }
