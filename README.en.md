@@ -54,11 +54,11 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 20 / 61 katas.**
+**Progress: 21 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
-| Anagram | performance vs readability | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Anagram/) |
+| [Anagram](katas/anagram/README.en.md) | performance vs readability | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Anagram/) |
 | Args | parsing, extensible design | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Args/) |
 | Bank OCR | parsing, checksum, error correction | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/BankOCR/) |
 | Birthday Greetings | hexagonal architecture, ports and adapters | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/birthday-greetings/) |
