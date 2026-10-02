@@ -2,6 +2,7 @@
 package dojo.greed
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -42,5 +43,11 @@ class GreedTest {
     @Test
     fun `a straight scores 1200`() {
         assertThat(score(1, 2, 3, 4, 5, 6)).isEqualTo(1200)
+    }
+
+    @Test
+    fun `accepts up to six dice with faces from 1 to 6`() {
+        assertThatThrownBy { score(1, 1, 1, 1, 1, 1, 1) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { score(7) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
