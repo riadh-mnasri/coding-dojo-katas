@@ -49,6 +49,12 @@ sealed interface Instruction {
 class Syntax(private val tokens: Map<String, Instruction>) {
     private val longestFirst = tokens.keys.sortedByDescending { it.length }
 
+    /** Une nouvelle syntaxe où chaque jeton `ancien to nouveau` est renommé ; les autres sont conservés. */
+    fun renamed(vararg renames: Pair<String, String>): Syntax {
+        val newNames = renames.toMap()
+        return Syntax(tokens.mapKeys { (token, _) -> newNames[token] ?: token })
+    }
+
     /** Découpe le programme en instructions ; tout ce qui n'est pas un jeton est un commentaire. */
     fun parse(program: String): List<Instruction> {
         val instructions = mutableListOf<Instruction>()
