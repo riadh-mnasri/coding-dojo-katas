@@ -6,6 +6,7 @@
 #   scripts/tdd.sh <kata> red      "test(<kata>): ..."      -> exige au moins un test en échec
 #   scripts/tdd.sh <kata> green    "feat(<kata>): ..."      -> exige une suite entièrement verte
 #   scripts/tdd.sh <kata> refactor "refactor(<kata>): ..."  -> exige une suite entièrement verte
+#   scripts/tdd.sh <kata> docs     "docs(<kata>): ..."      -> suite verte et seuls des README modifiés
 #   scripts/tdd.sh <kata> pin      "test(<kata>): ..."      -> test ajouté qui passe du premier coup
 #                                                            (il ne force aucun code, on le garde comme
 #                                                            documentation ou filet de sécurité)
@@ -24,11 +25,21 @@ case $phase in
   green) expected_type="feat|fix" ;;
   refactor) expected_type="refactor" ;;
   pin) expected_type="test" ;;
+  docs) expected_type="docs" ;;
   *) echo "Phase inconnue : $phase" >&2; exit 2 ;;
 esac
 if ! [[ $message =~ ^($expected_type)\($kata\):\ .+ ]]; then
   echo "Refusé : en phase $phase, le message doit commencer par ($expected_type)($kata): ..." >&2
   exit 2
+fi
+
+if [ "$phase" = docs ]; then
+  others=$(git status --porcelain | awk '{print $2}' | grep -vE '(^|/)README(\.en)?\.md$' || true)
+  if [ -n "$others" ]; then
+    echo "Refusé : un commit de documentation ne doit toucher que des README, or ceci a changé :" >&2
+    echo "$others" >&2
+    exit 1
+  fi
 fi
 
 rm -rf "katas/$kata/build/test-results"
@@ -70,6 +81,7 @@ fi
 
 total=$(cat katas/$kata/build/test-results/test/*.xml 2>/dev/null | grep -o '<testsuite [^>]*' | grep -o ' tests="[0-9]*"' | grep -o '[0-9]*' | paste -sd+ - | bc)
 git add "katas/$kata"
+[ "$phase" = docs ] && git add README.md README.en.md
 if [ -n "$body" ]; then
   git commit -q -m "$message" -m "$body"
 else
