@@ -5,6 +5,7 @@ object Wrapper {
 
     /** Insère des retours à la ligne pour qu'aucune ligne ne dépasse [column] caractères. */
     fun wrap(text: String, column: Int): String {
+        require(column >= 1) { "The column must be at least 1, got $column" }
         if (text.length <= column) return text
         val space = text.lastIndexOf(' ', column)
         return if (space >= 0) breakAt(text, space, skip = 1, column) else breakAt(text, column, skip = 0, column)
