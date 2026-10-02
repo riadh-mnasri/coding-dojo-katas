@@ -12,4 +12,9 @@ class FieldTest {
     fun `a safe square without mines around shows 0`() {
         assertThat(hints(".")).containsExactly("0")
     }
+
+    @Test
+    fun `a mine stays a mine`() {
+        assertThat(hints("*")).containsExactly("*")
+    }
 }
