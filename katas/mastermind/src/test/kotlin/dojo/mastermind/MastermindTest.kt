@@ -8,6 +8,7 @@ import dojo.mastermind.Color.PURPLE
 import dojo.mastermind.Color.RED
 import dojo.mastermind.Color.YELLOW
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class MastermindTest {
@@ -49,5 +50,11 @@ class MastermindTest {
         val answer = Mastermind.evaluate(secret = listOf(RED, BLUE), guess = listOf(RED, RED))
 
         assertThat(answer).isEqualTo(Answer(1, 0))
+    }
+
+    @Test
+    fun `secret and guess must have the same size`() {
+        assertThatThrownBy { Mastermind.evaluate(secret = listOf(RED, BLUE), guess = listOf(RED)) }
+            .isInstanceOf(IllegalArgumentException::class.java)
     }
 }
