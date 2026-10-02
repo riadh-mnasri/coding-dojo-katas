@@ -12,4 +12,10 @@ class NumbersInWordsTest {
     fun `zero is zero`() {
         assertThat(NumbersInWords.toWords(0)).isEqualTo("zero")
     }
+
+    @ParameterizedTest(name = "{0} is {1}")
+    @CsvSource("1, one", "7, seven", "10, ten", "13, thirteen", "19, nineteen")
+    fun `units and teens have their own word`(number: Int, words: String) {
+        assertThat(NumbersInWords.toWords(number)).isEqualTo(words)
+    }
 }
