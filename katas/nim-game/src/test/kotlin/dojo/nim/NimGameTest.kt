@@ -52,4 +52,11 @@ class NimGameTest {
         assertThat(game.sticks).isZero()
         assertThat(game.winner).isEqualTo("Alice")
     }
+
+    @Test
+    fun `no move is allowed once the game is over`() {
+        listOf(3, 3, 3, 1).forEach(game::take)
+
+        assertThatThrownBy { game.take(1) }.isInstanceOf(IllegalStateException::class.java)
+    }
 }
