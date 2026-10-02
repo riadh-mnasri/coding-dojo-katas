@@ -10,6 +10,8 @@ data class Grid(private val cells: List<List<Boolean>>) {
         },
     )
 
+    fun render(): String = cells.joinToString("\n") { row -> row.joinToString("") { if (it) "*" else "." } }
+
     private fun isAlive(row: Int, column: Int) = cells.getOrNull(row)?.getOrNull(column) ?: false
 
     private fun liveNeighbours(row: Int, column: Int) =
