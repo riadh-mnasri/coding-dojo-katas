@@ -3,50 +3,80 @@ package dojo.stringcalculator
 
 import java.math.BigDecimal
 
-object StringCalculator {
-    private val NUMBER = Regex("""-?\d+(\.\d+)?""")
-    private val DEFAULT_SEPARATORS = listOf(",", "\n")
+/** Résultat interne d'un calcul : une valeur, ou la liste de tous les problèmes rencontrés. */
+sealed interface Outcome {
+    data class Value(val number: BigDecimal) : Outcome
+    data class Failure(val messages: List<String>) : Outcome
+}
 
-    fun add(input: String): String {
-        if (input.isEmpty()) return "0"
-        val (separators, numbers) = if (input.startsWith("//")) {
-            val endOfHeader = input.indexOf('\n')
-            listOf(input.substring(2, endOfHeader)) to input.substring(endOfHeader + 1)
-        } else {
-            DEFAULT_SEPARATORS to input
-        }
-        val parsed = mutableListOf<BigDecimal>()
-        val syntaxErrors = mutableListOf<String>()
+object StringCalculator {
+
+    fun add(input: String): String = render(compute(input, BigDecimal.ZERO, BigDecimal::add))
+
+    internal fun compute(input: String, empty: BigDecimal, combine: (BigDecimal, BigDecimal) -> BigDecimal): Outcome {
+        if (input.isEmpty()) return Outcome.Value(empty)
+        val scan = Scanner.of(input).scan()
+        val negatives = scan.numbers.filter { it.signum() < 0 }
+        val negativeError = negatives.takeIf { it.isNotEmpty() }
+            ?.let { "Negative not allowed : " + it.joinToString(", ") { n -> n.toPlainString() } }
+        val errors = listOfNotNull(negativeError) + scan.errors
+        return if (errors.isEmpty()) Outcome.Value(scan.numbers.reduce(combine)) else Outcome.Failure(errors)
+    }
+
+    private fun render(outcome: Outcome): String = when (outcome) {
+        is Outcome.Value -> outcome.number.stripTrailingZeros().toPlainString()
+        is Outcome.Failure -> outcome.messages.joinToString("\n")
+    }
+}
+
+/** Parcourt les nombres et les séparateurs en notant la position de chaque anomalie. */
+private class Scanner(private val text: String, private val separators: List<String>) {
+
+    class Scan(val numbers: List<BigDecimal>, val errors: List<String>)
+
+    fun scan(): Scan {
+        val numbers = mutableListOf<BigDecimal>()
+        val errors = mutableListOf<String>()
         var position = 0
         while (true) {
-            if (position == numbers.length) {
-                syntaxErrors += "Number expected but EOF found."
+            if (position == text.length) {
+                errors += "Number expected but EOF found."
                 break
             }
-            val number = NUMBER.matchAt(numbers, position)
+            val number = NUMBER.matchAt(text, position)
             if (number == null) {
-                syntaxErrors += "Number expected but '${escape(numbers[position])}' found at position $position."
+                errors += "Number expected but ${found(position)}."
                 position++
                 continue
             }
-            parsed += BigDecimal(number.value)
+            numbers += BigDecimal(number.value)
             position = number.range.last + 1
-            if (position == numbers.length) break
-            val separator = separators.firstOrNull { numbers.startsWith(it, position) }
+            if (position == text.length) break
+            val separator = separators.firstOrNull { text.startsWith(it, position) }
             if (separator == null) {
-                syntaxErrors += "'${separators.first()}' expected but '${escape(numbers[position])}' found at position $position."
+                errors += "'${separators.first()}' expected but ${found(position)}."
                 position++
             } else {
                 position += separator.length
             }
         }
-        val negatives = parsed.filter { it.signum() < 0 }
-        val errors = listOfNotNull(
-            negatives.takeIf { it.isNotEmpty() }?.let { "Negative not allowed : " + it.joinToString(", ") { n -> n.toPlainString() } },
-        ) + syntaxErrors
-        if (errors.isNotEmpty()) return errors.joinToString("\n")
-        return parsed.fold(BigDecimal.ZERO, BigDecimal::add).stripTrailingZeros().toPlainString()
+        return Scan(numbers, errors)
     }
 
-    private fun escape(char: Char) = if (char == '\n') "\\n" else char.toString()
+    private fun found(position: Int): String {
+        val char = text[position]
+        return "'${if (char == '\n') "\\n" else char}' found at position $position"
+    }
+
+    companion object {
+        private val NUMBER = Regex("""-?\d+(\.\d+)?""")
+        private val DEFAULT_SEPARATORS = listOf(",", "\n")
+
+        /** Une première ligne `//sep` remplace les séparateurs par défaut ; les positions sont comptées après elle. */
+        fun of(input: String): Scanner {
+            if (!input.startsWith("//")) return Scanner(input, DEFAULT_SEPARATORS)
+            val endOfHeader = input.indexOf('\n')
+            return Scanner(input.substring(endOfHeader + 1), listOf(input.substring(2, endOfHeader)))
+        }
+    }
 }
