@@ -14,4 +14,11 @@ class GreedTest {
     fun `no dice scores nothing`() {
         assertThat(score()).isEqualTo(0)
     }
+
+    @Test
+    fun `a single one scores 100 and a single five scores 50`() {
+        assertThat(score(1)).isEqualTo(100)
+        assertThat(score(5)).isEqualTo(50)
+        assertThat(score(1, 5, 2)).isEqualTo(150)
+    }
 }
