@@ -11,7 +11,9 @@ object Minesweeper {
         while (true) {
             val (rows, columns) = lines[cursor].trim().split(" ").map(String::toInt)
             if (rows == 0 && columns == 0) break
-            val field = Field(lines.subList(cursor + 1, cursor + 1 + rows))
+            val fieldRows = lines.subList(cursor + 1, cursor + 1 + rows)
+            require(fieldRows.all { it.length == columns }) { "Field #${outputs.size + 1} does not have $columns columns" }
+            val field = Field(fieldRows)
             outputs += (listOf("Field #${outputs.size + 1}:") + field.hints()).joinToString("\n")
             cursor += rows + 1
         }
