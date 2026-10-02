@@ -13,6 +13,10 @@ enum class Category(val score: (List<Int>) -> Int) {
     PAIR(ofAKind(2)),
     THREE_OF_A_KIND(ofAKind(3)),
     FOUR_OF_A_KIND(ofAKind(4)),
+    TWO_PAIRS({ dice ->
+        val pairs = dice.groupingBy { it }.eachCount().filterValues { it >= 2 }.keys
+        if (pairs.size == 2) pairs.sum() * 2 else 0
+    }),
 }
 
 private fun sumOf(face: Int): (List<Int>) -> Int = { dice -> dice.filter { it == face }.sum() }
