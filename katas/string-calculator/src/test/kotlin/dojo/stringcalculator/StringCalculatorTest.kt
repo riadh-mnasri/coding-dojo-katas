@@ -23,4 +23,9 @@ class StringCalculatorTest {
     fun `sums any amount of numbers`() {
         assertThat(StringCalculator.add("1,2,3,4,5.5")).isEqualTo("15.5")
     }
+
+    @Test
+    fun `newlines are separators too`() {
+        assertThat(StringCalculator.add("1\n2,3")).isEqualTo("6")
+    }
 }
