@@ -2,6 +2,7 @@
 package dojo.range
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -57,5 +58,11 @@ class RangeTest {
     @Test
     fun `two notations covering the same integers are equal`() {
         assertThat(range("[3,5)")).isEqualTo(range("[3,4]")).isEqualTo(range("(2,5)"))
+    }
+
+    @ParameterizedTest
+    @CsvSource("'2,6'", "'[2;6)'", "'[6,2]'", "'(3,4)'")
+    fun `rejects malformed or empty ranges`(notation: String) {
+        assertThatThrownBy { range(notation) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
