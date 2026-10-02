@@ -12,4 +12,9 @@ class LcdTest {
     fun `draws a 1`() {
         assertThat(Lcd.render(1)).isEqualTo(lines("   ", "  |", "  |"))
     }
+
+    @Test
+    fun `draws a 2`() {
+        assertThat(Lcd.render(2)).isEqualTo(lines(" _ ", " _|", "|_ "))
+    }
 }
