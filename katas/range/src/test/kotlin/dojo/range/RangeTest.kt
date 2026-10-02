@@ -47,4 +47,10 @@ class RangeTest {
     fun `overlaps another range`(left: String, right: String, expected: Boolean) {
         assertThat(range(left).overlapsRange(range(right))).isEqualTo(expected)
     }
+
+    @ParameterizedTest(name = "{0} equals {1}: {2}")
+    @CsvSource("'[3,5)', '[3,5)', true", "'[2,10)', '[3,5)', false", "'[2,5)', '[3,10)', false", "'[3,5)', '[2,10)', false")
+    fun `equals a range with the same bounds`(left: String, right: String, expected: Boolean) {
+        assertThat(range(left) == range(right)).isEqualTo(expected)
+    }
 }
