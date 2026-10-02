@@ -19,4 +19,9 @@ class RangeTest {
         assertThat(range("[2,6)").contains(-1)).isFalse()
         assertThat(range("[2,6)").contains(6)).isFalse()
     }
+
+    @Test
+    fun `lists all its points`() {
+        assertThat(range("[2,6)").allPoints()).containsExactly(2, 3, 4, 5)
+    }
 }
