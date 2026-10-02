@@ -66,4 +66,9 @@ class NimGameTest {
 
         assertThat(longGame.sticks).isEqualTo(21)
     }
+
+    @Test
+    fun `a game needs at least one stick`() {
+        assertThatThrownBy { NimGame("Rick", "Morty", sticks = 0) }.isInstanceOf(IllegalArgumentException::class.java)
+    }
 }
