@@ -40,4 +40,9 @@ class InterpreterTest {
 
         assertThat(machine.output).isEqualTo("BZ")
     }
+
+    @Test
+    fun `brackets loop while the current cell is not zero`() {
+        assertThat(interpreter.run("+++[->++<]").memory.take(2)).containsExactly(0, 6)
+    }
 }
