@@ -1,11 +1,19 @@
 // Copyright (c) 2026 Riadh MNASRI. Licensed under the MIT License.
 package dojo.yahtzee
 
-enum class Category { CHANCE, YAHTZEE }
+enum class Category(val score: (List<Int>) -> Int) {
+    CHANCE({ dice -> dice.sum() }),
+    YAHTZEE({ dice -> if (dice.toSet().size == 1) 50 else 0 }),
+    ONES(sumOf(1)),
+    TWOS(sumOf(2)),
+    THREES(sumOf(3)),
+    FOURS(sumOf(4)),
+    FIVES(sumOf(5)),
+    SIXES(sumOf(6)),
+}
+
+private fun sumOf(face: Int): (List<Int>) -> Int = { dice -> dice.filter { it == face }.sum() }
 
 object Yahtzee {
-    fun score(dice: List<Int>, category: Category): Int = when (category) {
-        Category.CHANCE -> dice.sum()
-        Category.YAHTZEE -> if (dice.toSet().size == 1) 50 else 0
-    }
+    fun score(dice: List<Int>, category: Category): Int = category.score(dice)
 }
