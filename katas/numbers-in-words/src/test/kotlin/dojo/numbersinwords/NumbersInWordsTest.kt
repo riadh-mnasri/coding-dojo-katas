@@ -18,4 +18,10 @@ class NumbersInWordsTest {
     fun `units and teens have their own word`(number: Int, words: String) {
         assertThat(NumbersInWords.toWords(number)).isEqualTo(words)
     }
+
+    @ParameterizedTest(name = "{0} is {1}")
+    @CsvSource("20, twenty", "40, forty", "45, forty five", "99, ninety nine")
+    fun `tens are followed by their unit`(number: Int, words: String) {
+        assertThat(NumbersInWords.toWords(number)).isEqualTo(words)
+    }
 }
