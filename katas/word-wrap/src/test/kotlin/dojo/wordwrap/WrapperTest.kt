@@ -10,4 +10,9 @@ class WrapperTest {
     fun `an empty text stays empty`() {
         assertThat(Wrapper.wrap("", 10)).isEqualTo("")
     }
+
+    @Test
+    fun `a word longer than the column is cut`() {
+        assertThat(Wrapper.wrap("longword", 4)).isEqualTo("long\nword")
+    }
 }
