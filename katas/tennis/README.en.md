@@ -32,7 +32,8 @@ Call the score of a tennis game:
 | 13 | 🔵 `express the score rules in tennis vocabulary` | `hasWinner`, `isDeuce`, `bothReachedForty`, `leader`: the `when` reads like the rules. |
 | 14 | 📌 `go back to deuce when the advantage is lost` | 4-4 is `Deuce` again with no extra code: points are counted, states are not stored. |
 | 15 | 🔴 `refuse points after the game and from strangers` | No guard at all. |
-| 16 | 🟢 `guard against late points and unknown players` | A `require` (invalid argument) and a `check` (invalid state). |
+| ⛔ | rejected green attempt | The `check` is right, but two older tests break: my `points(serena, venus)` helper played all of one player's points before the other's, so `4-3` went through `4-0`, a win. The guard refused the commit. Because of a mistake in how I chained my commands, this red code still went into the next documentation commit, already pushed; rather than rewrite published history, I fixed it in the following commit. |
+| 16 | 🟢 `play points alternately in the test helper` | The helper plays points alternately, like a real game, then the leader's extra points. The whole suite is green again, with the `require` (invalid argument) and `check` (invalid state) guards. |
 
 ## Solution
 
@@ -47,6 +48,8 @@ fun score(): String = when {
 ```
 
 ## Takeaways
+
+A test helper is code: this one encoded a wrong assumption (point order does not matter), which only surfaced once the code started checking the game state.
 
 A state machine (`Deuce`, `Advantage`...) was an option. Keeping two counters and **deriving** the call made the return to deuce free (step 14). The order of the `when` branches carries the whole rule priority.
 

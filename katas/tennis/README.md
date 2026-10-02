@@ -32,7 +32,8 @@ Annoncer le score d'un jeu de tennis :
 | 13 | 🔵 `express the score rules in tennis vocabulary` | `hasWinner`, `isDeuce`, `bothReachedForty`, `leader` : le `when` se lit comme l'énoncé. |
 | 14 | 📌 `go back to deuce when the advantage is lost` | 4-4 redonne `Deuce` sans code supplémentaire : on compte des points, pas des états. |
 | 15 | 🔴 `refuse points after the game and from strangers` | Aucune protection. |
-| 16 | 🟢 `guard against late points and unknown players` | Un `require` (argument invalide) et un `check` (état invalide). |
+| ⛔ | tentative de vert refusée | Le `check` est correct, mais deux anciens tests cassent : mon helper `points(serena, venus)` jouait tous les points d'un joueur avant ceux de l'autre, donc `4-3` passait par `4-0`, une victoire. Le garde-fou a refusé le commit. Par erreur de chaînage de mes commandes, ce code en rouge est quand même parti dans le commit de documentation suivant, déjà poussé ; plutôt que de réécrire l'historique publié, je l'ai corrigé par le commit suivant. |
+| 16 | 🟢 `play points alternately in the test helper` | Le helper joue les points en alternance, comme dans un vrai jeu, puis les points d'avance du meneur. Toute la suite repasse au vert avec les protections `require` (argument invalide) et `check` (état invalide). |
 
 ## Solution
 
@@ -47,6 +48,8 @@ fun score(): String = when {
 ```
 
 ## Ce que j'en retiens
+
+Un helper de test est du code : celui-ci encodait une hypothèse fausse (l'ordre des points n'a pas d'importance), qui n'a été démentie qu'au moment où le code a commencé à vérifier l'état du jeu.
 
 On aurait pu modéliser une machine à états (`Deuce`, `Advantage`...). Garder deux compteurs et **dériver** l'annonce a rendu le retour à deuce gratuit (étape 14). L'ordre des branches du `when` porte toute la priorité des règles.
 
