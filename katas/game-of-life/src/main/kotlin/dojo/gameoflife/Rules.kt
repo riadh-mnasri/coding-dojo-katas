@@ -2,5 +2,5 @@
 package dojo.gameoflife
 
 object Rules {
-    fun isAliveNext(alive: Boolean, liveNeighbours: Int): Boolean = liveNeighbours in 2..3
+    fun isAliveNext(alive: Boolean, liveNeighbours: Int): Boolean = alive && liveNeighbours in 2..3
 }
