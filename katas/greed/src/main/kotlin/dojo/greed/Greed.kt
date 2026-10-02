@@ -3,7 +3,7 @@ package dojo.greed
 
 object Greed {
     fun score(dice: List<Int>): Int = dice.groupingBy { it }.eachCount().map { (face, count) ->
-        if (count >= 3) tripleScore(face) + (count - 3) * singleScore(face) else count * singleScore(face)
+        if (count >= 3) tripleScore(face) shl (count - 3) else count * singleScore(face)
     }.sum()
 
     private fun tripleScore(face: Int) = if (face == 1) 1000 else face * 100
