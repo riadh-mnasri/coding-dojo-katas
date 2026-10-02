@@ -8,9 +8,12 @@ class Range(
     private val end: Int,
     private val endIncluded: Boolean,
 ) {
-    fun contains(vararg values: Int): Boolean = values.all { value ->
-        (if (startIncluded) value >= start else value > start) && (if (endIncluded) value <= end else value < end)
-    }
+    private val first = if (startIncluded) start else start + 1
+    private val last = if (endIncluded) end else end - 1
+
+    fun contains(vararg values: Int): Boolean = values.all { it in first..last }
+
+    fun allPoints(): List<Int> = (first..last).toList()
 
     companion object {
         private val NOTATION = Regex("""([\[(])\s*(-?\d+)\s*,\s*(-?\d+)\s*([])])""")
