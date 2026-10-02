@@ -13,6 +13,9 @@ object StringCalculator {
 
     fun add(input: String): String = render(compute(input, BigDecimal.ZERO, BigDecimal::add))
 
+    /** Une entrée vide vaut 1, l'élément neutre de la multiplication, comme 0 pour l'addition. */
+    fun multiply(input: String): String = render(compute(input, BigDecimal.ONE, BigDecimal::multiply))
+
     internal fun compute(input: String, empty: BigDecimal, combine: (BigDecimal, BigDecimal) -> BigDecimal): Outcome {
         if (input.isEmpty()) return Outcome.Value(empty)
         val scan = Scanner.of(input).scan()
