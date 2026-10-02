@@ -12,6 +12,7 @@ class TennisGame(private val player1: String, private val player2: String) {
     fun score(): String = when {
         points1 == points2 && points1 >= 3 -> "Deuce"
         points1 == points2 -> "${NAMES[points1]}-All"
+        points1 >= 3 && points2 >= 3 -> "Advantage ${if (points1 > points2) player1 else player2}"
         else -> "${NAMES[points1]}-${NAMES[points2]}"
     }
 
