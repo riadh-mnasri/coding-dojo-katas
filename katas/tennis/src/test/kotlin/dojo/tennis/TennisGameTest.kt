@@ -33,4 +33,11 @@ class TennisGameTest {
 
         assertThat(game.score()).isEqualTo("Thirty-All")
     }
+
+    @Test
+    fun `three points each is deuce`() {
+        points(serena = 3, venus = 3)
+
+        assertThat(game.score()).isEqualTo("Deuce")
+    }
 }
