@@ -20,4 +20,10 @@ class InterpreterTest {
         assertThat(interpreter.run("+++").memory[0]).isEqualTo(3)
         assertThat(interpreter.run("+++-").memory[0]).isEqualTo(2)
     }
+
+    @Test
+    fun `cells hold bytes from 0 to 255`() {
+        assertThat(interpreter.run("-").memory[0]).isEqualTo(255)
+        assertThat(interpreter.run("+".repeat(256)).memory[0]).isEqualTo(0)
+    }
 }
