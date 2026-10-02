@@ -4,6 +4,10 @@ package dojo.brainfuck
 class Machine(size: Int = 30_000) {
     val memory = IntArray(size)
     var pointer = 0
+
+    fun add(delta: Int) {
+        memory[pointer] = Math.floorMod(memory[pointer] + delta, 256)
+    }
 }
 
 class Interpreter {
@@ -11,8 +15,8 @@ class Interpreter {
         val machine = Machine()
         program.forEach { command ->
             when (command) {
-                '+' -> machine.memory[machine.pointer]++
-                '-' -> machine.memory[machine.pointer]--
+                '+' -> machine.add(1)
+                '-' -> machine.add(-1)
             }
         }
         return machine
