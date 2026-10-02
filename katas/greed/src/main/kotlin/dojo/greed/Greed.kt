@@ -7,6 +7,8 @@ object Greed {
     private const val THREE_PAIRS = 800
 
     fun score(dice: List<Int>): Int {
+        require(dice.size <= 6) { "Greed is played with up to 6 dice, got ${dice.size}" }
+        require(dice.all { it in 1..6 }) { "A die shows 1 to 6, got $dice" }
         val counts = dice.groupingBy { it }.eachCount()
         return when {
             counts.size == 6 -> STRAIGHT
