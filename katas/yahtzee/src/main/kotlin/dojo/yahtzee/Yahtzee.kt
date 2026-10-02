@@ -11,6 +11,8 @@ enum class Category(val score: (List<Int>) -> Int) {
     FIVES(sumOf(5)),
     SIXES(sumOf(6)),
     PAIR(ofAKind(2)),
+    THREE_OF_A_KIND(ofAKind(3)),
+    FOUR_OF_A_KIND(ofAKind(4)),
 }
 
 private fun sumOf(face: Int): (List<Int>) -> Int = { dice -> dice.filter { it == face }.sum() }
