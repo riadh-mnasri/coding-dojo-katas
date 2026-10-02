@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 22 / 61 katas.**
+**Avancement : 23 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -63,7 +63,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | Bank OCR | parsing, checksum, recherche de corrections | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/BankOCR/) |
 | Birthday Greetings | architecture hexagonale, ports et adapters | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/birthday-greetings/) |
 | [Bowling](katas/bowling/README.md) | règles métier à états | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Bowling/) |
-| Brainfuck | interpréteur, instructions extensibles | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Brainfuck/) |
+| [Brainfuck](katas/brainfuck/README.md) | interpréteur, instructions extensibles | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Brainfuck/) |
 | Christmas Delivery | concurrence, files d'attente | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/christmas-delivery/) |
 | [Code Cracker](katas/code-cracker/README.md) | substitution, aller-retour | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/CodeCracker/) |
 | CQRS Booking | CQRS, séparation lecture/écriture | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/CQRS_Booking/) |
