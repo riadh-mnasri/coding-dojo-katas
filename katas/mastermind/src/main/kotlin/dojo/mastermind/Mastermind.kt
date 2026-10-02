@@ -6,5 +6,6 @@ enum class Color { BLUE, RED, GREEN, PINK, YELLOW, PURPLE }
 data class Answer(val wellPlaced: Int, val misplaced: Int)
 
 object Mastermind {
-    fun evaluate(secret: List<Color>, guess: List<Color>): Answer = Answer(0, 0)
+    fun evaluate(secret: List<Color>, guess: List<Color>): Answer =
+        Answer(secret.zip(guess).count { (s, g) -> s == g }, 0)
 }
