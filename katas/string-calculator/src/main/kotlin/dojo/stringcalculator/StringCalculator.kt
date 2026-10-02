@@ -6,7 +6,7 @@ import java.math.BigDecimal
 object StringCalculator {
     fun add(numbers: String): String {
         if (numbers.isEmpty()) return "0"
-        return numbers.split(",")
+        return numbers.split(",", "\n")
             .map(::BigDecimal)
             .fold(BigDecimal.ZERO, BigDecimal::add)
             .stripTrailingZeros()
