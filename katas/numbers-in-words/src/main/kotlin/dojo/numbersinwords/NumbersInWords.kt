@@ -2,5 +2,10 @@
 package dojo.numbersinwords
 
 object NumbersInWords {
-    fun toWords(number: Int): String = "zero"
+    private val belowTwenty = listOf(
+        "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+        "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen",
+    )
+
+    fun toWords(number: Int): String = belowTwenty[number]
 }
