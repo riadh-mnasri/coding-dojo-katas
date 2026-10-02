@@ -14,4 +14,13 @@ class GridTest {
 
         assertThat(next).isEqualTo(grid("...", "...", "..."))
     }
+
+    @Test
+    fun `a blinker oscillates`() {
+        val vertical = grid(".....", "..*..", "..*..", "..*..", ".....")
+        val horizontal = grid(".....", ".....", ".***.", ".....", ".....")
+
+        assertThat(vertical.next()).isEqualTo(horizontal)
+        assertThat(horizontal.next()).isEqualTo(vertical)
+    }
 }
