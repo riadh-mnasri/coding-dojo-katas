@@ -8,7 +8,12 @@ object GenerationFile {
         val lines = input.lines()
         val generation = lines[0].removePrefix("Generation ").removeSuffix(":").toInt()
         val size = lines[1]
-        val grid = Grid.parse(lines.drop(2).joinToString("\n"))
+        val (rows, columns) = size.split(" ").map(String::toInt)
+        val gridLines = lines.drop(2)
+        require(gridLines.size == rows && gridLines.all { it.length == columns }) {
+            "The grid does not match its declared size $rows x $columns"
+        }
+        val grid = Grid.parse(gridLines.joinToString("\n"))
         return listOf("Generation ${generation + 1}:", size, grid.next().render()).joinToString("\n")
     }
 }
