@@ -29,16 +29,36 @@ class Machine(input: String = "", size: Int = 30_000) {
 class Interpreter {
     fun run(program: String, input: String = ""): Machine {
         val machine = Machine(input)
-        program.forEach { command ->
-            when (command) {
+        val jumps = matchingBrackets(program)
+        var position = 0
+        while (position < program.length) {
+            when (program[position]) {
                 '+' -> machine.add(1)
                 '-' -> machine.add(-1)
                 '>' -> machine.move(1)
                 '<' -> machine.move(-1)
                 ',' -> machine.read()
                 '.' -> machine.write()
+                '[' -> if (machine.memory[machine.pointer] == 0) position = jumps.getValue(position)
+                ']' -> if (machine.memory[machine.pointer] != 0) position = jumps.getValue(position)
             }
+            position++
         }
         return machine
+    }
+
+    /** Associe chaque crochet à son crochet correspondant, dans les deux sens. */
+    private fun matchingBrackets(program: String): Map<Int, Int> {
+        val jumps = mutableMapOf<Int, Int>()
+        val opened = ArrayDeque<Int>()
+        program.forEachIndexed { index, command ->
+            if (command == '[') opened.addLast(index)
+            if (command == ']') {
+                val open = opened.removeLast()
+                jumps[open] = index
+                jumps[index] = open
+            }
+        }
+        return jumps
     }
 }
