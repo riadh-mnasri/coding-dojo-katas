@@ -54,11 +54,12 @@ class Interpreter {
         program.forEachIndexed { index, command ->
             if (command == '[') opened.addLast(index)
             if (command == ']') {
-                val open = opened.removeLast()
+                val open = opened.removeLastOrNull() ?: throw IllegalArgumentException("Unmatched ']' at $index")
                 jumps[open] = index
                 jumps[index] = open
             }
         }
+        require(opened.isEmpty()) { "Unmatched '[' at ${opened.first()}" }
         return jumps
     }
 }
