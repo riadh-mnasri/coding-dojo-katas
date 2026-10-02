@@ -21,6 +21,13 @@ class Range(
 
     fun overlapsRange(other: Range): Boolean = first <= other.last && other.first <= last
 
+    // Sur des entiers, deux notations qui couvrent les mêmes points décrivent le même intervalle.
+    override fun equals(other: Any?) = other is Range && first == other.first && last == other.last
+
+    override fun hashCode() = 31 * first + last
+
+    override fun toString() = "[$first,$last]"
+
     companion object {
         private val NOTATION = Regex("""([\[(])\s*(-?\d+)\s*,\s*(-?\d+)\s*([])])""")
 
