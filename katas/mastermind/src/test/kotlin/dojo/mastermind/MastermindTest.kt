@@ -16,4 +16,9 @@ class MastermindTest {
     fun `a wrong single peg is neither well placed nor misplaced`() {
         assertThat(Mastermind.evaluate(secret = listOf(BLUE), guess = listOf(RED))).isEqualTo(Answer(0, 0))
     }
+
+    @Test
+    fun `the right color at the right place is well placed`() {
+        assertThat(Mastermind.evaluate(secret = listOf(BLUE), guess = listOf(BLUE))).isEqualTo(Answer(1, 0))
+    }
 }
