@@ -12,6 +12,7 @@ object StringCalculator {
         val parsed = mutableListOf<BigDecimal>()
         var position = 0
         while (true) {
+            if (position == numbers.length) return "Number expected but EOF found."
             val number = NUMBER.matchAt(numbers, position)
                 ?: return "Number expected but '${escape(numbers[position])}' found at position $position."
             parsed += BigDecimal(number.value)
