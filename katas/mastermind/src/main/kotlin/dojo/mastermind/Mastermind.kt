@@ -7,8 +7,11 @@ data class Answer(val wellPlaced: Int, val misplaced: Int)
 
 object Mastermind {
     fun evaluate(secret: List<Color>, guess: List<Color>): Answer {
-        val wellPlaced = secret.zip(guess).count { (s, g) -> s == g }
-        val misplaced = guess.indices.count { i -> guess[i] != secret[i] && guess[i] in secret }
-        return Answer(wellPlaced, misplaced)
+        val pairs = secret.zip(guess)
+        val (matching, others) = pairs.partition { (s, g) -> s == g }
+        val secretLeft = others.groupingBy { it.first }.eachCount()
+        val guessLeft = others.groupingBy { it.second }.eachCount()
+        val misplaced = guessLeft.entries.sumOf { (color, count) -> minOf(count, secretLeft[color] ?: 0) }
+        return Answer(matching.size, misplaced)
     }
 }
