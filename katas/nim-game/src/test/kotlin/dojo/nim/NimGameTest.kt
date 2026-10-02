@@ -59,4 +59,11 @@ class NimGameTest {
 
         assertThatThrownBy { game.take(1) }.isInstanceOf(IllegalStateException::class.java)
     }
+
+    @Test
+    fun `the number of sticks can be chosen`() {
+        val longGame = NimGame("Rick", "Morty", sticks = 21)
+
+        assertThat(longGame.sticks).isEqualTo(21)
+    }
 }
