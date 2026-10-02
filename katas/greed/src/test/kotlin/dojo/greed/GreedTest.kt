@@ -27,4 +27,10 @@ class GreedTest {
     fun `triples score by face`(face: Int, expected: Int) {
         assertThat(score(face, face, face)).isEqualTo(expected)
     }
+
+    @ParameterizedTest(name = "{0} dice of {1} score {2}")
+    @CsvSource("4, 2, 400", "5, 2, 800", "6, 2, 1600", "4, 1, 2000")
+    fun `four, five and six of a kind multiply the triple score by 2, 4 and 8`(count: Int, face: Int, expected: Int) {
+        assertThat(Greed.score(List(count) { face })).isEqualTo(expected)
+    }
 }
