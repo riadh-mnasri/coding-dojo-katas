@@ -37,5 +37,8 @@ private fun straight(faces: IntRange): (List<Int>) -> Int = { dice ->
 }
 
 object Yahtzee {
-    fun score(dice: List<Int>, category: Category): Int = category.score(dice)
+    fun score(dice: List<Int>, category: Category): Int {
+        require(dice.size == 5 && dice.all { it in 1..6 }) { "A roll is five dice from 1 to 6, got $dice" }
+        return category.score(dice)
+    }
 }
