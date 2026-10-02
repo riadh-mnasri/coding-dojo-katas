@@ -9,9 +9,14 @@ class TennisGameTest {
 
     private val game = TennisGame("Serena", "Venus")
 
+    /** Joue les points en alternance, comme dans un vrai jeu, puis les points d'avance du meneur. */
     private fun points(serena: Int, venus: Int) {
-        repeat(serena) { game.pointWonBy("Serena") }
-        repeat(venus) { game.pointWonBy("Venus") }
+        repeat(minOf(serena, venus)) {
+            game.pointWonBy("Serena")
+            game.pointWonBy("Venus")
+        }
+        repeat(serena - venus) { game.pointWonBy("Serena") }
+        repeat(venus - serena) { game.pointWonBy("Venus") }
     }
 
     @Test
