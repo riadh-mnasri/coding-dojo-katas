@@ -29,4 +29,10 @@ class YahtzeeTest {
     fun `upper categories sum the dice showing that face`(dice: String, category: Category, expected: Int) {
         assertThat(Yahtzee.score(roll(dice), category)).isEqualTo(expected)
     }
+
+    @ParameterizedTest(name = "{0} on pair scores {1}")
+    @CsvSource("'3,3,3,4,4', 8", "'1,2,3,4,6', 0", "'5,5,1,1,2', 10")
+    fun `pair scores the two highest matching dice`(dice: String, expected: Int) {
+        assertThat(Yahtzee.score(roll(dice), Category.PAIR)).isEqualTo(expected)
+    }
 }
