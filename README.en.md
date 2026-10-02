@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 18 / 61 katas.**
+**Progress: 19 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -118,7 +118,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | Trip Service | breaking legacy dependencies | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/TripService/) |
 | Wallet | external port (exchange rates) | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Wallet/) |
 | [Word Wrap](katas/word-wrap/README.en.md) | recursion, edge cases | ✅ done | [codingdojo.org](https://codingdojo.org/kata/WordWrap/) |
-| Yahtzee | scoring categories | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Yahtzee/) |
+| [Yahtzee](katas/yahtzee/README.en.md) | scoring categories | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Yahtzee/) |
 <!-- katas:end -->
 
 ## Stack
