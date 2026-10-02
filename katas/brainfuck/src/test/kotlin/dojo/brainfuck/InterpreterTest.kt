@@ -14,4 +14,10 @@ class InterpreterTest {
 
         assertThat(machine.memory).hasSize(30_000).containsOnly(0)
     }
+
+    @Test
+    fun `plus and minus change the current cell`() {
+        assertThat(interpreter.run("+++").memory[0]).isEqualTo(3)
+        assertThat(interpreter.run("+++-").memory[0]).isEqualTo(2)
+    }
 }
