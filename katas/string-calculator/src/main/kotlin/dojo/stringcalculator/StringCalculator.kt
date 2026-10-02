@@ -4,7 +4,7 @@ package dojo.stringcalculator
 import java.math.BigDecimal
 
 object StringCalculator {
-    private val NUMBER = Regex("""\d+(\.\d+)?""")
+    private val NUMBER = Regex("""-?\d+(\.\d+)?""")
     private val DEFAULT_SEPARATORS = listOf(",", "\n")
 
     fun add(input: String): String {
@@ -28,6 +28,8 @@ object StringCalculator {
                 ?: return "'${separators.first()}' expected but '${escape(numbers[position])}' found at position $position."
             position += separator.length
         }
+        val negatives = parsed.filter { it.signum() < 0 }
+        if (negatives.isNotEmpty()) return "Negative not allowed : " + negatives.joinToString(", ") { it.toPlainString() }
         return parsed.fold(BigDecimal.ZERO, BigDecimal::add).stripTrailingZeros().toPlainString()
     }
 
