@@ -5,10 +5,16 @@ import java.math.BigDecimal
 
 object StringCalculator {
     private val NUMBER = Regex("""\d+(\.\d+)?""")
-    private val SEPARATORS = listOf(",", "\n")
+    private val DEFAULT_SEPARATORS = listOf(",", "\n")
 
-    fun add(numbers: String): String {
-        if (numbers.isEmpty()) return "0"
+    fun add(input: String): String {
+        if (input.isEmpty()) return "0"
+        val (separators, numbers) = if (input.startsWith("//")) {
+            val endOfHeader = input.indexOf('\n')
+            listOf(input.substring(2, endOfHeader)) to input.substring(endOfHeader + 1)
+        } else {
+            DEFAULT_SEPARATORS to input
+        }
         val parsed = mutableListOf<BigDecimal>()
         var position = 0
         while (true) {
@@ -18,7 +24,7 @@ object StringCalculator {
             parsed += BigDecimal(number.value)
             position = number.range.last + 1
             if (position == numbers.length) break
-            position += SEPARATORS.first { numbers.startsWith(it, position) }.length
+            position += separators.first { numbers.startsWith(it, position) }.length
         }
         return parsed.fold(BigDecimal.ZERO, BigDecimal::add).stripTrailingZeros().toPlainString()
     }
