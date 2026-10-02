@@ -25,4 +25,15 @@ class WrapperTest {
     fun `a space just after the column is a valid break`() {
         assertThat(Wrapper.wrap("word word", 4)).isEqualTo("word\nword")
     }
+
+    @Test
+    fun `wraps a sentence on several lines`() {
+        assertThat(Wrapper.wrap("word word word", 6)).isEqualTo("word\nword\nword")
+        assertThat(Wrapper.wrap("word word word", 11)).isEqualTo("word word\nword")
+    }
+
+    @Test
+    fun `cuts a long word in the middle of a sentence`() {
+        assertThat(Wrapper.wrap("a verylongword b", 5)).isEqualTo("a\nveryl\nongwo\nrd b")
+    }
 }
