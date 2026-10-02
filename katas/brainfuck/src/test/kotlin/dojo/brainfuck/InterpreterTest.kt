@@ -33,4 +33,11 @@ class InterpreterTest {
         assertThat(interpreter.run(">+<+").memory.take(2)).containsExactly(1, 1)
         assertThat(interpreter.run("<+").memory.last()).isEqualTo(1)
     }
+
+    @Test
+    fun `comma reads a byte of input and dot writes the current cell`() {
+        val machine = interpreter.run(",+.>,.", input = "AZ")
+
+        assertThat(machine.output).isEqualTo("BZ")
+    }
 }
