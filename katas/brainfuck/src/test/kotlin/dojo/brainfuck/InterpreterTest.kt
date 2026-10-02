@@ -45,4 +45,17 @@ class InterpreterTest {
     fun `brackets loop while the current cell is not zero`() {
         assertThat(interpreter.run("+++[->++<]").memory.take(2)).containsExactly(0, 6)
     }
+
+    @Test
+    fun `a loop on a zero cell is skipped and loops can be nested`() {
+        assertThat(interpreter.run("[+]+").memory[0]).isEqualTo(1)
+        assertThat(interpreter.run("++[>++[>+++<-]<-]").memory.take(3)).containsExactly(0, 0, 12)
+    }
+
+    @Test
+    fun `prints hello world`() {
+        val program = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++."
+
+        assertThat(interpreter.run(program).output).isEqualTo("Hello World!\n")
+    }
 }
