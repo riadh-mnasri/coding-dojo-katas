@@ -28,4 +28,12 @@ class LcdTest {
             ),
         )
     }
+
+    /** L'exemple de la partie 2 : chaque barre horizontale a sa propre ligne, soit 2 × hauteur + 3 lignes. */
+    @Test
+    fun `stretches a 2 to width 3 and height 2`() {
+        assertThat(Lcd.render(2, width = 3, height = 2)).isEqualTo(
+            lines(" ___ ", "    |", "    |", " ___ ", "|    ", "|    ", " ___ "),
+        )
+    }
 }
