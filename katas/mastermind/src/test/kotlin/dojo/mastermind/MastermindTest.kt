@@ -36,4 +36,11 @@ class MastermindTest {
 
         assertThat(answer).isEqualTo(Answer(1, 1))
     }
+
+    @Test
+    fun `a color guessed twice but present once is counted once`() {
+        val answer = Mastermind.evaluate(secret = listOf(RED, BLUE, GREEN), guess = listOf(GREEN, GREEN, YELLOW))
+
+        assertThat(answer).isEqualTo(Answer(0, 1))
+    }
 }
