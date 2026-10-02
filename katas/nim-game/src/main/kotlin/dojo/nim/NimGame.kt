@@ -7,6 +7,9 @@ class NimGame(private val first: String, private val second: String) {
     var currentPlayer = first
         private set
 
+    /** Celui qui prend la dernière allumette perd : quand il n'en reste plus, c'est au gagnant de jouer. */
+    val winner: String? get() = if (sticks == 0) currentPlayer else null
+
     fun take(count: Int) {
         require(count in 1..3) { "A player takes 1 to 3 sticks, not $count" }
         require(count <= sticks) { "Only $sticks sticks left" }
