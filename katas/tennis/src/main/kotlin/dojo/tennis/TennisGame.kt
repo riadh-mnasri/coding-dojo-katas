@@ -11,6 +11,8 @@ class TennisGame(private val player1: String, private val player2: String) {
     private var points2 = 0
 
     fun pointWonBy(player: String) {
+        require(player == player1 || player == player2) { "$player is not playing this game" }
+        check(!hasWinner()) { "The game is over: ${score()}" }
         if (player == player1) points1++ else points2++
     }
 

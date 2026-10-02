@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 12 / 61 katas.**
+**Avancement : 13 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -111,7 +111,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | Social Network | example mapping, domaine | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/social-network/) |
 | String Calculator | gestion d'erreurs incrémentale | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/StringCalculator/) |
 | Sudoku Concurrent Resolver | propagation de contraintes par messages | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/sudoku/) |
-| Tennis | machine à états | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Tennis/) |
+| [Tennis](katas/tennis/README.md) | machine à états | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Tennis/) |
 | Texas Hold'em | meilleure main parmi 7 cartes | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/TexasHoldEm/) |
 | Tic Tac Toe | double boucle TDD | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/tic-tac-toe/) |
 | Trading Card Game | boucle de jeu, doublures | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/TradingCardGame/) |
