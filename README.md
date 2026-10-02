@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 24 / 61 katas.**
+**Avancement : 25 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -93,7 +93,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | Movie Rental | refactoring (Fowler) | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/movie-rental/) |
 | Nearest Color | distance, égalités | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/NearestColor/) |
 | [Nim Game](katas/nim-game/README.md) | règles de jeu, tours | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Nim/) |
-| Number to LCD | rendu texte, exigences changeantes | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/NumberToLCD/) |
+| [Number to LCD](katas/number-to-lcd/README.md) | rendu texte, exigences changeantes | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/NumberToLCD/) |
 | Numbers in Words | conversion bidirectionnelle | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/NumbersInWords/) |
 | ORM | ORM, migrations de schéma | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/orm/) |
 | PacMan | jeu à ticks, état du plateau | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/PacMan/) |
