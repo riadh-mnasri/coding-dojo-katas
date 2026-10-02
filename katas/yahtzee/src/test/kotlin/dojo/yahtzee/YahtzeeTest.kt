@@ -47,4 +47,10 @@ class YahtzeeTest {
     fun `two pairs sums two different pairs`(dice: String, expected: Int) {
         assertThat(Yahtzee.score(roll(dice), Category.TWO_PAIRS)).isEqualTo(expected)
     }
+
+    @ParameterizedTest(name = "{0} on {1} scores {2}")
+    @CsvSource("'1,2,3,4,5', SMALL_STRAIGHT, 15", "'5,4,3,2,1', SMALL_STRAIGHT, 15", "'2,3,4,5,6', SMALL_STRAIGHT, 0", "'2,3,4,5,6', LARGE_STRAIGHT, 20", "'1,2,3,4,5', LARGE_STRAIGHT, 0")
+    fun `straights score their sum`(dice: String, category: Category, expected: Int) {
+        assertThat(Yahtzee.score(roll(dice), category)).isEqualTo(expected)
+    }
 }
