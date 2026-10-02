@@ -50,4 +50,10 @@ class GreedTest {
         assertThatThrownBy { score(1, 1, 1, 1, 1, 1, 1) }.isInstanceOf(IllegalArgumentException::class.java)
         assertThatThrownBy { score(7) }.isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @ParameterizedTest(name = "{0} scores {1}")
+    @CsvSource("'1,1,1,5,1', 2050", "'2,3,4,6,2,2', 200", "'3,4,5,3,3', 350", "'5,5,5,5', 1000")
+    fun `mixes triples and singles`(dice: String, expected: Int) {
+        assertThat(Greed.score(dice.split(",").map(String::toInt))).isEqualTo(expected)
+    }
 }
