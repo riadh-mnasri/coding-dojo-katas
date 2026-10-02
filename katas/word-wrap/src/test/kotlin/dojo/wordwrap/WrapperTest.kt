@@ -2,6 +2,7 @@
 package dojo.wordwrap
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class WrapperTest {
@@ -35,5 +36,10 @@ class WrapperTest {
     @Test
     fun `cuts a long word in the middle of a sentence`() {
         assertThat(Wrapper.wrap("a verylongword b", 5)).isEqualTo("a\nveryl\nongwo\nrd b")
+    }
+
+    @Test
+    fun `the column must be at least 1`() {
+        assertThatThrownBy { Wrapper.wrap("word", 0) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
