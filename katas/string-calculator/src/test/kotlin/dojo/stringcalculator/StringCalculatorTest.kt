@@ -33,4 +33,9 @@ class StringCalculatorTest {
     fun `reports a separator found where a number is expected`() {
         assertThat(StringCalculator.add("175.2,\n35")).isEqualTo("Number expected but '\\n' found at position 6.")
     }
+
+    @Test
+    fun `a trailing separator is refused`() {
+        assertThat(StringCalculator.add("1,3,")).isEqualTo("Number expected but EOF found.")
+    }
 }
