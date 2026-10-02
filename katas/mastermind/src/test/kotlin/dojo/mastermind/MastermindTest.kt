@@ -26,4 +26,14 @@ class MastermindTest {
     fun `a right color at the wrong place is misplaced`() {
         assertThat(Mastermind.evaluate(secret = listOf(RED, YELLOW), guess = listOf(BLUE, RED))).isEqualTo(Answer(0, 1))
     }
+
+    @Test
+    fun `answers the kata example`() {
+        val answer = Mastermind.evaluate(
+            secret = listOf(BLUE, RED, GREEN, PINK),
+            guess = listOf(YELLOW, RED, BLUE, PURPLE),
+        )
+
+        assertThat(answer).isEqualTo(Answer(1, 1))
+    }
 }
