@@ -26,4 +26,11 @@ class InterpreterTest {
         assertThat(interpreter.run("-").memory[0]).isEqualTo(255)
         assertThat(interpreter.run("+".repeat(256)).memory[0]).isEqualTo(0)
     }
+
+    @Test
+    fun `the pointer moves right and left, wrapping to the last cell`() {
+        assertThat(interpreter.run(">++>+").memory.take(3)).containsExactly(0, 2, 1)
+        assertThat(interpreter.run(">+<+").memory.take(2)).containsExactly(1, 1)
+        assertThat(interpreter.run("<+").memory.last()).isEqualTo(1)
+    }
 }
