@@ -10,6 +10,8 @@ class TennisGame(private val player1: String, private val player2: String) {
     }
 
     fun score(): String = when {
+        (points1 >= 4 || points2 >= 4) && kotlin.math.abs(points1 - points2) >= 2 ->
+            "Win for ${if (points1 > points2) player1 else player2}"
         points1 == points2 && points1 >= 3 -> "Deuce"
         points1 == points2 -> "${NAMES[points1]}-All"
         points1 >= 3 && points2 >= 3 -> "Advantage ${if (points1 > points2) player1 else player2}"
