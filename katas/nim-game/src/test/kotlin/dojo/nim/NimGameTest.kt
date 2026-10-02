@@ -2,7 +2,10 @@
 package dojo.nim
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class NimGameTest {
 
@@ -20,5 +23,12 @@ class NimGameTest {
 
         assertThat(game.sticks).isEqualTo(8)
         assertThat(game.currentPlayer).isEqualTo("Bob")
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [0, 4, -1])
+    fun `a player takes one to three sticks`(count: Int) {
+        assertThatThrownBy { game.take(count) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThat(game.sticks).isEqualTo(10)
     }
 }
