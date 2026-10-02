@@ -11,6 +11,10 @@ class Range(
     private val first = if (startIncluded) start else start + 1
     private val last = if (endIncluded) end else end - 1
 
+    init {
+        require(first <= last) { "A range must hold at least one point" }
+    }
+
     fun contains(vararg values: Int): Boolean = values.all { it in first..last }
 
     fun allPoints(): List<Int> = (first..last).toList()
