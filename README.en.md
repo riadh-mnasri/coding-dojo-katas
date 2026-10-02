@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 17 / 61 katas.**
+**Progress: 18 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -78,7 +78,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | [FooBarQix](katas/foo-bar-qix/README.en.md) | changing requirements | ✅ done | [codingdojo.org](https://codingdojo.org/kata/FooBarQix/) |
 | [Game of Life](katas/game-of-life/README.en.md) | cellular automaton, immutability | ✅ done | [codingdojo.org](https://codingdojo.org/kata/GameOfLife/) |
 | Gilded Rose | legacy code, characterization tests | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/gilded-rose/) |
-| Greed | scoring rules | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Greed/) |
+| [Greed](katas/greed/README.en.md) | scoring rules | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Greed/) |
 | [Hello](katas/hello/README.en.md) | test doubles | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Hello/) |
 | JEE Web Authentication | mocks vs stubs, servlet filters | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/JEEWebAuthentication/) |
 | Lags | dynamic programming | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Lags/) |
