@@ -3,8 +3,8 @@ package dojo.yahtzee
 
 import dojo.yahtzee.Category.CHANCE
 import dojo.yahtzee.Category.YAHTZEE
-import org.junit.jupiter.params.provider.EnumSource
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -58,5 +58,11 @@ class YahtzeeTest {
     @CsvSource("'1,1,2,2,2', 8", "'2,2,3,3,4', 0", "'4,4,4,4,4', 0")
     fun `full house sums a pair and a three of a kind`(dice: String, expected: Int) {
         assertThat(Yahtzee.score(roll(dice), Category.FULL_HOUSE)).isEqualTo(expected)
+    }
+
+    @Test
+    fun `a roll is made of five dice from 1 to 6`() {
+        assertThatThrownBy { Yahtzee.score(roll("1,2,3,4"), CHANCE) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { Yahtzee.score(roll("1,2,3,4,7"), CHANCE) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
