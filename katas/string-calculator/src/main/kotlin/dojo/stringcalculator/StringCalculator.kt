@@ -24,7 +24,9 @@ object StringCalculator {
             parsed += BigDecimal(number.value)
             position = number.range.last + 1
             if (position == numbers.length) break
-            position += separators.first { numbers.startsWith(it, position) }.length
+            val separator = separators.firstOrNull { numbers.startsWith(it, position) }
+                ?: return "'${separators.first()}' expected but '${escape(numbers[position])}' found at position $position."
+            position += separator.length
         }
         return parsed.fold(BigDecimal.ZERO, BigDecimal::add).stripTrailingZeros().toPlainString()
     }
