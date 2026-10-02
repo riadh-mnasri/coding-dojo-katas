@@ -22,4 +22,9 @@ class AnagramsTest {
     fun `the same word can be used twice`() {
         assertThat(Anagrams(listOf("ab")).twoWordAnagramsOf("abab")).containsExactly("ab" to "ab")
     }
+
+    @Test
+    fun `dictionary words are compared and returned in lower case`() {
+        assertThat(Anagrams(listOf("Document", "GIN")).twoWordAnagramsOf("documenting")).containsExactly("document" to "gin")
+    }
 }
