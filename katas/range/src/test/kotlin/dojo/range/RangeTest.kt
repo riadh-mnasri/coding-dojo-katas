@@ -32,4 +32,13 @@ class RangeTest {
     fun `gives its end points`(notation: String, first: Int, last: Int) {
         assertThat(range(notation).endPoints()).isEqualTo(first to last)
     }
+
+    @ParameterizedTest(name = "{0} contains {1}: {2}")
+    @CsvSource(
+        "'[2,5)', '[7,10)', false", "'[2,5)', '[3,10)', false", "'[3,5)', '[2,10)', false",
+        "'[2,10)', '[3,5]', true", "'[3,5]', '[3,5)', true",
+    )
+    fun `contains another range`(outer: String, inner: String, expected: Boolean) {
+        assertThat(range(outer).containsRange(range(inner))).isEqualTo(expected)
+    }
 }
