@@ -60,4 +60,10 @@ class StringCalculatorTest {
     fun `reports every error, one per line`() {
         assertThat(StringCalculator.add("-1,,2")).isEqualTo("Negative not allowed : -1\nNumber expected but ',' found at position 3.")
     }
+
+    @ParameterizedTest(name = "\"{0}\" -> {1}")
+    @CsvSource("'', 1", "'2,3.5', 7", "'//;\n2;3;4', 24", "'2,-3', 'Negative not allowed : -3'", "'1,3,', 'Number expected but EOF found.'")
+    fun `multiplies with the same rules`(numbers: String, result: String) {
+        assertThat(StringCalculator.multiply(numbers)).isEqualTo(result)
+    }
 }
