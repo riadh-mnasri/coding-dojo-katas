@@ -43,4 +43,11 @@ class MastermindTest {
 
         assertThat(answer).isEqualTo(Answer(0, 1))
     }
+
+    @Test
+    fun `a well placed peg is not counted as misplaced as well`() {
+        val answer = Mastermind.evaluate(secret = listOf(RED, BLUE), guess = listOf(RED, RED))
+
+        assertThat(answer).isEqualTo(Answer(1, 0))
+    }
 }
