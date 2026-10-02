@@ -23,4 +23,18 @@ class GridTest {
         assertThat(vertical.next()).isEqualTo(horizontal)
         assertThat(horizontal.next()).isEqualTo(vertical)
     }
+
+    @Test
+    fun `cells on the edges count only the neighbours inside the grid`() {
+        val next = grid("**..", "*...", "....").next()
+
+        assertThat(next).isEqualTo(grid("**..", "**..", "...."))
+    }
+
+    @Test
+    fun `a block is stable`() {
+        val block = grid("....", ".**.", ".**.", "....")
+
+        assertThat(block.next()).isEqualTo(block)
+    }
 }
