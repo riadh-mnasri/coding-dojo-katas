@@ -41,4 +41,10 @@ class RangeTest {
     fun `contains another range`(outer: String, inner: String, expected: Boolean) {
         assertThat(range(outer).containsRange(range(inner))).isEqualTo(expected)
     }
+
+    @ParameterizedTest(name = "{0} overlaps {1}: {2}")
+    @CsvSource("'[2,5)', '[7,10)', false", "'[2,10)', '[3,5)', true", "'[3,5)', '[3,5)', true", "'[2,5)', '[3,10)', true", "'[3,5)', '[2,10)', true", "'[2,5)', '[5,10)', false")
+    fun `overlaps another range`(left: String, right: String, expected: Boolean) {
+        assertThat(range(left).overlapsRange(range(right))).isEqualTo(expected)
+    }
 }
