@@ -26,4 +26,11 @@ class TennisGameTest {
         points(serena = 2, venus = 1)
         assertThat(game.score()).isEqualTo("Forty-Fifteen")
     }
+
+    @Test
+    fun `equal scores below forty are called all`() {
+        points(serena = 2, venus = 2)
+
+        assertThat(game.score()).isEqualTo("Thirty-All")
+    }
 }
