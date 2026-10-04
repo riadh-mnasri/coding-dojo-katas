@@ -3,6 +3,7 @@ package dojo.queens
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import kotlin.random.Random
 
 /** Une solution donne, pour chaque ligne, la colonne de sa dame. */
 class QueensTest {
@@ -41,5 +42,17 @@ class QueensTest {
     @Test
     fun `brute force with bit masks finds the same solutions`() {
         assertThat(BruteForce.solutions(8)).containsExactlyInAnyOrderElementsOf(DepthFirst.solutions(8))
+    }
+
+    @Test
+    fun `the min-conflicts heuristic finds one solution, even on large boards`() {
+        // Graine fixée : le test reste reproductible malgré l'aléatoire de l'heuristique.
+        val eight = MinConflicts.solve(8, Random(42))
+        val hundred = MinConflicts.solve(100, Random(42))
+
+        assertThat(eight).hasSize(8)
+        assertThat(Board(eight).isValid()).isTrue()
+        assertThat(hundred).hasSize(100)
+        assertThat(Board(hundred).isValid()).isTrue()
     }
 }
