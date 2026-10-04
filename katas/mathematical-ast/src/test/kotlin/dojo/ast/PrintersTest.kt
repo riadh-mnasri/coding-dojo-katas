@@ -47,4 +47,14 @@ class PrintersTest {
         assertThat(rightGrouped.accept(MinimalInfixPrinter)).isEqualTo("2 ^ 3 ^ 2")
         assertThat(rightGrouped.accept(Evaluator)).isEqualTo(512L)
     }
+
+    @Test
+    fun `step 4 - Knuth's up-arrows`() {
+        // a ↑ b = a^b ; a ↑↑ b = a^(a^(...)) avec b fois a : 2 ↑↑ 3 = 2^(2^2) = 16, 3 ↑↑ 3 = 3^27.
+        assertThat(Mathematical.parse("2 3 ↑").accept(Evaluator)).isEqualTo(8L)
+        assertThat(Mathematical.parse("2 3 ↑↑").accept(Evaluator)).isEqualTo(16L)
+        assertThat(Mathematical.parse("3 3 ↑↑").accept(Evaluator)).isEqualTo(7_625_597_484_987L)
+        assertThat(Mathematical.parse("2 3 ↑↑").accept(MinimalInfixPrinter)).isEqualTo("2 ↑↑ 3")
+        assertThat(Mathematical.parse("2 3 ↑↑").accept(RpnPrinter)).isEqualTo("2 3 ↑↑")
+    }
 }
