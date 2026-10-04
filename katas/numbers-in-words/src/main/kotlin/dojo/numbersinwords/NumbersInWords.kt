@@ -11,7 +11,9 @@ object NumbersInWords {
 
     fun toWords(number: Int): String = when {
         number < 20 -> belowTwenty[number]
-        number % 10 == 0 -> tens[number / 10]
-        else -> "${tens[number / 10]} ${belowTwenty[number % 10]}"
+        number < 100 && number % 10 == 0 -> tens[number / 10]
+        number < 100 -> "${tens[number / 10]} ${belowTwenty[number % 10]}"
+        number % 100 == 0 -> "${belowTwenty[number / 100]} hundred"
+        else -> "${belowTwenty[number / 100]} hundred and ${toWords(number % 100)}"
     }
 }
