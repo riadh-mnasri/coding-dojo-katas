@@ -35,4 +35,21 @@ class GildedRoseTest {
 
         assertThat(item.sellIn to item.quality).isEqualTo(nextSellIn to nextQuality)
     }
+
+    @ParameterizedTest(name = "{0} ({1}, {2}) -> ({3}, {4})")
+    @CsvSource(
+        delimiter = '|',
+        value = [
+            "Conjured Mana Cake | 3 | 6 | 2 | 4",
+            "Conjured Mana Cake | 0 | 6 | -1 | 2",
+            "Conjured Mana Cake | 3 | 1 | 2 | 0",
+        ],
+    )
+    fun `conjured items degrade twice as fast as normal items`(name: String, sellIn: Int, quality: Int, nextSellIn: Int, nextQuality: Int) {
+        val item = Item(name, sellIn, quality)
+
+        GildedRose(listOf(item)).updateQuality()
+
+        assertThat(item.sellIn to item.quality).isEqualTo(nextSellIn to nextQuality)
+    }
 }
