@@ -17,4 +17,10 @@ class CakeTest {
     fun `a cookie is a cake too`() {
         assertThat(Cookie().name()).isEqualTo("🍪")
     }
+
+    @Test
+    fun `a topping decorates the name`() {
+        assertThat(Chocolate(Cupcake()).name()).isEqualTo("🧁 with 🍫")
+        assertThat(Chocolate(Cookie()).name()).isEqualTo("🍪 with 🍫")
+    }
 }
