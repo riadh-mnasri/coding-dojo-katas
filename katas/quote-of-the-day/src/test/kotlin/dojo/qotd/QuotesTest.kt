@@ -31,4 +31,12 @@ class QuotesTest {
 
         visits.zipWithNext().forEach { (previous, current) -> assertThat(current).isNotEqualTo(previous) }
     }
+
+    @Test
+    fun `a search gives a quote containing the word`() {
+        val quotes = Quotes(collection, firstOne)
+
+        assertThat(quotes.next(containing = "people")).isEqualTo("Programs must be written for people to read.")
+        assertThat(quotes.next(containing = "nothing like this")).isNull()
+    }
 }
