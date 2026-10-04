@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 51 / 61 katas.**
+**Progress: 52 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -66,7 +66,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | [Brainfuck](katas/brainfuck/README.en.md) | interpreter, extensible instructions | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Brainfuck/) |
 | Christmas Delivery | concurrency, queues | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/christmas-delivery/) |
 | [Code Cracker](katas/code-cracker/README.en.md) | substitution cipher, round trip | ✅ done | [codingdojo.org](https://codingdojo.org/kata/CodeCracker/) |
-| CQRS Booking | CQRS, read/write split | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/CQRS_Booking/) |
+| [CQRS Booking](katas/cqrs-booking/README.en.md) | CQRS, read/write split | ✅ done | [codingdojo.org](https://codingdojo.org/kata/CQRS_Booking/) |
 | [Cupcake](katas/cupcake/README.en.md) | Decorator and Composite patterns | ✅ done | [codingdojo.org](https://codingdojo.org/kata/cupcake/) |
 | [Depth First Search](katas/depth-first-search/README.en.md) | recursion, mocked conversation | ✅ done | [codingdojo.org](https://codingdojo.org/kata/DepthFirstSearch/) |
 | [Diamond](katas/diamond/README.en.md) | property-style tests | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Diamond/) |
