@@ -38,4 +38,11 @@ class WalletTest {
 
         assertThat(wallet.value(Currency.EUR, rates).amount).isEqualByComparingTo("5904.50")
     }
+
+    @Test
+    fun `cash in the target currency needs no rate`() {
+        val wallet = Wallet(Stock(BigDecimal(20), StockType.EUR))
+
+        assertThat(wallet.value(Currency.EUR, rates).amount).isEqualByComparingTo("20")
+    }
 }
