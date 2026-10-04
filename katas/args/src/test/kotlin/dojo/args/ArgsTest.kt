@@ -2,7 +2,10 @@
 package dojo.args
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class ArgsTest {
 
@@ -43,5 +46,22 @@ class ArgsTest {
         assertThat(args.int('p')).isEqualTo(-3)
         assertThat(args.string('d')).isEqualTo("/tmp")
         assertThat(args.boolean('l')).isTrue()
+    }
+
+    @ParameterizedTest(name = "{0} -> {1}")
+    @CsvSource(
+        delimiter = '|',
+        value = [
+            "-x | Unknown flag -x",
+            "-p | Flag -p expects an integer value",
+            "-p abc | Flag -p expects an integer, got 'abc'",
+            "-d | Flag -d expects a string value",
+            "oops | Expected a flag like -l, got 'oops'",
+        ],
+    )
+    fun `explains exactly what is wrong`(arguments: String, message: String) {
+        assertThatThrownBy { Args("l,p#,d*", arguments.split(" ")) }
+            .isInstanceOf(ArgsException::class.java)
+            .hasMessage(message)
     }
 }
