@@ -16,5 +16,6 @@ fun interface RateProvider {
 }
 
 class Wallet(private vararg val stocks: Stock) {
-    fun value(currency: Currency, rates: RateProvider): Value = Value(BigDecimal.ZERO, currency)
+    fun value(currency: Currency, rates: RateProvider): Value =
+        Value(stocks.fold(BigDecimal.ZERO) { total, stock -> total + stock.quantity * rates.rate(stock.type, currency) }, currency)
 }
