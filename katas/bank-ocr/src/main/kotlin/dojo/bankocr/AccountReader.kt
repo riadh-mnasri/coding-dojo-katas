@@ -43,4 +43,8 @@ object AccountReader {
             DIGITS.getValue(cell)
         }.joinToString("")
     }
+
+    /** (d1 + 2×d2 + ... + 9×d9) mod 11 = 0, où d1 est le chiffre le plus à droite. */
+    fun isValid(account: String): Boolean =
+        account.reversed().withIndex().sumOf { (index, digit) -> (index + 1) * digit.digitToInt() } % 11 == 0
 }
