@@ -59,4 +59,21 @@ class BirthdayServiceTest {
         service(leapling).sendGreetings(LocalDate.of(2028, 2, 28))
         assertThat(outbox.sent).isEmpty()
     }
+
+    @Test
+    fun `the other friends receive a birthday reminder`() {
+        val john = Friend("Doe", "John", LocalDate.of(1982, 10, 8), "john.doe@foobar.com")
+        val mary = Friend("Ann", "Mary", LocalDate.of(1975, 9, 11), "mary.ann@foobar.com")
+
+        service(john, mary).sendGreetings(LocalDate.of(2026, 10, 8))
+
+        assertThat(outbox.sent).contains(
+            Message(
+                "mary.ann@foobar.com",
+                "Birthday Reminder",
+                "Dear Mary,\n\nToday is John Doe's birthday.\nDon't forget to send them a message !",
+            ),
+        )
+        assertThat(outbox.sent.filter { it.to == "john.doe@foobar.com" && it.subject == "Birthday Reminder" }).isEmpty()
+    }
 }
