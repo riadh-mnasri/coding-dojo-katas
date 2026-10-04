@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 42 / 61 katas.**
+**Avancement : 43 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -71,7 +71,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | Depth First Search | récursion, conversation simulée | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/DepthFirstSearch/) |
 | [Diamond](katas/diamond/README.md) | tests de propriétés | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Diamond/) |
 | [Dictionary Replacer](katas/dictionary-replacer/README.md) | remplacement de chaînes | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/DictionaryReplacer/) |
-| Eight Queens | backtracking, parcours d'arbre | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/eight-queens/) |
+| [Eight Queens](katas/eight-queens/README.md) | backtracking, parcours d'arbre | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/eight-queens/) |
 | Elephant Carpaccio | découpage en tranches fines | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/elephant-carpaccio/) |
 | [Employee Report](katas/employee-report/README.md) | assertions ciblées, maintenabilité des tests | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Employee-Report/) |
 | [FizzBuzz](katas/fizz-buzz/README.md) | baby steps, règles composables | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/FizzBuzz/) |
