@@ -16,4 +16,13 @@ class QueensTest {
     fun `the four-queens board has exactly two solutions`() {
         assertThat(DepthFirst.solutions(4)).containsExactlyInAnyOrder(listOf(1, 3, 0, 2), listOf(2, 0, 3, 1))
     }
+
+    @Test
+    fun `the eight-queens board has 92 solutions, all valid`() {
+        val solutions = DepthFirst.solutions(8)
+
+        // 92 est le nombre de solutions connu du problème des huit dames.
+        assertThat(solutions).hasSize(92).doesNotHaveDuplicates()
+        assertThat(solutions).allSatisfy { solution -> assertThat(Board(solution).isValid()).isTrue() }
+    }
 }
