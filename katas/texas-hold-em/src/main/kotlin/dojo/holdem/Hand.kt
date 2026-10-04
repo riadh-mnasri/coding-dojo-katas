@@ -3,7 +3,8 @@ package dojo.holdem
 
 enum class Category(val label: String) {
     HIGH_CARD("High Card"), PAIR("Pair"), TWO_PAIR("Two Pair"), THREE_OF_A_KIND("Three of a Kind"),
-    FLUSH("Flush"), FULL_HOUSE("Full House"), FOUR_OF_A_KIND("Four of a Kind"),
+    STRAIGHT("Straight"), FLUSH("Flush"), FULL_HOUSE("Full House"), FOUR_OF_A_KIND("Four of a Kind"),
+    STRAIGHT_FLUSH("Straight Flush"),
 }
 
 data class Card(val value: Int, val suit: Char) {
@@ -19,12 +20,19 @@ class Hand(cards: List<Card>) : Comparable<Hand> {
     private val groups = cards.groupingBy { it.value }.eachCount().entries
         .sortedWith(compareByDescending<Map.Entry<Int, Int>> { it.value }.thenByDescending { it.key })
     private val shape = groups.map { it.value }
-    private val ordered = groups.map { it.key }
+
+    /** La roue A-2-3-4-5 : l'as y vaut 1. */
+    private val isWheel = groups.map { it.key }.toSet() == setOf(14, 2, 3, 4, 5)
+    private val ordered = if (isWheel) listOf(5, 4, 3, 2, 1) else groups.map { it.key }
+    private val isStraight = shape.size == 5 && ordered.first() - ordered.last() == 4
+    private val isFlush = cards.map { it.suit }.toSet().size == 1
 
     val category: Category = when {
+        isStraight && isFlush -> Category.STRAIGHT_FLUSH
         shape == listOf(4, 1) -> Category.FOUR_OF_A_KIND
         shape == listOf(3, 2) -> Category.FULL_HOUSE
-        cards.map { it.suit }.toSet().size == 1 -> Category.FLUSH
+        isFlush -> Category.FLUSH
+        isStraight -> Category.STRAIGHT
         shape == listOf(3, 1, 1) -> Category.THREE_OF_A_KIND
         shape == listOf(2, 2, 1) -> Category.TWO_PAIR
         shape == listOf(2, 1, 1, 1) -> Category.PAIR
