@@ -2,7 +2,7 @@
 package dojo.reversi
 
 object Reversi {
-    private val DIRECTIONS = listOf(-1 to 0, 1 to 0)
+    private val DIRECTIONS = (-1..1).flatMap { dx -> (-1..1).map { dy -> dx to dy } }.filterNot { it == 0 to 0 }
 
     fun legalMoves(position: String): List<String> {
         val lines = position.lines()
