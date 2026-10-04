@@ -30,4 +30,11 @@ class QueensTest {
     fun `a breadth-first walk finds the same solutions`() {
         assertThat(BreadthFirst.solutions(8)).containsExactlyInAnyOrderElementsOf(DepthFirst.solutions(8))
     }
+
+    @Test
+    fun `the validator rejects queens on the same column or diagonal`() {
+        assertThat(Board(listOf(0, 0)).isValid()).isFalse()
+        assertThat(Board(listOf(0, 1)).isValid()).isFalse()
+        assertThat(Board(listOf(1, 3, 0, 2)).isValid()).isTrue()
+    }
 }
