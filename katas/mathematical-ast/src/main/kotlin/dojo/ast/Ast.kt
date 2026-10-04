@@ -5,6 +5,12 @@ sealed interface Expression
 
 data class Operand(val value: Long) : Expression
 
-enum class Operator(val symbol: String) { ADD("+") }
+enum class Operator(val symbol: String, private vararg val aliases: String) {
+    ADD("+"),
+    MULTIPLY("×", "*"),
+    ;
+
+    fun isWrittenAs(token: String) = token == symbol || token in aliases
+}
 
 data class Operation(val operator: Operator, val left: Expression, val right: Expression) : Expression
