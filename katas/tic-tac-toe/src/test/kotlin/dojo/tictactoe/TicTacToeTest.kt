@@ -15,4 +15,12 @@ class TicTacToeTest {
 
         assertThat(game.ownerOf(5)).isEqualTo(Player.X)
     }
+
+    @Test
+    fun `players take turns`() {
+        game.play(5)
+        game.play(1)
+
+        assertThat(game.ownerOf(1)).isEqualTo(Player.O)
+    }
 }
