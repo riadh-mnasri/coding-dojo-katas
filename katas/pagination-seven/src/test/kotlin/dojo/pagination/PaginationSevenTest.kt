@@ -2,6 +2,7 @@
 package dojo.pagination
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -35,5 +36,11 @@ class PaginationSevenTest {
     @CsvSource("8, 9, 1 … 5 6 7 (8) 9", "6, 9, 1 … 5 (6) 7 8 9", "100, 100, 1 … 96 97 98 99 (100)")
     fun `part 4 - no ellipsis needed at the end`(page: Int, total: Int, expected: String) {
         assertThat(PaginationSeven.render(page, total)).isEqualTo(expected)
+    }
+
+    @Test
+    fun `the page must exist`() {
+        assertThatThrownBy { PaginationSeven.render(page = 0, total = 9) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { PaginationSeven.render(page = 10, total = 9) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
