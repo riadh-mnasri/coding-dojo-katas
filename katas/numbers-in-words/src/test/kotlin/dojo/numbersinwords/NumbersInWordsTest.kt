@@ -2,6 +2,7 @@
 package dojo.numbersinwords
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -58,5 +59,11 @@ class NumbersInWordsTest {
         listOf(123_456_789, 999_999_999, 1_000_001).forEach {
             assertThat(NumbersInWords.toNumber(NumbersInWords.toWords(it))).isEqualTo(it)
         }
+    }
+
+    @Test
+    fun `step 2 - unknown words are rejected`() {
+        assertThatThrownBy { NumbersInWords.toNumber("seven hundred and fourty five") }
+            .isInstanceOf(IllegalArgumentException::class.java)
     }
 }
