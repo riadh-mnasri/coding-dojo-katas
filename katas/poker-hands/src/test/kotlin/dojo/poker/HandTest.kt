@@ -49,4 +49,9 @@ class HandTest {
         assertThat(listOf(fullHouse, flush, threeOfAKind, straight).sorted())
             .containsExactly(threeOfAKind, straight, flush, fullHouse)
     }
+
+    @Test
+    fun `a straight flush beats four of a kind`() {
+        assertThat(hand("3H 4H 5H 6H 7H")).isGreaterThan(hand("AH AD AS AC KD"))
+    }
 }
