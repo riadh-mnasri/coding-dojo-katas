@@ -103,4 +103,14 @@ class DepthFirstSearchTest {
 
         assertThat(search.result).isEqualTo(Found(listOf("R", "M", "c")))
     }
+
+    @Test
+    fun `the event-driven search ends when every place has been explored`() {
+        val guide = ScriptedGuide(exits = mapOf("A" to listOf("B")), goal = "Z")
+        val search = StepByStepSearch(guide, start = "A")
+
+        repeat(20) { search.step() }
+
+        assertThat(search.result).isEqualTo(NotFound)
+    }
 }
