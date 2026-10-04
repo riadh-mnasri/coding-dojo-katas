@@ -57,4 +57,10 @@ class CakeTest {
 
         assertThat(bundle.price()).isEqualByComparingTo("3.33")
     }
+
+    @Test
+    fun `a bundle lists its cakes`() {
+        assertThat(Bundle(Chocolate(Cupcake()), Cookie()).name()).isEqualTo("📦 [🧁 with 🍫, 🍪]")
+        assertThat(Bundle(Bundle(Cupcake()), Cookie()).name()).isEqualTo("📦 [📦 [🧁], 🍪]")
+    }
 }
