@@ -21,4 +21,12 @@ class EmployeeReportTest {
         assertThat(report.sundayWorkers()).extracting<String> { it.lowercase() }
             .containsExactlyInAnyOrder("sepp", "mike")
     }
+
+    @Test
+    fun `is sorted by name`() {
+        // Seul l'ordre compte : on compare la liste à elle-même triée, sans figer son contenu ni sa casse.
+        val names = report.sundayWorkers()
+
+        assertThat(names).isSortedAccordingTo(String.CASE_INSENSITIVE_ORDER)
+    }
 }
