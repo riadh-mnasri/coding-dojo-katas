@@ -1,10 +1,10 @@
 package dojo.tripservice
 
-class TripService {
+open class TripService {
 
     fun getTripsByUser(user: User): List<Trip> {
         var tripList: List<Trip> = ArrayList()
-        val loggedUser: User? = UserSession.getInstance().getLoggedUser()
+        val loggedUser: User? = loggedUser()
         var isFriend = false
         if (loggedUser != null) {
             for (friend in user.getFriends()) {
@@ -21,4 +21,6 @@ class TripService {
             throw UserNotLoggedInException()
         }
     }
+
+    protected open fun loggedUser(): User? = UserSession.getInstance().getLoggedUser()
 }
