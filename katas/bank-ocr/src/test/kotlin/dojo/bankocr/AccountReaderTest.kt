@@ -24,6 +24,9 @@ class AccountReaderTest {
     companion object {
         @JvmStatic
         fun useCase1() = useCases("use-case-1.txt")
+
+        @JvmStatic
+        fun useCase3() = useCases("use-case-3.txt")
     }
 
     @Test
@@ -31,5 +34,17 @@ class AccountReaderTest {
         assertThat(AccountReader.isValid("345882865")).isTrue()
         assertThat(AccountReader.isValid("457508000")).isTrue()
         assertThat(AccountReader.isValid("664371495")).isFalse()
+    }
+
+    @ParameterizedTest
+    @MethodSource("useCase3")
+    fun `user story 3 - reports illegible numbers, using the kata fixtures`(case: UseCase) {
+        assertThat(AccountReader.report(case.entry)).isEqualTo(case.expected)
+    }
+
+    @Test
+    fun `user story 3 - reports a wrong checksum`() {
+        assertThat(AccountReader.reportNumber("664371495")).isEqualTo("664371495 ERR")
+        assertThat(AccountReader.reportNumber("457508000")).isEqualTo("457508000")
     }
 }
