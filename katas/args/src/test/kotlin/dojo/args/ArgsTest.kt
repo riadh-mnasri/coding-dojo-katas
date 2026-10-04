@@ -26,4 +26,13 @@ class ArgsTest {
         assertThat(args.int('p')).isEqualTo(8080)
         assertThat(args.string('d')).isEqualTo("/usr/logs")
     }
+
+    @Test
+    fun `absent flags take a default value`() {
+        val args = Args("l,p#,d*", emptyList())
+
+        assertThat(args.boolean('l')).isFalse()
+        assertThat(args.int('p')).isZero()
+        assertThat(args.string('d')).isEmpty()
+    }
 }
