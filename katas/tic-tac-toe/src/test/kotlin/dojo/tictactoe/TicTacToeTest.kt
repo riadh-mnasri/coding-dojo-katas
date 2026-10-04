@@ -64,4 +64,11 @@ class TicTacToeTest {
         assertThat(game.winner()).isNull()
         assertThat(game.isOver()).isTrue()
     }
+
+    @Test
+    fun `no field can be taken once the game is over`() {
+        play(1, 4, 2, 5, 3)
+
+        assertThatThrownBy { game.play(9) }.isInstanceOf(IllegalStateException::class.java)
+    }
 }
