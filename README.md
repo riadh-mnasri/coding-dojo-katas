@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 41 / 61 katas.**
+**Avancement : 42 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -81,7 +81,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | [Greed](katas/greed/README.md) | règles de score | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Greed/) |
 | [Hello](katas/hello/README.md) | doublures de test | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Hello/) |
 | JEE Web Authentication | mocks vs stubs, filtres servlet | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/JEEWebAuthentication/) |
-| Lags | programmation dynamique | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Lags/) |
+| [Lags](katas/lags/README.md) | programmation dynamique | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Lags/) |
 | [Langton Ant](katas/langton-ant/README.md) | automate cellulaire, règles extensibles | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/LangtonAnt/) |
 | [Leap Years](katas/leap-years/README.md) | règles et exceptions | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/LeapYears/) |
 | [Manhattan Distance](katas/manhattan-distance/README.md) | objets sans getters (Tell, don't ask) | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/manhattan-distance/) |
