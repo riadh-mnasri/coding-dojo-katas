@@ -31,10 +31,7 @@ class TripServiceTest {
     @Test
     fun `no trips are shown when the users are not friends`() {
         loggedInUser = registeredUser
-        val stranger = User().apply {
-            addFriend(anotherUser)
-            addTrip(toBrazil)
-        }
+        val stranger = aUser().friendsWith(anotherUser).withTrips(toBrazil).build()
 
         assertThat(TestableTripService().getTripsByUser(stranger)).isEmpty()
     }
@@ -42,12 +39,24 @@ class TripServiceTest {
     @Test
     fun `the trips of a friend are shown`() {
         loggedInUser = registeredUser
-        val friend = User().apply {
-            addFriend(anotherUser)
-            addFriend(registeredUser)
-            addTrip(toBrazil)
-        }
+        val friend = aUser().friendsWith(anotherUser, registeredUser).withTrips(toBrazil).build()
 
         assertThat(TestableTripService().getTripsByUser(friend)).containsExactly(toBrazil)
+    }
+
+    private fun aUser() = UserBuilder()
+
+    private class UserBuilder {
+        private var friends = emptyList<User>()
+        private var trips = emptyList<Trip>()
+
+        fun friendsWith(vararg users: User) = apply { friends = users.toList() }
+
+        fun withTrips(vararg trips: Trip) = apply { this.trips = trips.toList() }
+
+        fun build() = User().apply {
+            friends.forEach(::addFriend)
+            trips.forEach(::addTrip)
+        }
     }
 }
