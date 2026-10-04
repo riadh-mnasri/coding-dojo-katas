@@ -38,4 +38,13 @@ class BirthdayServiceTest {
 
         assertThat(outbox.sent).containsExactly(Message("john.doe@foobar.com", "Happy birthday!", "Happy birthday, dear John!"))
     }
+
+    @Test
+    fun `friends born on another day are not greeted`() {
+        val mary = Friend("Ann", "Mary", LocalDate.of(1975, 9, 11), "mary.ann@foobar.com")
+
+        service(mary).sendGreetings(LocalDate.of(2026, 10, 8))
+
+        assertThat(outbox.sent).isEmpty()
+    }
 }
