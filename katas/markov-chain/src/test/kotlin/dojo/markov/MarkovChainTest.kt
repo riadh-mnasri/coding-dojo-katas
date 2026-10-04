@@ -50,4 +50,16 @@ class MarkovChainTest {
         assertThat(low).isEqualTo("libres peuvent")
         assertThat(high).isEqualTo("libres ou")
     }
+
+    @Test
+    fun `at a dead end the text restarts from a random word`() {
+        // Given : « dort » n'a pas de suivant ; le tirage 0,0 relance sur le premier mot connu
+        val chain = MarkovChain.learn("le chat dort")
+
+        // When
+        val generated = chain.generate(words = 5, startingWith = "chat", random = ScriptedRandom(0.0, 0.0, 0.0, 0.0))
+
+        // Then
+        assertThat(generated).isEqualTo("chat dort le chat dort")
+    }
 }
