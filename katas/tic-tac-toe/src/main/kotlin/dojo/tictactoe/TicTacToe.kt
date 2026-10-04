@@ -17,7 +17,7 @@ class TicTacToe {
 
     fun board(): String = TODO()
 
-    fun isOver(): Boolean = winner() != null
+    fun isOver(): Boolean = winner() != null || fields.size == 9
 
     fun winner(): Player? = LINES.firstNotNullOfOrNull { line ->
         fields[line.first()]?.takeIf { player -> line.all { fields[it] == player } }
