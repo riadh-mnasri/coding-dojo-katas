@@ -22,4 +22,11 @@ class PrintersTest {
     fun `prints the tree in infix notation, every operation in parentheses`() {
         assertThat(example.accept(InfixPrinter)).isEqualTo("3 + (6 × -6)")
     }
+
+    @Test
+    fun `step 3 - prints infix with the minimum of parentheses`() {
+        assertThat(example.accept(MinimalInfixPrinter)).isEqualTo("3 + 6 × -6")
+        assertThat(Mathematical.parse("3 6 + 2 *").accept(MinimalInfixPrinter)).isEqualTo("(3 + 6) × 2")
+        assertThat(Mathematical.parse("1 2 + 3 +").accept(MinimalInfixPrinter)).isEqualTo("1 + 2 + 3")
+    }
 }
