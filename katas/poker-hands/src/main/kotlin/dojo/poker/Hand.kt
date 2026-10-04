@@ -9,7 +9,8 @@ class Hand private constructor(values: List<Int>, suits: List<Char>) : Comparabl
     private val groups = values.groupingBy { it }.eachCount().entries
         .sortedWith(compareByDescending<Map.Entry<Int, Int>> { it.value }.thenByDescending { it.key })
     private val shape = groups.map { it.value }
-    private val ordered = groups.map { it.key }
+    /** Les valeurs dans l'ordre où elles départagent : groupes les plus nombreux d'abord, puis les plus fortes. */
+    val ordered = groups.map { it.key }
 
     private val isFlush = suits.toSet().size == 1
     private val isStraight = shape.size == 5 && ordered.first() - ordered.last() == 4
