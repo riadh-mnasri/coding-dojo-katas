@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 33 / 61 katas.**
+**Progress: 34 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -86,7 +86,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | [Leap Years](katas/leap-years/README.en.md) | rules and exceptions | ✅ done | [codingdojo.org](https://codingdojo.org/kata/LeapYears/) |
 | [Manhattan Distance](katas/manhattan-distance/README.en.md) | getter-free objects (Tell, don't ask) | ✅ done | [codingdojo.org](https://codingdojo.org/kata/manhattan-distance/) |
 | [Markov Chain](katas/markov-chain/README.en.md) | statistics, injected randomness | ✅ done | [codingdojo.org](https://codingdojo.org/kata/MarkovChain/) |
-| Mars Rover | commands, obstacles, map parsing | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/mars-rover/) |
+| [Mars Rover](katas/mars-rover/README.en.md) | commands, obstacles, map parsing | ✅ done | [codingdojo.org](https://codingdojo.org/kata/mars-rover/) |
 | [Mastermind](katas/mastermind/README.en.md) | counting, choosing the next test | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Mastermind/) |
 | Mathematical AST | syntax tree, Visitor | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/mathematical-ast/) |
 | [Minesweeper](katas/minesweeper/README.en.md) | grids, neighbourhood | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Minesweeper/) |
