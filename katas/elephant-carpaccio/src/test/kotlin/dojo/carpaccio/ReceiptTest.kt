@@ -53,4 +53,22 @@ class ReceiptTest {
         assertThat(receipt.tax).isEqualByComparingTo("121.25")
         assertThat(receipt.totalPrice).isEqualByComparingTo("2061.25")
     }
+
+    @org.junit.jupiter.api.Test
+    fun `slice 7 - prints the receipt`() {
+        val receipt = Receipt(listOf(item("Laptop", 2, "1000"), item("Mouse", 1, "25")), state = "TX")
+
+        assertThat(receipt.print()).isEqualTo(
+            """
+            Laptop                   2       1000.00       2000.00
+            Mouse                    1         25.00         25.00
+            ------------------------------------------------------
+            Total without taxes                            2025.00
+            Discount 3%                                     -60.75
+            Tax 6.25%                                      +122.77
+            ------------------------------------------------------
+            Total price                                    2087.02
+            """.trimIndent(),
+        )
+    }
 }
