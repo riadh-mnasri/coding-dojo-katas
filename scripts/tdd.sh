@@ -17,6 +17,7 @@ set -uo pipefail
 kata=${1:?kata manquant}
 phase=${2:?phase manquante (red|green|refactor)}
 message=${3:?message de commit manquant}
+custom_body=${4:-}   # corps de commit optionnel, pour expliquer une étape inhabituelle
 
 cd "$(dirname "$0")/.."
 
@@ -86,6 +87,7 @@ if [ -n "$body" ]; then
   git commit -q -m "$message" -m "$body"
 else
   [ "$phase" = pin ] && body="Passed on first run: no production code was needed."
+  [ -n "$custom_body" ] && body="$custom_body"
   if [ -n "$body" ]; then git commit -q -m "$message" -m "$body"; else git commit -q -m "$message"; fi
 fi
 echo "[$phase] ${total:-0} test(s) exécuté(s) : $(git log -1 --format='%h %s')"
