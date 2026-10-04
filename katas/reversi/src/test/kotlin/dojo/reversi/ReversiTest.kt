@@ -28,4 +28,18 @@ class ReversiTest {
         assertThat(Reversi.legalMoves(vertical)).containsExactly("D5")
         assertThat(Reversi.legalMoves(diagonal)).containsExactly("E5")
     }
+
+    @Test
+    fun `finds the moves of the kata example`() {
+        val start = mapOf(4 to "...BW...", 5 to "...WB...")
+
+        assertThat(Reversi.legalMoves(position(start, 'B'))).containsExactly("C5", "D6", "E3", "F4")
+        assertThat(Reversi.legalMoves(position(start, 'W'))).containsExactly("C4", "D3", "E6", "F5")
+    }
+
+    @Test
+    fun `several opponents in a row can be captured but the line must be closed`() {
+        assertThat(Reversi.legalMoves(position(mapOf(4 to ".WWWB..."), 'B'))).containsExactly("A4")
+        assertThat(Reversi.legalMoves(position(mapOf(4 to ".WWW...."), 'B'))).isEmpty()
+    }
 }
