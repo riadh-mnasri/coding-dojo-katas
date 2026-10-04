@@ -65,4 +65,27 @@ class DepthFirstSearchTest {
         assertThat(path).isNotNull().startsWith("A").endsWith("I").doesNotHaveDuplicates()
         path!!.zipWithNext().forEach { (from, to) -> assertThat(exits.getValue(from)).contains(to) }
     }
+
+    @Test
+    fun `on a full two-level binary tree, questions go deep before going wide`() {
+        //       R
+        //    L     M
+        //   a b   c d      le but est c
+        val guide = ScriptedGuide(
+            exits = mapOf("R" to listOf("L", "M"), "L" to listOf("a", "b"), "M" to listOf("c", "d")),
+            goal = "c",
+        )
+
+        val path = DepthFirstSearch(guide).pathFrom("R")
+
+        assertThat(path).containsExactly("R", "M", "c")
+        assertThat(guide.questions).containsExactly(
+            "Is R the goal?", "What are the exits of R?",
+            "Is L the goal?", "What are the exits of L?",
+            "Is a the goal?", "What are the exits of a?",
+            "Is b the goal?", "What are the exits of b?",
+            "Is M the goal?", "What are the exits of M?",
+            "Is c the goal?",
+        )
+    }
 }
