@@ -38,4 +38,12 @@ class RsaTest {
 
         assertThat(String(Rsa.decrypt(encrypted, keys.private))).isEqualTo("Hello world!")
     }
+
+    @Test
+    fun `the encrypted message travels as readable base64`() {
+        val encrypted = Rsa.encrypt("Hello world!".toByteArray(), keys.public)
+
+        assertThat(Transport.encode(encrypted)).isEqualTo("FQGtKYcinGkgGvkOQ2pvWw==")
+        assertThat(Transport.decode("FQGtKYcinGkgGvkOQ2pvWw==")).isEqualTo(encrypted)
+    }
 }
