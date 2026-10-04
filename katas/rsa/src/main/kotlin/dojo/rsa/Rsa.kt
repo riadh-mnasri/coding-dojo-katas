@@ -13,6 +13,12 @@ object Rsa {
             toBytes(power(toNumber(block), key.exponent, key.modulus), CIPHER_BLOCK)
         }.toByteArray()
 
+    /** Chaque bloc de 4 octets, lu comme un entier a, redevient a^d mod N sur 3 octets. */
+    fun decrypt(encrypted: ByteArray, key: PrivateKey): ByteArray =
+        encrypted.toList().chunked(CIPHER_BLOCK).flatMap { block ->
+            toBytes(power(toNumber(block), key.exponent, key.modulus), CLEAR_BLOCK)
+        }.toByteArray()
+
     private fun power(base: Long, exponent: Long, modulus: Long): Long =
         BigInteger.valueOf(base).modPow(BigInteger.valueOf(exponent), BigInteger.valueOf(modulus)).toLong()
 
