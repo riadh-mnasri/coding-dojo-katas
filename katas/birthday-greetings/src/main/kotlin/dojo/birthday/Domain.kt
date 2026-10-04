@@ -2,9 +2,11 @@
 package dojo.birthday
 
 import java.time.LocalDate
+import java.time.MonthDay
 
 data class Friend(val lastName: String, val firstName: String, val birthDate: LocalDate, val email: String) {
-    fun hasBirthdayOn(day: LocalDate): Boolean = birthDate.month == day.month && birthDate.dayOfMonth == day.dayOfMonth
+    /** `MonthDay.atYear` ramène un 29 février au 28 les années non bissextiles, comme le veut l'énoncé. */
+    fun hasBirthdayOn(day: LocalDate): Boolean = MonthDay.from(birthDate).atYear(day.year) == day
 }
 
 data class Message(val to: String, val subject: String, val body: String)
