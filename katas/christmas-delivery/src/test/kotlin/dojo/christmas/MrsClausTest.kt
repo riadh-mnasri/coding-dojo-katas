@@ -48,4 +48,16 @@ class MrsClausTest {
         after(10)
         assertThat(sleigh.packed).containsExactly(present("Train"), present("Doll"))
     }
+
+    @Test
+    fun `story 3 - a family already started goes first`() = runTest {
+        val claus = mrsClaus(elves = 1)
+
+        claus.receive(present("Smith train", family = "Smith"))
+        claus.receive(present("Jones doll", family = "Jones"))
+        claus.receive(present("Smith kite", family = "Smith"))
+        after(30)
+
+        assertThat(sleigh.packed.map { it.name }).containsExactly("Smith train", "Smith kite", "Jones doll")
+    }
 }
