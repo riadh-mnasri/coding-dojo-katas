@@ -2,5 +2,6 @@
 package dojo.pagination
 
 object PaginationSeven {
-    fun render(page: Int, total: Int): String = "(1)"
+    fun render(page: Int, total: Int): String =
+        (1..total).joinToString(" ") { if (it == page) "($it)" else "$it" }
 }
