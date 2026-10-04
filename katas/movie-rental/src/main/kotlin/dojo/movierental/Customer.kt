@@ -15,6 +15,14 @@ class Customer(val name: String) {
         return header + lines + footer
     }
 
+    fun htmlStatement(): String {
+        val header = "<h1>Rental Record for <em>$name</em></h1>\n<table>\n"
+        val lines = rentals.joinToString("") { "  <tr><td>${it.movie.title}</td><td>${it.charge()}</td></tr>\n" }
+        val footer = "</table>\n<p>Amount owed is <em>${totalCharge()}</em></p>\n" +
+            "<p>You earned <em>${totalFrequentRenterPoints()}</em> frequent renter points</p>"
+        return header + lines + footer
+    }
+
     private fun totalCharge(): Double = rentals.sumOf { it.charge() }
 
     private fun totalFrequentRenterPoints(): Int = rentals.sumOf { it.frequentRenterPoints() }
