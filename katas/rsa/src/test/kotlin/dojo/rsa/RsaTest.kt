@@ -19,4 +19,16 @@ class RsaTest {
         assertThat(keys.public).isEqualTo(PublicKey(3_100_069_681L, 66_797L))
         assertThat(keys.private).isEqualTo(PrivateKey(3_100_069_681L, 1_336_940_133L))
     }
+
+    private val keys = KeyPair.of(p = 51_581, q = 60_101, c = 66_797)
+
+    @Test
+    fun `encrypts each 3-byte block of the sample into a 4-byte block`() {
+        val encrypted = Rsa.encrypt("Hello world!".toByteArray(), keys.public)
+
+        assertThat(blocksOf4(encrypted)).containsExactly(352_431_401L, 2_267_192_425L, 538_638_606L, 1_131_048_795L)
+    }
+
+    private fun blocksOf4(bytes: ByteArray): List<Long> =
+        bytes.toList().chunked(4).map { block -> block.fold(0L) { value, byte -> (value shl 8) or (byte.toLong() and 0xFF) } }
 }
