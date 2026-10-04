@@ -17,4 +17,13 @@ class ArgsTest {
     fun `an absent boolean flag is false`() {
         assertThat(Args("l", emptyList()).boolean('l')).isFalse()
     }
+
+    @Test
+    fun `reads typed values as described by the schema`() {
+        val args = Args("l,p#,d*", listOf("-l", "-p", "8080", "-d", "/usr/logs"))
+
+        assertThat(args.boolean('l')).isTrue()
+        assertThat(args.int('p')).isEqualTo(8080)
+        assertThat(args.string('d')).isEqualTo("/usr/logs")
+    }
 }
