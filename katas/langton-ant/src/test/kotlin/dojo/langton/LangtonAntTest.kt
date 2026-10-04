@@ -38,4 +38,25 @@ class LangtonAntTest {
         assertThat(world.ant).isEqualTo(Ant(Position(-1, 0), Direction.WEST))
         assertThat(world.colorAt(Position(0, 0))).isEqualTo(WHITE)
     }
+
+    @Test
+    fun `with red, a red square is crossed straight and turns back to white`() {
+        // Given
+        val world = World(rules = THREE_COLORS)
+        val origin = Position(0, 0)
+
+        // When: quatre pas sur du blanc ramènent la fourmi à l'origine, devenue noire ; le cinquième la peint en rouge
+        repeat(5) { world.step() }
+
+        // Then
+        assertThat(world.colorAt(origin)).isEqualTo(Color.RED)
+        assertThat(world.ant).isEqualTo(Ant(Position(-1, 0), Direction.WEST))
+
+        // When: trois pas sur du blanc la ramènent sur l'origine rouge, qu'elle traverse sans tourner
+        repeat(4) { world.step() }
+
+        // Then
+        assertThat(world.colorAt(origin)).isEqualTo(WHITE)
+        assertThat(world.ant).isEqualTo(Ant(Position(0, 1), Direction.SOUTH))
+    }
 }
