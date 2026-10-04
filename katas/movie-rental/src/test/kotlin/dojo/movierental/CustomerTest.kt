@@ -2,6 +2,7 @@
 package dojo.movierental
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 /** Tests de caractérisation : les montants attendus sont calculés à la main à partir des règles de tarification. */
@@ -46,5 +47,10 @@ class CustomerTest {
     fun `a customer without rentals owes nothing`() {
         assertThat(customer("zoe").statement())
             .isEqualTo("Rental Record for zoe\nAmount owed is 0.0\nYou earned 0 frequent renter points")
+    }
+
+    @Test
+    fun `an unknown price code is rejected instead of costing nothing`() {
+        assertThatThrownBy { Movie("Mystery", 42) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
