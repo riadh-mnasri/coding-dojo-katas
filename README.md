@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 47 / 61 katas.**
+**Avancement : 48 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -115,7 +115,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | [Texas Hold'em](katas/texas-hold-em/README.md) | meilleure main parmi 7 cartes | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/TexasHoldEm/) |
 | [Tic Tac Toe](katas/tic-tac-toe/README.md) | double boucle TDD | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/tic-tac-toe/) |
 | Trading Card Game | boucle de jeu, doublures | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/TradingCardGame/) |
-| Trip Service | casser les dépendances du legacy | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/TripService/) |
+| [Trip Service](katas/trip-service/README.md) | casser les dépendances du legacy | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/TripService/) |
 | [Wallet](katas/wallet/README.md) | port externe (taux de change) | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Wallet/) |
 | [Word Wrap](katas/word-wrap/README.md) | récursion, cas limites | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/WordWrap/) |
 | [Yahtzee](katas/yahtzee/README.md) | catégories de score | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Yahtzee/) |
