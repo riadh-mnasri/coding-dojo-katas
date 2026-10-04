@@ -18,7 +18,15 @@ data class Position(val x: Int, val y: Int) {
 
 data class Ant(val position: Position, val direction: Direction)
 
-class World {
+/** Ce que fait la fourmi sur une couleur : comment elle tourne et en quelle couleur elle repeint la case. */
+data class Rule(val turn: (Direction) -> Direction, val paint: Color)
+
+val LANGTON = mapOf(
+    Color.WHITE to Rule(Direction::right, Color.BLACK),
+    Color.BLACK to Rule(Direction::left, Color.WHITE),
+)
+
+class World(private val rules: Map<Color, Rule> = LANGTON) {
     var ant = Ant(Position(0, 0), Direction.NORTH)
         private set
     private val colors = mutableMapOf<Position, Color>()
@@ -26,9 +34,9 @@ class World {
     fun colorAt(position: Position): Color = colors[position] ?: Color.WHITE
 
     fun step() {
-        val white = colorAt(ant.position) == Color.WHITE
-        val direction = if (white) ant.direction.right() else ant.direction.left()
-        colors[ant.position] = if (white) Color.BLACK else Color.WHITE
+        val rule = rules.getValue(colorAt(ant.position))
+        val direction = rule.turn(ant.direction)
+        colors[ant.position] = rule.paint
         ant = Ant(ant.position.moved(direction), direction)
     }
 }
