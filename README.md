@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 35 / 61 katas.**
+**Avancement : 36 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -103,7 +103,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | Potter | optimisation de remises | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Potter/) |
 | Quote of the Day | service web minimal | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/QotdCgi/) |
 | [Range](katas/range/README.md) | objet valeur, bornes | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Range/) |
-| Reversi | coups légaux, directions | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/Reversi/) |
+| [Reversi](katas/reversi/README.md) | coups légaux, directions | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Reversi/) |
 | [Roman Calculator](katas/roman-calculator/README.md) | trouver le prochain test | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/RomanCalculator/) |
 | [Roman Numerals](katas/roman-numerals/README.md) | algorithme glouton | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/RomanNumerals/) |
 | [RPN Calculator](katas/rpn-calculator/README.md) | pile, opérations extensibles | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/RPN/) |
