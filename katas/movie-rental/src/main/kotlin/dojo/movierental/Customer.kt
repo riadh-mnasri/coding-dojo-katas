@@ -1,3 +1,4 @@
+// Copyright (c) 2026 Riadh MNASRI. Licensed under the MIT License.
 package dojo.movierental
 
 class Customer(val name: String) {
@@ -8,24 +9,13 @@ class Customer(val name: String) {
     }
 
     fun statement(): String {
-        var totalAmount = 0.0
-        var frequentRenterPoints = 0
-        var result = "Rental Record for " + name + "\n"
-
-        for (each in rentals) {
-            val thisAmount = each.charge()
-
-            frequentRenterPoints += each.frequentRenterPoints()
-
-            // show figures for this rental
-            result += "\t" + each.movie.title + "\t" + thisAmount.toString() + "\n"
-            totalAmount += thisAmount
-        }
-
-        // add footer lines
-        result += "Amount owed is " + totalAmount.toString() + "\n"
-        result += "You earned " + frequentRenterPoints.toString() + " frequent renter points"
-
-        return result
+        val header = "Rental Record for $name\n"
+        val lines = rentals.joinToString("") { "\t${it.movie.title}\t${it.charge()}\n" }
+        val footer = "Amount owed is ${totalCharge()}\nYou earned ${totalFrequentRenterPoints()} frequent renter points"
+        return header + lines + footer
     }
+
+    private fun totalCharge(): Double = rentals.sumOf { it.charge() }
+
+    private fun totalFrequentRenterPoints(): Int = rentals.sumOf { it.frequentRenterPoints() }
 }
