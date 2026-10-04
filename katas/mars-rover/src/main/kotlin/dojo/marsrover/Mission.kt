@@ -54,11 +54,11 @@ class Mission private constructor(val rover: Rover, private val terrain: Terrain
 
         fun parse(map: String): Mission {
             val rows = map.lines().reversed().map(::tiles)
-            val rover = rows.withIndex().firstNotNullOf { (y, row) ->
+            val rover = rows.withIndex().firstNotNullOfOrNull { (y, row) ->
                 row.withIndex().firstNotNullOfOrNull { (x, tile) ->
                     Direction.entries.firstOrNull { it.arrow == tile }?.let { Rover(Position(x, y), it) }
                 }
-            }
+            } ?: throw IllegalArgumentException("The map shows no rover (⬆️ ➡️ ⬇️ ⬅️)")
             return Mission(rover, Terrain(rows))
         }
 
