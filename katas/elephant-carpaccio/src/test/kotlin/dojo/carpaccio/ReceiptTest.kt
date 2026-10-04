@@ -71,4 +71,12 @@ class ReceiptTest {
             """.trimIndent(),
         )
     }
+
+    @org.junit.jupiter.api.Test
+    fun `slice 8 - unknown states and empty orders are rejected`() {
+        org.assertj.core.api.Assertions.assertThatThrownBy { Receipt(listOf(item("Book", 1, "10")), state = "ZZ") }
+            .isInstanceOf(IllegalArgumentException::class.java)
+        org.assertj.core.api.Assertions.assertThatThrownBy { Receipt(emptyList(), state = "UT") }
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
 }
