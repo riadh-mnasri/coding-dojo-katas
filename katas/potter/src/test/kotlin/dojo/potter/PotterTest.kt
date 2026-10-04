@@ -26,4 +26,12 @@ class PotterTest {
         assertThat(price(0, 1, 2, 4)).isEqualByComparingTo("25.60")
         assertThat(price(0, 1, 2, 3, 4)).isEqualByComparingTo("30.00")
     }
+
+    @Test
+    fun `a basket is split into several sets`() {
+        assertThat(price(0, 0, 1)).isEqualByComparingTo("23.20")
+        assertThat(price(0, 0, 1, 1)).isEqualByComparingTo("30.40")
+        assertThat(price(0, 0, 1, 2, 2, 3)).isEqualByComparingTo("40.80")
+        assertThat(price(0, 1, 1, 2, 3, 4)).isEqualByComparingTo("38.00")
+    }
 }
