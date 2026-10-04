@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 30 / 61 katas.**
+**Progress: 31 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -116,7 +116,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | Tic Tac Toe | double-loop TDD | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/tic-tac-toe/) |
 | Trading Card Game | game loop, test doubles | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/TradingCardGame/) |
 | Trip Service | breaking legacy dependencies | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/TripService/) |
-| Wallet | external port (exchange rates) | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Wallet/) |
+| [Wallet](katas/wallet/README.en.md) | external port (exchange rates) | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Wallet/) |
 | [Word Wrap](katas/word-wrap/README.en.md) | recursion, edge cases | ✅ done | [codingdojo.org](https://codingdojo.org/kata/WordWrap/) |
 | [Yahtzee](katas/yahtzee/README.en.md) | scoring categories | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Yahtzee/) |
 <!-- katas:end -->
