@@ -55,4 +55,16 @@ class LagsTest {
 
         assertThat(gain).isEqualTo(10_000)
     }
+
+    @Test
+    fun `reads the request file of the kata`() {
+        val file = """
+            AF514 0 5 10
+            CO5 3 7 14
+            AF515 5 9 7
+            BA01 6 9 8
+        """.trimIndent()
+
+        assertThat(Lags.bestGain(Lags.parse(file))).isEqualTo(18)
+    }
 }
