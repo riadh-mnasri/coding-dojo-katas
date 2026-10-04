@@ -25,4 +25,11 @@ class AccountReaderTest {
         @JvmStatic
         fun useCase1() = useCases("use-case-1.txt")
     }
+
+    @Test
+    fun `user story 2 - a valid account number has a checksum divisible by 11`() {
+        assertThat(AccountReader.isValid("345882865")).isTrue()
+        assertThat(AccountReader.isValid("457508000")).isTrue()
+        assertThat(AccountReader.isValid("664371495")).isFalse()
+    }
 }
