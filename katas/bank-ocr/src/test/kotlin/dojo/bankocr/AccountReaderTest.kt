@@ -27,6 +27,9 @@ class AccountReaderTest {
 
         @JvmStatic
         fun useCase3() = useCases("use-case-3.txt")
+
+        @JvmStatic
+        fun useCase4() = useCases("use-case-4.txt")
     }
 
     @Test
@@ -46,5 +49,11 @@ class AccountReaderTest {
     fun `user story 3 - reports a wrong checksum`() {
         assertThat(AccountReader.reportNumber("664371495")).isEqualTo("664371495 ERR")
         assertThat(AccountReader.reportNumber("457508000")).isEqualTo("457508000")
+    }
+
+    @ParameterizedTest
+    @MethodSource("useCase4")
+    fun `user story 4 - guesses the number from one stroke, using the kata fixtures`(case: UseCase) {
+        assertThat(AccountReader.reportWithGuesses(case.entry)).isEqualTo(case.expected)
     }
 }
