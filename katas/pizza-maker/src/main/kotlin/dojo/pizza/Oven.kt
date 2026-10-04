@@ -39,4 +39,6 @@ class Oven(private val scope: CoroutineScope, private val alert: (String) -> Uni
         if (slot.state == PizzaState.COOKED) points++
         return Pizza(slot.recipe, slot.state)
     }
+
+    fun queue(): List<Pizza> = slots.map { Pizza(it.recipe, it.state) }
 }
