@@ -12,4 +12,9 @@ class PrintersTest {
     fun `prints the tree back in RPN`() {
         assertThat(example.accept(RpnPrinter)).isEqualTo("3 6 -6 × +")
     }
+
+    @Test
+    fun `evaluates the tree`() {
+        assertThat(example.accept(Evaluator)).isEqualTo(-33L)
+    }
 }
