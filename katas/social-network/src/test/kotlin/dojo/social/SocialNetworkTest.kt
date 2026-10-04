@@ -39,4 +39,13 @@ class SocialNetworkTest {
 
         assertThat(network.wall("Charlie").map { it.text }).containsExactly("Charlie speaks", "Alice speaks", "Thomas speaks")
     }
+
+    @Test
+    fun `mentions - Alice mentions Charlie with an at sign`() {
+        network.post("Alice", "Lunch with @Charlie today")
+        network.post("Thomas", "Charlie without the at sign does not count")
+        network.post("Bob", "Hi @Charlotte")
+
+        assertThat(network.mentionsOf("Charlie").map { it.author }).containsExactly("Alice")
+    }
 }
