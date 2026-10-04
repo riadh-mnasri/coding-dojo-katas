@@ -2,6 +2,7 @@
 package dojo.nearestcolor
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class NearestColorTest {
@@ -34,5 +35,12 @@ class NearestColorTest {
     @Test
     fun `bonus - finds the farthest colors`() {
         assertThat(primaries.farthestColors("F00")).containsExactly("0F0", "00F")
+    }
+
+    @Test
+    fun `only three or six hexadecimal digits make a color`() {
+        assertThatThrownBy { primaries.nearest("F4") }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { primaries.nearest("GGG") }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { Palette() }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
