@@ -41,4 +41,13 @@ class DepthFirstSearchTest {
 
         assertThat(DepthFirstSearch(guide).pathFrom("A")).containsExactly("A", "B")
     }
+
+    @Test
+    fun `a 2x2 maze needs to backtrack out of a dead end`() {
+        // A B
+        // C D    A ouvre sur B (impasse) et sur C, qui mène à D.
+        val guide = ScriptedGuide(exits = mapOf("A" to listOf("B", "C"), "C" to listOf("D")), goal = "D")
+
+        assertThat(DepthFirstSearch(guide).pathFrom("A")).containsExactly("A", "C", "D")
+    }
 }
