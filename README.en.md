@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 50 / 61 katas.**
+**Progress: 51 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -72,7 +72,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | [Diamond](katas/diamond/README.en.md) | property-style tests | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Diamond/) |
 | [Dictionary Replacer](katas/dictionary-replacer/README.en.md) | string replacement | ✅ done | [codingdojo.org](https://codingdojo.org/kata/DictionaryReplacer/) |
 | [Eight Queens](katas/eight-queens/README.en.md) | backtracking, tree traversal | ✅ done | [codingdojo.org](https://codingdojo.org/kata/eight-queens/) |
-| Elephant Carpaccio | thin vertical slicing | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/elephant-carpaccio/) |
+| [Elephant Carpaccio](katas/elephant-carpaccio/README.en.md) | thin vertical slicing | ✅ done | [codingdojo.org](https://codingdojo.org/kata/elephant-carpaccio/) |
 | [Employee Report](katas/employee-report/README.en.md) | focused assertions, test maintainability | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Employee-Report/) |
 | [FizzBuzz](katas/fizz-buzz/README.en.md) | baby steps, composable rules | ✅ done | [codingdojo.org](https://codingdojo.org/kata/FizzBuzz/) |
 | [FooBarQix](katas/foo-bar-qix/README.en.md) | changing requirements | ✅ done | [codingdojo.org](https://codingdojo.org/kata/FooBarQix/) |
