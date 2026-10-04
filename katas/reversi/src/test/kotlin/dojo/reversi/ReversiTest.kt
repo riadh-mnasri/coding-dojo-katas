@@ -42,4 +42,23 @@ class ReversiTest {
         assertThat(Reversi.legalMoves(position(mapOf(4 to ".WWWB..."), 'B'))).containsExactly("A4")
         assertThat(Reversi.legalMoves(position(mapOf(4 to ".WWW...."), 'B'))).isEmpty()
     }
+
+    @Test
+    fun `can show the legal moves on the board, as in the kata`() {
+        val start = position(mapOf(4 to "...BW...", 5 to "...WB..."), 'B')
+
+        assertThat(Reversi.showMoves(start)).isEqualTo(
+            """
+            ........
+            ........
+            ....0...
+            ...BW0..
+            ..0WB...
+            ...0....
+            ........
+            ........
+            B
+            """.trimIndent(),
+        )
+    }
 }
