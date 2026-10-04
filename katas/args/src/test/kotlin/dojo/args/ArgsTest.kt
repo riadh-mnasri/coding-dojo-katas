@@ -73,4 +73,12 @@ class ArgsTest {
         assertThat(args.ints('n')).containsExactly(1, 2, -3, 5)
         assertThat(Args("g[*],n[#]", emptyList()).ints('n')).isEmpty()
     }
+
+    @Test
+    fun `the schema itself is checked`() {
+        assertThatThrownBy { Args("p%", emptyList()) }.isInstanceOf(ArgsException::class.java)
+            .hasMessage("Unknown type '%' for flag -p in the schema")
+        assertThatThrownBy { Args("l", emptyList()).int('x') }.isInstanceOf(ArgsException::class.java)
+            .hasMessage("Flag -x is not in the schema")
+    }
 }
