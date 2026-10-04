@@ -14,4 +14,11 @@ class ReceiptTest {
 
         assertThat(receipt.totalWithoutTaxes).isEqualByComparingTo("37.50")
     }
+
+    @Test
+    fun `slice 2 - several lines add up`() {
+        val receipt = Receipt(listOf(item("Book", 3, "12.50"), item("Pen", 2, "1.25")), state = "UT")
+
+        assertThat(receipt.totalWithoutTaxes).isEqualByComparingTo("40.00")
+    }
 }
