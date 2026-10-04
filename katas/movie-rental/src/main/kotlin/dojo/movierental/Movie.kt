@@ -24,4 +24,7 @@ class Rental(val movie: Movie, val daysRented: Int) {
         }
         return amount
     }
+
+    /** Un point par location, un de plus pour une nouveauté louée au moins deux jours. */
+    fun frequentRenterPoints(): Int = if (movie.priceCode == Movie.NEW_RELEASE && daysRented > 1) 2 else 1
 }
