@@ -13,8 +13,13 @@ class UserSession private constructor() {
     }
 }
 
-object TripDAO {
-    fun findTripsByUser(user: User): List<Trip> {
-        throw CollaboratorCallException("TripDAO should not be invoked on an unit test.")
+open class TripDAO {
+    /** Méthode d'instance ajoutée pour pouvoir injecter le DAO ; l'accès statique historique est conservé. */
+    open fun tripsBy(user: User): List<Trip> = findTripsByUser(user)
+
+    companion object {
+        fun findTripsByUser(user: User): List<Trip> {
+            throw CollaboratorCallException("TripDAO should not be invoked on an unit test.")
+        }
     }
 }

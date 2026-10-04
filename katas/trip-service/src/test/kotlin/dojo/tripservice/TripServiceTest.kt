@@ -14,10 +14,12 @@ class TripServiceTest {
     private val toBrazil = Trip()
 
     /** La couture : en test, l'utilisateur connecté vient du test et non du singleton de session. */
-    private inner class TestableTripService : TripService() {
-        override fun loggedUser(): User? = loggedInUser
-
+    private val tripDAO = object : TripDAO() {
         override fun tripsBy(user: User): List<Trip> = user.trips()
+    }
+
+    private inner class TestableTripService : TripService(tripDAO) {
+        override fun loggedUser(): User? = loggedInUser
     }
 
     @Test
