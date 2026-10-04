@@ -3,7 +3,14 @@ package dojo.social
 
 import java.time.Instant
 
-data class Post(val id: Int, val author: String, val text: String, val at: Instant)
+data class Post(val id: Int, val author: String, val text: String, val at: Instant) {
+    /** Les noms précédés de @ ; « @Charlotte » ne mentionne pas Charlie. */
+    val mentions: Set<String> get() = MENTION.findAll(text).map { it.groupValues[1] }.toSet()
+
+    private companion object {
+        val MENTION = Regex("""@(\w+)""")
+    }
+}
 
 class SocialNetwork(private val clock: () -> Instant) {
     private val posts = mutableListOf<Post>()
@@ -22,4 +29,6 @@ class SocialNetwork(private val clock: () -> Instant) {
         val authors = following[user].orEmpty() + user
         return posts.filter { it.author in authors }.sortedByDescending { it.at }
     }
+
+    fun mentionsOf(user: String): List<Post> = posts.filter { user in it.mentions }.sortedByDescending { it.at }
 }
