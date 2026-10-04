@@ -78,4 +78,9 @@ class MarsRoverTest {
         // Tout au nord (le bord arrête la 5e avancée), une case vers l'est, le rocher en (2, 4) bloque, puis demi-tour vers le sud.
         assertThat(mission.execute("⬆️⬆️⬆️⬆️⬆️➡️⬆️⬆️⬅️⬅️⬅️⬆️")).isEqualTo(Rover(Position(1, 3), Direction.SOUTH))
     }
+
+    @Test
+    fun `an unknown command is rejected`() {
+        assertThatThrownBy { Mission.parse("➡️").execute("⬇️") }.isInstanceOf(IllegalArgumentException::class.java)
+    }
 }
