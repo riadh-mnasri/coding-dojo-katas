@@ -8,3 +8,7 @@ interface Cake {
 class Cupcake : Cake {
     override fun name() = "🧁"
 }
+
+class Cookie : Cake {
+    override fun name() = "🍪"
+}
