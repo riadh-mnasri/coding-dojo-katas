@@ -27,4 +27,11 @@ class DepthFirstSearchTest {
 
         assertThat(DepthFirstSearch(guide).pathFrom("A")).containsExactly("A")
     }
+
+    @Test
+    fun `the one-node graph without the goal has no path`() {
+        val guide = ScriptedGuide(exits = emptyMap(), goal = "Z")
+
+        assertThat(DepthFirstSearch(guide).pathFrom("A")).isNull()
+    }
 }
