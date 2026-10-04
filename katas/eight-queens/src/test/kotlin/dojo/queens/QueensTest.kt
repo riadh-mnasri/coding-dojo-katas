@@ -37,4 +37,9 @@ class QueensTest {
         assertThat(Board(listOf(0, 1)).isValid()).isFalse()
         assertThat(Board(listOf(1, 3, 0, 2)).isValid()).isTrue()
     }
+
+    @Test
+    fun `brute force with bit masks finds the same solutions`() {
+        assertThat(BruteForce.solutions(8)).containsExactlyInAnyOrderElementsOf(DepthFirst.solutions(8))
+    }
 }
