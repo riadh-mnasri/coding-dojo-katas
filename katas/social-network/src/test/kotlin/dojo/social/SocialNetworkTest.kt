@@ -17,4 +17,13 @@ class SocialNetworkTest {
 
         assertThat(network.timeline("Thomas").map { it.text }).containsExactly("Hello world")
     }
+
+    @Test
+    fun `reading - Alice sees all of Thomas's messages, newest first`() {
+        network.post("Thomas", "First")
+        network.post("Alice", "Not Thomas")
+        network.post("Thomas", "Second")
+
+        assertThat(network.timeline("Thomas").map { it.text }).containsExactly("Second", "First")
+    }
 }
