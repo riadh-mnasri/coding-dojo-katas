@@ -8,6 +8,7 @@ class TicTacToe {
     private var current = Player.X
 
     fun play(cell: Int) {
+        check(!isOver()) { "The game is over" }
         require(cell !in fields) { "Field $cell is already taken by ${fields[cell]}" }
         fields[cell] = current
         current = if (current == Player.X) Player.O else Player.X
