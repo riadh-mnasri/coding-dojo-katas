@@ -17,7 +17,13 @@ class TicTacToe {
 
     fun board(): String = TODO()
 
-    fun isOver(): Boolean = TODO()
+    fun isOver(): Boolean = winner() != null
 
-    fun winner(): Player? = TODO()
+    fun winner(): Player? = LINES.firstNotNullOfOrNull { line ->
+        fields[line.first()]?.takeIf { player -> line.all { fields[it] == player } }
+    }
+
+    private companion object {
+        val LINES = listOf(listOf(1, 2, 3), listOf(4, 5, 6), listOf(7, 8, 9))
+    }
 }
