@@ -9,6 +9,8 @@ object RpnPrinter : Visitor<String> {
 }
 
 object Evaluator : Visitor<Long> {
+    fun power(base: Long, exponent: Long): Long = (1..exponent).fold(1L) { result, _ -> result * base }
+
     override fun visit(operand: Operand) = operand.value
 
     override fun visit(operation: Operation): Long {
@@ -18,6 +20,7 @@ object Evaluator : Visitor<Long> {
             Operator.ADD -> left + right
             Operator.SUBTRACT -> left - right
             Operator.MULTIPLY -> left * right
+            Operator.POWER -> power(left, right)
         }
     }
 }
@@ -39,8 +42,10 @@ object MinimalInfixPrinter : Visitor<String> {
 
     override fun visit(operation: Operation): String {
         val precedence = operation.operator.precedence
-        val right = if (operation.operator.associative) precedence else precedence + 1
-        return "${wrapped(operation.left, precedence)} ${operation.operator.symbol} ${wrapped(operation.right, right)}"
+        val grouping = operation.operator.grouping
+        val left = if (grouping == Grouping.RIGHT) precedence + 1 else precedence
+        val right = if (grouping == Grouping.LEFT) precedence + 1 else precedence
+        return "${wrapped(operation.left, left)} ${operation.operator.symbol} ${wrapped(operation.right, right)}"
     }
 
     /** Parenthèses si l'enfant lie moins fort que [required]. */

@@ -15,11 +15,23 @@ data class Operand(val value: Long) : Expression {
     override fun <R> accept(visitor: Visitor<R>) = visitor.visit(this)
 }
 
-/** [associative] : (a op b) op c = a op (b op c), donc pas de parenthèses à droite à priorité égale. */
-enum class Operator(val symbol: String, val precedence: Int, val associative: Boolean, private vararg val aliases: String) {
-    ADD("+", 1, true),
-    SUBTRACT("-", 1, false),
-    MULTIPLY("×", 2, true, "*"),
+/** Comment se regroupent des opérations de même priorité écrites à la suite. */
+enum class Grouping {
+    /** (a op b) op c = a op (b op c) : jamais de parenthèses à priorité égale. */
+    ANY,
+
+    /** a - b - c se lit (a - b) - c : il en faut à droite. */
+    LEFT,
+
+    /** a ^ b ^ c se lit a ^ (b ^ c) : il en faut à gauche. */
+    RIGHT,
+}
+
+enum class Operator(val symbol: String, val precedence: Int, val grouping: Grouping, private vararg val aliases: String) {
+    ADD("+", 1, Grouping.ANY),
+    SUBTRACT("-", 1, Grouping.LEFT),
+    MULTIPLY("×", 2, Grouping.ANY, "*"),
+    POWER("^", 3, Grouping.RIGHT),
     ;
 
     fun isWrittenAs(token: String) = token == symbol || token in aliases
