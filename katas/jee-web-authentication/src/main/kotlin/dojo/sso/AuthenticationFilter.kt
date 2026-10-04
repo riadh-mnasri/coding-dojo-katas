@@ -5,6 +5,7 @@ import jakarta.servlet.Filter
 import jakarta.servlet.FilterChain
 import jakarta.servlet.ServletRequest
 import jakarta.servlet.ServletResponse
+import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 
 class AuthenticationFilter : Filter {
@@ -21,6 +22,15 @@ class AuthenticationFilter : Filter {
     }
 
     override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
-        (response as HttpServletResponse).sendError(HttpServletResponse.SC_UNAUTHORIZED)
+        val token = (request as HttpServletRequest).cookies?.firstOrNull { it.name == SSO_COOKIE }?.value
+        if (token != null && registry.tokenIsValid(token)) {
+            chain.doFilter(request, response)
+        } else {
+            (response as HttpServletResponse).sendError(HttpServletResponse.SC_UNAUTHORIZED)
+        }
+    }
+
+    private companion object {
+        const val SSO_COOKIE = "SSO_TOKEN"
     }
 }
