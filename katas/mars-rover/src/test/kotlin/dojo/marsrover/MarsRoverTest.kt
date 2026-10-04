@@ -20,4 +20,13 @@ class MarsRoverTest {
 
         assertThat(mission.execute("⬆️")).isEqualTo(Rover(Position(1, 0), EAST))
     }
+
+    @Test
+    fun `turning right and left changes the direction only`() {
+        val mission = Mission.parse("➡️")
+
+        assertThat(mission.execute("➡️")).isEqualTo(Rover(Position(0, 0), Direction.SOUTH))
+        assertThat(mission.execute("⬅️")).isEqualTo(Rover(Position(0, 0), Direction.NORTH))
+        assertThat(mission.execute("⬅️⬅️⬅️⬅️")).isEqualTo(Rover(Position(0, 0), EAST))
+    }
 }
