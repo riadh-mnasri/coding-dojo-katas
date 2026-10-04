@@ -2,6 +2,7 @@
 package dojo.social
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import java.time.Instant
 
@@ -66,5 +67,11 @@ class SocialNetworkTest {
         assertThat(network.inbox("Thomas").map { it.from to it.text }).containsExactly("Alice" to "Psst")
         assertThat(network.timeline("Alice")).isEmpty()
         assertThat(network.inbox("Bob")).isEmpty()
+    }
+
+    @Test
+    fun `links - a link to an unknown message is rejected`() {
+        assertThatThrownBy { network.open("https://social.example/Thomas/messages/42") }
+            .isInstanceOf(IllegalArgumentException::class.java)
     }
 }
