@@ -38,4 +38,15 @@ class HandTest {
         assertThat(hand("3H 3D 2S 2C KD")).isGreaterThan(hand("3S 3C 2D 2H QD"))
         assertThat(hand("4H 4D 4S 2C 2D")).isGreaterThan(hand("3H 3D 3S AC AD"))
     }
+
+    @Test
+    fun `a straight beats three of a kind, a flush beats a straight, a full house beats a flush`() {
+        val threeOfAKind = hand("AH AD AS 5C KD")
+        val straight = hand("3H 4D 5S 6C 7D")
+        val flush = hand("2S 8S AS QS 3S")
+        val fullHouse = hand("2H 4S 4C 2D 4H")
+
+        assertThat(listOf(fullHouse, flush, threeOfAKind, straight).sorted())
+            .containsExactly(threeOfAKind, straight, flush, fullHouse)
+    }
 }
