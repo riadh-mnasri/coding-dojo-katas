@@ -2,6 +2,7 @@
 package dojo.cupcake
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class CakeTest {
@@ -62,5 +63,10 @@ class CakeTest {
     fun `a bundle lists its cakes`() {
         assertThat(Bundle(Chocolate(Cupcake()), Cookie()).name()).isEqualTo("📦 [🧁 with 🍫, 🍪]")
         assertThat(Bundle(Bundle(Cupcake()), Cookie()).name()).isEqualTo("📦 [📦 [🧁], 🍪]")
+    }
+
+    @Test
+    fun `a bundle holds at least one cake`() {
+        assertThatThrownBy { Bundle() }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
