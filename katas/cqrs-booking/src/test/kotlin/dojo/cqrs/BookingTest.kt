@@ -19,4 +19,11 @@ class BookingTest {
     fun `every room is free before any booking`() {
         assertThat(queries.freeRooms(arrival = day(10), departure = day(12))).containsExactlyElementsOf(rooms)
     }
+
+    @Test
+    fun `a booked room is not free during the stay`() {
+        commands.bookARoom(Booking("ann", "101", arrival = day(10), departure = day(12)))
+
+        assertThat(queries.freeRooms(arrival = day(11), departure = day(13))).containsExactly(Room("102"), Room("201"))
+    }
 }
