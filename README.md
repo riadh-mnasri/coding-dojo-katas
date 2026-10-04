@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 37 / 61 katas.**
+**Avancement : 38 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -99,7 +99,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | PacMan | jeu à ticks, état du plateau | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/PacMan/) |
 | [Pagination Seven](katas/pagination-seven/README.md) | cas limites d'affichage | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/PaginationSeven/) |
 | Pizza Maker | asynchrone, temps virtuel | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/pizza-maker/) |
-| Poker Hands | classement et comparaison | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/PokerHands/) |
+| [Poker Hands](katas/poker-hands/README.md) | classement et comparaison | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/PokerHands/) |
 | [Potter](katas/potter/README.md) | optimisation de remises | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Potter/) |
 | Quote of the Day | service web minimal | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/QotdCgi/) |
 | [Range](katas/range/README.md) | objet valeur, bornes | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Range/) |
