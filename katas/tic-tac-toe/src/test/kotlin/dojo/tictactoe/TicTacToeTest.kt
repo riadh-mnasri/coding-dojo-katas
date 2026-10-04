@@ -49,4 +49,11 @@ class TicTacToeTest {
 
         assertThat(game.winner()).isEqualTo(Player.O)
     }
+
+    @Test
+    fun `a full diagonal wins`() {
+        play(3, 1, 5, 2, 7)
+
+        assertThat(game.winner()).isEqualTo(Player.X)
+    }
 }
