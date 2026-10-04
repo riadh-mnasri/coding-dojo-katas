@@ -16,6 +16,8 @@ class TripServiceTest {
     /** La couture : en test, l'utilisateur connecté vient du test et non du singleton de session. */
     private inner class TestableTripService : TripService() {
         override fun loggedUser(): User? = loggedInUser
+
+        override fun tripsBy(user: User): List<Trip> = user.trips()
     }
 
     @Test

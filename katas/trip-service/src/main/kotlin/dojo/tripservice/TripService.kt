@@ -14,7 +14,7 @@ open class TripService {
                 }
             }
             if (isFriend) {
-                tripList = TripDAO.findTripsByUser(user)
+                tripList = tripsBy(user)
             }
             return tripList
         } else {
@@ -23,4 +23,6 @@ open class TripService {
     }
 
     protected open fun loggedUser(): User? = UserSession.getInstance().getLoggedUser()
+
+    protected open fun tripsBy(user: User): List<Trip> = TripDAO.findTripsByUser(user)
 }
