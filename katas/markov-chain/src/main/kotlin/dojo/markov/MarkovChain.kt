@@ -6,6 +6,13 @@ class MarkovChain private constructor(private val transitions: Map<String, Map<S
 
     fun followersOf(word: String): Map<String, Double> = transitions[word].orEmpty()
 
+    /** Deuxième partie : un texte de [words] mots, en partant de [startingWith]. */
+    fun generate(words: Int, startingWith: String): String {
+        val text = mutableListOf(startingWith)
+        while (text.size < words) text += followersOf(text.last()).keys.first()
+        return text.joinToString(" ")
+    }
+
     companion object {
         fun learn(text: String): MarkovChain {
             val words = text.split(Regex("\\s+")).filter { it.isNotBlank() }
