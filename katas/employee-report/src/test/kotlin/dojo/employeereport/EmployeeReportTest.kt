@@ -36,4 +36,10 @@ class EmployeeReportTest {
         // Seule la casse compte : chaque nom est en majuscules, quels que soient les noms et leur ordre.
         assertThat(report.sundayWorkers()).isNotEmpty().allSatisfy { assertThat(it).isUpperCase() }
     }
+
+    @Test
+    fun `the whole report, as a readable example`() {
+        // Un seul test fige la sortie complète : il sert de documentation, les autres restent ciblés.
+        assertThat(report.sundayWorkers()).containsExactly("SEPP", "MIKE")
+    }
 }
