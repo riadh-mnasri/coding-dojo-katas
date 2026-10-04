@@ -42,4 +42,15 @@ class OvenTest {
         assertThat(pizza).isEqualTo(Pizza("Margherita", PizzaState.COOKED))
         assertThat(oven.points).isEqualTo(1)
     }
+
+    @Test
+    fun `a pizza left 15 seconds after cooking is burned and earns nothing`() = runTest {
+        val oven = oven()
+        oven.cook("Regina")
+        advanceTimeBy(60_001)
+
+        assertThat(alerts).containsExactly("Regina is cooked!", "Regina is burned!")
+        assertThat(oven.takeOut().state).isEqualTo(PizzaState.BURNED)
+        assertThat(oven.points).isZero()
+    }
 }
