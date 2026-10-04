@@ -47,4 +47,13 @@ class TexasHoldEmTest {
             """.trimIndent(),
         )
     }
+
+    @Test
+    fun `players with equal best hands all win`() {
+        val round = "2c 3d As Ks Qs Js Ts\n4h 5h As Ks Qs Js Ts\n9h 9c As Ks Qs"
+
+        assertThat(TexasHoldEm.announce(round)).isEqualTo(
+            "2c 3d As Ks Qs Js Ts Straight Flush (winner)\n4h 5h As Ks Qs Js Ts Straight Flush (winner)\n9h 9c As Ks Qs",
+        )
+    }
 }
