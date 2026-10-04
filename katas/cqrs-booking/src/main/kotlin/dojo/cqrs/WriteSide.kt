@@ -10,7 +10,11 @@ fun interface BookingListener {
 class WriteRegistry(private val listeners: List<BookingListener>) {
     private val bookings = mutableListOf<Booking>()
 
+    /** Le côté écriture vérifie les règles sur ses propres données, jamais sur le modèle de lecture. */
     fun add(booking: Booking) {
+        check(bookings.none { it.roomName == booking.roomName && it.overlaps(booking) }) {
+            "Room ${booking.roomName} is already booked during that stay"
+        }
         bookings += booking
         listeners.forEach { it.booked(booking) }
     }
