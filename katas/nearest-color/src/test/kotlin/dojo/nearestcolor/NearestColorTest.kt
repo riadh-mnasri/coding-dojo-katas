@@ -30,4 +30,9 @@ class NearestColorTest {
         assertThat(palette.nearest("F42")).isEqualTo("FF0000")
         assertThat(palette.nearest("7A8090")).isEqualTo("808080")
     }
+
+    @Test
+    fun `bonus - finds the farthest colors`() {
+        assertThat(primaries.farthestColors("F00")).containsExactly("0F0", "00F")
+    }
 }
