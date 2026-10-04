@@ -9,7 +9,6 @@ class TripServiceTest {
 
     private val guest: User? = null
     private val anotherUser = User()
-    private var loggedInUser: User? = null
     private val registeredUser = User()
     private val toBrazil = Trip()
 
@@ -18,32 +17,25 @@ class TripServiceTest {
         override fun tripsBy(user: User): List<Trip> = user.trips()
     }
 
-    private inner class TestableTripService : TripService(tripDAO) {
-        override fun loggedUser(): User? = loggedInUser
-    }
+    private val service = TripService(tripDAO)
 
     @Test
     fun `a guest cannot see anybody's trips`() {
-        loggedInUser = guest
-        val service = TestableTripService()
-
-        assertThatThrownBy { service.getTripsByUser(anotherUser) }.isInstanceOf(UserNotLoggedInException::class.java)
+        assertThatThrownBy { service.getFriendTrips(anotherUser, guest) }.isInstanceOf(UserNotLoggedInException::class.java)
     }
 
     @Test
     fun `no trips are shown when the users are not friends`() {
-        loggedInUser = registeredUser
         val stranger = aUser().friendsWith(anotherUser).withTrips(toBrazil).build()
 
-        assertThat(TestableTripService().getTripsByUser(stranger)).isEmpty()
+        assertThat(service.getFriendTrips(stranger, registeredUser)).isEmpty()
     }
 
     @Test
     fun `the trips of a friend are shown`() {
-        loggedInUser = registeredUser
         val friend = aUser().friendsWith(anotherUser, registeredUser).withTrips(toBrazil).build()
 
-        assertThat(TestableTripService().getTripsByUser(friend)).containsExactly(toBrazil)
+        assertThat(service.getFriendTrips(friend, registeredUser)).containsExactly(toBrazil)
     }
 
     private fun aUser() = UserBuilder()
