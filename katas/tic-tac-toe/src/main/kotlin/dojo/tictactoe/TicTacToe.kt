@@ -5,9 +5,11 @@ enum class Player { X, O }
 
 class TicTacToe {
     private val fields = mutableMapOf<Int, Player>()
+    private var current = Player.X
 
     fun play(cell: Int) {
-        fields[cell] = Player.X
+        fields[cell] = current
+        current = if (current == Player.X) Player.O else Player.X
     }
 
     fun ownerOf(cell: Int): Player? = fields[cell]
