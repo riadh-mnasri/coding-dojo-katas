@@ -46,7 +46,7 @@ Non traités : l'algorithme génétique et le recuit simulé.
 
 ## Ce que j'en retiens
 
-Avoir une implémentation de référence et un validateur indépendant a rendu chaque nouvelle approche testable en une ligne (« mêmes solutions que la référence »). Le seul test qui a résisté au premier coup était celui du validateur lui-même, qui n'avait d'abord été vérifié que dans un sens.
+Avoir une implémentation de référence et un validateur indépendant a rendu chaque nouvelle approche testable en une ligne (« mêmes solutions que la référence »). Encore faut-il tester le validateur : il n'avait d'abord été vérifié que sur des plateaux valides, et le test 📌 de l'étape 9 a comblé ce trou.
 
 ## Lancer les tests
 

@@ -46,7 +46,7 @@ Not done: the genetic algorithm and simulated annealing.
 
 ## Takeaways
 
-A reference implementation and an independent validator made every new approach testable in one line ("same solutions as the reference"). The only test that did not pass on first run was the validator's own, first checked in one direction only.
+A reference implementation and an independent validator made every new approach testable in one line ("same solutions as the reference"). The validator still needs testing: it had first been checked on valid boards only, and the 📌 test of step 9 closed that gap.
 
 ## Running the tests
 
