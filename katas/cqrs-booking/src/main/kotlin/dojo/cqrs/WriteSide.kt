@@ -7,7 +7,18 @@ fun interface BookingListener {
 }
 
 /** Côté écriture : la source de vérité des réservations. */
-class WriteRegistry(private val listeners: List<BookingListener>)
+class WriteRegistry(private val listeners: List<BookingListener>) {
+    private val bookings = mutableListOf<Booking>()
+
+    fun add(booking: Booking) {
+        bookings += booking
+        listeners.forEach { it.booked(booking) }
+    }
+}
 
 /** Une commande change l'état et ne renvoie rien. */
-class CommandService(private val registry: WriteRegistry)
+class CommandService(private val registry: WriteRegistry) {
+    fun bookARoom(booking: Booking) {
+        registry.add(booking)
+    }
+}
