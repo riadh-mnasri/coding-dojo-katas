@@ -58,4 +58,13 @@ class SocialNetworkTest {
         assertThat(link).isEqualTo("https://social.example/Thomas/messages/${post.id}")
         assertThat(network.open(link)).isEqualTo(post)
     }
+
+    @Test
+    fun `direct messages - Alice writes privately to Thomas`() {
+        network.sendDirectMessage(from = "Alice", to = "Thomas", text = "Psst")
+
+        assertThat(network.inbox("Thomas").map { it.from to it.text }).containsExactly("Alice" to "Psst")
+        assertThat(network.timeline("Alice")).isEmpty()
+        assertThat(network.inbox("Bob")).isEmpty()
+    }
 }
