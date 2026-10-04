@@ -5,6 +5,11 @@ class Palette(private vararg val colors: String) {
 
     fun nearest(color: String): String = colors.minBy { distance(it, color) }
 
+    fun nearestColors(color: String): List<String> {
+        val best = colors.minOf { distance(it, color) }
+        return colors.filter { distance(it, color) == best }
+    }
+
     /** Distance euclidienne au carré dans l'espace RGB : suffisante pour comparer. */
     private fun distance(a: String, b: String) =
         components(a).zip(components(b)).sumOf { (x, y) -> (x - y) * (x - y) }
