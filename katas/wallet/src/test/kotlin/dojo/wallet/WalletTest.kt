@@ -20,4 +20,11 @@ class WalletTest {
     fun `an empty wallet is worth nothing`() {
         assertThat(Wallet().value(Currency.EUR, rates)).isEqualTo(Value(BigDecimal.ZERO, Currency.EUR))
     }
+
+    @Test
+    fun `a stock is worth its quantity times the rate`() {
+        val wallet = Wallet(Stock(BigDecimal(5), StockType.PETROLEUM))
+
+        assertThat(wallet.value(Currency.EUR, rates).amount).isEqualByComparingTo("312.50")
+    }
 }
