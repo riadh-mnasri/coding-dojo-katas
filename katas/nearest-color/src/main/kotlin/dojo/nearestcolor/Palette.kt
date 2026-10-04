@@ -3,6 +3,11 @@ package dojo.nearestcolor
 
 class Palette(private vararg val colors: String) {
 
+    init {
+        require(colors.isNotEmpty()) { "A palette needs at least one color" }
+        colors.forEach(::components)
+    }
+
     fun nearest(color: String): String = nearestColors(color).first()
 
     /** Partie 2 : toutes les couleurs à égalité de distance minimale, dans l'ordre de la palette. */
@@ -22,6 +27,10 @@ class Palette(private vararg val colors: String) {
         components(a).zip(components(b)).sumOf { (x, y) -> (x - y) * (x - y) }
 
     /** "F42" → [255, 68, 34] (chaque chiffre est doublé, F → FF) ; "FF4422" se lit par paires. */
-    private fun components(color: String) =
-        if (color.length == 3) color.map { "$it$it".toInt(16) } else color.chunked(2).map { it.toInt(16) }
+    private fun components(color: String): List<Int> {
+        require(color.length in setOf(3, 6) && color.all { it.isDigit() || it.uppercaseChar() in 'A'..'F' }) {
+            "A color is 3 or 6 hexadecimal digits, got '$color'"
+        }
+        return if (color.length == 3) color.map { "$it$it".toInt(16) } else color.chunked(2).map { it.toInt(16) }
+    }
 }
