@@ -17,4 +17,11 @@ class TexasHoldEmTest {
         assertThat(TexasHoldEm.rank("9c Ah Ks Kd 9d 3c 6d")).isEqualTo("Two Pair")
         assertThat(TexasHoldEm.rank("4d 2d Ks Kd 9d 3c 6d")).isEqualTo("Flush")
     }
+
+    @Test
+    fun `straights are recognised, the ace also playing low`() {
+        assertThat(TexasHoldEm.rank("5c 6d 7h 8s 9c Kd 2h")).isEqualTo("Straight")
+        assertThat(TexasHoldEm.rank("Ac 2d 3h 4s 5c Kd Kh")).isEqualTo("Straight")
+        assertThat(TexasHoldEm.rank("Tc Jc Qc Kc Ac 2d 3h")).isEqualTo("Straight Flush")
+    }
 }
