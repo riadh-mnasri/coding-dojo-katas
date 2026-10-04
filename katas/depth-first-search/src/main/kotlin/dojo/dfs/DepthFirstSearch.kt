@@ -9,8 +9,13 @@ interface Guide {
 
 class DepthFirstSearch(private val guide: Guide) {
     /** La pile d'appels porte le chemin : on n'a besoin ni de graphe ni de pile explicite. */
-    fun pathFrom(start: String): List<String>? {
-        if (guide.isGoal(start)) return listOf(start)
-        return guide.exitsOf(start).firstNotNullOfOrNull { exit -> pathFrom(exit)?.let { listOf(start) + it } }
+    fun pathFrom(start: String): List<String>? = explore(start, mutableSetOf())
+
+    private fun explore(place: String, visited: MutableSet<String>): List<String>? {
+        visited += place
+        if (guide.isGoal(place)) return listOf(place)
+        return guide.exitsOf(place)
+            .filter { it !in visited }
+            .firstNotNullOfOrNull { exit -> explore(exit, visited)?.let { listOf(place) + it } }
     }
 }
