@@ -3,7 +3,9 @@ package dojo.birthday
 
 import java.time.LocalDate
 
-data class Friend(val lastName: String, val firstName: String, val birthDate: LocalDate, val email: String)
+data class Friend(val lastName: String, val firstName: String, val birthDate: LocalDate, val email: String) {
+    fun hasBirthdayOn(day: LocalDate): Boolean = birthDate.month == day.month && birthDate.dayOfMonth == day.dayOfMonth
+}
 
 data class Message(val to: String, val subject: String, val body: String)
 

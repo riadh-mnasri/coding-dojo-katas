@@ -5,7 +5,7 @@ import java.time.LocalDate
 
 class BirthdayService(private val friends: FriendRepository, private val sender: MessageSender) {
     fun sendGreetings(today: LocalDate) {
-        friends.all().forEach { friend ->
+        friends.all().filter { it.hasBirthdayOn(today) }.forEach { friend ->
             sender.send(Message(friend.email, "Happy birthday!", "Happy birthday, dear ${friend.firstName}!"))
         }
     }
