@@ -17,3 +17,10 @@ class FlatFileFriendRepository(private val file: Path) : FriendRepository {
         val DATE: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
     }
 }
+
+/** Adaptateur du port [MessageSender] : affiche les messages. Un adaptateur SMTP ou SMS prendrait sa place. */
+class ConsoleMessageSender(private val out: java.io.PrintStream = System.out) : MessageSender {
+    override fun send(message: Message) {
+        out.print("To: ${message.to}\nSubject: ${message.subject}\n\n${message.body}\n\n")
+    }
+}
