@@ -8,6 +8,9 @@ class Palette(private vararg val colors: String) {
     /** Partie 2 : toutes les couleurs à égalité de distance minimale, dans l'ordre de la palette. */
     fun nearestColors(color: String): List<String> = closest(color) { distances -> distances.min() }
 
+    /** Bonus : les couleurs les plus éloignées. */
+    fun farthestColors(color: String): List<String> = closest(color) { distances -> distances.max() }
+
     private fun closest(color: String, pick: (List<Int>) -> Int): List<String> {
         val distances = colors.map { distance(it, color) }
         val target = pick(distances)
