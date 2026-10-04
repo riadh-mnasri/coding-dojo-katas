@@ -46,4 +46,9 @@ class QuotesTest {
 
         assertThat(List(3) { quotes.next() }).containsOnly("Only one.")
     }
+
+    @Test
+    fun `the search ignores case`() {
+        assertThat(Quotes(collection, firstOne).next(containing = "SIMPLICITY")).isEqualTo(collection.first())
+    }
 }
