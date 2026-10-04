@@ -8,5 +8,9 @@ interface Guide {
 }
 
 class DepthFirstSearch(private val guide: Guide) {
-    fun pathFrom(start: String): List<String>? = if (guide.isGoal(start)) listOf(start) else null
+    /** La pile d'appels porte le chemin : on n'a besoin ni de graphe ni de pile explicite. */
+    fun pathFrom(start: String): List<String>? {
+        if (guide.isGoal(start)) return listOf(start)
+        return guide.exitsOf(start).firstNotNullOfOrNull { exit -> pathFrom(exit)?.let { listOf(start) + it } }
+    }
 }
