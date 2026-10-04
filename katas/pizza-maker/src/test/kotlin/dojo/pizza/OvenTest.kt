@@ -79,4 +79,11 @@ class OvenTest {
             Pizza("Regina", PizzaState.COOKING),
         )
     }
+
+    @Test
+    fun `an empty oven has no pizza to take out`() = runTest {
+        org.assertj.core.api.Assertions.assertThatThrownBy { oven().takeOut() }
+            .isInstanceOf(IllegalStateException::class.java)
+            .hasMessage("The oven is empty")
+    }
 }
