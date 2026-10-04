@@ -24,4 +24,27 @@ class TexasHoldEmTest {
         assertThat(TexasHoldEm.rank("Ac 2d 3h 4s 5c Kd Kh")).isEqualTo("Straight")
         assertThat(TexasHoldEm.rank("Tc Jc Qc Kc Ac 2d 3h")).isEqualTo("Straight Flush")
     }
+
+    @Test
+    fun `announces the round of the kata`() {
+        val round = """
+            Kc 9s Ks Kd 9d 3c 6d
+            9c Ah Ks Kd 9d 3c 6d
+            Ac Qc Ks Kd 9d 3c
+            9h 5s
+            4d 2d Ks Kd 9d 3c 6d
+            7s Ts Ks Kd 9d
+        """.trimIndent()
+
+        assertThat(TexasHoldEm.announce(round)).isEqualTo(
+            """
+            Kc 9s Ks Kd 9d 3c 6d Full House (winner)
+            9c Ah Ks Kd 9d 3c 6d Two Pair
+            Ac Qc Ks Kd 9d 3c
+            9h 5s
+            4d 2d Ks Kd 9d 3c 6d Flush
+            7s Ts Ks Kd 9d
+            """.trimIndent(),
+        )
+    }
 }
