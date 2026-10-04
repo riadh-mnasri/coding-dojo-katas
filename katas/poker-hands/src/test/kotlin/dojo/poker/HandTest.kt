@@ -12,4 +12,10 @@ class HandTest {
     fun `with high cards, the highest card wins`() {
         assertThat(hand("2C 3H 4S 8C AH")).isGreaterThan(hand("2H 3D 5S 9C KD"))
     }
+
+    @Test
+    fun `with the same highest card, the next cards decide`() {
+        assertThat(hand("2H 3D 5S 9C KD")).isGreaterThan(hand("2C 3H 4S 8C KH"))
+        assertThat(hand("2H 3D 5S 9C KD")).isEqualByComparingTo(hand("2D 3H 5C 9S KH"))
+    }
 }
