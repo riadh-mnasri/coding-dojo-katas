@@ -11,7 +11,6 @@ class ReadRegistry(private val rooms: List<Room>) : BookingListener {
         stays.getOrPut(booking.roomName) { mutableListOf() } += booking
     }
 
-    /** Deux séjours se chevauchent si chacun commence avant la fin de l'autre ; le jour du départ est libre. */
     fun freeRooms(arrival: LocalDate, departure: LocalDate): List<Room> = rooms.filter { room ->
         stays[room.name].orEmpty().none { it.arrival < departure && arrival < it.departure }
     }
