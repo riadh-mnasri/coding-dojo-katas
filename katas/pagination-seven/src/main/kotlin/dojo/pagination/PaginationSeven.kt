@@ -2,6 +2,16 @@
 package dojo.pagination
 
 object PaginationSeven {
-    fun render(page: Int, total: Int): String =
-        (1..total).joinToString(" ") { if (it == page) "($it)" else "$it" }
+    private val ELLIPSIS: Int? = null
+
+    fun render(page: Int, total: Int): String {
+        val slots = if (total <= 7) (1..total).toList() else listOf(1, ELLIPSIS, page - 1, page, page + 1, ELLIPSIS, total)
+        return slots.joinToString(" ") {
+            when (it) {
+                ELLIPSIS -> "…"
+                page -> "($it)"
+                else -> "$it"
+            }
+        }
+    }
 }
