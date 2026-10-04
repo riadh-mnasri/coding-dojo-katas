@@ -11,6 +11,7 @@ object NumbersInWords {
     private val scales = listOf(1_000_000 to "million", 1_000 to "thousand")
 
     fun toWords(number: Int): String {
+        require(number in 0..999_999_999) { "Only 0 to 999,999,999 can be written, got $number" }
         if (number < 1000) return belowThousand(number)
         val words = mutableListOf<String>()
         var rest = number
