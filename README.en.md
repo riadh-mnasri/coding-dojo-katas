@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 44 / 61 katas.**
+**Progress: 45 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -88,7 +88,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | [Markov Chain](katas/markov-chain/README.en.md) | statistics, injected randomness | ✅ done | [codingdojo.org](https://codingdojo.org/kata/MarkovChain/) |
 | [Mars Rover](katas/mars-rover/README.en.md) | commands, obstacles, map parsing | ✅ done | [codingdojo.org](https://codingdojo.org/kata/mars-rover/) |
 | [Mastermind](katas/mastermind/README.en.md) | counting, choosing the next test | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Mastermind/) |
-| Mathematical AST | syntax tree, Visitor | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/mathematical-ast/) |
+| [Mathematical AST](katas/mathematical-ast/README.en.md) | syntax tree, Visitor | ✅ done | [codingdojo.org](https://codingdojo.org/kata/mathematical-ast/) |
 | [Minesweeper](katas/minesweeper/README.en.md) | grids, neighbourhood | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Minesweeper/) |
 | Movie Rental | refactoring (Fowler) | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/movie-rental/) |
 | [Nearest Color](katas/nearest-color/README.en.md) | distance, ties | ✅ done | [codingdojo.org](https://codingdojo.org/kata/NearestColor/) |
