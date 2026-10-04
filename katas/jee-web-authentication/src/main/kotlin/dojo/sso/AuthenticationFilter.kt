@@ -25,9 +25,10 @@ class AuthenticationFilter : Filter {
     override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
         val token = (request as HttpServletRequest).cookies?.firstOrNull { it.name == SSO_COOKIE }?.value
         val userName = request.getParameter("username")
+        val password = request.getParameter("password")
         when {
             token != null && registry.tokenIsValid(token) -> chain.doFilter(request, response)
-            userName != null -> {
+            userName != null && password != null && ldap.credentialsAreValid(userName, password) -> {
                 val newToken = registry.registerNewSession(userName)
                 (response as HttpServletResponse).addCookie(Cookie(SSO_COOKIE, newToken))
                 chain.doFilter(request, response)
