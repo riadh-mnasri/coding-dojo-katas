@@ -25,6 +25,8 @@ object Reversi {
 
     private fun legalSquares(position: String): Set<Pair<Int, Int>> {
         val lines = position.lines()
+        require(lines.size == SIZE + 1 && lines.take(SIZE).all { it.length == SIZE }) { "Expected 8 rows of 8 squares and the player" }
+        require(lines[SIZE] in setOf("B", "W")) { "The last line must be B or W, got '${lines[SIZE]}'" }
         val board = lines.take(SIZE)
         val player = lines[SIZE].single()
         val opponent = if (player == 'B') 'W' else 'B'
