@@ -34,6 +34,7 @@ class Oven(private val scope: CoroutineScope, private val alert: (String) -> Uni
     }
 
     fun takeOut(): Pizza {
+        check(slots.isNotEmpty()) { "The oven is empty" }
         val slot = slots.removeFirst()
         slot.timer?.cancel()
         if (slot.state == PizzaState.COOKED) points++
