@@ -2,6 +2,7 @@
 package dojo.markov
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import kotlin.random.Random
 
@@ -61,5 +62,13 @@ class MarkovChainTest {
 
         // Then
         assertThat(generated).isEqualTo("chat dort le chat dort")
+    }
+
+    @Test
+    fun `a text without any pair of words cannot generate anything longer`() {
+        val chain = MarkovChain.learn("bonjour")
+
+        assertThatThrownBy { chain.generate(words = 3, startingWith = "bonjour") }
+            .isInstanceOf(IllegalStateException::class.java)
     }
 }
