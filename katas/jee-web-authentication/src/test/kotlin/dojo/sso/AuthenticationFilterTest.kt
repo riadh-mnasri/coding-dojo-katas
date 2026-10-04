@@ -54,4 +54,15 @@ class AuthenticationFilterTest {
         verify { response.sendError(HttpServletResponse.SC_UNAUTHORIZED) }
         verify(exactly = 0) { chain.doFilter(any(), any()) }
     }
+
+    @Test
+    fun `a request carrying a valid SSO token goes through`() {
+        val token = registry.registerNewSession("alice")
+        val authenticated = request(cookies = mapOf("SSO_TOKEN" to token))
+
+        filter.doFilter(authenticated, response, chain)
+
+        verify { chain.doFilter(authenticated, response) }
+        verify(exactly = 0) { response.sendError(any()) }
+    }
 }
