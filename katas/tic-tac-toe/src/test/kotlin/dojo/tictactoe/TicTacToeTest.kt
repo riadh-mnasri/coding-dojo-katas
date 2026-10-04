@@ -42,4 +42,11 @@ class TicTacToeTest {
         assertThat(game.winner()).isEqualTo(Player.X)
         assertThat(game.isOver()).isTrue()
     }
+
+    @Test
+    fun `a full column wins`() {
+        play(2, 1, 3, 4, 5, 7)
+
+        assertThat(game.winner()).isEqualTo(Player.O)
+    }
 }
