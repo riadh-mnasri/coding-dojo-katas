@@ -21,4 +21,12 @@ class ReceiptTest {
 
         assertThat(receipt.totalWithoutTaxes).isEqualByComparingTo("40.00")
     }
+
+    @Test
+    fun `slice 3 - Utah adds a 6,85 percent tax`() {
+        val receipt = Receipt(listOf(item("Book", 1, "100")), state = "UT")
+
+        assertThat(receipt.tax).isEqualByComparingTo("6.85")
+        assertThat(receipt.totalPrice).isEqualByComparingTo("106.85")
+    }
 }
