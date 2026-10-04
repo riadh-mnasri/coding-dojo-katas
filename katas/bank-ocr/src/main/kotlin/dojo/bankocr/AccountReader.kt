@@ -51,6 +51,10 @@ object AccountReader {
 
     fun report(entry: String): String = reportNumber(read(entry))
 
+    /** Un fichier est une suite d'entrées de 4 lignes (la quatrième est blanche). */
+    fun reportFile(file: String): String =
+        file.lines().chunked(4).filter { it.size >= 3 }.joinToString("\n") { report(it.joinToString("\n")) }
+
     fun reportNumber(account: String): String = when {
         '?' in account -> "$account ILL"
         !isValid(account) -> "$account ERR"
