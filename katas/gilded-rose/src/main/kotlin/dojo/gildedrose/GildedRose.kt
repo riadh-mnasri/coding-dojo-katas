@@ -16,7 +16,7 @@ class GildedRose(var items: List<Item>) {
             SULFURAS -> Unit
             AGED_BRIE -> ageBrie(item)
             BACKSTAGE_PASSES -> ageBackstagePasses(item)
-            else -> ageNormally(item)
+            else -> if (item.name.startsWith(CONJURED)) ageConjured(item) else ageNormally(item)
         }
     }
 
@@ -25,6 +25,13 @@ class GildedRose(var items: List<Item>) {
         decreaseQuality(item)
         item.sellIn--
         if (item.sellIn < 0) decreaseQuality(item)
+    }
+
+    /** Un objet invoqué se dégrade deux fois plus vite qu'un objet ordinaire. */
+    private fun ageConjured(item: Item) {
+        repeat(2) { decreaseQuality(item) }
+        item.sellIn--
+        if (item.sellIn < 0) repeat(2) { decreaseQuality(item) }
     }
 
     /** Le brie se bonifie : +1 par jour, +2 une fois la date passée. */
@@ -56,5 +63,6 @@ class GildedRose(var items: List<Item>) {
         const val SULFURAS = "Sulfuras, Hand of Ragnaros"
         const val AGED_BRIE = "Aged Brie"
         const val BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert"
+        const val CONJURED = "Conjured"
     }
 }
