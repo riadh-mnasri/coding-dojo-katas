@@ -39,4 +39,12 @@ class PotterTest {
     fun `two sets of four are cheaper than a set of five and a set of three`() {
         assertThat(price(0, 0, 1, 1, 2, 2, 3, 4)).isEqualByComparingTo("51.20")
     }
+
+    @Test
+    fun `big baskets are priced quickly`() {
+        // 5 lots de 4 + 2 lots de 4 valent mieux que 5 lots de 5 + 2 lots de 3... laissons la recherche le prouver.
+        val basket = List(10) { 0 } + List(10) { 1 } + List(10) { 2 } + List(5) { 3 } + List(5) { 4 }
+
+        assertThat(Potter.price(basket)).isEqualByComparingTo("256.00")
+    }
 }
