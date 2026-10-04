@@ -53,4 +53,16 @@ class OvenTest {
         assertThat(oven.takeOut().state).isEqualTo(PizzaState.BURNED)
         assertThat(oven.points).isZero()
     }
+
+    @Test
+    fun `a pizza taken out in time is never announced as burned`() = runTest {
+        val oven = oven()
+        oven.cook("Regina")
+        advanceTimeBy(50_000)
+        oven.takeOut()
+
+        advanceTimeBy(30_000)
+
+        assertThat(alerts).containsExactly("Regina is cooked!")
+    }
 }
