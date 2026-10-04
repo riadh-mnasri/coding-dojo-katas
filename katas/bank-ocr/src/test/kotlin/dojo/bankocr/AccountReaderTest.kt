@@ -56,4 +56,17 @@ class AccountReaderTest {
     fun `user story 4 - guesses the number from one stroke, using the kata fixtures`(case: UseCase) {
         assertThat(AccountReader.reportWithGuesses(case.entry)).isEqualTo(case.expected)
     }
+
+    @Test
+    fun `user story 3 - reports a whole file, one account per line`() {
+        // Given: un fichier fait des entrées de 4 lignes de l'énoncé, mises bout à bout
+        val cases = useCases("use-case-3.txt")
+        val file = cases.joinToString("\n") { it.entry }
+
+        // When
+        val report = AccountReader.reportFile(file)
+
+        // Then
+        assertThat(report).isEqualTo(cases.joinToString("\n") { it.expected })
+    }
 }
