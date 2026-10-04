@@ -13,6 +13,12 @@ data class Request(val id: String, val start: Int, val duration: Int, val price:
  * qui part après son retour (trouvée par dichotomie). On remplit le tableau de la fin vers le début.
  */
 object Lags {
+    /** Une demande par ligne : identifiant, départ, durée, prix. */
+    fun parse(file: String): List<Request> = file.lines().filter { it.isNotBlank() }.map { line ->
+        val (id, start, duration, price) = line.trim().split(Regex("\\s+"))
+        Request(id, start.toInt(), duration.toInt(), price.toInt())
+    }
+
     fun bestGain(requests: List<Request>): Int {
         val sorted = requests.sortedBy { it.start }
         val starts = sorted.map { it.start }
