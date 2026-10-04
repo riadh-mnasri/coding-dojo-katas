@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 48 / 61 katas.**
+**Avancement : 49 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -90,7 +90,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | [Mastermind](katas/mastermind/README.md) | comptage, choix des tests | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Mastermind/) |
 | [Mathematical AST](katas/mathematical-ast/README.md) | arbre syntaxique, Visiteur | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/mathematical-ast/) |
 | [Minesweeper](katas/minesweeper/README.md) | grilles, voisinage | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Minesweeper/) |
-| Movie Rental | refactoring (Fowler) | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/movie-rental/) |
+| [Movie Rental](katas/movie-rental/README.md) | refactoring (Fowler) | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/movie-rental/) |
 | [Nearest Color](katas/nearest-color/README.md) | distance, égalités | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/NearestColor/) |
 | [Nim Game](katas/nim-game/README.md) | règles de jeu, tours | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Nim/) |
 | [Number to LCD](katas/number-to-lcd/README.md) | rendu texte, exigences changeantes | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/NumberToLCD/) |
