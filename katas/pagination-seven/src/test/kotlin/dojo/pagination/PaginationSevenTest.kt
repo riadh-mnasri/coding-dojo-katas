@@ -18,4 +18,10 @@ class PaginationSevenTest {
     fun `part 1 - shows every page up to seven`(page: Int, total: Int, expected: String) {
         assertThat(PaginationSeven.render(page, total)).isEqualTo(expected)
     }
+
+    @ParameterizedTest(name = "page {0} of {1}: {2}")
+    @CsvSource("42, 100, 1 … 41 (42) 43 … 100", "5, 9, 1 … 4 (5) 6 … 9")
+    fun `part 2 - folds far pages into ellipses`(page: Int, total: Int, expected: String) {
+        assertThat(PaginationSeven.render(page, total)).isEqualTo(expected)
+    }
 }
