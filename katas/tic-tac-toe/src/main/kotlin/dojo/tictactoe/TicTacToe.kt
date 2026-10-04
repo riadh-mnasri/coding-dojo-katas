@@ -4,7 +4,13 @@ package dojo.tictactoe
 enum class Player { X, O }
 
 class TicTacToe {
-    fun play(cell: Int): Unit = TODO()
+    private val fields = mutableMapOf<Int, Player>()
+
+    fun play(cell: Int) {
+        fields[cell] = Player.X
+    }
+
+    fun ownerOf(cell: Int): Player? = fields[cell]
 
     fun board(): String = TODO()
 
