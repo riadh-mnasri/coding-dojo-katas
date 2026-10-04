@@ -88,4 +88,19 @@ class DepthFirstSearchTest {
             "Is c the goal?",
         )
     }
+
+    @Test
+    fun `the event-driven search asks at most one question per step and finds the same path`() {
+        val exits = mapOf("R" to listOf("L", "M"), "L" to listOf("a", "b"), "M" to listOf("c", "d"))
+        val guide = ScriptedGuide(exits, goal = "c")
+        val search = StepByStepSearch(guide, start = "R")
+
+        while (search.result == null) {
+            val asked = guide.questions.size
+            search.step()
+            assertThat(guide.questions.size - asked).isLessThanOrEqualTo(1)
+        }
+
+        assertThat(search.result).isEqualTo(Found(listOf("R", "M", "c")))
+    }
 }
