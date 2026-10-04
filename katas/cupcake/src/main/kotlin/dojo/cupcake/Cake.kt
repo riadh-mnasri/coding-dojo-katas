@@ -19,11 +19,11 @@ class Cookie : Cake {
 }
 
 /** Décorateur : une garniture enveloppe un gâteau et complète son nom. */
-abstract class Topping(private val cake: Cake, private val emoji: String) : Cake {
+abstract class Topping(private val cake: Cake, private val emoji: String, private val cost: BigDecimal) : Cake {
     override fun name() = "${cake.name()} ${if (cake is Topping) "and" else "with"} $emoji"
-    override fun price() = cake.price()
+    override fun price() = cake.price() + cost
 }
 
-class Chocolate(cake: Cake) : Topping(cake, "🍫")
+class Chocolate(cake: Cake) : Topping(cake, "🍫", BigDecimal("0.1"))
 
-class Nuts(cake: Cake) : Topping(cake, "🥜")
+class Nuts(cake: Cake) : Topping(cake, "🥜", BigDecimal("0.2"))
