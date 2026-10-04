@@ -65,4 +65,18 @@ class OvenTest {
 
         assertThat(alerts).containsExactly("Regina is cooked!")
     }
+
+    @Test
+    fun `the queue shows every pizza in the oven with its state`() = runTest {
+        val oven = oven()
+        oven.cook("Margherita")
+        advanceTimeBy(30_000)
+        oven.cook("Regina")
+        advanceTimeBy(20_000)
+
+        assertThat(oven.queue()).containsExactly(
+            Pizza("Margherita", PizzaState.COOKED),
+            Pizza("Regina", PizzaState.COOKING),
+        )
+    }
 }
