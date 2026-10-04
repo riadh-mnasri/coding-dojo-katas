@@ -16,9 +16,14 @@ class Receipt(private val items: List<Item>, private val state: String) {
 
     val taxRate: BigDecimal get() = TAX_RATES.getValue(state)
 
-    val tax: BigDecimal get() = totalWithoutTaxes * taxRate / BigDecimal(100)
+    val discount: BigDecimal get() = percentOf(totalWithoutTaxes, discountRate)
 
-    val totalPrice: BigDecimal get() = totalWithoutTaxes + tax
+    val tax: BigDecimal get() = percentOf(totalWithoutTaxes - discount, taxRate)
+
+    val totalPrice: BigDecimal get() = totalWithoutTaxes - discount + tax
+
+    private fun percentOf(amount: BigDecimal, rate: BigDecimal) =
+        (amount * rate).divide(BigDecimal(100), 2, java.math.RoundingMode.HALF_UP)
 
     private companion object {
         val DISCOUNTS = listOf(1_000 to "3", 5_000 to "5", 7_000 to "7", 10_000 to "10", 50_000 to "15")
