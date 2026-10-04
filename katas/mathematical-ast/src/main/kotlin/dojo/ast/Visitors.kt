@@ -20,3 +20,14 @@ object Evaluator : Visitor<Long> {
         }
     }
 }
+
+/** Infixe : chaque opération imbriquée est mise entre parenthèses. */
+object InfixPrinter : Visitor<String> {
+    override fun visit(operand: Operand) = operand.value.toString()
+
+    override fun visit(operation: Operation) =
+        "${nested(operation.left)} ${operation.operator.symbol} ${nested(operation.right)}"
+
+    private fun nested(expression: Expression) =
+        if (expression is Operation) "(${expression.accept(this)})" else expression.accept(this)
+}
