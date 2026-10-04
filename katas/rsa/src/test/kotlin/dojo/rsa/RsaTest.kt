@@ -4,6 +4,7 @@ package dojo.rsa
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import kotlin.random.Random
 
 /** Les valeurs de l'exemple de l'énoncé : p = 51581, q = 60101, c = 66797. */
 class RsaTest {
@@ -63,5 +64,17 @@ class RsaTest {
         assertThatThrownBy { KeyPair.of(p = 3, q = 5, c = 7) }.isInstanceOf(IllegalArgumentException::class.java)
         // c doit être premier avec n = (p − 1)(q − 1), qui est pair : c = 2 n'a pas d'inverse.
         assertThatThrownBy { KeyPair.of(p = 51_581, q = 60_101, c = 2) }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @Test
+    fun `generated keys encrypt and decrypt any message`() {
+        repeat(20) { seed ->
+            val generated = KeyPair.generate(Random(seed))
+            val message = "Rendez-vous à 18 h, quai des Orfèvres".toByteArray()
+
+            val roundTrip = Rsa.decrypt(Rsa.encrypt(message, generated.public), generated.private)
+
+            assertThat(roundTrip).isEqualTo(message)
+        }
     }
 }
