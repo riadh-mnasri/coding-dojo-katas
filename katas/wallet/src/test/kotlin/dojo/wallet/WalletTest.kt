@@ -45,4 +45,11 @@ class WalletTest {
 
         assertThat(wallet.value(Currency.EUR, rates).amount).isEqualByComparingTo("20")
     }
+
+    @Test
+    fun `the value is rounded to cents`() {
+        val wallet = Wallet(Stock(BigDecimal("0.125"), StockType.USD))
+
+        assertThat(wallet.value(Currency.EUR, rates).amount).isEqualTo(BigDecimal("0.12"))
+    }
 }
