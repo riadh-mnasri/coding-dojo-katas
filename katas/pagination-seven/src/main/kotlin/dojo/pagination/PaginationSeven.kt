@@ -14,6 +14,7 @@ object PaginationSeven {
     private val ELLIPSIS: Int? = null
 
     fun render(page: Int, total: Int): String {
+        require(page in 1..total) { "Page $page does not exist in $total pages" }
         val slots = when {
             total <= SLOTS -> (1..total).toList()
             page < EDGE -> (1..EDGE).toList() + listOf(ELLIPSIS, total)
