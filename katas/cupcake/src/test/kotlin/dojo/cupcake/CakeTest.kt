@@ -35,4 +35,12 @@ class CakeTest {
         assertThat(Cupcake().price()).isEqualByComparingTo("1")
         assertThat(Cookie().price()).isEqualByComparingTo("2")
     }
+
+    @Test
+    fun `each topping adds its price`() {
+        assertThat(Chocolate(Cupcake()).price()).isEqualByComparingTo("1.1")
+        assertThat(Chocolate(Cookie()).price()).isEqualByComparingTo("2.1")
+        assertThat(Nuts(Cookie()).price()).isEqualByComparingTo("2.2")
+        assertThat(Nuts(Chocolate(Cookie())).price()).isEqualByComparingTo("2.3")
+    }
 }
