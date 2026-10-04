@@ -35,5 +35,9 @@ class Bundle(private vararg val cakes: Cake) : Cake {
     }
 
     override fun name(): String = cakes.joinToString(", ", prefix = "📦 [", postfix = "]") { it.name() }
-    override fun price(): BigDecimal = cakes.fold(BigDecimal.ZERO) { total, cake -> total + cake.price() } * BigDecimal("0.9")
+    override fun price(): BigDecimal = cakes.fold(BigDecimal.ZERO) { total, cake -> total + cake.price() } * (BigDecimal.ONE - DISCOUNT)
+
+    private companion object {
+        val DISCOUNT = BigDecimal("0.10")
+    }
 }
