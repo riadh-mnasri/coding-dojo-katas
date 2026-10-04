@@ -30,4 +30,19 @@ class NumbersInWordsTest {
     fun `hundreds link the rest with and`(number: Int, words: String) {
         assertThat(NumbersInWords.toWords(number)).isEqualTo(words)
     }
+
+    @ParameterizedTest(name = "{0} is {1}")
+    @CsvSource(
+        "1000, one thousand",
+        "1001, one thousand and one",
+        "1234, one thousand two hundred and thirty four",
+        "20000, twenty thousand",
+        "745000, seven hundred and forty five thousand",
+        "1000000, one million",
+        "2001010, two million one thousand and ten",
+        "999999999, nine hundred and ninety nine million nine hundred and ninety nine thousand nine hundred and ninety nine",
+    )
+    fun `thousands and millions are said group by group`(number: Int, words: String) {
+        assertThat(NumbersInWords.toWords(number)).isEqualTo(words)
+    }
 }
