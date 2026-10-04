@@ -12,3 +12,7 @@ class Cupcake : Cake {
 class Cookie : Cake {
     override fun name() = "🍪"
 }
+
+class Chocolate(private val cake: Cake) : Cake {
+    override fun name() = "${cake.name()} with 🍫"
+}
