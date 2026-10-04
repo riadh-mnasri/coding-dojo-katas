@@ -22,4 +22,20 @@ class LangtonAntTest {
         assertThat(world.colorAt(Position(0, 0))).isEqualTo(BLACK)
         assertThat(world.colorAt(Position(1, 0))).isEqualTo(WHITE)
     }
+
+    @Test
+    fun `on a black square the ant turns left, flips it to white and moves forward`() {
+        // Given: après un premier pas, la case d'origine est noire ; on y ramène la fourmi en quatre pas
+        val world = World()
+        repeat(4) { world.step() }
+        assertThat(world.ant).isEqualTo(Ant(Position(0, 0), Direction.NORTH))
+        assertThat(world.colorAt(Position(0, 0))).isEqualTo(BLACK)
+
+        // When
+        world.step()
+
+        // Then
+        assertThat(world.ant).isEqualTo(Ant(Position(-1, 0), Direction.WEST))
+        assertThat(world.colorAt(Position(0, 0))).isEqualTo(WHITE)
+    }
 }
