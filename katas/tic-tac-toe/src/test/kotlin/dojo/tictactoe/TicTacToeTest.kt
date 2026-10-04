@@ -56,4 +56,12 @@ class TicTacToeTest {
 
         assertThat(game.winner()).isEqualTo(Player.X)
     }
+
+    @Test
+    fun `the game is over when every field is taken, even without a winner`() {
+        play(1, 2, 3, 5, 4, 6, 8, 7, 9)
+
+        assertThat(game.winner()).isNull()
+        assertThat(game.isOver()).isTrue()
+    }
 }
