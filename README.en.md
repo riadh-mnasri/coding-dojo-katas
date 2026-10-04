@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 53 / 61 katas.**
+**Progress: 54 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -101,7 +101,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | Pizza Maker | async, virtual time | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/pizza-maker/) |
 | [Poker Hands](katas/poker-hands/README.en.md) | ranking and comparison | ✅ done | [codingdojo.org](https://codingdojo.org/kata/PokerHands/) |
 | [Potter](katas/potter/README.en.md) | discount optimisation | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Potter/) |
-| Quote of the Day | minimal web service | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/QotdCgi/) |
+| [Quote of the Day](katas/quote-of-the-day/README.en.md) | minimal web service | ✅ done | [codingdojo.org](https://codingdojo.org/kata/QotdCgi/) |
 | [Range](katas/range/README.en.md) | value object, bounds | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Range/) |
 | [Reversi](katas/reversi/README.en.md) | legal moves, directions | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Reversi/) |
 | [Roman Calculator](katas/roman-calculator/README.en.md) | finding the next test | ✅ done | [codingdojo.org](https://codingdojo.org/kata/RomanCalculator/) |
