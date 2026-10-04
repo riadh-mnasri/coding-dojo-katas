@@ -43,4 +43,14 @@ class ReceiptTest {
 
         assertThat(receipt.discountRate).isEqualByComparingTo(rate)
     }
+
+    @org.junit.jupiter.api.Test
+    fun `slice 6 - the tax applies to the discounted amount`() {
+        // 2 000 HT, remise 3 % = 60, reste 1 940 ; taxe Texas 6,25 % de 1 940 = 121,25 ; total 2 061,25.
+        val receipt = Receipt(listOf(item("Laptop", 2, "1000")), state = "TX")
+
+        assertThat(receipt.discount).isEqualByComparingTo("60.00")
+        assertThat(receipt.tax).isEqualByComparingTo("121.25")
+        assertThat(receipt.totalPrice).isEqualByComparingTo("2061.25")
+    }
 }
