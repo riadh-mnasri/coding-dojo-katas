@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 54 / 61 katas.**
+**Avancement : 55 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -80,7 +80,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | [Gilded Rose](katas/gilded-rose/README.md) | code legacy, tests de caractérisation | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/gilded-rose/) |
 | [Greed](katas/greed/README.md) | règles de score | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Greed/) |
 | [Hello](katas/hello/README.md) | doublures de test | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Hello/) |
-| JEE Web Authentication | mocks vs stubs, filtres servlet | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/JEEWebAuthentication/) |
+| [JEE Web Authentication](katas/jee-web-authentication/README.md) | mocks vs stubs, filtres servlet | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/JEEWebAuthentication/) |
 | [Lags](katas/lags/README.md) | programmation dynamique | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Lags/) |
 | [Langton Ant](katas/langton-ant/README.md) | automate cellulaire, règles extensibles | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/LangtonAnt/) |
 | [Leap Years](katas/leap-years/README.md) | règles et exceptions | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/LeapYears/) |
