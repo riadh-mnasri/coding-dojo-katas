@@ -83,4 +83,9 @@ class MarsRoverTest {
     fun `an unknown command is rejected`() {
         assertThatThrownBy { Mission.parse("➡️").execute("⬇️") }.isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @Test
+    fun `a map must show the rover`() {
+        assertThatThrownBy { Mission.parse("🟩🟩\n🟩🟩") }.isInstanceOf(IllegalArgumentException::class.java)
+    }
 }
