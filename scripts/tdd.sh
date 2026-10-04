@@ -69,7 +69,13 @@ if [ "$phase" = red ]; then
   if [ -n "$compile_errors" ]; then
     body=$(printf 'Red (compilation):\n%s' "$compile_errors")
   else
-    body=$(printf 'Red:\n%s' "$(failures)")
+    failing=$(failures)
+    if [ -z "$failing" ]; then
+      echo "$output" | grep -vE '^\s*$|^> Task' | head -15 >&2
+      echo "Refusé : la suite échoue sans erreur de compilation ni test en échec (problème de build ou de dépendances ?)." >&2
+      exit 1
+    fi
+    body=$(printf 'Red:\n%s' "$failing")
   fi
 else
   if [ $status -ne 0 ]; then
