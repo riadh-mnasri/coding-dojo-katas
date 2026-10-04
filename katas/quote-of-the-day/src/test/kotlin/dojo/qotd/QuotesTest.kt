@@ -39,4 +39,11 @@ class QuotesTest {
         assertThat(quotes.next(containing = "people")).isEqualTo("Programs must be written for people to read.")
         assertThat(quotes.next(containing = "nothing like this")).isNull()
     }
+
+    @Test
+    fun `a collection of one quote gives it every time`() {
+        val quotes = Quotes(listOf("Only one."), firstOne)
+
+        assertThat(List(3) { quotes.next() }).containsOnly("Only one.")
+    }
 }
