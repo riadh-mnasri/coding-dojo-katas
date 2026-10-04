@@ -56,4 +56,11 @@ class TexasHoldEmTest {
             "2c 3d As Ks Qs Js Ts Straight Flush (winner)\n4h 5h As Ks Qs Js Ts Straight Flush (winner)\n9h 9c As Ks Qs",
         )
     }
+
+    @Test
+    fun `the kicker decides between equal pairs`() {
+        val round = "Ah 2c Kd Kc 9s 7d 4h\nQh 3c Kd Kc 9s 7d 4h"
+
+        assertThat(TexasHoldEm.announce(round)).isEqualTo("Ah 2c Kd Kc 9s 7d 4h Pair (winner)\nQh 3c Kd Kc 9s 7d 4h Pair")
+    }
 }
