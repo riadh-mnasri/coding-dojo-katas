@@ -25,6 +25,9 @@ object NumbersInWords {
         return words.joinToString(" ")
     }
 
+    /** Le montant d'un chèque, comme dans l'énoncé : « seven hundred and forty five dollars ». */
+    fun dollars(amount: Int): String = toWords(amount) + if (amount == 1) " dollar" else " dollars"
+
     /** Étape 2 : relit les mots en accumulant le groupe courant, multiplié par chaque échelle rencontrée. */
     fun toNumber(words: String): Int {
         var total = 0
