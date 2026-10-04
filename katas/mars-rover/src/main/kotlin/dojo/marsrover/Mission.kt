@@ -14,7 +14,7 @@ data class Position(val x: Int, val y: Int)
 
 data class Rover(val position: Position, val direction: Direction)
 
-class Mission private constructor(val rover: Rover) {
+class Mission private constructor(val rover: Rover, private val rows: List<List<String>>) {
 
     fun execute(commands: String): Rover {
         var current = rover
@@ -22,7 +22,8 @@ class Mission private constructor(val rover: Rover) {
             when (command) {
                 "⬆" -> {
                     val p = current.position
-                    current = current.copy(position = Position(p.x + current.direction.dx, p.y + current.direction.dy))
+                    val next = Position(p.x + current.direction.dx, p.y + current.direction.dy)
+                    if (rows.getOrNull(next.y)?.getOrNull(next.x) !in OBSTACLES) current = current.copy(position = next)
                 }
                 "➡" -> current = current.copy(direction = current.direction.right())
                 "⬅" -> current = current.copy(direction = current.direction.left())
@@ -33,6 +34,7 @@ class Mission private constructor(val rover: Rover) {
 
     companion object {
         private const val VARIATION_SELECTOR = 0xFE0F
+        private val OBSTACLES = setOf("🌳", "🪨")
 
         fun parse(map: String): Mission {
             val rows = map.lines().reversed().map(::tiles)
@@ -41,7 +43,7 @@ class Mission private constructor(val rover: Rover) {
                     Direction.entries.firstOrNull { it.arrow == tile }?.let { Rover(Position(x, y), it) }
                 }
             }
-            return Mission(rover)
+            return Mission(rover, rows)
         }
 
         /** Une tuile = un émoji ; certains tiennent sur deux `char`, d'autres portent un sélecteur de variante. */
