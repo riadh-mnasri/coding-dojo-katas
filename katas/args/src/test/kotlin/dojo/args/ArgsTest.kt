@@ -64,4 +64,13 @@ class ArgsTest {
             .isInstanceOf(ArgsException::class.java)
             .hasMessage(message)
     }
+
+    @Test
+    fun `reads lists of strings and of integers`() {
+        val args = Args("g[*],n[#]", listOf("-g", "this,is,a,list", "-n", "1,2,-3,5"))
+
+        assertThat(args.strings('g')).containsExactly("this", "is", "a", "list")
+        assertThat(args.ints('n')).containsExactly(1, 2, -3, 5)
+        assertThat(Args("g[*],n[#]", emptyList()).ints('n')).isEmpty()
+    }
 }
