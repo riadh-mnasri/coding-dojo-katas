@@ -65,4 +65,15 @@ class AuthenticationFilterTest {
         verify { chain.doFilter(authenticated, response) }
         verify(exactly = 0) { response.sendError(any()) }
     }
+
+    @Test
+    fun `valid credentials open an SSO session and set its cookie`() {
+        val login = request(parameters = mapOf("username" to "alice", "password" to "secret"))
+
+        filter.doFilter(login, response, chain)
+
+        verify { chain.doFilter(login, response) }
+        verify { response.addCookie(match { it.name == "SSO_TOKEN" && it.value == "token-of-alice" }) }
+        org.assertj.core.api.Assertions.assertThat(registry.sessions).containsEntry("token-of-alice", "alice")
+    }
 }
