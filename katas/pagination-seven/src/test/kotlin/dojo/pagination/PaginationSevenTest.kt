@@ -30,4 +30,10 @@ class PaginationSevenTest {
     fun `part 3 - no ellipsis needed at the start`(page: Int, total: Int, expected: String) {
         assertThat(PaginationSeven.render(page, total)).isEqualTo(expected)
     }
+
+    @ParameterizedTest(name = "page {0} of {1}: {2}")
+    @CsvSource("8, 9, 1 … 5 6 7 (8) 9", "6, 9, 1 … 5 (6) 7 8 9", "100, 100, 1 … 96 97 98 99 (100)")
+    fun `part 4 - no ellipsis needed at the end`(page: Int, total: Int, expected: String) {
+        assertThat(PaginationSeven.render(page, total)).isEqualTo(expected)
+    }
 }
