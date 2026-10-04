@@ -16,6 +16,7 @@ object Evaluator : Visitor<Long> {
         val right = operation.right.accept(this)
         return when (operation.operator) {
             Operator.ADD -> left + right
+            Operator.SUBTRACT -> left - right
             Operator.MULTIPLY -> left * right
         }
     }
@@ -38,11 +39,13 @@ object MinimalInfixPrinter : Visitor<String> {
 
     override fun visit(operation: Operation): String {
         val precedence = operation.operator.precedence
-        return "${wrapped(operation.left, precedence)} ${operation.operator.symbol} ${wrapped(operation.right, precedence)}"
+        val right = if (operation.operator.associative) precedence else precedence + 1
+        return "${wrapped(operation.left, precedence)} ${operation.operator.symbol} ${wrapped(operation.right, right)}"
     }
 
-    private fun wrapped(child: Expression, parentPrecedence: Int): String {
+    /** Parenthèses si l'enfant lie moins fort que [required]. */
+    private fun wrapped(child: Expression, required: Int): String {
         val text = child.accept(this)
-        return if (child is Operation && child.operator.precedence < parentPrecedence) "($text)" else text
+        return if (child is Operation && child.operator.precedence < required) "($text)" else text
     }
 }

@@ -15,9 +15,11 @@ data class Operand(val value: Long) : Expression {
     override fun <R> accept(visitor: Visitor<R>) = visitor.visit(this)
 }
 
-enum class Operator(val symbol: String, val precedence: Int, private vararg val aliases: String) {
-    ADD("+", 1),
-    MULTIPLY("×", 2, "*"),
+/** [associative] : (a op b) op c = a op (b op c), donc pas de parenthèses à droite à priorité égale. */
+enum class Operator(val symbol: String, val precedence: Int, val associative: Boolean, private vararg val aliases: String) {
+    ADD("+", 1, true),
+    SUBTRACT("-", 1, false),
+    MULTIPLY("×", 2, true, "*"),
     ;
 
     fun isWrittenAs(token: String) = token == symbol || token in aliases
