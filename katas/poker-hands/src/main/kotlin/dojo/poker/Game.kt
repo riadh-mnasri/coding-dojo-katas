@@ -6,7 +6,8 @@ object Game {
     private val NAMES = mapOf(10 to "10", 11 to "Jack", 12 to "Queen", 13 to "King", 14 to "Ace")
 
     fun judge(line: String): String {
-        val (black, white) = Regex("""Black: (.+?)\s+White: (.+)""").matchEntire(line.trim())!!.destructured
+        val (black, white) = Regex("""Black: (.+?)\s+White: (.+)""").matchEntire(line.trim())?.destructured
+            ?: throw IllegalArgumentException("Expected 'Black: <5 cards>  White: <5 cards>', got '$line'")
         val blackHand = Hand.parse(black)
         val whiteHand = Hand.parse(white)
         return when {

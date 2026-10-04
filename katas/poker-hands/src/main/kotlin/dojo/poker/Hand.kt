@@ -36,8 +36,13 @@ class Hand private constructor(values: List<Int>, suits: List<Char>) : Comparabl
     companion object {
         private const val VALUES = "23456789TJQKA"
 
+        private const val SUITS = "CDHS"
+
         fun parse(cards: String): Hand {
-            val parsed = cards.split(" ")
+            val parsed = cards.trim().split(Regex("\\s+"))
+            require(parsed.size == 5) { "A hand has 5 cards, got '$cards'" }
+            require(parsed.all { it.length == 2 && it[0] in VALUES && it[1] in SUITS }) { "Unknown card in '$cards'" }
+            require(parsed.toSet().size == 5) { "A card appears twice in '$cards'" }
             return Hand(parsed.map { VALUES.indexOf(it[0]) + 2 }, parsed.map { it[1] })
         }
     }
