@@ -12,4 +12,9 @@ class ArgsTest {
 
         assertThat(args.boolean('l')).isTrue()
     }
+
+    @Test
+    fun `an absent boolean flag is false`() {
+        assertThat(Args("l", emptyList()).boolean('l')).isFalse()
+    }
 }
