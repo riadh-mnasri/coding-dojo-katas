@@ -29,4 +29,13 @@ class BirthdayServiceTest {
 
         assertThat(outbox.sent).isEmpty()
     }
+
+    @Test
+    fun `a friend is greeted on their birthday`() {
+        val john = Friend("Doe", "John", LocalDate.of(1982, 10, 8), "john.doe@foobar.com")
+
+        service(john).sendGreetings(LocalDate.of(2026, 10, 8))
+
+        assertThat(outbox.sent).containsExactly(Message("john.doe@foobar.com", "Happy birthday!", "Happy birthday, dear John!"))
+    }
 }
