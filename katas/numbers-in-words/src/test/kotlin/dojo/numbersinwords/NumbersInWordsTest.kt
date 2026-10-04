@@ -72,4 +72,10 @@ class NumbersInWordsTest {
         assertThatThrownBy { NumbersInWords.toWords(-1) }.isInstanceOf(IllegalArgumentException::class.java)
         assertThatThrownBy { NumbersInWords.toWords(1_000_000_000) }.isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @ParameterizedTest(name = "{0} is {1}")
+    @CsvSource("745, seven hundred and forty five dollars", "1, one dollar", "0, zero dollars")
+    fun `writes a cheque amount`(amount: Int, words: String) {
+        assertThat(NumbersInWords.dollars(amount)).isEqualTo(words)
+    }
 }
