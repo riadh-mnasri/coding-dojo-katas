@@ -31,4 +31,15 @@ class SocialNetwork(private val clock: () -> Instant) {
     }
 
     fun mentionsOf(user: String): List<Post> = posts.filter { user in it.mentions }.sortedByDescending { it.at }
+
+    fun linkTo(post: Post): String = "$BASE_URL/${post.author}/messages/${post.id}"
+
+    fun open(link: String): Post {
+        val id = link.substringAfterLast("/messages/").toIntOrNull()
+        return posts.firstOrNull { it.id == id && link == linkTo(it) } ?: throw IllegalArgumentException("No message at $link")
+    }
+
+    private companion object {
+        const val BASE_URL = "https://social.example"
+    }
 }
