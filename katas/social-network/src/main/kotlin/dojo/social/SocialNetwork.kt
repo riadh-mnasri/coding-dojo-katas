@@ -12,9 +12,12 @@ data class Post(val id: Int, val author: String, val text: String, val at: Insta
     }
 }
 
+data class DirectMessage(val from: String, val to: String, val text: String, val at: Instant)
+
 class SocialNetwork(private val clock: () -> Instant) {
     private val posts = mutableListOf<Post>()
     private val following = mutableMapOf<String, MutableSet<String>>()
+    private val directMessages = mutableListOf<DirectMessage>()
 
     fun post(author: String, text: String): Post = Post(posts.size + 1, author, text, clock()).also { posts += it }
 
@@ -31,6 +34,13 @@ class SocialNetwork(private val clock: () -> Instant) {
     }
 
     fun mentionsOf(user: String): List<Post> = posts.filter { user in it.mentions }.sortedByDescending { it.at }
+
+    /** Un message privé ne figure dans aucune timeline : seul le destinataire le voit, dans sa boîte. */
+    fun sendDirectMessage(from: String, to: String, text: String) {
+        directMessages += DirectMessage(from, to, text, clock())
+    }
+
+    fun inbox(user: String): List<DirectMessage> = directMessages.filter { it.to == user }.sortedByDescending { it.at }
 
     fun linkTo(post: Post): String = "$BASE_URL/${post.author}/messages/${post.id}"
 
