@@ -34,4 +34,9 @@ class PotterTest {
         assertThat(price(0, 0, 1, 2, 2, 3)).isEqualByComparingTo("40.80")
         assertThat(price(0, 1, 1, 2, 3, 4)).isEqualByComparingTo("38.00")
     }
+
+    @Test
+    fun `two sets of four are cheaper than a set of five and a set of three`() {
+        assertThat(price(0, 0, 1, 1, 2, 2, 3, 4)).isEqualByComparingTo("51.20")
+    }
 }
