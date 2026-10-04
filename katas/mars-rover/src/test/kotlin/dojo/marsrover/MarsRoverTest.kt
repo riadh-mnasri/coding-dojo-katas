@@ -3,6 +3,7 @@ package dojo.marsrover
 
 import dojo.marsrover.Direction.EAST
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class MarsRoverTest {
@@ -74,7 +75,7 @@ class MarsRoverTest {
             """.trimIndent(),
         )
 
-        // Tout au nord, deux cases vers l'est, puis le rocher en (2, 4) bloque la dernière avancée vers l'est.
+        // Tout au nord (le bord arrête la 5e avancée), une case vers l'est, le rocher en (2, 4) bloque, puis demi-tour vers le sud.
         assertThat(mission.execute("⬆️⬆️⬆️⬆️⬆️➡️⬆️⬆️⬅️⬅️⬅️⬆️")).isEqualTo(Rover(Position(1, 3), Direction.SOUTH))
     }
 }
