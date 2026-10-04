@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 45 / 61 katas.**
+**Avancement : 46 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -68,7 +68,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | [Code Cracker](katas/code-cracker/README.md) | substitution, aller-retour | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/CodeCracker/) |
 | CQRS Booking | CQRS, séparation lecture/écriture | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/CQRS_Booking/) |
 | [Cupcake](katas/cupcake/README.md) | patterns Décorateur et Composite | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/cupcake/) |
-| Depth First Search | récursion, conversation simulée | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/DepthFirstSearch/) |
+| [Depth First Search](katas/depth-first-search/README.md) | récursion, conversation simulée | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/DepthFirstSearch/) |
 | [Diamond](katas/diamond/README.md) | tests de propriétés | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Diamond/) |
 | [Dictionary Replacer](katas/dictionary-replacer/README.md) | remplacement de chaînes | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/DictionaryReplacer/) |
 | [Eight Queens](katas/eight-queens/README.md) | backtracking, parcours d'arbre | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/eight-queens/) |
