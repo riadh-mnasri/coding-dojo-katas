@@ -2,6 +2,7 @@
 package dojo.reversi
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class ReversiTest {
@@ -60,5 +61,12 @@ class ReversiTest {
             B
             """.trimIndent(),
         )
+    }
+
+    @Test
+    fun `a position is eight rows of eight squares and a player`() {
+        assertThatThrownBy { Reversi.legalMoves("........\nB") }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { Reversi.legalMoves(position(emptyMap(), 'X')) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { Reversi.legalMoves(position(mapOf(1 to "..."), 'B')) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
