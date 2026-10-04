@@ -13,24 +13,7 @@ class Customer(val name: String) {
         var result = "Rental Record for " + name + "\n"
 
         for (each in rentals) {
-            var thisAmount = 0.0
-
-            // determine amounts for each line
-            when (each.movie.priceCode) {
-                Movie.REGULAR -> {
-                    thisAmount += 2.0
-                    if (each.daysRented > 2) {
-                        thisAmount += (each.daysRented - 2) * 1.5
-                    }
-                }
-                Movie.NEW_RELEASE -> thisAmount += (each.daysRented * 3).toDouble()
-                Movie.CHILDRENS -> {
-                    thisAmount += 1.5
-                    if (each.daysRented > 3) {
-                        thisAmount += (each.daysRented - 3) * 1.5
-                    }
-                }
-            }
+            val thisAmount = each.charge()
 
             // add frequent renter points
             frequentRenterPoints++
