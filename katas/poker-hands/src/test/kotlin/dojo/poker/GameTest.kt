@@ -2,6 +2,7 @@
 package dojo.poker
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -24,5 +25,20 @@ class GameTest {
     )
     fun `announces the winner and why, as in the kata`(line: String, expected: String) {
         assertThat(Game.judge(line)).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+        delimiter = '|',
+        value = [
+            "Black 2H 3D 5S 9C KD White 2C 3H 4S 8C AH",
+            "Black: 2H 3D 5S 9C  White: 2C 3H 4S 8C AH",
+            "Black: 2H 3D 5S 9C 1D  White: 2C 3H 4S 8C AH",
+            "Black: 2H 3D 5S 9C KX  White: 2C 3H 4S 8C AH",
+            "Black: 2H 2H 5S 9C KD  White: 2C 3H 4S 8C AH",
+        ],
+    )
+    fun `rejects malformed lines and hands`(line: String) {
+        assertThatThrownBy { Game.judge(line) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
