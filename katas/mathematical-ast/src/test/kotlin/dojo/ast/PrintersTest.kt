@@ -36,4 +36,15 @@ class PrintersTest {
         assertThat(Mathematical.parse("3 6 2 - -").accept(MinimalInfixPrinter)).isEqualTo("3 - (6 - 2)")
         assertThat(Mathematical.parse("3 6 2 - -").accept(Evaluator)).isEqualTo(-1L)
     }
+
+    @Test
+    fun `step 4 - the exponent groups to the right`() {
+        val leftGrouped = Mathematical.parse("2 3 ^ 2 ^")
+        val rightGrouped = Mathematical.parse("2 3 2 ^ ^")
+
+        assertThat(leftGrouped.accept(MinimalInfixPrinter)).isEqualTo("(2 ^ 3) ^ 2")
+        assertThat(leftGrouped.accept(Evaluator)).isEqualTo(64L)
+        assertThat(rightGrouped.accept(MinimalInfixPrinter)).isEqualTo("2 ^ 3 ^ 2")
+        assertThat(rightGrouped.accept(Evaluator)).isEqualTo(512L)
+    }
 }
