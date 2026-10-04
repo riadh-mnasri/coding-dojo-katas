@@ -4,5 +4,5 @@ package dojo.potter
 import java.math.BigDecimal
 
 object Potter {
-    fun price(books: List<Int>): BigDecimal = BigDecimal.ZERO
+    fun price(books: List<Int>): BigDecimal = BigDecimal(8) * BigDecimal(books.size)
 }
