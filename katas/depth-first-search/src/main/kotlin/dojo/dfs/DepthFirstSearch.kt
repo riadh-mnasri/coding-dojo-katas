@@ -8,5 +8,5 @@ interface Guide {
 }
 
 class DepthFirstSearch(private val guide: Guide) {
-    fun pathFrom(start: String): List<String>? = listOf(start)
+    fun pathFrom(start: String): List<String>? = if (guide.isGoal(start)) listOf(start) else null
 }
