@@ -11,12 +11,15 @@ class Hand private constructor(values: List<Int>, suits: List<Char>) : Comparabl
     private val shape = groups.map { it.value }
     private val ordered = groups.map { it.key }
 
+    private val isFlush = suits.toSet().size == 1
+    private val isStraight = shape.size == 5 && ordered.first() - ordered.last() == 4
+
     val category: Category = when {
-        suits.toSet().size == 1 && shape.size == 5 && ordered.first() - ordered.last() == 4 -> Category.STRAIGHT_FLUSH
+        isFlush && isStraight -> Category.STRAIGHT_FLUSH
         shape == listOf(4, 1) -> Category.FOUR_OF_A_KIND
         shape == listOf(3, 2) -> Category.FULL_HOUSE
-        suits.toSet().size == 1 -> Category.FLUSH
-        shape.size == 5 && ordered.first() - ordered.last() == 4 -> Category.STRAIGHT
+        isFlush -> Category.FLUSH
+        isStraight -> Category.STRAIGHT
         shape == listOf(3, 1, 1) -> Category.THREE_OF_A_KIND
         shape == listOf(2, 2, 1) -> Category.TWO_PAIRS
         shape == listOf(2, 1, 1, 1) -> Category.PAIR
