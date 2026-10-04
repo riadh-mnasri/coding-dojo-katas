@@ -50,4 +50,19 @@ class DepthFirstSearchTest {
 
         assertThat(DepthFirstSearch(guide).pathFrom("A")).containsExactly("A", "C", "D")
     }
+
+    @Test
+    fun `a 3x3 maze with corridors both ways does not loop forever`() {
+        // A B C
+        // D E F
+        // G H I    Les couloirs se parcourent dans les deux sens, donc le labyrinthe a des boucles.
+        val corridors = listOf("A" to "B", "B" to "C", "A" to "D", "B" to "E", "D" to "E", "E" to "H", "G" to "H", "H" to "I")
+        val exits = (corridors + corridors.map { (a, b) -> b to a }).groupBy({ it.first }, { it.second })
+        val guide = ScriptedGuide(exits, goal = "I")
+
+        val path = DepthFirstSearch(guide).pathFrom("A")
+
+        assertThat(path).isNotNull().startsWith("A").endsWith("I").doesNotHaveDuplicates()
+        path!!.zipWithNext().forEach { (from, to) -> assertThat(exits.getValue(from)).contains(to) }
+    }
 }
