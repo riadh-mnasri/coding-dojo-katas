@@ -6,7 +6,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
 
-enum class PizzaState { COOKING, COOKED }
+enum class PizzaState { COOKING, COOKED, BURNED }
 
 data class Pizza(val recipe: String, val state: PizzaState)
 
@@ -24,6 +24,9 @@ class Oven(private val scope: CoroutineScope, private val alert: (String) -> Uni
             delay(45.seconds)
             slot.state = PizzaState.COOKED
             alert("$recipe is cooked!")
+            delay(15.seconds)
+            slot.state = PizzaState.BURNED
+            alert("$recipe is burned!")
         }
     }
 
