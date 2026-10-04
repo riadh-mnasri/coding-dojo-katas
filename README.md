@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 31 / 61 katas.**
+**Avancement : 32 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -85,7 +85,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | [Langton Ant](katas/langton-ant/README.md) | automate cellulaire, règles extensibles | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/LangtonAnt/) |
 | [Leap Years](katas/leap-years/README.md) | règles et exceptions | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/LeapYears/) |
 | [Manhattan Distance](katas/manhattan-distance/README.md) | objets sans getters (Tell, don't ask) | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/manhattan-distance/) |
-| Markov Chain | statistiques, aléatoire injecté | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/MarkovChain/) |
+| [Markov Chain](katas/markov-chain/README.md) | statistiques, aléatoire injecté | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/MarkovChain/) |
 | Mars Rover | commandes, obstacles, parsing de carte | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/mars-rover/) |
 | [Mastermind](katas/mastermind/README.md) | comptage, choix des tests | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Mastermind/) |
 | Mathematical AST | arbre syntaxique, Visiteur | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/mathematical-ast/) |
