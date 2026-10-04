@@ -30,6 +30,10 @@ class Nuts(cake: Cake) : Topping(cake, "🥜", BigDecimal("0.2"))
 
 /** Composite : un lot de gâteaux, lui-même vendu comme un gâteau (on peut donc faire des lots de lots). */
 class Bundle(private vararg val cakes: Cake) : Cake {
+    init {
+        require(cakes.isNotEmpty()) { "A bundle holds at least one cake" }
+    }
+
     override fun name(): String = cakes.joinToString(", ", prefix = "📦 [", postfix = "]") { it.name() }
     override fun price(): BigDecimal = cakes.fold(BigDecimal.ZERO) { total, cake -> total + cake.price() } * BigDecimal("0.9")
 }
