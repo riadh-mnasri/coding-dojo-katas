@@ -12,4 +12,9 @@ class CakeTest {
 
         assertThat(cake.name()).isEqualTo("🧁")
     }
+
+    @Test
+    fun `a cookie is a cake too`() {
+        assertThat(Cookie().name()).isEqualTo("🍪")
+    }
 }
