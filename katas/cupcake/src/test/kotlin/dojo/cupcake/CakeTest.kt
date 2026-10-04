@@ -43,4 +43,11 @@ class CakeTest {
         assertThat(Nuts(Cookie()).price()).isEqualByComparingTo("2.2")
         assertThat(Nuts(Chocolate(Cookie())).price()).isEqualByComparingTo("2.3")
     }
+
+    @Test
+    fun `a bundle costs ten percent less than its cakes`() {
+        assertThat(Bundle(Cupcake()).price()).isEqualByComparingTo("0.9")
+        assertThat(Bundle(Cupcake(), Cookie()).price()).isEqualByComparingTo("2.7")
+        assertThat(Bundle(Cupcake(), Cupcake(), Cookie()).price()).isEqualByComparingTo("3.6")
+    }
 }
