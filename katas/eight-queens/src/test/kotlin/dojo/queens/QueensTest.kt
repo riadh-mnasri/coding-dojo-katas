@@ -25,4 +25,9 @@ class QueensTest {
         assertThat(solutions).hasSize(92).doesNotHaveDuplicates()
         assertThat(solutions).allSatisfy { solution -> assertThat(Board(solution).isValid()).isTrue() }
     }
+
+    @Test
+    fun `a breadth-first walk finds the same solutions`() {
+        assertThat(BreadthFirst.solutions(8)).containsExactlyInAnyOrderElementsOf(DepthFirst.solutions(8))
+    }
 }
