@@ -14,4 +14,9 @@ class ReversiTest {
     fun `no opponent piece means no legal move`() {
         assertThat(Reversi.legalMoves(position(mapOf(4 to "...B...."), 'B'))).isEmpty()
     }
+
+    @Test
+    fun `a move is legal when it flips an opponent piece on the same row`() {
+        assertThat(Reversi.legalMoves(position(mapOf(4 to "...BW..."), 'B'))).containsExactly("F4")
+    }
 }
