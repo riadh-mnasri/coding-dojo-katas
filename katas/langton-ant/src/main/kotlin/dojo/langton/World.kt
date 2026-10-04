@@ -8,6 +8,8 @@ enum class Direction(val dx: Int, val dy: Int) {
     NORTH(0, -1), EAST(1, 0), SOUTH(0, 1), WEST(-1, 0);
 
     fun right() = entries[(ordinal + 1) % entries.size]
+
+    fun left() = entries[(ordinal + entries.size - 1) % entries.size]
 }
 
 data class Position(val x: Int, val y: Int) {
@@ -24,8 +26,9 @@ class World {
     fun colorAt(position: Position): Color = colors[position] ?: Color.WHITE
 
     fun step() {
-        val direction = ant.direction.right()
-        colors[ant.position] = Color.BLACK
+        val white = colorAt(ant.position) == Color.WHITE
+        val direction = if (white) ant.direction.right() else ant.direction.left()
+        colors[ant.position] = if (white) Color.BLACK else Color.WHITE
         ant = Ant(ant.position.moved(direction), direction)
     }
 }
