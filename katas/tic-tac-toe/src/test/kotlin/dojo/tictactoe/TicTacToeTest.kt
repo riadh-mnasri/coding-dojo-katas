@@ -32,4 +32,14 @@ class TicTacToeTest {
         assertThatThrownBy { game.play(5) }.isInstanceOf(IllegalArgumentException::class.java)
         assertThat(game.ownerOf(5)).isEqualTo(Player.X)
     }
+
+    private fun play(vararg cells: Int) = cells.forEach(game::play)
+
+    @Test
+    fun `a full row wins and ends the game`() {
+        play(1, 4, 2, 5, 3)
+
+        assertThat(game.winner()).isEqualTo(Player.X)
+        assertThat(game.isOver()).isTrue()
+    }
 }
