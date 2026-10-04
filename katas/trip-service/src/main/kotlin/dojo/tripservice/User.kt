@@ -6,6 +6,8 @@ class User {
 
     fun getFriends(): List<User> = friends
 
+    fun isFriendsWith(anotherUser: User): Boolean = anotherUser in friends
+
     fun addFriend(user: User) {
         friends.add(user)
     }
