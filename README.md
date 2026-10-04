@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 46 / 61 katas.**
+**Avancement : 47 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -77,7 +77,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | [FizzBuzz](katas/fizz-buzz/README.md) | baby steps, règles composables | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/FizzBuzz/) |
 | [FooBarQix](katas/foo-bar-qix/README.md) | évolution des exigences | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/FooBarQix/) |
 | [Game of Life](katas/game-of-life/README.md) | automate cellulaire, immutabilité | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/GameOfLife/) |
-| Gilded Rose | code legacy, tests de caractérisation | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/gilded-rose/) |
+| [Gilded Rose](katas/gilded-rose/README.md) | code legacy, tests de caractérisation | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/gilded-rose/) |
 | [Greed](katas/greed/README.md) | règles de score | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Greed/) |
 | [Hello](katas/hello/README.md) | doublures de test | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Hello/) |
 | JEE Web Authentication | mocks vs stubs, filtres servlet | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/JEEWebAuthentication/) |
