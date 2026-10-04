@@ -13,4 +13,11 @@ class MarsRoverTest {
 
         assertThat(mission.rover).isEqualTo(Rover(Position(0, 0), EAST))
     }
+
+    @Test
+    fun `moving forward goes one tile in the facing direction`() {
+        val mission = Mission.parse("🟩🟩\n➡️🟩")
+
+        assertThat(mission.execute("⬆️")).isEqualTo(Rover(Position(1, 0), EAST))
+    }
 }
