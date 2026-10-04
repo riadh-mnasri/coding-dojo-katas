@@ -17,4 +17,9 @@ class PrintersTest {
     fun `evaluates the tree`() {
         assertThat(example.accept(Evaluator)).isEqualTo(-33L)
     }
+
+    @Test
+    fun `prints the tree in infix notation, every operation in parentheses`() {
+        assertThat(example.accept(InfixPrinter)).isEqualTo("3 + (6 × -6)")
+    }
 }
