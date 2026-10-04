@@ -36,12 +36,13 @@ object AccountReader {
             " _|" to '9',
     )
 
-    fun read(entry: String): String {
+    fun read(entry: String): String = cellsOf(entry).map { DIGITS[it] ?: '?' }.joinToString("")
+
+    private fun cellsOf(entry: String): List<String> {
         val lines = entry.lines()
         return (0 until 9).map { position ->
-            val cell = (0 until 3).joinToString("") { row -> lines[row].substring(position * 3, position * 3 + 3) }
-            DIGITS[cell] ?: '?'
-        }.joinToString("")
+            (0 until 3).joinToString("") { row -> lines[row].substring(position * 3, position * 3 + 3) }
+        }
     }
 
     /** (d1 + 2×d2 + ... + 9×d9) mod 11 = 0, où d1 est le chiffre le plus à droite. */
@@ -55,4 +56,26 @@ object AccountReader {
         !isValid(account) -> "$account ERR"
         else -> account
     }
+
+    /** User story 4 : si le numéro est illisible ou faux, on essaie d'ajouter ou de retirer un seul trait. */
+    fun reportWithGuesses(entry: String): String {
+        val cells = cellsOf(entry)
+        val account = cells.map { DIGITS[it] ?: '?' }.joinToString("")
+        if ('?' !in account && isValid(account)) return account
+        val guesses = cells.indices
+            .flatMap { position -> oneStrokeAway(cells[position]).map { account.replaceRange(position, position + 1, "$it") } }
+            .filter { '?' !in it && isValid(it) }
+            .distinct()
+            .sorted()
+        return when (guesses.size) {
+            0 -> "$account ILL"
+            1 -> guesses.single()
+            else -> "$account AMB ${guesses.joinToString(", ", "[", "]") { "'$it'" }}"
+        }
+    }
+
+    /** Les chiffres dont le dessin diffère de [cell] par un seul trait (un `|` ou un `_` en plus ou en moins). */
+    private fun oneStrokeAway(cell: String): List<Char> = DIGITS.filterKeys { pattern ->
+        pattern.indices.count { pattern[it] != cell[it] } == 1
+    }.values.toList()
 }
