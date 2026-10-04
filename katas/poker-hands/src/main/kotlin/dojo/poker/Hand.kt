@@ -3,7 +3,10 @@ package dojo.poker
 
 class Hand private constructor(private val values: List<Int>) : Comparable<Hand> {
 
-    override fun compareTo(other: Hand): Int = values.max().compareTo(other.values.max())
+    private val descending = values.sortedDescending()
+
+    override fun compareTo(other: Hand): Int =
+        descending.zip(other.descending).map { (mine, theirs) -> mine.compareTo(theirs) }.firstOrNull { it != 0 } ?: 0
 
     companion object {
         private const val VALUES = "23456789TJQKA"
