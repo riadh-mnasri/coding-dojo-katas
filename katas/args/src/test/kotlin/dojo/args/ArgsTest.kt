@@ -35,4 +35,13 @@ class ArgsTest {
         assertThat(args.int('p')).isZero()
         assertThat(args.string('d')).isEmpty()
     }
+
+    @Test
+    fun `a negative integer is a value, not a flag, and order does not matter`() {
+        val args = Args("l,p#,d*", listOf("-d", "/tmp", "-p", "-3", "-l"))
+
+        assertThat(args.int('p')).isEqualTo(-3)
+        assertThat(args.string('d')).isEqualTo("/tmp")
+        assertThat(args.boolean('l')).isTrue()
+    }
 }
