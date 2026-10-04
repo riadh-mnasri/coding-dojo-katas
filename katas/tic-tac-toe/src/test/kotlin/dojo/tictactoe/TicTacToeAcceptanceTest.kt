@@ -2,13 +2,11 @@
 package dojo.tictactoe
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 /** Boucle externe : une partie complète, décrite comme le ferait l'utilisateur. */
 class TicTacToeAcceptanceTest {
 
-    @Disabled("boucle externe garée : la boucle interne construit le jeu")
     @Test
     fun `X wins a game on the diagonal`() {
         // Given
