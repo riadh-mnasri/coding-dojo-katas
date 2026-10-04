@@ -2,6 +2,7 @@
 package dojo.holdem
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class TexasHoldEmTest {
@@ -62,5 +63,11 @@ class TexasHoldEmTest {
         val round = "Ah 2c Kd Kc 9s 7d 4h\nQh 3c Kd Kc 9s 7d 4h"
 
         assertThat(TexasHoldEm.announce(round)).isEqualTo("Ah 2c Kd Kc 9s 7d 4h Pair (winner)\nQh 3c Kd Kc 9s 7d 4h Pair")
+    }
+
+    @Test
+    fun `unknown cards are rejected`() {
+        assertThatThrownBy { TexasHoldEm.announce("1h 5s") }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { TexasHoldEm.announce("Ah 5x") }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
