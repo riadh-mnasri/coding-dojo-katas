@@ -45,4 +45,10 @@ class NumbersInWordsTest {
     fun `thousands and millions are said group by group`(number: Int, words: String) {
         assertThat(NumbersInWords.toWords(number)).isEqualTo(words)
     }
+
+    @ParameterizedTest(name = "{1} is {0}")
+    @CsvSource("0, zero", "13, thirteen", "45, forty five", "745, seven hundred and forty five", "2001010, two million one thousand and ten")
+    fun `step 2 - reads words back into a number`(number: Int, words: String) {
+        assertThat(NumbersInWords.toNumber(words)).isEqualTo(number)
+    }
 }
