@@ -20,7 +20,7 @@ class Args(schema: String, arguments: List<String>) {
 
     fun boolean(flag: Char): Boolean = values[flag] == true
 
-    fun int(flag: Char): Int = values[flag] as Int
+    fun int(flag: Char): Int = values[flag] as Int? ?: 0
 
-    fun string(flag: Char): String = values[flag] as String
+    fun string(flag: Char): String = values[flag] as String? ?: ""
 }
