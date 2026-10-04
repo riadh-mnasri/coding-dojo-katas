@@ -71,4 +71,22 @@ class TicTacToeTest {
 
         assertThatThrownBy { game.play(9) }.isInstanceOf(IllegalStateException::class.java)
     }
+
+    @Test
+    fun `the board shows the taken fields and the free numbers, as in the kata`() {
+        game.play(5)
+
+        assertThat(game.board()).isEqualTo(
+            """
+            +---+---+---+
+            | 1 | 2 | 3 |
+            +---+---+---+
+            | 4 | X | 6 |
+            +---+---+---+
+            | 7 | 8 | 9 |
+            +---+---+---+
+            """.trimIndent(),
+        )
+        assertThat(game.isOver()).isFalse()
+    }
 }
