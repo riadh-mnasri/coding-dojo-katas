@@ -46,4 +46,13 @@ class RsaTest {
         assertThat(Transport.encode(encrypted)).isEqualTo("FQGtKYcinGkgGvkOQ2pvWw==")
         assertThat(Transport.decode("FQGtKYcinGkgGvkOQ2pvWw==")).isEqualTo(encrypted)
     }
+
+    @Test
+    fun `a message whose length is not a multiple of three survives the round trip`() {
+        val message = "Bonjour"
+
+        val decrypted = Rsa.decrypt(Rsa.encrypt(message.toByteArray(), keys.public), keys.private)
+
+        assertThat(String(decrypted)).isEqualTo(message)
+    }
 }
