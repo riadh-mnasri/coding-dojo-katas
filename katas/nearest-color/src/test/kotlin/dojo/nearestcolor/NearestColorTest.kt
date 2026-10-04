@@ -12,4 +12,9 @@ class NearestColorTest {
     fun `a color of the palette is its own nearest color`() {
         assertThat(primaries.nearest("0F0")).isEqualTo("0F0")
     }
+
+    @Test
+    fun `the nearest color of F42 is red`() {
+        assertThat(primaries.nearest("F42")).isEqualTo("F00")
+    }
 }
