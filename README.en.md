@@ -54,13 +54,13 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 39 / 61 katas.**
+**Progress: 40 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
 | [Anagram](katas/anagram/README.en.md) | performance vs readability | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Anagram/) |
 | Args | parsing, extensible design | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Args/) |
-| Bank OCR | parsing, checksum, error correction | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/BankOCR/) |
+| [Bank OCR](katas/bank-ocr/README.en.md) | parsing, checksum, error correction | ✅ done | [codingdojo.org](https://codingdojo.org/kata/BankOCR/) |
 | Birthday Greetings | hexagonal architecture, ports and adapters | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/birthday-greetings/) |
 | [Bowling](katas/bowling/README.en.md) | stateful business rules | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Bowling/) |
 | [Brainfuck](katas/brainfuck/README.en.md) | interpreter, extensible instructions | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Brainfuck/) |
