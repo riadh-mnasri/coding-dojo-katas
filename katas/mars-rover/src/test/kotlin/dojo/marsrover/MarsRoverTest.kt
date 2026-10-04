@@ -37,4 +37,12 @@ class MarsRoverTest {
         assertThat(mission.execute("⬆️")).isEqualTo(Rover(Position(0, 0), EAST))
         assertThat(mission.execute("⬅️⬆️➡️⬆️")).isEqualTo(Rover(Position(1, 1), EAST))
     }
+
+    @Test
+    fun `the rover does not leave the map`() {
+        val mission = Mission.parse("🟩🟩\n⬅️🟩")
+
+        assertThat(mission.execute("⬆️")).isEqualTo(Rover(Position(0, 0), Direction.WEST))
+        assertThat(mission.execute("➡️⬆️⬆️⬆️")).isEqualTo(Rover(Position(0, 1), Direction.NORTH))
+    }
 }
