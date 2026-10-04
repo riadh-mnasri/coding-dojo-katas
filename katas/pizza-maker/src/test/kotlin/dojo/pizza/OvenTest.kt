@@ -30,4 +30,16 @@ class OvenTest {
         runCurrent()
         assertThat(alerts).containsExactly("Margherita is cooked!")
     }
+
+    @Test
+    fun `taking a cooked pizza out earns a point`() = runTest {
+        val oven = oven()
+        oven.cook("Margherita")
+        advanceTimeBy(50_000)
+
+        val pizza = oven.takeOut()
+
+        assertThat(pizza).isEqualTo(Pizza("Margherita", PizzaState.COOKED))
+        assertThat(oven.points).isEqualTo(1)
+    }
 }
