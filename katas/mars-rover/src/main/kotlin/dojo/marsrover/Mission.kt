@@ -23,7 +23,8 @@ class Mission private constructor(val rover: Rover, private val rows: List<List<
                 "⬆" -> {
                     val p = current.position
                     val next = Position(p.x + current.direction.dx, p.y + current.direction.dy)
-                    if (rows.getOrNull(next.y)?.getOrNull(next.x) !in OBSTACLES) current = current.copy(position = next)
+                    val tile = rows.getOrNull(next.y)?.getOrNull(next.x)
+                    if (tile != null && tile !in OBSTACLES) current = current.copy(position = next)
                 }
                 "➡" -> current = current.copy(direction = current.direction.right())
                 "⬅" -> current = current.copy(direction = current.direction.left())
