@@ -19,4 +19,13 @@ class ReversiTest {
     fun `a move is legal when it flips an opponent piece on the same row`() {
         assertThat(Reversi.legalMoves(position(mapOf(4 to "...BW..."), 'B'))).containsExactly("F4")
     }
+
+    @Test
+    fun `moves can capture along columns and diagonals`() {
+        val vertical = position(mapOf(3 to "...B....", 4 to "...W...."), 'B')
+        val diagonal = position(mapOf(3 to "..B.....", 4 to "...W...."), 'B')
+
+        assertThat(Reversi.legalMoves(vertical)).containsExactly("D5")
+        assertThat(Reversi.legalMoves(diagonal)).containsExactly("E5")
+    }
 }
