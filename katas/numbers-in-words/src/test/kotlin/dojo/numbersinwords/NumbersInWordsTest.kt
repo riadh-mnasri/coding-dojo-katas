@@ -51,4 +51,12 @@ class NumbersInWordsTest {
     fun `step 2 - reads words back into a number`(number: Int, words: String) {
         assertThat(NumbersInWords.toNumber(words)).isEqualTo(number)
     }
+
+    @org.junit.jupiter.api.Test
+    fun `step 2 - every number round-trips through words`() {
+        (0..20_000).forEach { assertThat(NumbersInWords.toNumber(NumbersInWords.toWords(it))).isEqualTo(it) }
+        listOf(123_456_789, 999_999_999, 1_000_001).forEach {
+            assertThat(NumbersInWords.toNumber(NumbersInWords.toWords(it))).isEqualTo(it)
+        }
+    }
 }
