@@ -48,4 +48,14 @@ class SocialNetworkTest {
 
         assertThat(network.mentionsOf("Charlie").map { it.author }).containsExactly("Alice")
     }
+
+    @Test
+    fun `links - Thomas shares a link that leads back to the message`() {
+        val post = network.post("Thomas", "Look at this")
+
+        val link = network.linkTo(post)
+
+        assertThat(link).isEqualTo("https://social.example/Thomas/messages/${post.id}")
+        assertThat(network.open(link)).isEqualTo(post)
+    }
 }
