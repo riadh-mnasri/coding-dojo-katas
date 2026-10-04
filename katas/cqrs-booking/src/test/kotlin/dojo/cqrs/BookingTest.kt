@@ -26,4 +26,12 @@ class BookingTest {
 
         assertThat(queries.freeRooms(arrival = day(11), departure = day(13))).containsExactly(Room("102"), Room("201"))
     }
+
+    @Test
+    fun `a room is free again from the departure day`() {
+        commands.bookARoom(Booking("ann", "101", arrival = day(10), departure = day(12)))
+
+        assertThat(queries.freeRooms(arrival = day(12), departure = day(14))).contains(Room("101"))
+        assertThat(queries.freeRooms(arrival = day(8), departure = day(10))).contains(Room("101"))
+    }
 }
