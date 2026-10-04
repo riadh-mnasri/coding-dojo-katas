@@ -21,6 +21,7 @@ class MarkovChain private constructor(private val transitions: Map<String, Map<S
     /** Impasse : le mot n'a jamais été suivi. On repart d'un mot connu, tiré au hasard. */
     private fun restart(random: Random): String {
         val known = transitions.keys.toList()
+        check(known.isNotEmpty()) { "The learning text holds no pair of words to follow" }
         return known[(random.nextDouble() * known.size).toInt()]
     }
 
