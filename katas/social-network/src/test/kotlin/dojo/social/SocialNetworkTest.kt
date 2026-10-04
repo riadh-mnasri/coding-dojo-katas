@@ -26,4 +26,17 @@ class SocialNetworkTest {
 
         assertThat(network.timeline("Thomas").map { it.text }).containsExactly("Second", "First")
     }
+
+    @Test
+    fun `following - Charlie's wall aggregates the users Charlie follows`() {
+        network.post("Thomas", "Thomas speaks")
+        network.post("Alice", "Alice speaks")
+        network.post("Bob", "Bob is not followed")
+        network.post("Charlie", "Charlie speaks")
+
+        network.follow("Charlie", "Thomas")
+        network.follow("Charlie", "Alice")
+
+        assertThat(network.wall("Charlie").map { it.text }).containsExactly("Charlie speaks", "Alice speaks", "Thomas speaks")
+    }
 }
