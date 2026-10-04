@@ -35,4 +35,12 @@ class ReceiptTest {
     fun `slice 4 - each state has its tax rate`(state: String, tax: String) {
         assertThat(Receipt(listOf(item("Book", 1, "100")), state).tax).isEqualByComparingTo(tax)
     }
+
+    @org.junit.jupiter.params.ParameterizedTest(name = "{0} -> {1} %")
+    @org.junit.jupiter.params.provider.CsvSource("1000, 0", "1000.01, 3", "5000.01, 5", "7000.01, 7", "10000.01, 10", "50000.01, 15")
+    fun `slice 5 - orders above a threshold are discounted`(amount: String, rate: String) {
+        val receipt = Receipt(listOf(item("Lot", 1, amount)), state = "UT")
+
+        assertThat(receipt.discountRate).isEqualByComparingTo(rate)
+    }
 }
