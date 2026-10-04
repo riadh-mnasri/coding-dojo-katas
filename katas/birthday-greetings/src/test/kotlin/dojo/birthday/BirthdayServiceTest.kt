@@ -47,4 +47,16 @@ class BirthdayServiceTest {
 
         assertThat(outbox.sent).isEmpty()
     }
+
+    @Test
+    fun `people born on February 29 are greeted on February 28 in other years`() {
+        val leapling = Friend("Leap", "Lea", LocalDate.of(2000, 2, 29), "lea@foobar.com")
+
+        service(leapling).sendGreetings(LocalDate.of(2027, 2, 28))
+        assertThat(outbox.sent).hasSize(1)
+
+        outbox.sent.clear()
+        service(leapling).sendGreetings(LocalDate.of(2028, 2, 28))
+        assertThat(outbox.sent).isEmpty()
+    }
 }
