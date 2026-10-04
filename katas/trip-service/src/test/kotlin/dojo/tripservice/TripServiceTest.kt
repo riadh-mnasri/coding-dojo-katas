@@ -1,6 +1,7 @@
 // Copyright (c) 2026 Riadh MNASRI. Licensed under the MIT License.
 package dojo.tripservice
 
+import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
@@ -9,6 +10,8 @@ class TripServiceTest {
     private val guest: User? = null
     private val anotherUser = User()
     private var loggedInUser: User? = null
+    private val registeredUser = User()
+    private val toBrazil = Trip()
 
     /** La couture : en test, l'utilisateur connecté vient du test et non du singleton de session. */
     private inner class TestableTripService : TripService() {
@@ -21,5 +24,16 @@ class TripServiceTest {
         val service = TestableTripService()
 
         assertThatThrownBy { service.getTripsByUser(anotherUser) }.isInstanceOf(UserNotLoggedInException::class.java)
+    }
+
+    @Test
+    fun `no trips are shown when the users are not friends`() {
+        loggedInUser = registeredUser
+        val stranger = User().apply {
+            addFriend(anotherUser)
+            addTrip(toBrazil)
+        }
+
+        assertThat(TestableTripService().getTripsByUser(stranger)).isEmpty()
     }
 }
