@@ -1,25 +1,11 @@
+// Copyright (c) 2026 Riadh MNASRI. Licensed under the MIT License.
 package dojo.tripservice
 
 open class TripService {
 
     fun getTripsByUser(user: User): List<Trip> {
-        var tripList: List<Trip> = ArrayList()
-        val loggedUser: User? = loggedUser()
-        var isFriend = false
-        if (loggedUser != null) {
-            for (friend in user.getFriends()) {
-                if (friend == loggedUser) {
-                    isFriend = true
-                    break
-                }
-            }
-            if (isFriend) {
-                tripList = tripsBy(user)
-            }
-            return tripList
-        } else {
-            throw UserNotLoggedInException()
-        }
+        val loggedUser = loggedUser() ?: throw UserNotLoggedInException()
+        return if (user.isFriendsWith(loggedUser)) tripsBy(user) else emptyList()
     }
 
     protected open fun loggedUser(): User? = UserSession.getInstance().getLoggedUser()
