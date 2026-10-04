@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 52 / 61 katas.**
+**Avancement : 53 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -108,7 +108,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | [Roman Numerals](katas/roman-numerals/README.md) | algorithme glouton | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/RomanNumerals/) |
 | [RPN Calculator](katas/rpn-calculator/README.md) | pile, opérations extensibles | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/RPN/) |
 | [RSA](katas/rsa/README.md) | arithmétique modulaire | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/rsa/) |
-| Social Network | example mapping, domaine | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/social-network/) |
+| [Social Network](katas/social-network/README.md) | example mapping, domaine | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/social-network/) |
 | [String Calculator](katas/string-calculator/README.md) | gestion d'erreurs incrémentale | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/StringCalculator/) |
 | Sudoku Concurrent Resolver | propagation de contraintes par messages | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/sudoku/) |
 | [Tennis](katas/tennis/README.md) | machine à états | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Tennis/) |
