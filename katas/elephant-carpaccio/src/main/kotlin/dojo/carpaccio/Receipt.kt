@@ -8,5 +8,5 @@ data class Item(val label: String, val quantity: Int, val unitPrice: BigDecimal)
 }
 
 class Receipt(private val items: List<Item>, private val state: String) {
-    val totalWithoutTaxes: BigDecimal get() = items.first().total
+    val totalWithoutTaxes: BigDecimal get() = items.fold(BigDecimal.ZERO) { sum, item -> sum + item.total }
 }
