@@ -2,6 +2,7 @@
 package dojo.wallet
 
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 enum class Currency { EUR, USD }
 
@@ -10,7 +11,16 @@ enum class StockType(val currency: Currency? = null) { PETROLEUM, BITCOIN, EUR(C
 
 data class Stock(val quantity: BigDecimal, val type: StockType)
 
-data class Value(val amount: BigDecimal, val currency: Currency)
+/** Un montant arrondi au centime ; deux valeurs sont égales si leurs montants le sont numériquement (0 = 0.00). */
+class Value(amount: BigDecimal, val currency: Currency) {
+    val amount: BigDecimal = amount.setScale(2, RoundingMode.HALF_EVEN)
+
+    override fun equals(other: Any?) = other is Value && currency == other.currency && amount.compareTo(other.amount) == 0
+
+    override fun hashCode() = 31 * amount.hashCode() + currency.hashCode()
+
+    override fun toString() = "$amount $currency"
+}
 
 fun interface RateProvider {
     fun rate(from: StockType, to: Currency): BigDecimal
