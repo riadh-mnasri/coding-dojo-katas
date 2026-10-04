@@ -36,4 +36,16 @@ class TripServiceTest {
 
         assertThat(TestableTripService().getTripsByUser(stranger)).isEmpty()
     }
+
+    @Test
+    fun `the trips of a friend are shown`() {
+        loggedInUser = registeredUser
+        val friend = User().apply {
+            addFriend(anotherUser)
+            addFriend(registeredUser)
+            addTrip(toBrazil)
+        }
+
+        assertThat(TestableTripService().getTripsByUser(friend)).containsExactly(toBrazil)
+    }
 }
