@@ -45,4 +45,36 @@ class MarsRoverTest {
         assertThat(mission.execute("⬆️")).isEqualTo(Rover(Position(0, 0), Direction.WEST))
         assertThat(mission.execute("➡️⬆️⬆️⬆️")).isEqualTo(Rover(Position(0, 1), Direction.NORTH))
     }
+
+    @Test
+    fun `drives across the first map of the kata`() {
+        val mission = Mission.parse(
+            """
+            🟩🟩🌳🟩🟩
+            🟩🟩🟩🟩🟩
+            🟩🟩🟩🌳🟩
+            🟩🌳🟩🟩🟩
+            ➡️🟩🟩🟩🟩
+            """.trimIndent(),
+        )
+
+        // Trois cases vers l'est, puis vers le nord jusqu'à l'arbre en (3, 2), qui bloque les avancées suivantes.
+        assertThat(mission.execute("⬆️⬆️⬆️⬅️⬆️⬆️⬆️⬆️")).isEqualTo(Rover(Position(3, 1), Direction.NORTH))
+    }
+
+    @Test
+    fun `drives across the second map of the kata`() {
+        val mission = Mission.parse(
+            """
+            🟫🟫🪨🟫🟫
+            🟫🟫🟫🟫🟫
+            🟫🟫🟫🟫🟫
+            🟫🟫🟫🟫🟫
+            ⬆️🟫🟫🟫🟫
+            """.trimIndent(),
+        )
+
+        // Tout au nord, deux cases vers l'est, puis le rocher en (2, 4) bloque la dernière avancée vers l'est.
+        assertThat(mission.execute("⬆️⬆️⬆️⬆️⬆️➡️⬆️⬆️⬅️⬅️⬅️⬆️")).isEqualTo(Rover(Position(1, 3), Direction.SOUTH))
+    }
 }
