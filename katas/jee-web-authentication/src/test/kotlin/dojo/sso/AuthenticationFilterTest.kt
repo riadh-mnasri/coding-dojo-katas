@@ -87,4 +87,15 @@ class AuthenticationFilterTest {
         verify(exactly = 0) { chain.doFilter(any(), any()) }
         org.assertj.core.api.Assertions.assertThat(registry.sessions).isEmpty()
     }
+
+    @Test
+    fun `logging out ends the SSO session`() {
+        val token = registry.registerNewSession("alice")
+        val logout = request(cookies = mapOf("SSO_TOKEN" to token), parameters = mapOf("logout" to "true"))
+
+        filter.doFilter(logout, response, chain)
+
+        org.assertj.core.api.Assertions.assertThat(registry.sessions).isEmpty()
+        verify(exactly = 0) { chain.doFilter(any(), any()) }
+    }
 }
