@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 43 / 61 katas.**
+**Progress: 44 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -107,7 +107,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | [Roman Calculator](katas/roman-calculator/README.en.md) | finding the next test | ✅ done | [codingdojo.org](https://codingdojo.org/kata/RomanCalculator/) |
 | [Roman Numerals](katas/roman-numerals/README.en.md) | greedy algorithm | ✅ done | [codingdojo.org](https://codingdojo.org/kata/RomanNumerals/) |
 | [RPN Calculator](katas/rpn-calculator/README.en.md) | stack, extensible operations | ✅ done | [codingdojo.org](https://codingdojo.org/kata/RPN/) |
-| RSA | modular arithmetic | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/rsa/) |
+| [RSA](katas/rsa/README.en.md) | modular arithmetic | ✅ done | [codingdojo.org](https://codingdojo.org/kata/rsa/) |
 | Social Network | example mapping, domain | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/social-network/) |
 | [String Calculator](katas/string-calculator/README.en.md) | incremental error handling | ✅ done | [codingdojo.org](https://codingdojo.org/kata/StringCalculator/) |
 | Sudoku Concurrent Resolver | message-driven constraint propagation | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/sudoku/) |
