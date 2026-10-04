@@ -29,4 +29,10 @@ class CakeTest {
         assertThat(Nuts(Chocolate(Cookie())).name()).isEqualTo("🍪 with 🍫 and 🥜")
         assertThat(Chocolate(Nuts(Cookie())).name()).isEqualTo("🍪 with 🥜 and 🍫")
     }
+
+    @Test
+    fun `a cupcake costs 1 dollar and a cookie 2`() {
+        assertThat(Cupcake().price()).isEqualByComparingTo("1")
+        assertThat(Cookie().price()).isEqualByComparingTo("2")
+    }
 }
