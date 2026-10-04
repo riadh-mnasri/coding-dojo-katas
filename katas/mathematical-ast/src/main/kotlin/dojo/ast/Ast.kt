@@ -32,6 +32,8 @@ enum class Operator(val symbol: String, val precedence: Int, val grouping: Group
     SUBTRACT("-", 1, Grouping.LEFT),
     MULTIPLY("×", 2, Grouping.ANY, "*"),
     POWER("^", 3, Grouping.RIGHT),
+    UP_ARROW("↑", 3, Grouping.RIGHT),
+    DOUBLE_UP_ARROW("↑↑", 3, Grouping.RIGHT),
     ;
 
     fun isWrittenAs(token: String) = token == symbol || token in aliases

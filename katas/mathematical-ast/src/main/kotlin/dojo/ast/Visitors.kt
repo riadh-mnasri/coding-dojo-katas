@@ -11,6 +11,13 @@ object RpnPrinter : Visitor<String> {
 object Evaluator : Visitor<Long> {
     fun power(base: Long, exponent: Long): Long = (1..exponent).fold(1L) { result, _ -> result * base }
 
+    /** La notation de Knuth : a ↑ b = a^b, et a ↑ⁿ b = a ↑ⁿ⁻¹ (a ↑ⁿ b-1), avec a ↑ⁿ 0 = 1. */
+    private fun arrows(base: Long, count: Int, operand: Long): Long = when {
+        count == 1 -> power(base, operand)
+        operand == 0L -> 1L
+        else -> arrows(base, count - 1, arrows(base, count, operand - 1))
+    }
+
     override fun visit(operand: Operand) = operand.value
 
     override fun visit(operation: Operation): Long {
@@ -21,6 +28,8 @@ object Evaluator : Visitor<Long> {
             Operator.SUBTRACT -> left - right
             Operator.MULTIPLY -> left * right
             Operator.POWER -> power(left, right)
+            Operator.UP_ARROW -> arrows(left, 1, right)
+            Operator.DOUBLE_UP_ARROW -> arrows(left, 2, right)
         }
     }
 }
