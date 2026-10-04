@@ -22,4 +22,12 @@ class NearestColorTest {
     fun `yellow is as near to red as to green`() {
         assertThat(primaries.nearestColors("FF0")).containsExactly("F00", "0F0")
     }
+
+    @Test
+    fun `six-digit colors work as well`() {
+        val palette = Palette("FF0000", "00FF00", "0000FF", "808080")
+
+        assertThat(palette.nearest("F42")).isEqualTo("FF0000")
+        assertThat(palette.nearest("7A8090")).isEqualTo("808080")
+    }
 }
