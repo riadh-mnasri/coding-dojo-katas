@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 34 / 61 katas.**
+**Progress: 35 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -113,7 +113,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | Sudoku Concurrent Resolver | message-driven constraint propagation | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/sudoku/) |
 | [Tennis](katas/tennis/README.en.md) | state machine | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Tennis/) |
 | Texas Hold'em | best hand out of 7 cards | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/TexasHoldEm/) |
-| Tic Tac Toe | double-loop TDD | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/tic-tac-toe/) |
+| [Tic Tac Toe](katas/tic-tac-toe/README.en.md) | double-loop TDD | ✅ done | [codingdojo.org](https://codingdojo.org/kata/tic-tac-toe/) |
 | Trading Card Game | game loop, test doubles | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/TradingCardGame/) |
 | Trip Service | breaking legacy dependencies | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/TripService/) |
 | [Wallet](katas/wallet/README.en.md) | external port (exchange rates) | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Wallet/) |
