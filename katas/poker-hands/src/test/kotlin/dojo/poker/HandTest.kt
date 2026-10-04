@@ -18,4 +18,11 @@ class HandTest {
         assertThat(hand("2H 3D 5S 9C KD")).isGreaterThan(hand("2C 3H 4S 8C KH"))
         assertThat(hand("2H 3D 5S 9C KD")).isEqualByComparingTo(hand("2D 3H 5C 9S KH"))
     }
+
+    @Test
+    fun `a pair beats high cards, and pairs compare by their value then the kickers`() {
+        assertThat(hand("2H 2D 5S 9C KD")).isGreaterThan(hand("2C 3H 4S 8C AH"))
+        assertThat(hand("3H 3D 5S 9C KD")).isGreaterThan(hand("2C 2H 4S 8C AH"))
+        assertThat(hand("3H 3D 5S 9C KD")).isGreaterThan(hand("3C 3S 4S 8C KH"))
+    }
 }
