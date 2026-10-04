@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 29 / 61 katas.**
+**Progress: 30 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -73,7 +73,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | [Dictionary Replacer](katas/dictionary-replacer/README.en.md) | string replacement | ✅ done | [codingdojo.org](https://codingdojo.org/kata/DictionaryReplacer/) |
 | Eight Queens | backtracking, tree traversal | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/eight-queens/) |
 | Elephant Carpaccio | thin vertical slicing | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/elephant-carpaccio/) |
-| Employee Report | focused assertions, test maintainability | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/Employee-Report/) |
+| [Employee Report](katas/employee-report/README.en.md) | focused assertions, test maintainability | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Employee-Report/) |
 | [FizzBuzz](katas/fizz-buzz/README.en.md) | baby steps, composable rules | ✅ done | [codingdojo.org](https://codingdojo.org/kata/FizzBuzz/) |
 | [FooBarQix](katas/foo-bar-qix/README.en.md) | changing requirements | ✅ done | [codingdojo.org](https://codingdojo.org/kata/FooBarQix/) |
 | [Game of Life](katas/game-of-life/README.en.md) | cellular automaton, immutability | ✅ done | [codingdojo.org](https://codingdojo.org/kata/GameOfLife/) |
