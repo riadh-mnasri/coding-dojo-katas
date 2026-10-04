@@ -22,20 +22,29 @@ class AuthenticationFilter : Filter {
         this.registry = registry
     }
 
+    /** Trois entrées possibles : se déconnecter, présenter un jeton SSO valide, ou se connecter par identifiants. */
     override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
-        val token = (request as HttpServletRequest).cookies?.firstOrNull { it.name == SSO_COOKIE }?.value
-        val userName = request.getParameter("username")
-        val password = request.getParameter("password")
+        val http = request as HttpServletRequest
+        val reply = response as HttpServletResponse
+        val token = ssoToken(http)
         when {
-            token != null && request.getParameter("logout") != null -> registry.endSession(token)
+            token != null && http.getParameter("logout") != null -> registry.endSession(token)
             token != null && registry.tokenIsValid(token) -> chain.doFilter(request, response)
-            userName != null && password != null && ldap.credentialsAreValid(userName, password) -> {
-                val newToken = registry.registerNewSession(userName)
-                (response as HttpServletResponse).addCookie(Cookie(SSO_COOKIE, newToken))
+            hasValidCredentials(http) -> {
+                reply.addCookie(Cookie(SSO_COOKIE, registry.registerNewSession(http.getParameter("username"))))
                 chain.doFilter(request, response)
             }
-            else -> (response as HttpServletResponse).sendError(HttpServletResponse.SC_UNAUTHORIZED)
+            else -> reply.sendError(HttpServletResponse.SC_UNAUTHORIZED)
         }
+    }
+
+    private fun ssoToken(request: HttpServletRequest): String? =
+        request.cookies?.firstOrNull { it.name == SSO_COOKIE }?.value
+
+    private fun hasValidCredentials(request: HttpServletRequest): Boolean {
+        val userName = request.getParameter("username") ?: return false
+        val password = request.getParameter("password") ?: return false
+        return ldap.credentialsAreValid(userName, password)
     }
 
     private companion object {
