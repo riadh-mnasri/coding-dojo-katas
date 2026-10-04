@@ -34,4 +34,11 @@ class DepthFirstSearchTest {
 
         assertThat(DepthFirstSearch(guide).pathFrom("A")).isNull()
     }
+
+    @Test
+    fun `the two-node graph is crossed through its exit`() {
+        val guide = ScriptedGuide(exits = mapOf("A" to listOf("B")), goal = "B")
+
+        assertThat(DepthFirstSearch(guide).pathFrom("A")).containsExactly("A", "B")
+    }
 }
