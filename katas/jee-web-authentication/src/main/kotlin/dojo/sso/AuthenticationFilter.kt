@@ -27,6 +27,7 @@ class AuthenticationFilter : Filter {
         val userName = request.getParameter("username")
         val password = request.getParameter("password")
         when {
+            token != null && request.getParameter("logout") != null -> registry.endSession(token)
             token != null && registry.tokenIsValid(token) -> chain.doFilter(request, response)
             userName != null && password != null && ldap.credentialsAreValid(userName, password) -> {
                 val newToken = registry.registerNewSession(userName)
