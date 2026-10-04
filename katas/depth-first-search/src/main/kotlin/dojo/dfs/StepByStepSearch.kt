@@ -5,6 +5,8 @@ sealed interface SearchResult
 
 data class Found(val path: List<String>) : SearchResult
 
+data object NotFound : SearchResult
+
 /**
  * Variante « événementielle » : chaque appel à [step] pose au plus une question. L'état qui vivait dans la
  * pile d'appels de [DepthFirstSearch] doit donc être gardé à la main, dans une pile de cadres.
@@ -24,7 +26,7 @@ class StepByStepSearch(private val guide: Guide, start: String) {
 
     fun step() {
         if (result != null) return
-        val frame = stack.last()
+        val frame = stack.lastOrNull() ?: return run { result = NotFound }
         when {
             !frame.goalChecked -> {
                 frame.goalChecked = true
