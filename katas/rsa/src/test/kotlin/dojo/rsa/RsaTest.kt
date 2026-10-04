@@ -2,6 +2,7 @@
 package dojo.rsa
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 /** Les valeurs de l'exemple de l'énoncé : p = 51581, q = 60101, c = 66797. */
@@ -54,5 +55,13 @@ class RsaTest {
         val decrypted = Rsa.decrypt(Rsa.encrypt(message.toByteArray(), keys.public), keys.private)
 
         assertThat(String(decrypted)).isEqualTo(message)
+    }
+
+    @Test
+    fun `keys must respect the constraints of the kata`() {
+        // N doit être entre 2^24 + 1 et 2^32 pour que 3 octets se chiffrent sur 4.
+        assertThatThrownBy { KeyPair.of(p = 3, q = 5, c = 7) }.isInstanceOf(IllegalArgumentException::class.java)
+        // c doit être premier avec n = (p − 1)(q − 1), qui est pair : c = 2 n'a pas d'inverse.
+        assertThatThrownBy { KeyPair.of(p = 51_581, q = 60_101, c = 2) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
