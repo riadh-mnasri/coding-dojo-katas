@@ -54,14 +54,14 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 49 / 61 katas.**
+**Avancement : 50 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
 | [Anagram](katas/anagram/README.md) | performance vs lisibilité | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Anagram/) |
 | [Args](katas/args/README.md) | parsing, conception extensible | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Args/) |
 | [Bank OCR](katas/bank-ocr/README.md) | parsing, checksum, recherche de corrections | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/BankOCR/) |
-| Birthday Greetings | architecture hexagonale, ports et adapters | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/birthday-greetings/) |
+| [Birthday Greetings](katas/birthday-greetings/README.md) | architecture hexagonale, ports et adapters | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/birthday-greetings/) |
 | [Bowling](katas/bowling/README.md) | règles métier à états | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Bowling/) |
 | [Brainfuck](katas/brainfuck/README.md) | interpréteur, instructions extensibles | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/Brainfuck/) |
 | Christmas Delivery | concurrence, files d'attente | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/christmas-delivery/) |
