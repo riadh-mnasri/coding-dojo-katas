@@ -29,4 +29,10 @@ class ReceiptTest {
         assertThat(receipt.tax).isEqualByComparingTo("6.85")
         assertThat(receipt.totalPrice).isEqualByComparingTo("106.85")
     }
+
+    @org.junit.jupiter.params.ParameterizedTest(name = "{0}: {1}")
+    @org.junit.jupiter.params.provider.CsvSource("NV, 8.00", "TX, 6.25", "AL, 4.00", "CA, 8.25")
+    fun `slice 4 - each state has its tax rate`(state: String, tax: String) {
+        assertThat(Receipt(listOf(item("Book", 1, "100")), state).tax).isEqualByComparingTo(tax)
+    }
 }
