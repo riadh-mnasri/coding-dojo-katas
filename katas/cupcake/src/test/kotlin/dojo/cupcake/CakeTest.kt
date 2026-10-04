@@ -23,4 +23,10 @@ class CakeTest {
         assertThat(Chocolate(Cupcake()).name()).isEqualTo("🧁 with 🍫")
         assertThat(Chocolate(Cookie()).name()).isEqualTo("🍪 with 🍫")
     }
+
+    @Test
+    fun `toppings are listed in the order they were added`() {
+        assertThat(Nuts(Chocolate(Cookie())).name()).isEqualTo("🍪 with 🍫 and 🥜")
+        assertThat(Chocolate(Nuts(Cookie())).name()).isEqualTo("🍪 with 🥜 and 🍫")
+    }
 }
