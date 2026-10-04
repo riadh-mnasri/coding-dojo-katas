@@ -50,4 +50,16 @@ class BookingTest {
         assertThatThrownBy { commands.bookARoom(Booking("ann", "101", arrival = day(12), departure = day(12))) }
             .isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @Test
+    fun `the write side notifies every listener, so other read models can be added`() {
+        val audit = mutableListOf<Booking>()
+        val registry = WriteRegistry(listOf(readRegistry, BookingListener { audit += it }))
+        val booking = Booking("ann", "201", arrival = day(1), departure = day(3))
+
+        CommandService(registry).bookARoom(booking)
+
+        assertThat(audit).containsExactly(booking)
+        assertThat(queries.freeRooms(day(1), day(3))).doesNotContain(Room("201"))
+    }
 }
