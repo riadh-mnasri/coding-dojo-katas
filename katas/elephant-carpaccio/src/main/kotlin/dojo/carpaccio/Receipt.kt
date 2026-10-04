@@ -9,4 +9,8 @@ data class Item(val label: String, val quantity: Int, val unitPrice: BigDecimal)
 
 class Receipt(private val items: List<Item>, private val state: String) {
     val totalWithoutTaxes: BigDecimal get() = items.fold(BigDecimal.ZERO) { sum, item -> sum + item.total }
+
+    val tax: BigDecimal get() = totalWithoutTaxes * BigDecimal("0.0685")
+
+    val totalPrice: BigDecimal get() = totalWithoutTaxes + tax
 }
