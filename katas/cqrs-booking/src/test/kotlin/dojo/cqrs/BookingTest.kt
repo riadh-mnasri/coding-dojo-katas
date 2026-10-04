@@ -44,4 +44,10 @@ class BookingTest {
             .isInstanceOf(IllegalStateException::class.java)
         assertThat(queries.freeRooms(arrival = day(13), departure = day(15))).contains(Room("101"))
     }
+
+    @Test
+    fun `a stay must end after it starts`() {
+        assertThatThrownBy { commands.bookARoom(Booking("ann", "101", arrival = day(12), departure = day(12))) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
 }
