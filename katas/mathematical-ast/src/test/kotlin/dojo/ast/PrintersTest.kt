@@ -1,0 +1,15 @@
+// Copyright (c) 2026 Riadh MNASRI. Licensed under the MIT License.
+package dojo.ast
+
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+class PrintersTest {
+
+    private val example = Mathematical.parse("3 6 -6 * +")
+
+    @Test
+    fun `prints the tree back in RPN`() {
+        assertThat(example.accept(RpnPrinter)).isEqualTo("3 6 -6 × +")
+    }
+}
