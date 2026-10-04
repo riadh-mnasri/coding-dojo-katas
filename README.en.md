@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 26 / 61 katas.**
+**Progress: 27 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -91,7 +91,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | Mathematical AST | syntax tree, Visitor | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/mathematical-ast/) |
 | [Minesweeper](katas/minesweeper/README.en.md) | grids, neighbourhood | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Minesweeper/) |
 | Movie Rental | refactoring (Fowler) | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/movie-rental/) |
-| Nearest Color | distance, ties | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/NearestColor/) |
+| [Nearest Color](katas/nearest-color/README.en.md) | distance, ties | ✅ done | [codingdojo.org](https://codingdojo.org/kata/NearestColor/) |
 | [Nim Game](katas/nim-game/README.en.md) | game rules, turns | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Nim/) |
 | [Number to LCD](katas/number-to-lcd/README.en.md) | text rendering, changing requirements | ✅ done | [codingdojo.org](https://codingdojo.org/kata/NumberToLCD/) |
 | [Numbers in Words](katas/numbers-in-words/README.en.md) | two-way conversion | ✅ done | [codingdojo.org](https://codingdojo.org/kata/NumbersInWords/) |
