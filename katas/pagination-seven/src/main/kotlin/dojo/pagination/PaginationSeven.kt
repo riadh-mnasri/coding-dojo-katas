@@ -8,6 +8,7 @@ object PaginationSeven {
         val slots = when {
             total <= 7 -> (1..total).toList()
             page <= 4 -> (1..5).toList() + listOf(ELLIPSIS, total)
+            page >= total - 3 -> listOf(1, ELLIPSIS) + (total - 4..total).toList()
             else -> listOf(1, ELLIPSIS, page - 1, page, page + 1, ELLIPSIS, total)
         }
         return slots.joinToString(" ") {
