@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 55 / 61 katas.**
+**Progress: 56 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -98,7 +98,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | ORM | ORM, schema migrations | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/orm/) |
 | PacMan | tick-based game, board state | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/PacMan/) |
 | [Pagination Seven](katas/pagination-seven/README.en.md) | display edge cases | ✅ done | [codingdojo.org](https://codingdojo.org/kata/PaginationSeven/) |
-| Pizza Maker | async, virtual time | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/pizza-maker/) |
+| [Pizza Maker](katas/pizza-maker/README.en.md) | async, virtual time | ✅ done | [codingdojo.org](https://codingdojo.org/kata/pizza-maker/) |
 | [Poker Hands](katas/poker-hands/README.en.md) | ranking and comparison | ✅ done | [codingdojo.org](https://codingdojo.org/kata/PokerHands/) |
 | [Potter](katas/potter/README.en.md) | discount optimisation | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Potter/) |
 | [Quote of the Day](katas/quote-of-the-day/README.en.md) | minimal web service | ✅ done | [codingdojo.org](https://codingdojo.org/kata/QotdCgi/) |
