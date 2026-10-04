@@ -81,4 +81,10 @@ class ArgsTest {
         assertThatThrownBy { Args("l", emptyList()).int('x') }.isInstanceOf(ArgsException::class.java)
             .hasMessage("Flag -x is not in the schema")
     }
+
+    @Test
+    fun `a list flag needs its value`() {
+        assertThatThrownBy { Args("g[*]", listOf("-g")) }.isInstanceOf(ArgsException::class.java)
+            .hasMessage("Flag -g expects a comma separated list")
+    }
 }
