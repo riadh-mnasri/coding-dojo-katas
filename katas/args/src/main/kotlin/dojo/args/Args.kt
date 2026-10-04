@@ -30,6 +30,14 @@ private object StringMarshaler : Marshaler {
     override fun parse(flag: Char, next: () -> String?) = next() ?: throw ArgsException("Flag -$flag expects a string value")
 }
 
+private class ListMarshaler(private val element: Marshaler) : Marshaler {
+    override val default = emptyList<Any>()
+    override fun parse(flag: Char, next: () -> String?): Any {
+        val value = next() ?: throw ArgsException("Flag -$flag expects a comma separated list")
+        return value.split(",").map { item -> element.parse(flag) { item } }
+    }
+}
+
 /** Schéma : des éléments séparés par des virgules, une lettre suivie du code de son type (`l`, `p#`, `d*`). */
 class Args(schema: String, arguments: List<String>) {
     private val marshalers: Map<Char, Marshaler> = schema.split(",").filter { it.isNotBlank() }.associate { element ->
@@ -58,10 +66,22 @@ class Args(schema: String, arguments: List<String>) {
 
     fun string(flag: Char): String = valueOf(flag) as String
 
+    @Suppress("UNCHECKED_CAST")
+    fun strings(flag: Char): List<String> = valueOf(flag) as List<String>
+
+    @Suppress("UNCHECKED_CAST")
+    fun ints(flag: Char): List<Int> = valueOf(flag) as List<Int>
+
     private fun valueOf(flag: Char): Any =
         values[flag] ?: marshalers[flag]?.default ?: throw ArgsException("Flag -$flag is not in the schema")
 
     private companion object {
-        val MARSHALERS: Map<String, Marshaler> = mapOf("" to BooleanMarshaler, "#" to IntMarshaler, "*" to StringMarshaler)
+        val MARSHALERS: Map<String, Marshaler> = mapOf(
+            "" to BooleanMarshaler,
+            "#" to IntMarshaler,
+            "*" to StringMarshaler,
+            "[*]" to ListMarshaler(StringMarshaler),
+            "[#]" to ListMarshaler(IntMarshaler),
+        )
     }
 }
