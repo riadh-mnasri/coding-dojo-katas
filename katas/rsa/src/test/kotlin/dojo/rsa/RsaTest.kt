@@ -31,4 +31,11 @@ class RsaTest {
 
     private fun blocksOf4(bytes: ByteArray): List<Long> =
         bytes.toList().chunked(4).map { block -> block.fold(0L) { value, byte -> (value shl 8) or (byte.toLong() and 0xFF) } }
+
+    @Test
+    fun `decrypting gives the sample message back`() {
+        val encrypted = Rsa.encrypt("Hello world!".toByteArray(), keys.public)
+
+        assertThat(String(Rsa.decrypt(encrypted, keys.private))).isEqualTo("Hello world!")
+    }
 }
