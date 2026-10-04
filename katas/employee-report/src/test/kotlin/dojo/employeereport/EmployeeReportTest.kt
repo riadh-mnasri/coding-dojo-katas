@@ -23,11 +23,12 @@ class EmployeeReportTest {
     }
 
     @Test
-    fun `is sorted by name`() {
-        // Seul l'ordre compte : on compare la liste à elle-même triée, sans figer son contenu ni sa casse.
+    fun `is sorted by name, descending`() {
+        // Story 4 : l'exigence de tri a changé, ce test a été modifié plutôt qu'un second test ajouté.
+        // Seul l'ordre compte, sans figer le contenu ni la casse.
         val names = report.sundayWorkers()
 
-        assertThat(names).isSortedAccordingTo(String.CASE_INSENSITIVE_ORDER)
+        assertThat(names).isSortedAccordingTo(String.CASE_INSENSITIVE_ORDER.reversed())
     }
 
     @Test
