@@ -10,32 +10,47 @@ enum class Direction(val arrow: String, val dx: Int, val dy: Int) {
 }
 
 /** x de gauche à droite, y de bas en haut : la dernière ligne de la carte est y = 0. */
-data class Position(val x: Int, val y: Int)
+data class Position(val x: Int, val y: Int) {
+    fun next(direction: Direction) = Position(x + direction.dx, y + direction.dy)
+}
 
-data class Rover(val position: Position, val direction: Direction)
+data class Rover(val position: Position, val direction: Direction) {
+    fun turnRight() = copy(direction = direction.right())
 
-class Mission private constructor(val rover: Rover, private val rows: List<List<String>>) {
+    fun turnLeft() = copy(direction = direction.left())
 
-    fun execute(commands: String): Rover {
-        var current = rover
-        tiles(commands).forEach { command ->
-            when (command) {
-                "⬆" -> {
-                    val p = current.position
-                    val next = Position(p.x + current.direction.dx, p.y + current.direction.dy)
-                    val tile = rows.getOrNull(next.y)?.getOrNull(next.x)
-                    if (tile != null && tile !in OBSTACLES) current = current.copy(position = next)
-                }
-                "➡" -> current = current.copy(direction = current.direction.right())
-                "⬅" -> current = current.copy(direction = current.direction.left())
-            }
+    /** Avance d'une case si le terrain le permet ; sinon ne fait rien. */
+    fun forward(terrain: Terrain): Rover {
+        val next = position.next(direction)
+        return if (terrain.isFree(next)) copy(position = next) else this
+    }
+}
+
+/** La carte : une case est libre si elle existe et n'est ni un arbre ni un rocher. */
+class Terrain(private val rows: List<List<String>>) {
+    fun isFree(position: Position): Boolean {
+        val tile = rows.getOrNull(position.y)?.getOrNull(position.x)
+        return tile != null && tile !in OBSTACLES
+    }
+
+    private companion object {
+        val OBSTACLES = setOf("🌳", "🪨")
+    }
+}
+
+class Mission private constructor(val rover: Rover, private val terrain: Terrain) {
+
+    fun execute(commands: String): Rover = tiles(commands).fold(rover) { current, command ->
+        when (command) {
+            "⬆" -> current.forward(terrain)
+            "➡" -> current.turnRight()
+            "⬅" -> current.turnLeft()
+            else -> throw IllegalArgumentException("Unknown command $command")
         }
-        return current
     }
 
     companion object {
         private const val VARIATION_SELECTOR = 0xFE0F
-        private val OBSTACLES = setOf("🌳", "🪨")
 
         fun parse(map: String): Mission {
             val rows = map.lines().reversed().map(::tiles)
@@ -44,11 +59,11 @@ class Mission private constructor(val rover: Rover, private val rows: List<List<
                     Direction.entries.firstOrNull { it.arrow == tile }?.let { Rover(Position(x, y), it) }
                 }
             }
-            return Mission(rover, rows)
+            return Mission(rover, Terrain(rows))
         }
 
         /** Une tuile = un émoji ; certains tiennent sur deux `char`, d'autres portent un sélecteur de variante. */
-        private fun tiles(row: String): List<String> =
-            row.codePoints().toArray().filter { it != VARIATION_SELECTOR }.map { String(Character.toChars(it)) }
+        private fun tiles(text: String): List<String> =
+            text.codePoints().toArray().filter { it != VARIATION_SELECTOR }.map { String(Character.toChars(it)) }
     }
 }
