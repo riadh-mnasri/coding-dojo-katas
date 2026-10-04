@@ -35,4 +35,17 @@ class MrsClausTest {
 
         assertThat(sleigh.packed).containsExactly(present("Train"), present("Doll"))
     }
+
+    @Test
+    fun `story 2 - presents wait when every elf is busy`() = runTest {
+        val claus = mrsClaus(elves = 1)
+
+        claus.receive(present("Train"))
+        claus.receive(present("Doll"))
+        after(10)
+        assertThat(sleigh.packed).containsExactly(present("Train"))
+
+        after(10)
+        assertThat(sleigh.packed).containsExactly(present("Train"), present("Doll"))
+    }
 }
