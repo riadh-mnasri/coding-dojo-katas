@@ -76,4 +76,15 @@ class AuthenticationFilterTest {
         verify { response.addCookie(match { it.name == "SSO_TOKEN" && it.value == "token-of-alice" }) }
         org.assertj.core.api.Assertions.assertThat(registry.sessions).containsEntry("token-of-alice", "alice")
     }
+
+    @Test
+    fun `wrong credentials are refused and open no session`() {
+        val login = request(parameters = mapOf("username" to "alice", "password" to "wrong"))
+
+        filter.doFilter(login, response, chain)
+
+        verify { response.sendError(HttpServletResponse.SC_UNAUTHORIZED) }
+        verify(exactly = 0) { chain.doFilter(any(), any()) }
+        org.assertj.core.api.Assertions.assertThat(registry.sessions).isEmpty()
+    }
 }
