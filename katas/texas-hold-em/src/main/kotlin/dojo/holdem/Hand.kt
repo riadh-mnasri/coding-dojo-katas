@@ -11,7 +11,12 @@ data class Card(val value: Int, val suit: Char) {
     companion object {
         private const val VALUES = "23456789TJQKA"
 
-        fun parse(text: String) = Card(VALUES.indexOf(text[0]) + 2, text[1])
+        private const val SUITS = "cdhs"
+
+        fun parse(text: String): Card {
+            require(text.length == 2 && text[0] in VALUES && text[1] in SUITS) { "Unknown card '$text'" }
+            return Card(VALUES.indexOf(text[0]) + 2, text[1])
+        }
     }
 }
 
