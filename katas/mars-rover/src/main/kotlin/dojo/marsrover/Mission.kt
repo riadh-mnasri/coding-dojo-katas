@@ -2,7 +2,11 @@
 package dojo.marsrover
 
 enum class Direction(val arrow: String, val dx: Int, val dy: Int) {
-    NORTH("⬆", 0, 1), EAST("➡", 1, 0), SOUTH("⬇", 0, -1), WEST("⬅", -1, 0)
+    NORTH("⬆", 0, 1), EAST("➡", 1, 0), SOUTH("⬇", 0, -1), WEST("⬅", -1, 0);
+
+    fun right() = entries[(ordinal + 1) % entries.size]
+
+    fun left() = entries[(ordinal + entries.size - 1) % entries.size]
 }
 
 /** x de gauche à droite, y de bas en haut : la dernière ligne de la carte est y = 0. */
@@ -15,9 +19,13 @@ class Mission private constructor(val rover: Rover) {
     fun execute(commands: String): Rover {
         var current = rover
         tiles(commands).forEach { command ->
-            if (command == "⬆") {
-                val p = current.position
-                current = current.copy(position = Position(p.x + current.direction.dx, p.y + current.direction.dy))
+            when (command) {
+                "⬆" -> {
+                    val p = current.position
+                    current = current.copy(position = Position(p.x + current.direction.dx, p.y + current.direction.dy))
+                }
+                "➡" -> current = current.copy(direction = current.direction.right())
+                "⬅" -> current = current.copy(direction = current.direction.left())
             }
         }
         return current
