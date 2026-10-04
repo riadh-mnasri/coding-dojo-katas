@@ -17,4 +17,9 @@ class NearestColorTest {
     fun `the nearest color of F42 is red`() {
         assertThat(primaries.nearest("F42")).isEqualTo("F00")
     }
+
+    @Test
+    fun `yellow is as near to red as to green`() {
+        assertThat(primaries.nearestColors("FF0")).containsExactly("F00", "0F0")
+    }
 }
