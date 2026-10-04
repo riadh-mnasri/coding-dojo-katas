@@ -3,11 +3,15 @@ package dojo.nearestcolor
 
 class Palette(private vararg val colors: String) {
 
-    fun nearest(color: String): String = colors.minBy { distance(it, color) }
+    fun nearest(color: String): String = nearestColors(color).first()
 
-    fun nearestColors(color: String): List<String> {
-        val best = colors.minOf { distance(it, color) }
-        return colors.filter { distance(it, color) == best }
+    /** Partie 2 : toutes les couleurs à égalité de distance minimale, dans l'ordre de la palette. */
+    fun nearestColors(color: String): List<String> = closest(color) { distances -> distances.min() }
+
+    private fun closest(color: String, pick: (List<Int>) -> Int): List<String> {
+        val distances = colors.map { distance(it, color) }
+        val target = pick(distances)
+        return colors.filterIndexed { index, _ -> distances[index] == target }
     }
 
     /** Distance euclidienne au carré dans l'espace RGB : suffisante pour comparer. */
