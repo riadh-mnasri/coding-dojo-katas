@@ -35,7 +35,7 @@ class HandTest {
 
         assertThat(listOf(fourOfAKind, twoPairs, fullHouse, threeOfAKind).sorted())
             .containsExactly(twoPairs, threeOfAKind, fullHouse, fourOfAKind)
-        assertThat(hand("3H 3D 2S 2C KD")).isGreaterThan(hand("2H 2D 4S 4C AD").let { hand("3S 3C 2D 2H QD") })
+        assertThat(hand("3H 3D 2S 2C KD")).isGreaterThan(hand("3S 3C 2D 2H QD"))
         assertThat(hand("4H 4D 4S 2C 2D")).isGreaterThan(hand("3H 3D 3S AC AD"))
     }
 }
