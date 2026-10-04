@@ -8,6 +8,11 @@ data class Item(val label: String, val quantity: Int, val unitPrice: BigDecimal)
 }
 
 class Receipt(private val items: List<Item>, private val state: String) {
+    init {
+        require(items.isNotEmpty()) { "An order needs at least one item" }
+        require(state in TAX_RATES) { "Unknown state '$state', known states are ${TAX_RATES.keys}" }
+    }
+
     val totalWithoutTaxes: BigDecimal get() = items.fold(BigDecimal.ZERO) { sum, item -> sum + item.total }
 
     /** Le taux du palier le plus haut dépassé par le total hors taxes. */
