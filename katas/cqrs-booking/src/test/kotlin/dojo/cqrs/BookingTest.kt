@@ -2,6 +2,7 @@
 package dojo.cqrs
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import java.time.LocalDate
 
@@ -33,5 +34,14 @@ class BookingTest {
 
         assertThat(queries.freeRooms(arrival = day(12), departure = day(14))).contains(Room("101"))
         assertThat(queries.freeRooms(arrival = day(8), departure = day(10))).contains(Room("101"))
+    }
+
+    @Test
+    fun `the write side refuses a booking that overlaps another one`() {
+        commands.bookARoom(Booking("ann", "101", arrival = day(10), departure = day(12)))
+
+        assertThatThrownBy { commands.bookARoom(Booking("bob", "101", arrival = day(11), departure = day(15))) }
+            .isInstanceOf(IllegalStateException::class.java)
+        assertThat(queries.freeRooms(arrival = day(13), departure = day(15))).contains(Room("101"))
     }
 }
