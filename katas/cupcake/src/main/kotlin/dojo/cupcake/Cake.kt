@@ -13,6 +13,11 @@ class Cookie : Cake {
     override fun name() = "🍪"
 }
 
-class Chocolate(private val cake: Cake) : Cake {
-    override fun name() = "${cake.name()} with 🍫"
+/** Décorateur : une garniture enveloppe un gâteau et complète son nom. */
+abstract class Topping(private val cake: Cake, private val emoji: String) : Cake {
+    override fun name() = "${cake.name()} ${if (cake is Topping) "and" else "with"} $emoji"
 }
+
+class Chocolate(cake: Cake) : Topping(cake, "🍫")
+
+class Nuts(cake: Cake) : Topping(cake, "🥜")
