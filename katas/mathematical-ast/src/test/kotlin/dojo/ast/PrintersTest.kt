@@ -29,4 +29,11 @@ class PrintersTest {
         assertThat(Mathematical.parse("3 6 + 2 *").accept(MinimalInfixPrinter)).isEqualTo("(3 + 6) × 2")
         assertThat(Mathematical.parse("1 2 + 3 +").accept(MinimalInfixPrinter)).isEqualTo("1 + 2 + 3")
     }
+
+    @Test
+    fun `step 3 - subtraction needs parentheses on its right only`() {
+        assertThat(Mathematical.parse("3 6 - 2 -").accept(MinimalInfixPrinter)).isEqualTo("3 - 6 - 2")
+        assertThat(Mathematical.parse("3 6 2 - -").accept(MinimalInfixPrinter)).isEqualTo("3 - (6 - 2)")
+        assertThat(Mathematical.parse("3 6 2 - -").accept(Evaluator)).isEqualTo(-1L)
+    }
 }
