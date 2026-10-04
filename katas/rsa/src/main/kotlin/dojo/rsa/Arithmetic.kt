@@ -13,4 +13,6 @@ object Arithmetic {
         }
         return Math.floorMod(oldS, modulus)
     }
+
+    fun gcd(a: Long, b: Long): Long = if (b == 0L) a else gcd(b, a % b)
 }
