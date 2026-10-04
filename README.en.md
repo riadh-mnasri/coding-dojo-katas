@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 38 / 61 katas.**
+**Progress: 39 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -112,7 +112,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | [String Calculator](katas/string-calculator/README.en.md) | incremental error handling | ✅ done | [codingdojo.org](https://codingdojo.org/kata/StringCalculator/) |
 | Sudoku Concurrent Resolver | message-driven constraint propagation | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/sudoku/) |
 | [Tennis](katas/tennis/README.en.md) | state machine | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Tennis/) |
-| Texas Hold'em | best hand out of 7 cards | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/TexasHoldEm/) |
+| [Texas Hold'em](katas/texas-hold-em/README.en.md) | best hand out of 7 cards | ✅ done | [codingdojo.org](https://codingdojo.org/kata/TexasHoldEm/) |
 | [Tic Tac Toe](katas/tic-tac-toe/README.en.md) | double-loop TDD | ✅ done | [codingdojo.org](https://codingdojo.org/kata/tic-tac-toe/) |
 | Trading Card Game | game loop, test doubles | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/TradingCardGame/) |
 | Trip Service | breaking legacy dependencies | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/TripService/) |
