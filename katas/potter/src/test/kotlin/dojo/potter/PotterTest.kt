@@ -18,4 +18,12 @@ class PotterTest {
         assertThat(price(0)).isEqualByComparingTo("8")
         assertThat(price(1, 1, 1)).isEqualByComparingTo("24")
     }
+
+    @Test
+    fun `different books form a discounted set`() {
+        assertThat(price(0, 1)).isEqualByComparingTo("15.20")
+        assertThat(price(0, 2, 4)).isEqualByComparingTo("21.60")
+        assertThat(price(0, 1, 2, 4)).isEqualByComparingTo("25.60")
+        assertThat(price(0, 1, 2, 3, 4)).isEqualByComparingTo("30.00")
+    }
 }
