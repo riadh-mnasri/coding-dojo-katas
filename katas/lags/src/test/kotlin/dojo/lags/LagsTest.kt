@@ -15,4 +15,11 @@ class LagsTest {
     fun `a single request earns its price`() {
         assertThat(Lags.bestGain(listOf(Request("AF514", 0, 5, 10)))).isEqualTo(10)
     }
+
+    @Test
+    fun `of two overlapping requests, only the better one is kept`() {
+        val requests = listOf(Request("AF514", 0, 5, 10), Request("CO5", 3, 7, 14))
+
+        assertThat(Lags.bestGain(requests)).isEqualTo(14)
+    }
 }
