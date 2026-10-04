@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Riadh MNASRI. Licensed under the MIT License.
 package dojo.langton
 
-enum class Color { WHITE, BLACK }
+enum class Color { WHITE, BLACK, RED }
 
 /** Coordonnées d'écran : le nord est vers le haut, donc vers les y décroissants. */
 enum class Direction(val dx: Int, val dy: Int) {
@@ -24,6 +24,13 @@ data class Rule(val turn: (Direction) -> Direction, val paint: Color)
 val LANGTON = mapOf(
     Color.WHITE to Rule(Direction::right, Color.BLACK),
     Color.BLACK to Rule(Direction::left, Color.WHITE),
+)
+
+/** Variante à trois couleurs : la couleur d'une case tourne en rond, blanc → noir → rouge → blanc. */
+val THREE_COLORS = mapOf(
+    Color.WHITE to Rule(Direction::right, Color.BLACK),
+    Color.BLACK to Rule(Direction::left, Color.RED),
+    Color.RED to Rule({ it }, Color.WHITE),
 )
 
 class World(private val rules: Map<Color, Rule> = LANGTON) {
