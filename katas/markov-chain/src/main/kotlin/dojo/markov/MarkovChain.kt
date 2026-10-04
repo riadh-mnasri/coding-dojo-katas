@@ -11,8 +11,17 @@ class MarkovChain private constructor(private val transitions: Map<String, Map<S
     /** Deuxième partie : un texte de [words] mots, en partant de [startingWith]. */
     fun generate(words: Int, startingWith: String, random: Random = Random.Default): String {
         val text = mutableListOf(startingWith)
-        while (text.size < words) text += draw(followersOf(text.last()), random)
+        while (text.size < words) {
+            val followers = followersOf(text.last())
+            text += if (followers.isEmpty()) restart(random) else draw(followers, random)
+        }
         return text.joinToString(" ")
+    }
+
+    /** Impasse : le mot n'a jamais été suivi. On repart d'un mot connu, tiré au hasard. */
+    private fun restart(random: Random): String {
+        val known = transitions.keys.toList()
+        return known[(random.nextDouble() * known.size).toInt()]
     }
 
     /** Tire un mot : chacun occupe sur [0 ; 1[ une part égale à sa fréquence. */
