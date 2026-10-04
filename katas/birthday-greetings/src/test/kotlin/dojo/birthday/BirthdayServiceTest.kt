@@ -76,4 +76,25 @@ class BirthdayServiceTest {
         )
         assertThat(outbox.sent.filter { it.to == "john.doe@foobar.com" && it.subject == "Birthday Reminder" }).isEmpty()
     }
+
+    @Test
+    fun `a single reminder lists every birthday of the day`() {
+        val john = Friend("Doe", "John", LocalDate.of(1982, 10, 8), "john.doe@foobar.com")
+        val lea = Friend("Leap", "Lea", LocalDate.of(1990, 10, 8), "lea@foobar.com")
+        val max = Friend("Power", "Max", LocalDate.of(1970, 10, 8), "max@foobar.com")
+        val mary = Friend("Ann", "Mary", LocalDate.of(1975, 9, 11), "mary.ann@foobar.com")
+
+        service(john, lea, max, mary).sendGreetings(LocalDate.of(2026, 10, 8))
+
+        val remindersToMary = outbox.sent.filter { it.to == "mary.ann@foobar.com" }
+        assertThat(remindersToMary).containsExactly(
+            Message(
+                "mary.ann@foobar.com",
+                "Birthday Reminder",
+                "Dear Mary,\n\nToday is John Doe, Lea Leap and Max Power's birthday.\nDon't forget to send them a message !",
+            ),
+        )
+        assertThat(outbox.sent.filter { it.to == "john.doe@foobar.com" && it.subject == "Birthday Reminder" }.map { it.body })
+            .containsExactly("Dear John,\n\nToday is Lea Leap and Max Power's birthday.\nDon't forget to send them a message !")
+    }
 }
