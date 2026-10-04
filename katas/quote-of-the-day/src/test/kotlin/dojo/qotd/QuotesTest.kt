@@ -22,4 +22,13 @@ class QuotesTest {
     fun `gives a quote from the collection`() {
         assertThat(Quotes(collection, firstOne).next()).isIn(collection)
     }
+
+    @Test
+    fun `every visit gives a different quote than the previous one`() {
+        val quotes = Quotes(collection, firstOne)
+
+        val visits = List(4) { quotes.next() }
+
+        visits.zipWithNext().forEach { (previous, current) -> assertThat(current).isNotEqualTo(previous) }
+    }
 }
