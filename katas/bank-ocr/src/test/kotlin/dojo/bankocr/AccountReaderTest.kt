@@ -3,6 +3,8 @@ package dojo.bankocr
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 
 class AccountReaderTest {
 
@@ -11,5 +13,16 @@ class AccountReaderTest {
         val zeros = useCases("use-case-1.txt").first()
 
         assertThat(AccountReader.read(zeros.entry)).isEqualTo("000000000")
+    }
+
+    @ParameterizedTest
+    @MethodSource("useCase1")
+    fun `user story 1 - reads every entry of use case 1`(case: UseCase) {
+        assertThat(AccountReader.read(case.entry)).isEqualTo(case.expected)
+    }
+
+    companion object {
+        @JvmStatic
+        fun useCase1() = useCases("use-case-1.txt")
     }
 }
