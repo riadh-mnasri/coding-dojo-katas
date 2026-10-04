@@ -24,6 +24,26 @@ object NumbersInWords {
         return words.joinToString(" ")
     }
 
+    /** Étape 2 : relit les mots en accumulant le groupe courant, multiplié par chaque échelle rencontrée. */
+    fun toNumber(words: String): Int {
+        var total = 0
+        var group = 0
+        words.split(" ").filter { it.isNotBlank() && it != "and" }.forEach { word ->
+            val scale = scales.firstOrNull { it.second == word }?.first
+            when {
+                word in belowTwenty -> group += belowTwenty.indexOf(word)
+                word in tens -> group += tens.indexOf(word) * 10
+                word == "hundred" -> group *= 100
+                scale != null -> {
+                    total += group * scale
+                    group = 0
+                }
+                else -> throw IllegalArgumentException("Unknown number word: $word")
+            }
+        }
+        return total + group
+    }
+
     private fun belowThousand(number: Int): String = when {
         number < 20 -> belowTwenty[number]
         number < 100 && number % 10 == 0 -> tens[number / 10]
