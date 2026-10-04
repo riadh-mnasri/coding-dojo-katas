@@ -2,6 +2,7 @@
 package dojo.tictactoe
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 /** Boucle interne : une règle par test. */
@@ -22,5 +23,13 @@ class TicTacToeTest {
         game.play(1)
 
         assertThat(game.ownerOf(1)).isEqualTo(Player.O)
+    }
+
+    @Test
+    fun `a field already taken cannot be taken again`() {
+        game.play(5)
+
+        assertThatThrownBy { game.play(5) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThat(game.ownerOf(5)).isEqualTo(Player.X)
     }
 }
