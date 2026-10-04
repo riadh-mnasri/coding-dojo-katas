@@ -16,7 +16,11 @@ class TicTacToe {
 
     fun ownerOf(cell: Int): Player? = fields[cell]
 
-    fun board(): String = TODO()
+    fun board(): String {
+        val separator = "+---+---+---+"
+        val rows = (1..9).chunked(3).map { row -> row.joinToString(" | ", "| ", " |") { "${fields[it] ?: it}" } }
+        return (listOf(separator) + rows.flatMap { listOf(it, separator) }).joinToString("\n")
+    }
 
     fun isOver(): Boolean = winner() != null || fields.size == 9
 
