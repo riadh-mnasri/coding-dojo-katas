@@ -29,4 +29,10 @@ class EmployeeReportTest {
 
         assertThat(names).isSortedAccordingTo(String.CASE_INSENSITIVE_ORDER)
     }
+
+    @Test
+    fun `names are capitalized`() {
+        // Seule la casse compte : chaque nom est en majuscules, quels que soient les noms et leur ordre.
+        assertThat(report.sundayWorkers()).isNotEmpty().allSatisfy { assertThat(it).isUpperCase() }
+    }
 }
