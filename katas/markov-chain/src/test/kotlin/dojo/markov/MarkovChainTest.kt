@@ -21,4 +21,11 @@ class MarkovChainTest {
         assertThat(chain.followersOf("libres")).isEqualTo(mapOf("peuvent" to 0.5, "ou" to 0.5))
         assertThat(chain.followersOf("liberté")).isEmpty()
     }
+
+    @Test
+    fun `a chain with a single path generates that path`() {
+        val chain = MarkovChain.learn("le chat dort")
+
+        assertThat(chain.generate(words = 3, startingWith = "le")).isEqualTo("le chat dort")
+    }
 }
