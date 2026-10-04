@@ -53,4 +53,25 @@ class CustomerTest {
     fun `an unknown price code is rejected instead of costing nothing`() {
         assertThatThrownBy { Movie("Mystery", 42) }.isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @Test
+    fun `the HTML statement of the kata example`() {
+        val martin = customer(
+            "martin",
+            Rental(Movie("Ran", Movie.REGULAR), 3),
+            Rental(Movie("Trois Couleurs: Bleu", Movie.REGULAR), 2),
+        )
+
+        assertThat(martin.htmlStatement()).isEqualTo(
+            """
+            <h1>Rental Record for <em>martin</em></h1>
+            <table>
+              <tr><td>Ran</td><td>3.5</td></tr>
+              <tr><td>Trois Couleurs: Bleu</td><td>2.0</td></tr>
+            </table>
+            <p>Amount owed is <em>5.5</em></p>
+            <p>You earned <em>2</em> frequent renter points</p>
+            """.trimIndent(),
+        )
+    }
 }
