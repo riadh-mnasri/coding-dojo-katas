@@ -5,8 +5,22 @@ import java.time.LocalDate
 
 class BirthdayService(private val friends: FriendRepository, private val sender: MessageSender) {
     fun sendGreetings(today: LocalDate) {
-        friends.all().filter { it.hasBirthdayOn(today) }.forEach { friend ->
+        val everybody = friends.all()
+        val celebrated = everybody.filter { it.hasBirthdayOn(today) }
+        celebrated.forEach { friend ->
             sender.send(Message(friend.email, "Happy birthday!", "Happy birthday, dear ${friend.firstName}!"))
+        }
+        celebrated.forEach { friend ->
+            (everybody - friend).forEach { other ->
+                sender.send(
+                    Message(
+                        other.email,
+                        "Birthday Reminder",
+                        "Dear ${other.firstName},\n\nToday is ${friend.firstName} ${friend.lastName}'s birthday.\n" +
+                            "Don't forget to send them a message !",
+                    ),
+                )
+            }
         }
     }
 }
