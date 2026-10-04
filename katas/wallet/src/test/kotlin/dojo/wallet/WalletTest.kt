@@ -27,4 +27,15 @@ class WalletTest {
 
         assertThat(wallet.value(Currency.EUR, rates).amount).isEqualByComparingTo("312.50")
     }
+
+    @Test
+    fun `several stocks add up`() {
+        val wallet = Wallet(
+            Stock(BigDecimal(5), StockType.PETROLEUM),
+            Stock(BigDecimal("0.1"), StockType.BITCOIN),
+            Stock(BigDecimal(100), StockType.USD),
+        )
+
+        assertThat(wallet.value(Currency.EUR, rates).amount).isEqualByComparingTo("5904.50")
+    }
 }
