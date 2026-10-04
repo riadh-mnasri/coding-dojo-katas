@@ -10,5 +10,5 @@ class SocialNetwork(private val clock: () -> Instant) {
 
     fun post(author: String, text: String): Post = Post(posts.size + 1, author, text, clock()).also { posts += it }
 
-    fun timeline(author: String): List<Post> = posts.filter { it.author == author }
+    fun timeline(author: String): List<Post> = posts.filter { it.author == author }.sortedByDescending { it.at }
 }
