@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Riadh MNASRI. Licensed under the MIT License.
 package dojo.poker
 
-enum class Category { HIGH_CARD, PAIR, TWO_PAIRS, THREE_OF_A_KIND, STRAIGHT, FLUSH, FULL_HOUSE, FOUR_OF_A_KIND }
+enum class Category { HIGH_CARD, PAIR, TWO_PAIRS, THREE_OF_A_KIND, STRAIGHT, FLUSH, FULL_HOUSE, FOUR_OF_A_KIND, STRAIGHT_FLUSH }
 
 class Hand private constructor(values: List<Int>, suits: List<Char>) : Comparable<Hand> {
 
@@ -12,6 +12,7 @@ class Hand private constructor(values: List<Int>, suits: List<Char>) : Comparabl
     private val ordered = groups.map { it.key }
 
     val category: Category = when {
+        suits.toSet().size == 1 && shape.size == 5 && ordered.first() - ordered.last() == 4 -> Category.STRAIGHT_FLUSH
         shape == listOf(4, 1) -> Category.FOUR_OF_A_KIND
         shape == listOf(3, 2) -> Category.FULL_HOUSE
         suits.toSet().size == 1 -> Category.FLUSH
