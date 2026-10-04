@@ -50,4 +50,11 @@ class CakeTest {
         assertThat(Bundle(Cupcake(), Cookie()).price()).isEqualByComparingTo("2.7")
         assertThat(Bundle(Cupcake(), Cupcake(), Cookie()).price()).isEqualByComparingTo("3.6")
     }
+
+    @Test
+    fun `bundles can contain bundles`() {
+        val bundle = Bundle(Bundle(Cupcake(), Cookie()), Cupcake())
+
+        assertThat(bundle.price()).isEqualByComparingTo("3.33")
+    }
 }
