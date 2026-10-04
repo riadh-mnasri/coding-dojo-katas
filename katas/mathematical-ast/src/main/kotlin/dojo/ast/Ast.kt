@@ -15,9 +15,9 @@ data class Operand(val value: Long) : Expression {
     override fun <R> accept(visitor: Visitor<R>) = visitor.visit(this)
 }
 
-enum class Operator(val symbol: String, private vararg val aliases: String) {
-    ADD("+"),
-    MULTIPLY("×", "*"),
+enum class Operator(val symbol: String, val precedence: Int, private vararg val aliases: String) {
+    ADD("+", 1),
+    MULTIPLY("×", 2, "*"),
     ;
 
     fun isWrittenAs(token: String) = token == symbol || token in aliases

@@ -31,3 +31,18 @@ object InfixPrinter : Visitor<String> {
     private fun nested(expression: Expression) =
         if (expression is Operation) "(${expression.accept(this)})" else expression.accept(this)
 }
+
+/** Étape 3 : une parenthèse seulement quand la priorité des opérateurs l'exige. */
+object MinimalInfixPrinter : Visitor<String> {
+    override fun visit(operand: Operand) = operand.value.toString()
+
+    override fun visit(operation: Operation): String {
+        val precedence = operation.operator.precedence
+        return "${wrapped(operation.left, precedence)} ${operation.operator.symbol} ${wrapped(operation.right, precedence)}"
+    }
+
+    private fun wrapped(child: Expression, parentPrecedence: Int): String {
+        val text = child.accept(this)
+        return if (child is Operation && child.operator.precedence < parentPrecedence) "($text)" else text
+    }
+}
