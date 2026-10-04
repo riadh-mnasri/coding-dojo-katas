@@ -7,9 +7,12 @@ object Rsa {
     private const val CLEAR_BLOCK = 3
     private const val CIPHER_BLOCK = 4
 
-    /** Chaque bloc de 3 octets, lu comme un entier a, devient a^c mod N sur 4 octets. */
+    /**
+     * Chaque bloc de 3 octets, lu comme un entier a, devient a^c mod N sur 4 octets.
+     * Le dernier bloc est complété par des octets nuls (convention de ce kata : l'énoncé n'en fixe pas).
+     */
     fun encrypt(message: ByteArray, key: PublicKey): ByteArray =
-        message.toList().chunked(CLEAR_BLOCK).flatMap { block ->
+        padded(message).chunked(CLEAR_BLOCK).flatMap { block ->
             toBytes(power(toNumber(block), key.exponent, key.modulus), CIPHER_BLOCK)
         }.toByteArray()
 
@@ -17,7 +20,12 @@ object Rsa {
     fun decrypt(encrypted: ByteArray, key: PrivateKey): ByteArray =
         encrypted.toList().chunked(CIPHER_BLOCK).flatMap { block ->
             toBytes(power(toNumber(block), key.exponent, key.modulus), CLEAR_BLOCK)
-        }.toByteArray()
+        }.dropLastWhile { it == 0.toByte() }.toByteArray()
+
+    private fun padded(message: ByteArray): List<Byte> {
+        val missing = (CLEAR_BLOCK - message.size % CLEAR_BLOCK) % CLEAR_BLOCK
+        return message.toList() + List(missing) { 0.toByte() }
+    }
 
     private fun power(base: Long, exponent: Long, modulus: Long): Long =
         BigInteger.valueOf(base).modPow(BigInteger.valueOf(exponent), BigInteger.valueOf(modulus)).toLong()
