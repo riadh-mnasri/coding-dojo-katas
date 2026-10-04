@@ -66,4 +66,10 @@ class NumbersInWordsTest {
         assertThatThrownBy { NumbersInWords.toNumber("seven hundred and fourty five") }
             .isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @Test
+    fun `only numbers from 0 to 999,999,999 can be written`() {
+        assertThatThrownBy { NumbersInWords.toWords(-1) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { NumbersInWords.toWords(1_000_000_000) }.isInstanceOf(IllegalArgumentException::class.java)
+    }
 }
