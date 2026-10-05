@@ -18,4 +18,15 @@ class PlayerTest {
         assertThat(ann.hand).containsExactly(0, 1, 2)
         assertThat(ann.deck).containsExactly(3, 4)
     }
+
+    @Test
+    fun `starting a turn adds a mana slot, refills the mana and draws a card`() {
+        val ann = player(0, 1, 2, 3, 4)
+
+        ann.startTurn()
+
+        assertThat(ann.manaSlots).isEqualTo(1)
+        assertThat(ann.mana).isEqualTo(1)
+        assertThat(ann.hand).containsExactly(0, 1, 2, 3)
+    }
 }
