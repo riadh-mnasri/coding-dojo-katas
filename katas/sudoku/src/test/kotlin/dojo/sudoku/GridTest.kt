@@ -18,4 +18,17 @@ class GridTest {
         assertThat(grid.cell(2, 3).isPossible(7)).isFalse()
         assertThat(discoveries).containsExactly(Discovery(row = 1, column = 1, value = 7))
     }
+
+    @Test
+    fun `a cell left with a single number is discovered in turn`() {
+        // Given: la cellule (3, 3) ne peut plus être que 9 ou 8
+        (1..7).forEach { grid.cell(3, 3).exclude(it) }
+
+        // When: 8 est trouvé ailleurs dans la grille
+        grid.set(row = 1, column = 1, value = 8)
+
+        // Then
+        assertThat(grid.cell(3, 3).value()).isEqualTo(CellValue.Known(9))
+        assertThat(discoveries).containsExactly(Discovery(1, 1, 8), Discovery(3, 3, 9))
+    }
 }
