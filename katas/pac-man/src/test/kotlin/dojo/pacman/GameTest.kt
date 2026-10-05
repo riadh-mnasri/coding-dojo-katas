@@ -67,4 +67,15 @@ class GameTest {
 
         assertThat(game.isLevelComplete).isTrue()
     }
+
+    @Test
+    fun `running into a monster ends the game`() {
+        val game = Game.parse(board(".M.", ".V.", "..."))
+
+        game.tick()
+
+        assertThat(game.isOver).isTrue()
+        game.tick()
+        assertThat(game.render()).isEqualTo(board(".M.", ".V.", "..."))
+    }
 }
