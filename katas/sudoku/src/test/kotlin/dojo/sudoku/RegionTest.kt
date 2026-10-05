@@ -22,4 +22,15 @@ class RegionTest {
         val message = Message(row = 1, column = 1, value = 7, path = listOf("C"))
         assertThat(sent).containsExactlyInAnyOrder(NORTH to message, EAST to message, SOUTH to message, WEST to message)
     }
+
+    @Test
+    fun `a message from the north excludes the value from the column and goes on south`() {
+        val fromAbove = Message(row = 2, column = 3, value = 5, path = listOf("I"))
+
+        region.receive(from = NORTH, message = fromAbove)
+
+        assertThat(sent).containsExactly(SOUTH to fromAbove.copy(path = listOf("I", "C")))
+        assertThat((1..3).none { region.isPossible(row = it, column = 3, value = 5) }).isTrue()
+        assertThat(region.isPossible(row = 1, column = 1, value = 5)).isTrue()
+    }
 }
