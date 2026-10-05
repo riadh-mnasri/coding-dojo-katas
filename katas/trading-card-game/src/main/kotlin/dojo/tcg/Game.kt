@@ -7,11 +7,23 @@ class Game(first: Player, second: Player) {
         private set
     private var opponent: Player = second
 
+    var winner: Player? = null
+        private set
+
     fun playTurn() {
+        if (winner != null) return
         active.startTurn()
+        if (active.health <= 0) {
+            winner = opponent
+            return
+        }
         while (true) {
             val card = active.hand.filter { it <= active.mana }.maxOrNull() ?: break
             active.play(card, against = opponent)
+            if (opponent.health <= 0) {
+                winner = active
+                return
+            }
         }
         active = opponent.also { opponent = active }
     }
