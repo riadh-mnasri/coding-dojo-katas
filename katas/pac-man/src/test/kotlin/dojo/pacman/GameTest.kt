@@ -48,4 +48,13 @@ class GameTest {
         assertThat(game.render()).isEqualTo(board(".#.", ".V.", "..."))
         assertThat(game.score).isZero()
     }
+
+    @Test
+    fun `pacman does not turn towards a wall`() {
+        val game = Game.parse(board("...", "#V.", "..."))
+
+        game.turn(Direction.LEFT)
+
+        assertThat(game.render()).isEqualTo(board("...", "#V.", "..."))
+    }
 }
