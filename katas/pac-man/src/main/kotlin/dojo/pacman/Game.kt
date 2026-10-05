@@ -13,8 +13,16 @@ class Game private constructor(private val cells: List<CharArray>, private var x
 
     val isLevelComplete: Boolean get() = cells.none { DOT in it }
 
+    var isOver = false
+        private set
+
     fun tick() {
+        if (isOver) return
         val (nextX, nextY) = ahead(direction)
+        if (cells[nextY][nextX] == MONSTER) {
+            isOver = true
+            return
+        }
         if (cells[nextY][nextX] == WALL) return
         if (cells[nextY][nextX] == DOT) score++
         cells[y][x] = EMPTY
@@ -39,6 +47,7 @@ class Game private constructor(private val cells: List<CharArray>, private var x
     companion object {
         private const val DOT = '.'
         private const val WALL = '#'
+        private const val MONSTER = 'M'
         private const val EMPTY = ' '
 
         fun parse(board: String): Game {
