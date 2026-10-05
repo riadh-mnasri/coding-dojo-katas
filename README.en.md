@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 56 / 61 katas.**
+**Progress: 57 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -64,7 +64,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | [Birthday Greetings](katas/birthday-greetings/README.en.md) | hexagonal architecture, ports and adapters | ✅ done | [codingdojo.org](https://codingdojo.org/kata/birthday-greetings/) |
 | [Bowling](katas/bowling/README.en.md) | stateful business rules | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Bowling/) |
 | [Brainfuck](katas/brainfuck/README.en.md) | interpreter, extensible instructions | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Brainfuck/) |
-| Christmas Delivery | concurrency, queues | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/christmas-delivery/) |
+| [Christmas Delivery](katas/christmas-delivery/README.en.md) | concurrency, queues | ✅ done | [codingdojo.org](https://codingdojo.org/kata/christmas-delivery/) |
 | [Code Cracker](katas/code-cracker/README.en.md) | substitution cipher, round trip | ✅ done | [codingdojo.org](https://codingdojo.org/kata/CodeCracker/) |
 | [CQRS Booking](katas/cqrs-booking/README.en.md) | CQRS, read/write split | ✅ done | [codingdojo.org](https://codingdojo.org/kata/CQRS_Booking/) |
 | [Cupcake](katas/cupcake/README.en.md) | Decorator and Composite patterns | ✅ done | [codingdojo.org](https://codingdojo.org/kata/cupcake/) |
