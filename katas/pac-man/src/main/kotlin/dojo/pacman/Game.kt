@@ -21,6 +21,11 @@ class Game private constructor(private val cells: List<CharArray>, private var x
         cells[y][x] = direction.symbol
     }
 
+    fun turn(newDirection: Direction) {
+        direction = newDirection
+        cells[y][x] = direction.symbol
+    }
+
     fun render(): String = cells.joinToString("\n") { String(it) }
 
     companion object {
