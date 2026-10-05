@@ -31,4 +31,13 @@ class ContactsTest {
             Person("Elon", "Musk", LocalDate.of(1971, 6, 28)),
         )
     }
+
+    @Test
+    fun `a person's email is saved and read back`() {
+        val ada = Person("Ada", "Lovelace", LocalDate.of(1815, 12, 10), email = "ada@analytical.engine")
+
+        val id = contacts.save(ada)
+
+        assertThat(contacts.find(id)).isEqualTo(ada)
+    }
 }
