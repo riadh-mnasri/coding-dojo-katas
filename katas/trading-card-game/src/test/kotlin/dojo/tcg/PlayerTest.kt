@@ -73,4 +73,16 @@ class PlayerTest {
         assertThat(ann.health).isEqualTo(29)
         assertThat(ann.hand).hasSize(3)
     }
+
+    @Test
+    fun `overload - a card drawn into a hand of five is discarded`() {
+        val ann = player(1, 1, 1, 2, 2, 8)
+        repeat(2) { ann.startTurn() }
+        assertThat(ann.hand).hasSize(5)
+
+        ann.startTurn()
+
+        assertThat(ann.hand).containsExactly(1, 1, 1, 2, 2)
+        assertThat(ann.deck).isEmpty()
+    }
 }
