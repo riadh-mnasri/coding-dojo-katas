@@ -36,5 +36,7 @@ class Contacts(private val database: Database) {
         Persons.selectAll().where { Persons.id eq id }.singleOrNull()?.toPerson()
     }
 
+    fun all(): List<Person> = transaction(database) { Persons.selectAll().map { it.toPerson() } }
+
     private fun ResultRow.toPerson() = Person(this[Persons.name], this[Persons.surname], this[Persons.birthDate])
 }
