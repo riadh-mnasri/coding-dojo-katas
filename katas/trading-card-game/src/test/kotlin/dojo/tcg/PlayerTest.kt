@@ -85,4 +85,15 @@ class PlayerTest {
         assertThat(ann.hand).containsExactly(1, 1, 1, 2, 2)
         assertThat(ann.deck).isEmpty()
     }
+
+    @Test
+    fun `dud cards are free and harmless`() {
+        val ann = player(0, 1, 2, 3)
+        val bob = player(0, 0, 0)
+
+        ann.play(0, against = bob)
+
+        assertThat(bob.health).isEqualTo(30)
+        assertThat(ann.hand).containsExactly(1, 2)
+    }
 }
