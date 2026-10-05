@@ -14,6 +14,7 @@ class Game private constructor(private val cells: List<CharArray>, private var x
     fun tick() {
         val nextX = Math.floorMod(x + direction.dx, cells[y].size)
         val nextY = Math.floorMod(y + direction.dy, cells.size)
+        if (cells[nextY][nextX] == WALL) return
         if (cells[nextY][nextX] == DOT) score++
         cells[y][x] = EMPTY
         x = nextX
@@ -30,6 +31,7 @@ class Game private constructor(private val cells: List<CharArray>, private var x
 
     companion object {
         private const val DOT = '.'
+        private const val WALL = '#'
         private const val EMPTY = ' '
 
         fun parse(board: String): Game {
