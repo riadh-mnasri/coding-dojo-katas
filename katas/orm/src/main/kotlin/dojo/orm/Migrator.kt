@@ -28,7 +28,11 @@ class Migrator(private val database: Database, private val migrations: List<Migr
     fun migrateTo(target: Int) {
         val current = currentVersion()
         transaction(database) {
-            migrations.filter { it.version in (current + 1)..target }.sortedBy { it.version }.forEach { it.up(this) }
+            if (target >= current) {
+                migrations.filter { it.version in (current + 1)..target }.sortedBy { it.version }.forEach { it.up(this) }
+            } else {
+                migrations.filter { it.version in (target + 1)..current }.sortedByDescending { it.version }.forEach { it.down(this) }
+            }
             SchemaVersion.deleteAll()
             SchemaVersion.insert { it[version] = target }
         }
