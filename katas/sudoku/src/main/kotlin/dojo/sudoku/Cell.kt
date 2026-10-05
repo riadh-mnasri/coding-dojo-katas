@@ -4,6 +4,7 @@ package dojo.sudoku
 sealed interface CellValue {
     data object Unknown : CellValue
     data class Known(val number: Int) : CellValue
+    data object Impossible : CellValue
 }
 
 class Cell {
@@ -15,5 +16,9 @@ class Cell {
         possible -= number
     }
 
-    fun value(): CellValue = if (possible.size == 1) CellValue.Known(possible.single()) else CellValue.Unknown
+    fun value(): CellValue = when (possible.size) {
+        0 -> CellValue.Impossible
+        1 -> CellValue.Known(possible.single())
+        else -> CellValue.Unknown
+    }
 }
