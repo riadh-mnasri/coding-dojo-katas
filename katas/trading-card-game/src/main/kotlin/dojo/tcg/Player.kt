@@ -20,4 +20,10 @@ class Player(val name: String, val deck: MutableList<Int>) {
         mana = manaSlots
         hand += deck.removeFirst()
     }
+
+    fun play(card: Int, against: Player) {
+        mana -= card
+        hand.remove(card)
+        against.health -= card
+    }
 }
