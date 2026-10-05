@@ -4,7 +4,6 @@ package dojo.orm
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.ResultRow
-import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.insertAndGetId
 import org.jetbrains.exposed.sql.javatime.date
 import org.jetbrains.exposed.sql.selectAll
@@ -21,7 +20,7 @@ object Persons : IntIdTable("persons") {
 class Contacts(private val database: Database) {
 
     init {
-        transaction(database) { SchemaUtils.create(Persons) }
+        Migrator(database, Migrations.all).migrateTo(Migrations.LATEST)
     }
 
     fun save(person: Person): Int = transaction(database) {
