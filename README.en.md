@@ -54,7 +54,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 ## The katas
 
 <!-- katas:start -->
-**Progress: 59 / 61 katas.**
+**Progress: 60 / 61 katas.**
 
 | Kata | What it practises | Status | Kata page |
 |---|---|---|---|
@@ -110,7 +110,7 @@ Every `katas/<kata>/` folder holds a `README.md` (French) and a `README.en.md` (
 | [RSA](katas/rsa/README.en.md) | modular arithmetic | ✅ done | [codingdojo.org](https://codingdojo.org/kata/rsa/) |
 | [Social Network](katas/social-network/README.en.md) | example mapping, domain | ✅ done | [codingdojo.org](https://codingdojo.org/kata/social-network/) |
 | [String Calculator](katas/string-calculator/README.en.md) | incremental error handling | ✅ done | [codingdojo.org](https://codingdojo.org/kata/StringCalculator/) |
-| Sudoku Concurrent Resolver | message-driven constraint propagation | ⏳ to do | [codingdojo.org](https://codingdojo.org/kata/sudoku/) |
+| [Sudoku Concurrent Resolver](katas/sudoku/README.en.md) | message-driven constraint propagation | ✅ done | [codingdojo.org](https://codingdojo.org/kata/sudoku/) |
 | [Tennis](katas/tennis/README.en.md) | state machine | ✅ done | [codingdojo.org](https://codingdojo.org/kata/Tennis/) |
 | [Texas Hold'em](katas/texas-hold-em/README.en.md) | best hand out of 7 cards | ✅ done | [codingdojo.org](https://codingdojo.org/kata/TexasHoldEm/) |
 | [Tic Tac Toe](katas/tic-tac-toe/README.en.md) | double-loop TDD | ✅ done | [codingdojo.org](https://codingdojo.org/kata/tic-tac-toe/) |
