@@ -29,4 +29,13 @@ class PlayerTest {
         assertThat(ann.mana).isEqualTo(1)
         assertThat(ann.hand).containsExactly(0, 1, 2, 3)
     }
+
+    @Test
+    fun `there are at most ten mana slots`() {
+        val ann = player(*IntArray(20))
+
+        repeat(12) { ann.startTurn() }
+
+        assertThat(ann.manaSlots).isEqualTo(10)
+    }
 }
