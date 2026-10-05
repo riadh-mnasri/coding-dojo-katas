@@ -2,6 +2,7 @@
 package dojo.tcg
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class PlayerTest {
@@ -50,5 +51,16 @@ class PlayerTest {
         assertThat(ann.mana).isZero()
         assertThat(ann.hand).doesNotContain(3)
         assertThat(bob.health).isEqualTo(27)
+    }
+
+    @Test
+    fun `a card must be in hand and affordable`() {
+        val ann = player(5, 1, 2, 0)
+        val bob = player(0, 0, 0)
+        ann.startTurn()
+
+        assertThatThrownBy { ann.play(5, against = bob) }.isInstanceOf(IllegalStateException::class.java)
+        assertThatThrownBy { ann.play(7, against = bob) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThat(bob.health).isEqualTo(30)
     }
 }
