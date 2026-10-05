@@ -21,4 +21,14 @@ class ContactsTest {
 
         assertThat(contacts.find(id)).isEqualTo(Person("Margaret", "Hamilton", LocalDate.of(1936, 8, 17)))
     }
+
+    @Test
+    fun `the production contacts can be seeded`() {
+        ProductionContacts.seed(contacts)
+
+        assertThat(contacts.all()).hasSize(9).contains(
+            Person("Greta", "Thunberg", LocalDate.of(2003, 1, 3)),
+            Person("Elon", "Musk", LocalDate.of(1971, 6, 28)),
+        )
+    }
 }
