@@ -1,0 +1,25 @@
+// Copyright (c) 2026 Riadh MNASRI. Licensed under the MIT License.
+package dojo.sudoku
+
+enum class Direction { NORTH, EAST, SOUTH, WEST }
+
+/** Le contenu des messages de l'énoncé : une valeur trouvée, et les régions qui l'ont déjà traitée. */
+data class Message(val row: Int, val column: Int, val value: Int, val path: List<String>)
+
+/**
+ * Une région : une grille et ses quatre sorties. Elle ne connaît pas ses voisines, seulement la
+ * fonction [send] qui achemine un message vers la sortie voulue.
+ */
+class Region(
+    val name: String,
+    private val send: (Direction, Message) -> Unit,
+    private val display: (String, Discovery) -> Unit,
+) {
+    private val grid = Grid(name) { discovery ->
+        display(name, discovery)
+        val message = Message(discovery.row, discovery.column, discovery.value, path = listOf(name))
+        Direction.entries.forEach { send(it, message) }
+    }
+
+    fun init(row: Int, column: Int, value: Int) = grid.set(row, column, value)
+}
