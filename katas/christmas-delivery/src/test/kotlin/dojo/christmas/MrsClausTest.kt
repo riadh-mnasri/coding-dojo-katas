@@ -72,4 +72,18 @@ class MrsClausTest {
         // Les deux lutins ont travaillé en même temps, même si les familles sont mélangées : ils coûtent trop cher pour attendre.
         assertThat(sleigh.packed).hasSize(2)
     }
+
+    @Test
+    fun `story 4 - the presents of a naughty family are discarded`() = runTest {
+        val claus = mrsClaus(elves = 1)
+        claus.receive(present("Smith train", family = "Smith"))
+        claus.receive(present("Jones doll", family = "Jones"))
+
+        claus.cancel(family = "Jones")
+        claus.receive(present("Jones kite", family = "Jones"))
+        claus.receive(present("Smith ball", family = "Smith"))
+        after(60)
+
+        assertThat(sleigh.packed.map { it.name }).containsExactly("Smith train", "Smith ball")
+    }
 }
