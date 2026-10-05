@@ -22,4 +22,11 @@ class Region(
     }
 
     fun init(row: Int, column: Int, value: Int) = grid.set(row, column, value)
+
+    fun isPossible(row: Int, column: Int, value: Int) = grid.cell(row, column).isPossible(value)
+
+    fun receive(from: Direction, message: Message) {
+        grid.excludeFromColumn(message.column, message.value)
+        send(Direction.SOUTH, message.copy(path = message.path + name))
+    }
 }
