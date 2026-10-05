@@ -16,7 +16,7 @@ class Player(val name: String, val deck: MutableList<Int>) {
     }
 
     fun startTurn() {
-        manaSlots++
+        manaSlots = minOf(manaSlots + 1, 10)
         mana = manaSlots
         hand += deck.removeFirst()
     }
