@@ -11,6 +11,8 @@ class Game private constructor(private val cells: List<CharArray>, private var x
     var score = 0
         private set
 
+    val isLevelComplete: Boolean get() = cells.none { DOT in it }
+
     fun tick() {
         val (nextX, nextY) = ahead(direction)
         if (cells[nextY][nextX] == WALL) return
