@@ -16,14 +16,18 @@ class Game private constructor(private val cells: List<CharArray>, private var x
     var isOver = false
         private set
 
+    /** Un pas de jeu : ce qui se passe dépend de la case devant Pac-Man. */
     fun tick() {
         if (isOver) return
         val (nextX, nextY) = ahead(direction)
-        if (cells[nextY][nextX] == MONSTER) {
-            isOver = true
-            return
+        when (cells[nextY][nextX]) {
+            MONSTER -> isOver = true
+            WALL -> Unit
+            else -> moveTo(nextX, nextY)
         }
-        if (cells[nextY][nextX] == WALL) return
+    }
+
+    private fun moveTo(nextX: Int, nextY: Int) {
         if (cells[nextY][nextX] == DOT) score++
         cells[y][x] = EMPTY
         x = nextX
