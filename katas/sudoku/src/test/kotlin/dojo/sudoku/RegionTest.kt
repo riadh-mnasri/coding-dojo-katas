@@ -33,4 +33,14 @@ class RegionTest {
         assertThat((1..3).none { region.isPossible(row = it, column = 3, value = 5) }).isTrue()
         assertThat(region.isPossible(row = 1, column = 1, value = 5)).isTrue()
     }
+
+    @Test
+    fun `a message from the east excludes the value from the row and goes on west`() {
+        val fromRight = Message(row = 2, column = 3, value = 5, path = listOf("A"))
+
+        region.receive(from = EAST, message = fromRight)
+
+        assertThat(sent).containsExactly(WEST to fromRight.copy(path = listOf("A", "C")))
+        assertThat((1..3).none { region.isPossible(row = 2, column = it, value = 5) }).isTrue()
+    }
 }
