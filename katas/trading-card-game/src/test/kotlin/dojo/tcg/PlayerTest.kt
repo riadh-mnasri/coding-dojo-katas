@@ -38,4 +38,17 @@ class PlayerTest {
 
         assertThat(ann.manaSlots).isEqualTo(10)
     }
+
+    @Test
+    fun `playing a card spends its cost in mana and deals as much damage`() {
+        val ann = player(3, 1, 2, 0, 0, 0)
+        val bob = player(0, 0, 0, 0, 0)
+        repeat(3) { ann.startTurn() }
+
+        ann.play(3, against = bob)
+
+        assertThat(ann.mana).isZero()
+        assertThat(ann.hand).doesNotContain(3)
+        assertThat(bob.health).isEqualTo(27)
+    }
 }
