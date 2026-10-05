@@ -23,4 +23,13 @@ class CellTest {
         assertThat(cell.isPossible(3)).isFalse()
         assertThat(cell.value()).isEqualTo(CellValue.Known(7))
     }
+
+    @Test
+    fun `excluding every number is a contradiction`() {
+        val cell = Cell()
+
+        (1..9).forEach(cell::exclude)
+
+        assertThat(cell.value()).isEqualTo(CellValue.Impossible)
+    }
 }
