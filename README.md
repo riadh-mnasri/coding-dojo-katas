@@ -54,7 +54,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 ## Les katas
 
 <!-- katas:start -->
-**Avancement : 57 / 61 katas.**
+**Avancement : 58 / 61 katas.**
 
 | Kata | Ce qu'il fait travailler | Statut | Énoncé |
 |---|---|---|---|
@@ -96,7 +96,7 @@ Chaque dossier `katas/<kata>/` contient un `README.md` (français) et un `README
 | [Number to LCD](katas/number-to-lcd/README.md) | rendu texte, exigences changeantes | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/NumberToLCD/) |
 | [Numbers in Words](katas/numbers-in-words/README.md) | conversion bidirectionnelle | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/NumbersInWords/) |
 | ORM | ORM, migrations de schéma | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/orm/) |
-| PacMan | jeu à ticks, état du plateau | ⏳ à faire | [codingdojo.org](https://codingdojo.org/kata/PacMan/) |
+| [PacMan](katas/pac-man/README.md) | jeu à ticks, état du plateau | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/PacMan/) |
 | [Pagination Seven](katas/pagination-seven/README.md) | cas limites d'affichage | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/PaginationSeven/) |
 | [Pizza Maker](katas/pizza-maker/README.md) | asynchrone, temps virtuel | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/pizza-maker/) |
 | [Poker Hands](katas/poker-hands/README.md) | classement et comparaison | ✅ fait | [codingdojo.org](https://codingdojo.org/kata/PokerHands/) |
