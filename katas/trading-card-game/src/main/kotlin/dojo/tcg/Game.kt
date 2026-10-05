@@ -27,4 +27,14 @@ class Game(first: Player, second: Player) {
         }
         active = opponent.also { opponent = active }
     }
+
+    companion object {
+        /** Le paquet de 20 cartes de l'énoncé. */
+        val STANDARD_DECK = listOf(0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8)
+
+        fun withStandardDecks(first: String, second: String, random: kotlin.random.Random): Game = Game(
+            Player(first, STANDARD_DECK.shuffled(random).toMutableList()),
+            Player(second, STANDARD_DECK.shuffled(random).toMutableList()),
+        )
+    }
 }
