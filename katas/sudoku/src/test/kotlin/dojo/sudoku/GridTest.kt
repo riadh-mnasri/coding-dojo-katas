@@ -31,4 +31,14 @@ class GridTest {
         assertThat(grid.cell(3, 3).value()).isEqualTo(CellValue.Known(9))
         assertThat(discoveries).containsExactly(Discovery(1, 1, 8), Discovery(3, 3, 9))
     }
+
+    @Test
+    fun `a value can be excluded from a whole row or a whole column`() {
+        grid.excludeFromRow(row = 2, value = 4)
+        grid.excludeFromColumn(column = 3, value = 5)
+
+        assertThat((1..3).none { grid.cell(2, it).isPossible(4) }).isTrue()
+        assertThat((1..3).none { grid.cell(it, 3).isPossible(5) }).isTrue()
+        assertThat(grid.cell(1, 1).isPossible(4)).isTrue()
+    }
 }
