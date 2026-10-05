@@ -31,6 +31,7 @@ class Region(
 
     /** Un message venu du nord ou du sud concerne une colonne, de l'est ou de l'ouest une ligne ; il continue tout droit. */
     fun receive(from: Direction, message: Message) {
+        if (name in message.path) return
         when (from) {
             Direction.NORTH, Direction.SOUTH -> grid.excludeFromColumn(message.column, message.value)
             Direction.EAST, Direction.WEST -> grid.excludeFromRow(message.row, message.value)
