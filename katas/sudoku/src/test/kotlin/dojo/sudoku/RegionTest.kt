@@ -43,4 +43,13 @@ class RegionTest {
         assertThat(sent).containsExactly(WEST to fromRight.copy(path = listOf("A", "C")))
         assertThat((1..3).none { region.isPossible(row = 2, column = it, value = 5) }).isTrue()
     }
+
+    @Test
+    fun `a message that came back to a region it already went through stops there`() {
+        val backHome = Message(row = 2, column = 3, value = 5, path = listOf("C", "F", "I"))
+
+        region.receive(from = SOUTH, message = backHome)
+
+        assertThat(sent).isEmpty()
+    }
 }
