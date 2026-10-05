@@ -22,6 +22,8 @@ class Player(val name: String, val deck: MutableList<Int>) {
     }
 
     fun play(card: Int, against: Player) {
+        require(card in hand) { "$name has no $card card in hand" }
+        check(card <= mana) { "$name cannot afford a $card card with $mana mana" }
         mana -= card
         hand.remove(card)
         against.health -= card
