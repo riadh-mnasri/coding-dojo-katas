@@ -12,8 +12,7 @@ class Game private constructor(private val cells: List<CharArray>, private var x
         private set
 
     fun tick() {
-        val nextX = Math.floorMod(x + direction.dx, cells[y].size)
-        val nextY = Math.floorMod(y + direction.dy, cells.size)
+        val (nextX, nextY) = ahead(direction)
         if (cells[nextY][nextX] == WALL) return
         if (cells[nextY][nextX] == DOT) score++
         cells[y][x] = EMPTY
@@ -23,9 +22,15 @@ class Game private constructor(private val cells: List<CharArray>, private var x
     }
 
     fun turn(newDirection: Direction) {
+        val (aheadX, aheadY) = ahead(newDirection)
+        if (cells[aheadY][aheadX] == WALL) return
         direction = newDirection
         cells[y][x] = direction.symbol
     }
+
+    /** La case devant Pac-Man dans cette direction, en passant de l'autre côté du plateau aux bords. */
+    private fun ahead(towards: Direction) =
+        Math.floorMod(x + towards.dx, cells[y].size) to Math.floorMod(y + towards.dy, cells.size)
 
     fun render(): String = cells.joinToString("\n") { String(it) }
 
