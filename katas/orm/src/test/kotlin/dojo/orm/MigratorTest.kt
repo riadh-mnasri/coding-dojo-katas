@@ -41,4 +41,17 @@ class MigratorTest {
         val names = transaction(database) { exec("SELECT name FROM persons") { rs -> rs.next(); rs.getString(1) } }
         assertThat(names).isEqualTo("Grace")
     }
+
+    @Test
+    fun `a populated version 1 database is upgraded without losing its persons`() {
+        Migrator(database, Migrations.all).migrateTo(1)
+        transaction(database) {
+            exec("INSERT INTO persons (name, surname, birth_date) VALUES ('Grace', 'Hopper', '1906-12-09')")
+        }
+
+        val contacts = Contacts(database)
+
+        assertThat(contacts.all()).containsExactly(Person("Grace", "Hopper", java.time.LocalDate.of(1906, 12, 9), email = null))
+        assertThat(Migrator(database, Migrations.all).currentVersion()).isEqualTo(Migrations.LATEST)
+    }
 }
