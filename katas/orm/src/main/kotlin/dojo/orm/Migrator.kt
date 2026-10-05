@@ -36,8 +36,21 @@ class Migrator(private val database: Database, private val migrations: List<Migr
 }
 
 object Migrations {
+    /**
+     * Le SQL de chaque migration est figé : il décrit le schéma de sa version, pas celui de la table [Persons]
+     * d'aujourd'hui, qui a pu changer depuis.
+     */
     val all = listOf(
-        Migration(1, up = { SchemaUtils.create(Persons) }, down = { SchemaUtils.drop(Persons) }),
+        Migration(
+            1,
+            up = { exec("CREATE TABLE persons (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(100) NOT NULL, surname VARCHAR(100) NOT NULL, birth_date DATE NOT NULL)") },
+            down = { exec("DROP TABLE persons") },
+        ),
+        Migration(
+            2,
+            up = { exec("ALTER TABLE persons ADD COLUMN email VARCHAR(255)") },
+            down = { exec("ALTER TABLE persons DROP COLUMN email") },
+        ),
     )
     val LATEST = all.maxOf { it.version }
 }

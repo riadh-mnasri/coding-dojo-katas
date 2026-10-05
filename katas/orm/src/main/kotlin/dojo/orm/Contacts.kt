@@ -14,6 +14,7 @@ object Persons : IntIdTable("persons") {
     val name = varchar("name", 100)
     val surname = varchar("surname", 100)
     val birthDate = date("birth_date")
+    val email = varchar("email", 255).nullable()
 }
 
 /** Le carnet de contacts : traduit entre les objets métier et les lignes de la base. */
@@ -28,6 +29,7 @@ class Contacts(private val database: Database) {
             it[name] = person.name
             it[surname] = person.surname
             it[birthDate] = person.birthDate
+            it[email] = person.email
         }.value
     }
 
@@ -37,5 +39,5 @@ class Contacts(private val database: Database) {
 
     fun all(): List<Person> = transaction(database) { Persons.selectAll().map { it.toPerson() } }
 
-    private fun ResultRow.toPerson() = Person(this[Persons.name], this[Persons.surname], this[Persons.birthDate])
+    private fun ResultRow.toPerson() = Person(this[Persons.name], this[Persons.surname], this[Persons.birthDate], this[Persons.email])
 }

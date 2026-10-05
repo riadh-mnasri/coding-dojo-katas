@@ -4,4 +4,4 @@ package dojo.orm
 import java.time.LocalDate
 
 /** L'objet métier : il ne sait rien de la base. */
-data class Person(val name: String, val surname: String, val birthDate: LocalDate)
+data class Person(val name: String, val surname: String, val birthDate: LocalDate, val email: String? = null)
