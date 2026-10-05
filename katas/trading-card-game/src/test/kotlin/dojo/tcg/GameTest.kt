@@ -44,4 +44,17 @@ class GameTest {
             assertThat(turns).isLessThan(100)
         }
     }
+
+    @Test
+    fun `a player who bleeds out to zero loses`() {
+        val ann = Player("Ann", mutableListOf(0, 0, 0))
+        val bob = Player("Bob", mutableListOf(0, 0, 0))
+        val game = Game(ann, bob)
+
+        while (game.winner == null) game.playTurn()
+
+        // Les deux paquets sont vides dès le premier tour : Ann saigne la première et tombe la première.
+        assertThat(game.winner).isSameAs(bob)
+        assertThat(ann.health).isZero()
+    }
 }
