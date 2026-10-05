@@ -12,10 +12,18 @@ class MrsClaus(elves: List<Elf>, private val scope: CoroutineScope) {
     private val freeElves = ArrayDeque(elves)
     private val waiting = ArrayDeque<Present>()
     private val startedFamilies = mutableSetOf<String>()
+    private val naughtyFamilies = mutableSetOf<String>()
 
     fun receive(present: Present) {
+        if (present.family in naughtyFamilies) return
         waiting.addLast(present)
         dispatch()
+    }
+
+    /** Les cadeaux en attente de cette famille sont jetés, ainsi que ceux qui arriveront ensuite. */
+    fun cancel(family: String) {
+        naughtyFamilies += family
+        waiting.removeAll { it.family == family }
     }
 
     /** Un cadeau d'une famille déjà commencée passe d'abord ; sinon, le plus ancien. */
