@@ -63,4 +63,14 @@ class PlayerTest {
         assertThatThrownBy { ann.play(7, against = bob) }.isInstanceOf(IllegalArgumentException::class.java)
         assertThat(bob.health).isEqualTo(30)
     }
+
+    @Test
+    fun `bleeding out - drawing from an empty deck costs 1 health instead`() {
+        val ann = player(0, 0, 0)
+
+        ann.startTurn()
+
+        assertThat(ann.health).isEqualTo(29)
+        assertThat(ann.hand).hasSize(3)
+    }
 }
