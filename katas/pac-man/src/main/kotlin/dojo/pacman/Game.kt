@@ -12,8 +12,8 @@ class Game private constructor(private val cells: List<CharArray>, private var x
         private set
 
     fun tick() {
-        val nextX = x + direction.dx
-        val nextY = y + direction.dy
+        val nextX = Math.floorMod(x + direction.dx, cells[y].size)
+        val nextY = Math.floorMod(y + direction.dy, cells.size)
         if (cells[nextY][nextX] == DOT) score++
         cells[y][x] = EMPTY
         x = nextX
