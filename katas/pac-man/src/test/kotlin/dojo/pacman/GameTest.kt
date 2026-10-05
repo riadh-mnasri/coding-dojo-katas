@@ -57,4 +57,14 @@ class GameTest {
 
         assertThat(game.render()).isEqualTo(board("...", "#V.", "..."))
     }
+
+    @Test
+    fun `the level is complete once every dot is eaten`() {
+        val game = Game.parse(board("#.#", "#V#", "###"))
+        assertThat(game.isLevelComplete).isFalse()
+
+        game.tick()
+
+        assertThat(game.isLevelComplete).isTrue()
+    }
 }
