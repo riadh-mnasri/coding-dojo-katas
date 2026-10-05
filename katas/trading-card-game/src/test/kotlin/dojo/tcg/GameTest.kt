@@ -29,4 +29,19 @@ class GameTest {
         assertThat(game.winner).isSameAs(ann)
         assertThat(bob.health).isLessThanOrEqualTo(0)
     }
+
+    @Test
+    fun `a full game between shuffled standard decks always ends with a winner`() {
+        repeat(50) { seed ->
+            val game = Game.withStandardDecks("Ann", "Bob", kotlin.random.Random(seed))
+
+            var turns = 0
+            while (game.winner == null) {
+                game.playTurn()
+                turns++
+            }
+
+            assertThat(turns).isLessThan(100)
+        }
+    }
 }
