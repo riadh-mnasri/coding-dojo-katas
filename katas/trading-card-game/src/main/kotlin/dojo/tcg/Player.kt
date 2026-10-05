@@ -18,7 +18,7 @@ class Player(val name: String, val deck: MutableList<Int>) {
     fun startTurn() {
         manaSlots = minOf(manaSlots + 1, 10)
         mana = manaSlots
-        if (deck.isEmpty()) health-- else hand += deck.removeFirst()
+        draw()
     }
 
     fun play(card: Int, against: Player) {
@@ -27,5 +27,19 @@ class Player(val name: String, val deck: MutableList<Int>) {
         mana -= card
         hand.remove(card)
         against.health -= card
+    }
+
+    /** Bleeding Out : une pioche vide coûte 1 point de vie. Overload : au-delà de 5 cartes en main, la carte piochée est défaussée. */
+    private fun draw() {
+        if (deck.isEmpty()) {
+            health--
+            return
+        }
+        val card = deck.removeFirst()
+        if (hand.size < MAX_HAND) hand += card
+    }
+
+    private companion object {
+        const val MAX_HAND = 5
     }
 }
