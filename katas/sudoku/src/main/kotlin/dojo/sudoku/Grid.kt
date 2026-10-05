@@ -25,6 +25,10 @@ class Grid(val name: String, private val onDiscovery: (Discovery) -> Unit) {
         (cell.value() as? CellValue.Known)?.let { discovered(row, column, it.number) }
     }
 
+    fun excludeFromRow(row: Int, value: Int) = (1..3).forEach { exclude(row, it, value) }
+
+    fun excludeFromColumn(column: Int, value: Int) = (1..3).forEach { exclude(it, column, value) }
+
     private fun discovered(row: Int, column: Int, value: Int) {
         if (!reported.add(row to column)) return
         onDiscovery(Discovery(row, column, value))
