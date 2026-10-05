@@ -29,4 +29,13 @@ class GameTest {
         game.tick()
         assertThat(game.render()).isEqualTo(board("...", "> .", "..."))
     }
+
+    @Test
+    fun `pacman wraps around the edges`() {
+        val game = Game.parse(board(".V.", "...", "..."))
+
+        game.tick()
+
+        assertThat(game.render()).isEqualTo(board(". .", "...", ".V."))
+    }
 }
