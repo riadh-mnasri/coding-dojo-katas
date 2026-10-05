@@ -17,4 +17,16 @@ class GameTest {
         assertThat(bob.health).isEqualTo(29)
         assertThat(game.active).isSameAs(bob)
     }
+
+    @Test
+    fun `the active player wins when the opponent's health drops to zero`() {
+        val ann = Player("Ann", mutableListOf(8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8))
+        val bob = Player("Bob", mutableListOf(0, 0, 0))
+        val game = Game(ann, bob)
+
+        while (game.winner == null) game.playTurn()
+
+        assertThat(game.winner).isSameAs(ann)
+        assertThat(bob.health).isLessThanOrEqualTo(0)
+    }
 }
