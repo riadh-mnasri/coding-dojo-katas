@@ -38,4 +38,14 @@ class GameTest {
 
         assertThat(game.render()).isEqualTo(board(". .", "...", ".V."))
     }
+
+    @Test
+    fun `pacman stops in front of a wall`() {
+        val game = Game.parse(board(".#.", ".V.", "..."))
+
+        game.tick()
+
+        assertThat(game.render()).isEqualTo(board(".#.", ".V.", "..."))
+        assertThat(game.score).isZero()
+    }
 }
