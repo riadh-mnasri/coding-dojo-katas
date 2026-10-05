@@ -3,6 +3,7 @@ package dojo.sudoku
 
 sealed interface CellValue {
     data object Unknown : CellValue
+    data class Known(val number: Int) : CellValue
 }
 
 class Cell {
@@ -10,5 +11,9 @@ class Cell {
 
     fun isPossible(number: Int) = number in possible
 
-    fun value(): CellValue = CellValue.Unknown
+    fun exclude(number: Int) {
+        possible -= number
+    }
+
+    fun value(): CellValue = if (possible.size == 1) CellValue.Known(possible.single()) else CellValue.Unknown
 }
