@@ -7,9 +7,17 @@ class Player(val name: String, val deck: MutableList<Int>) {
         private set
     var manaSlots = 0
         private set
+    var mana = 0
+        private set
     val hand = mutableListOf<Int>()
 
     init {
         repeat(3) { hand += deck.removeFirst() }
+    }
+
+    fun startTurn() {
+        manaSlots++
+        mana = manaSlots
+        hand += deck.removeFirst()
     }
 }
