@@ -13,4 +13,14 @@ class CellTest {
         assertThat((1..9).all(cell::isPossible)).isTrue()
         assertThat(cell.value()).isEqualTo(CellValue.Unknown)
     }
+
+    @Test
+    fun `excluding every number but one makes the value known`() {
+        val cell = Cell()
+
+        (1..9).filter { it != 7 }.forEach(cell::exclude)
+
+        assertThat(cell.isPossible(3)).isFalse()
+        assertThat(cell.value()).isEqualTo(CellValue.Known(7))
+    }
 }
