@@ -18,4 +18,15 @@ class GameTest {
         assertThat(game.render()).isEqualTo(board(".V.", ". .", "..."))
         assertThat(game.score).isEqualTo(1)
     }
+
+    @Test
+    fun `pacman can be turned and then moves that way`() {
+        val game = Game.parse(board("...", ".V.", "..."))
+
+        game.turn(Direction.LEFT)
+        assertThat(game.render()).isEqualTo(board("...", ".>.", "..."))
+
+        game.tick()
+        assertThat(game.render()).isEqualTo(board("...", "> .", "..."))
+    }
 }
