@@ -1,5 +1,7 @@
 # Coding Dojo Katas
 
+[![CI](https://github.com/riadh-mnasri/coding-dojo-katas/actions/workflows/ci.yml/badge.svg)](https://github.com/riadh-mnasri/coding-dojo-katas/actions/workflows/ci.yml)
+
 🇫🇷 [Version française](README.md)
 
 The [codingdojo.org katas](https://codingdojo.org/kata/) solved in **Kotlin** with **strict TDD**, each kata documented (in French and English) with the walkthrough, the solution and the takeaways.
@@ -40,6 +42,19 @@ A test that passes on its first run is not dressed up as a red step: it is commi
 scripts/tdd.sh bowling red      "test(bowling): score a gutter game"
 scripts/tdd.sh bowling green    "feat(bowling): sum knocked down pins"
 scripts/tdd.sh bowling refactor "refactor(bowling): extract frame scoring"
+```
+
+### Continuous verification
+
+On every push, the [GitHub Actions CI](.github/workflows/ci.yml) does two things:
+
+- it runs the tests of the 61 katas;
+- it reads the whole history since the `strict-tdd-start` tag with [`scripts/check_tdd_history.py`](scripts/check_tdd_history.py): for each kata, a `feat` must follow a red, a test commit does not touch production code, and no refactoring or docs happen while a red is waiting for its green.
+
+The guard protects each commit on my machine; the CI checks, afterwards and for anyone, that the published history really tells complete cycles. The only known slip (Tennis, red code that went into a docs commit) is listed in the script and told in the kata's docs.
+
+```bash
+python3 scripts/check_tdd_history.py
 ```
 
 ### Per-kata documentation
