@@ -46,13 +46,13 @@ class AnagramsTest {
     }
 
     /**
-     * Le dictionnaire web2 (Webster 1934, domaine public) livré avec macOS et beaucoup de Linux.
+     * Le dictionnaire web2 (Webster 1934, domaine public) livré avec macOS ; ailleurs, le test est ignoré.
      * Les 52 paires attendues ont été calculées à part, avec un script Python indépendant.
      */
     @Test
     fun `finds the 52 two-word anagrams of documenting in web2 within ten seconds`() {
-        val web2 = File("/usr/share/dict/web2").takeIf { it.exists() } ?: File("/usr/share/dict/words")
-        assumeTrue(web2.exists(), "no system dictionary on this machine")
+        val web2 = File("/usr/share/dict/web2")
+        assumeTrue(web2.exists(), "no web2 dictionary on this machine")
         val words = web2.readLines().filter { it.isNotBlank() && it.all(Char::isLetter) }
 
         val anagrams = assertTimeoutPreemptively(
