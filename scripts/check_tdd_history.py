@@ -27,7 +27,7 @@ KNOWN_SLIPS = {
     "ce6b18dd1cc69fe82ff65d46931c2f1eb400831f",
 }
 
-SUBJECT = re.compile(r"^(\w+)\(([\w-]+)\): ")
+SUBJECT = re.compile(r"^(\w+)(?:\(([\w-]+)\))?: ")
 
 
 def commits():
@@ -59,6 +59,8 @@ def main():
             errors.append(f"{sha[:7]} sujet hors format Angular : {subject}")
             continue
         kind, scope = match.groups()
+        if scope is None:
+            continue  # pas de scope : un changement transverse, hors des katas
         kata_files = [f for f in files if f.startswith(f"katas/{scope}/")]
         if not kata_files:
             continue  # scripts, README racine, etc.
